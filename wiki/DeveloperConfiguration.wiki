@@ -1,0 +1,12 @@
+#summary Configuration du poste développeur
+#labels Guidelines
+
+= Outils à utiliser =
+
+ * SQL Server 2008
+ * Visual Studio 2008
+ * Versionning : Tortoise SVN
+
+= Configuration =
+
+TODO.
