@@ -1,14 +1,18 @@
 #summary Aperçu de l'architecture générale du projet
 #labels Phase-Design
 
-= Introduction =
+= Architecture générale =
 
-Add your content here.
+http://groups-beta.google.com/group/globusdatapad-discuss/web/DesignOverview.png 
 
+= Choix technologiques =
 
-= Details =
+Il a été décidé d’utiliser les technologies Microsoft et notamment le framework .NET 3.5.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ * *DB* (base de données) : SQL Server 2008
+ * *DAL* : bibliothèque de classes générée à partir du schéma SQL de la base; possiblement en utilisant LinqToSql ou LinqToEntities (Entities Framework).
+ * *Services* : bibliothèque de classes classique
+ * *Presentation* :
+    * *WebApp* : ASP.NET WebForms ou ASP.NET MVC 2
+    * *WebServices* : WCF RESTful WebServices
+ * Global services : concerne notamment le logging. A déterminer.
