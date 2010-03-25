@@ -16,3 +16,7 @@ Il a été décidé d’utiliser les technologies Microsoft et notamment le fram
     * *WebApp* : ASP.NET WebForms ou ASP.NET MVC 2
     * *WebServices* : WCF RESTful WebServices
  * Global services : concerne notamment le logging. A déterminer.
+
+= Questions =
+
+ * [http://www.shouldersofgiants.co.uk/Blog/ ASP.NET MVC en tant que web services RESTful]
