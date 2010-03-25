@@ -1,0 +1,13 @@
+#summary Encore des fonctionnalités en plus qu'il pourrait être sympa d'implémenter
+
+= Séparer l'authentification =
+
+Voir `OAuth` / `OpenID`.
+
+= Publier des microformats =
+
+Publier des microformats pour les évènements dans les pages.
+
+= Publier un flux iCal =
+
+Publier chaque évènement en tant qu'`iCal` ou un calendrier entier en tant que format `iCal`.
