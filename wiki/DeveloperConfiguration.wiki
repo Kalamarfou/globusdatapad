@@ -5,6 +5,7 @@
 
  * SQL Server 2008
  * Visual Studio 2008
+   * [http://weblogs.asp.net/scottgu/archive/2010/01/10/asp-net-mvc-2.aspx ASP.NET MVC 2]
  * Versionning : Tortoise SVN
 
 = Configuration =
