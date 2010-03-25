@@ -20,3 +20,11 @@ Il a été décidé d’utiliser les technologies Microsoft et notamment le fram
 = Questions =
 
  * [http://www.shouldersofgiants.co.uk/Blog/ ASP.NET MVC en tant que web services RESTful]
+
+= Alternative légère =
+
+ * *DB* (base de données) : SQL Server 2008
+ * *DAL* : bibliothèque de classes `LinqToSql`
+ * *WebApp* : ASP.NET MVC 2 : web and lightweight RESTful Web Services
+
+Beaucoup plus léger, moins évolutif, mais a-t-on vraiment besoin de l'artillerie lourde ?
