@@ -16,5 +16,5 @@ Conventions pour le développement...
     * `CreatedAt`
     * `ModifiedAt`
     * `CreatedBy`
-    * `ModifiedBy
+    * `ModifiedBy`
     * (ou nom équivalent, sachant que `CreatedAt` et `CreatedBy` ne devraient pas pouvoir être modifiable lors d'une mise à jour de l'entité). Cela donne un minimum de suivi, sans ajouter d'énormes contraintes si l'on veut tracer l'ensemble des changements...
