@@ -11,3 +11,13 @@
 = Configuration =
 
 TODO.
+
+= Warning =
+
+Attention à ne *JAMAIS* committer les fichiers suivants :
+ * app.config
+ * web.config
+ * *.suo
+
+Il faut les marquer comme "ignorés" dans `TortoiseSVN`.
+A la place on peut committer des fichiers identiques à votre configuration, par exemple app.config.martin etc
