@@ -1,0 +1,10 @@
+#summary projets annexes potentiellement utiles
+#labels Phase-Requirements
+
+= `DDay.iCal` =
+
+Permet de publier des flux iCal pour les calendriers / évènements.
+
+= `DayPilot` =
+
+Permet d'afficher une vue de calendrier jour / semaine.
