@@ -1,4 +1,5 @@
 #summary Encore des fonctionnalités en plus qu'il pourrait être sympa d'implémenter
+#labels Phase-Design
 
 = Séparer l'authentification =
 
@@ -11,3 +12,7 @@ Publier des microformats pour les évènements dans les pages.
 = Publier un flux iCal =
 
 Publier chaque évènement en tant qu'`iCal` ou un calendrier entier en tant que format `iCal`.
+
+= Format pour impression facile ou PDF =
+
+Permettre l'impression facile.
