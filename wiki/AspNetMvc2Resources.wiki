@@ -1,0 +1,6 @@
+#summary Ressources utiles sur ASP.NET MVC 2
+
+= Liens =
+
+[http://www.asp.net/learn/whitepapers/what-is-new-in-aspnet-mvc/ What's new in ASP.NET MVC (2)]
+
