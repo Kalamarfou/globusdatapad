@@ -1,4 +1,4 @@
-#summary projets annexes potentiellement utiles
+#summary Projets annexes potentiellement utiles
 #labels Phase-Requirements
 
 = `DDay.iCal` =
