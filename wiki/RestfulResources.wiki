@@ -1,0 +1,15 @@
+#summary Travail sur l'identification des ressources
+
+= User =
+
+Add your content here.
+
+= Role =
+
+= Campus =
+
+= Event =
+
+= Venue =
+
+= Address =
