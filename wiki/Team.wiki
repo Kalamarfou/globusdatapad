@@ -1,0 +1,13 @@
+#summary Récapitulatif : qui est responsable de quoi
+
+= Base de données & Data Access Layer =
+
+= Services =
+
+= Back office =
+
+= Front : Web Services =
+
+= Front : Web App =
+
+= Front : Mobile App =
