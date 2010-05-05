@@ -2,5 +2,8 @@
 
 = Liens =
 
+ * [http://adamyan.blogspot.com/2010/02/aspnet-mvc-2-localization-complete.html ASP.NET MVC 2 Localization Complete Guide]
+ * [http://weblogs.asp.net/scottgu/archive/2010/01/15/asp-net-mvc-2-model-validation.aspx ASP.NET MVC 2 Model validation]
+
  * [http://www.asp.net/learn/whitepapers/what-is-new-in-aspnet-mvc/ What's new in ASP.NET MVC (2)]
  * [http://stackoverflow.com StackOverflow]
