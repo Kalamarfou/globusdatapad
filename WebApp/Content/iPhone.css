@@ -1,0 +1,17 @@
+﻿.toolbar { width: 100%; text-align: center; }
+
+li.product { min-height: 40px; }
+	li.product .thumbnail-container { height: 100%; width: 40px; display: inline; clear: none; }
+	li.product .thumbnail { width: 35px; height: 35px; border: none; }
+	li.product .price { font-size: small; font-style: italic; }
+	
+.product-details-container { text-align: center; }
+	.product-image { margin-bottom: 15px; }
+	
+	.product-details .description { text-align: justify; padding: 0px 7px; }
+	.product-details .price { font-weight: bold; font-size: larger; }
+	.product-details .addtocart { margin-top: 8px; }
+	
+	.product-details-footer { margin-top: 15px; }
+	
+.cart-contents { width: 100%; }

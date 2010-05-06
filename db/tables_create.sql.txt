@@ -1,0 +1,87 @@
+USE [GlobusDataPad]
+GO
+/****** Object:  Table [dbo].[Addresses]    Script Date: 05/05/2010 21:57:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Addresses](
+	[AddressID] [int] IDENTITY(1,1) NOT NULL,
+	[Street] [nvarchar](300) NOT NULL,
+	[PostalCode] [nvarchar](50) NOT NULL,
+	[City] [nvarchar](100) NOT NULL,
+	[Country] [nvarchar](100) NOT NULL,
+	[CreatedAt] [datetime2](7) NOT NULL,
+	[CreatedBy] [nvarchar](50) NOT NULL,
+	[ModifiedAt] [datetime2](7) NOT NULL,
+	[ModifiedBy] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Addresses] PRIMARY KEY CLUSTERED 
+(
+	[AddressID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Campuses]    Script Date: 05/05/2010 21:57:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Campuses](
+	[CampusID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](150) NOT NULL,
+	[CreatedAt] [datetime2](7) NOT NULL,
+	[CreatedBy] [nvarchar](50) NOT NULL,
+	[ModifiedAt] [datetime2](7) NOT NULL,
+	[ModifiedBy] [nvarchar](50) NOT NULL,
+	[AddressID] [int] NOT NULL,
+ CONSTRAINT [PK_Campuses] PRIMARY KEY CLUSTERED 
+(
+	[CampusID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Default [DF_Addresses_Street]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_Street]  DEFAULT (N'') FOR [Street]
+GO
+/****** Object:  Default [DF_Addresses_PostalCode]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_PostalCode]  DEFAULT (N'') FOR [PostalCode]
+GO
+/****** Object:  Default [DF_Addresses_City]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_City]  DEFAULT (N'') FOR [City]
+GO
+/****** Object:  Default [DF_Addresses_Country]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_Country]  DEFAULT (N'') FOR [Country]
+GO
+/****** Object:  Default [DF_Addresses_CreatedAt]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_CreatedAt]  DEFAULT (getdate()) FOR [CreatedAt]
+GO
+/****** Object:  Default [DF_Addresses_CreatedBy]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_CreatedBy]  DEFAULT (N'') FOR [CreatedBy]
+GO
+/****** Object:  Default [DF_Addresses_ModifiedAt]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_ModifiedAt]  DEFAULT (getdate()) FOR [ModifiedAt]
+GO
+/****** Object:  Default [DF_Addresses_ModifiedBy]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Addresses] ADD  CONSTRAINT [DF_Addresses_ModifiedBy]  DEFAULT (N'') FOR [ModifiedBy]
+GO
+/****** Object:  Default [DF_Campuses_Name]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Campuses] ADD  CONSTRAINT [DF_Campuses_Name]  DEFAULT (N'') FOR [Name]
+GO
+/****** Object:  Default [DF_Campuses_CreatedAt]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Campuses] ADD  CONSTRAINT [DF_Campuses_CreatedAt]  DEFAULT (getdate()) FOR [CreatedAt]
+GO
+/****** Object:  Default [DF_Campuses_CreatedBy]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Campuses] ADD  CONSTRAINT [DF_Campuses_CreatedBy]  DEFAULT (N'') FOR [CreatedBy]
+GO
+/****** Object:  Default [DF_Campuses_ModifiedAt]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Campuses] ADD  CONSTRAINT [DF_Campuses_ModifiedAt]  DEFAULT (getdate()) FOR [ModifiedAt]
+GO
+/****** Object:  Default [DF_Campuses_ModifiedBy]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Campuses] ADD  CONSTRAINT [DF_Campuses_ModifiedBy]  DEFAULT (N'') FOR [ModifiedBy]
+GO
+/****** Object:  ForeignKey [FK_Campuses_Addresses]    Script Date: 05/05/2010 21:57:23 ******/
+ALTER TABLE [dbo].[Campuses]  WITH CHECK ADD  CONSTRAINT [FK_Campuses_Addresses] FOREIGN KEY([AddressID])
+REFERENCES [dbo].[Addresses] ([AddressID])
+GO
+ALTER TABLE [dbo].[Campuses] CHECK CONSTRAINT [FK_Campuses_Addresses]
+GO
