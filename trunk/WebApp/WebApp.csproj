@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -57,15 +58,72 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\CampusesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\MobileEnabledViewEngine.cs" />
+    <Compile Include="Extensions\MobilePagingRestrictionAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Models\Address\Address.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Address.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Models\Campus\Campus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Campus.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\BackOffice\Campuses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Campuses.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Views\BackOffice\Shared.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shared.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BackOffice\Views\Campuses\Create.aspx" />
+    <Content Include="Areas\BackOffice\Views\Campuses\Delete.aspx" />
+    <Content Include="Areas\BackOffice\Views\Campuses\Details.aspx" />
+    <Content Include="Areas\BackOffice\Views\Campuses\Edit.aspx" />
+    <Content Include="Areas\BackOffice\Views\Campuses\Index.aspx" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\AddressVisualization.ascx" />
+    <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressEdition.ascx" />
+    <Content Include="Content\iPhone.css" />
+    <Content Include="Content\iui-default\back-img.png" />
+    <Content Include="Content\iui-default\backButton.png" />
+    <Content Include="Content\iui-default\backButtonBack.png" />
+    <Content Include="Content\iui-default\backButtonBrdr.png" />
+    <Content Include="Content\iui-default\blueButton.png" />
+    <Content Include="Content\iui-default\cancel.png" />
+    <Content Include="Content\iui-default\default-theme.css" />
+    <Content Include="Content\iui-default\grayButton.png" />
+    <Content Include="Content\iui-default\listArrow.png" />
+    <Content Include="Content\iui-default\listArrowSel.png" />
+    <Content Include="Content\iui-default\listGroup.png" />
+    <Content Include="Content\iui-default\loading.gif" />
+    <Content Include="Content\iui-default\pinstripes.png" />
+    <Content Include="Content\iui-default\redButton.png" />
+    <Content Include="Content\iui-default\selection.png" />
+    <Content Include="Content\iui-default\thumb.png" />
+    <Content Include="Content\iui-default\title-img.png" />
+    <Content Include="Content\iui-default\toggle.png" />
+    <Content Include="Content\iui-default\toggleOn.png" />
+    <Content Include="Content\iui-default\toolbar.png" />
+    <Content Include="Content\iui-default\toolButton.png" />
+    <Content Include="Content\iui-default\whiteButton.png" />
+    <Content Include="Content\iui-moz.css" />
+    <Content Include="Content\iui.css" />
+    <Content Include="Content\mobile.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -100,6 +158,51 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\BackOffice\Models\" />
+    <Folder Include="Resources\Views\FrontOffice\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BackOffice\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{9DDAB8B2-6841-4E70-A694-01114405015E}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{BE5492A8-3DD1-492C-92BA-92C17CA600BB}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BackOffice\Views\Shared\BackOffice.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Browsers\Devices\mobile.browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Mobile.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\iPhone.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Models\Address\Address.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Address.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Models\Campus\Campus.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Campus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\BackOffice\Campuses.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Campuses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Views\BackOffice\Shared.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Shared.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

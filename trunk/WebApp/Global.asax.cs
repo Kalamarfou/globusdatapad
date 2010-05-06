@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using WebApp.Extensions;
 
 namespace WebApp
 {
@@ -27,6 +28,9 @@ namespace WebApp
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new MobileEnabledViewEngine());     // in order to support mobile devices views
 
             RegisterRoutes(RouteTable.Routes);
         }
