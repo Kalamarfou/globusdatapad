@@ -3,10 +3,6 @@
         <fieldset>
             <legend><%= WebApp.Resources.Models.Address.Address.AddressName %></legend>
             
-            <%: Html.HiddenFor(model => model.AddressID) %>
-
-            <%: Html.HiddenFor(model => model.ConcurrencyToken) %>
-
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Street) %>
             </div>

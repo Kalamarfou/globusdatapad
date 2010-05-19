@@ -4,10 +4,11 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GlobusDataPadModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="GlobusDataPadModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="GlobusDataPadModelStoreContainer">
           <EntitySet Name="Addresses" EntityType="GlobusDataPadModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Campuses" EntityType="GlobusDataPadModel.Store.Campuses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cursuses" EntityType="GlobusDataPadModel.Store.Cursuses" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Campuses_Addresses" Association="GlobusDataPadModel.Store.FK_Campuses_Addresses">
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="Campuses" EntitySet="Campuses" />
@@ -22,10 +23,11 @@
           <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime2" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime2" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ConcurrencyToken" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Campuses">
           <Key>
@@ -33,11 +35,20 @@
           </Key>
           <Property Name="CampusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="150" />
-          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime2" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime2" Nullable="false" />
           <Property Name="ModifiedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="AddressID" Type="int" Nullable="false" />
+          <Property Name="ConcurrencyToken" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Cursuses">
+          <Key>
+            <PropertyRef Name="CursusID" />
+          </Key>
+          <Property Name="CursusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ConcurrencyToken" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Campuses_Addresses">
           <End Role="Addresses" Type="GlobusDataPadModel.Store.Addresses" Multiplicity="1" />
@@ -51,8 +62,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GlobusDataPadModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -63,6 +73,7 @@
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="Campuses" EntitySet="Campuses" />
           </AssociationSet>
+          <EntitySet Name="Cursuses" EntityType="GlobusDataPadModel.Cursuses" />
         </EntityContainer>
         <EntityType Name="Address">
           <Key>
@@ -78,12 +89,13 @@
           <Property Name="ModifiedAt" Type="DateTime" Nullable="false" />
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Campuses" Relationship="GlobusDataPadModel.FK_Campuses_Addresses" FromRole="Addresses" ToRole="Campuses" />
+          <Property Type="Binary" Name="ConcurrencyToken" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="Campus">
           <Key>
             <PropertyRef Name="CampusID" />
           </Key>
-          <Property Name="CampusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ConcurrencyMode="None" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
@@ -91,6 +103,7 @@
           <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="AddressID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="GlobusDataPadModel.FK_Campuses_Addresses" FromRole="Campuses" ToRole="Addresses" />
+          <Property Type="Binary" Name="ConcurrencyToken" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <Association Name="FK_Campuses_Addresses">
           <End Role="Addresses" Type="GlobusDataPadModel.Address" Multiplicity="1" />
@@ -104,6 +117,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cursuses">
+          <Key>
+            <PropertyRef Name="CursusID" />
+          </Key>
+          <Property Type="Int32" Name="CursusID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Binary" Name="ConcurrencyToken" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -111,7 +132,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GlobusDataPadModelStoreContainer" CdmEntityContainer="GlobusDataPadEntities">
           <EntitySetMapping Name="Addresses"><EntityTypeMapping TypeName="GlobusDataPadModel.Address"><MappingFragment StoreEntitySet="Addresses">
-            <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="ConcurrencyToken" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
             <ScalarProperty Name="Street" ColumnName="Street" />
             <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
             <ScalarProperty Name="City" ColumnName="City" />
@@ -122,7 +144,8 @@
             <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Campuses"><EntityTypeMapping TypeName="GlobusDataPadModel.Campus"><MappingFragment StoreEntitySet="Campuses">
-            <ScalarProperty Name="CampusID" ColumnName="CampusID" />
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="ConcurrencyToken" />
+                <ScalarProperty Name="CampusID" ColumnName="CampusID" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
             <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -130,6 +153,15 @@
             <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
             <ScalarProperty Name="AddressID" ColumnName="AddressID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Cursuses">
+            <EntityTypeMapping TypeName="GlobusDataPadModel.Cursuses">
+              <MappingFragment StoreEntitySet="Cursuses">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ConcurrencyToken" ColumnName="ConcurrencyToken" />
+                <ScalarProperty Name="CursusID" ColumnName="CursusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -146,6 +178,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -157,6 +190,7 @@
           <ConnectorPoint PointX="2.25" PointY="2.4035953776041663" />
           <ConnectorPoint PointX="3" PointY="2.4035953776041663" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="GlobusDataPadModel.Cursuses" Width="1.5" PointX="6.125" PointY="1.375" Height="1.5956835937499996" />
       </Diagram>
     </Diagrams>
   </Designer>
