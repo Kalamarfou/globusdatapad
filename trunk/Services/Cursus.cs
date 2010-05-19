@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using DAL;
+using DAL.Utils;
 
 namespace Services
 {
-    public class Campus
+    public class Cursus
     {
+        
         private DAL.GlobusDataPadEntities db;
         
-        public Campus()
+        public Cursus()
         {
             db = new DAL.GlobusDataPadEntities();
         }
@@ -20,11 +21,10 @@ namespace Services
         /// Persist a campus
         /// </summary>
         /// <param name="c">The campus entity to persist</param>
-        public void Create(DAL.Campus c, string authorId)
+        public void Create(DAL.Cursuses c)
         {
-            c.CreatedBy = authorId;
-
-            DAL.Utils.GenericCrud.Create(c);
+            db.AddToCursuses(c);
+            db.SaveChanges();
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace Services
         /// </summary>
         /// <param name="id">CampusID</param>
         /// <returns>DAL.Campus</returns>
-        public DAL.Campus GetById(int id)
+        public DAL.Cursuses GetById(int id)
         {
-            return db.Campuses.First(c => c.CampusID == id);
+            return db.Cursuses.First(c => c.CursusID == id);
         }
 
         /// <summary>
@@ -42,20 +42,31 @@ namespace Services
         /// </summary>
         /// <remarks>Warning, this can be huge if there is a lot of campuses</remarks>
         /// <returns>List<Campus></returns>
-        public List<DAL.Campus> GetAll()
+        public List<DAL.Cursuses> GetAll()
         {
-            return db.Campuses.ToList<DAL.Campus>();
+            return db.Cursuses.ToList<DAL.Cursuses>();
         }
 
-        public void Update(int id, DAL.Campus c)
+        public void Update(int id, DAL.Cursuses c)
         {
-            if (id != c.CampusID)
-            {
-                throw new Exception("id is different from CursusID");
-            }
 
-            DAL.Utils.GenericCrud.Update(c.Address);
             DAL.Utils.GenericCrud.Update(c);
+
+            //if (id != c.CursusID)
+            //{
+            //    throw new Exception("id is different from CursusID");
+            //}
+            //db.Cursuses.Attach(c);
+            //db.ObjectStateManager.ChangeObjectState(c, System.Data.EntityState.Modified);
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (OptimisticConcurrencyException e)
+            //{
+            //    db.Refresh(System.Data.Objects.RefreshMode.ClientWins, c);
+            //    db.SaveChanges();
+            //}
         }
 
         /// <summary>
@@ -64,7 +75,7 @@ namespace Services
         /// <param name="id">CampusID</param>
         public void Delete(int id)
         {
-            db.Campuses.DeleteObject(db.Campuses.First(c => c.CampusID == id));
+            db.Cursuses.DeleteObject(db.Cursuses.First(c => c.CursusID == id));
         }
     }
 }

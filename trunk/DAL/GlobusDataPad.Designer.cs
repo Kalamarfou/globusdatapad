@@ -101,6 +101,22 @@ namespace DAL
             }
         }
         private ObjectSet<Campus> _Campuses;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Cursuses> Cursuses
+        {
+            get
+            {
+                if ((_Cursuses == null))
+                {
+                    _Cursuses = base.CreateObjectSet<Cursuses>("Cursuses");
+                }
+                return _Cursuses;
+            }
+        }
+        private ObjectSet<Cursuses> _Cursuses;
 
         #endregion
         #region AddTo Methods
@@ -119,6 +135,14 @@ namespace DAL
         public void AddToCampuses(Campus campus)
         {
             base.AddObject("Campuses", campus);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Cursuses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCursuses(Cursuses cursuses)
+        {
+            base.AddObject("Cursuses", cursuses);
         }
 
         #endregion
@@ -150,7 +174,8 @@ namespace DAL
         /// <param name="createdBy">Initial value of the CreatedBy property.</param>
         /// <param name="modifiedAt">Initial value of the ModifiedAt property.</param>
         /// <param name="modifiedBy">Initial value of the ModifiedBy property.</param>
-        public static Address CreateAddress(global::System.Int32 addressID, global::System.String street, global::System.String city, global::System.String country, global::System.DateTime createdAt, global::System.String createdBy, global::System.DateTime modifiedAt, global::System.String modifiedBy)
+        /// <param name="concurrencyToken">Initial value of the ConcurrencyToken property.</param>
+        public static Address CreateAddress(global::System.Int32 addressID, global::System.String street, global::System.String city, global::System.String country, global::System.DateTime createdAt, global::System.String createdBy, global::System.DateTime modifiedAt, global::System.String modifiedBy, global::System.Byte[] concurrencyToken)
         {
             Address address = new Address();
             address.AddressID = addressID;
@@ -161,6 +186,7 @@ namespace DAL
             address.CreatedBy = createdBy;
             address.ModifiedAt = modifiedAt;
             address.ModifiedBy = modifiedBy;
+            address.ConcurrencyToken = concurrencyToken;
             return address;
         }
 
@@ -385,6 +411,30 @@ namespace DAL
         private global::System.String _ModifiedBy;
         partial void OnModifiedByChanging(global::System.String value);
         partial void OnModifiedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] ConcurrencyToken
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_ConcurrencyToken);
+            }
+            set
+            {
+                OnConcurrencyTokenChanging(value);
+                ReportPropertyChanging("ConcurrencyToken");
+                _ConcurrencyToken = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConcurrencyToken");
+                OnConcurrencyTokenChanged();
+            }
+        }
+        private global::System.Byte[] _ConcurrencyToken;
+        partial void OnConcurrencyTokenChanging(global::System.Byte[] value);
+        partial void OnConcurrencyTokenChanged();
 
         #endregion
     
@@ -435,7 +485,8 @@ namespace DAL
         /// <param name="modifiedAt">Initial value of the ModifiedAt property.</param>
         /// <param name="modifiedBy">Initial value of the ModifiedBy property.</param>
         /// <param name="addressID">Initial value of the AddressID property.</param>
-        public static Campus CreateCampus(global::System.Int32 campusID, global::System.String name, global::System.DateTime createdAt, global::System.String createdBy, global::System.DateTime modifiedAt, global::System.String modifiedBy, global::System.Int32 addressID)
+        /// <param name="concurrencyToken">Initial value of the ConcurrencyToken property.</param>
+        public static Campus CreateCampus(global::System.Int32 campusID, global::System.String name, global::System.DateTime createdAt, global::System.String createdBy, global::System.DateTime modifiedAt, global::System.String modifiedBy, global::System.Int32 addressID, global::System.Byte[] concurrencyToken)
         {
             Campus campus = new Campus();
             campus.CampusID = campusID;
@@ -445,6 +496,7 @@ namespace DAL
             campus.ModifiedAt = modifiedAt;
             campus.ModifiedBy = modifiedBy;
             campus.AddressID = addressID;
+            campus.ConcurrencyToken = concurrencyToken;
             return campus;
         }
 
@@ -621,6 +673,30 @@ namespace DAL
         private global::System.Int32 _AddressID;
         partial void OnAddressIDChanging(global::System.Int32 value);
         partial void OnAddressIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] ConcurrencyToken
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_ConcurrencyToken);
+            }
+            set
+            {
+                OnConcurrencyTokenChanging(value);
+                ReportPropertyChanging("ConcurrencyToken");
+                _ConcurrencyToken = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConcurrencyToken");
+                OnConcurrencyTokenChanged();
+            }
+        }
+        private global::System.Byte[] _ConcurrencyToken;
+        partial void OnConcurrencyTokenChanging(global::System.Byte[] value);
+        partial void OnConcurrencyTokenChanged();
 
         #endregion
     
@@ -665,6 +741,113 @@ namespace DAL
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="GlobusDataPadModel", Name="Cursuses")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Cursuses : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Cursuses object.
+        /// </summary>
+        /// <param name="cursusID">Initial value of the CursusID property.</param>
+        /// <param name="concurrencyToken">Initial value of the ConcurrencyToken property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Cursuses CreateCursuses(global::System.Int32 cursusID, global::System.Byte[] concurrencyToken, global::System.String name)
+        {
+            Cursuses cursuses = new Cursuses();
+            cursuses.CursusID = cursusID;
+            cursuses.ConcurrencyToken = concurrencyToken;
+            cursuses.Name = name;
+            return cursuses;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CursusID
+        {
+            get
+            {
+                return _CursusID;
+            }
+            set
+            {
+                if (_CursusID != value)
+                {
+                    OnCursusIDChanging(value);
+                    ReportPropertyChanging("CursusID");
+                    _CursusID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("CursusID");
+                    OnCursusIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _CursusID;
+        partial void OnCursusIDChanging(global::System.Int32 value);
+        partial void OnCursusIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] ConcurrencyToken
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_ConcurrencyToken);
+            }
+            set
+            {
+                OnConcurrencyTokenChanging(value);
+                ReportPropertyChanging("ConcurrencyToken");
+                _ConcurrencyToken = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConcurrencyToken");
+                OnConcurrencyTokenChanged();
+            }
+        }
+        private global::System.Byte[] _ConcurrencyToken;
+        partial void OnConcurrencyTokenChanging(global::System.Byte[] value);
+        partial void OnConcurrencyTokenChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+    
     }
 
     #endregion

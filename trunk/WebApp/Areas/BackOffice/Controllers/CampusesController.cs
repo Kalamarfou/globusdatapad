@@ -13,6 +13,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         public CampusesController()
         {
             service = new Services.Campus();
+            
         }
 
         //
@@ -47,11 +48,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Create(DAL.Campus campus)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(campus);
-            }
-
+            
             campus.CreatedAt = DateTime.Now;
             campus.CreatedBy = "wam";
             campus.ModifiedAt = DateTime.Now;
@@ -60,7 +57,15 @@ namespace WebApp.Areas.BackOffice.Controllers
             campus.Address.CreatedBy = "wam";
             campus.Address.ModifiedAt = DateTime.Now;
             campus.Address.ModifiedBy = "wam";
-            service.Create(campus);
+            
+            if (!ModelState.IsValid)
+            {
+                return View(campus);
+            }
+
+            
+            
+            service.Create(campus, "wam");
             return RedirectToAction("Index");
         }
         
@@ -79,6 +84,15 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Edit(int id, DAL.Campus campus)
         {
+            campus.CreatedAt = DateTime.Now;
+            campus.CreatedBy = "wam";
+            campus.ModifiedAt = DateTime.Now;
+            campus.ModifiedBy = "wam";
+            campus.Address.CreatedAt = DateTime.Now;
+            campus.Address.CreatedBy = "wam";
+            campus.Address.ModifiedAt = DateTime.Now;
+            campus.Address.ModifiedBy = "wam";
+            
             service.Update(id, campus);
             return RedirectToAction("Index");
         }

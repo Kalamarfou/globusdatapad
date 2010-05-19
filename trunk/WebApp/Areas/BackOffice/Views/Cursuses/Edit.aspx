@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Cursuses>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -13,12 +13,10 @@
         
         <fieldset>
             <legend>Fields</legend>
+        
+        <%: Html.HiddenFor(model => model.CursusID) %>
             
-            <%: Html.HiddenFor(model => model.CampusID) %>
-
             <%: Html.HiddenFor(model => model.ConcurrencyToken) %>
-
-            <%: Html.HiddenFor(model => model.AddressID) %>
 
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>
@@ -28,8 +26,6 @@
                 <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
             
-            <%= Html.EditorFor(model => model.Address, "AddressEdition") %>
-
             <p>
                 <input type="submit" value="Save" />
             </p>

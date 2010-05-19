@@ -24,7 +24,7 @@
                 <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
             
-            <%= Html.EditorFor(model => model.Address, "AddressEdition") %>
+            <%= Html.EditorFor(model => model.Address, "AddressCreation") %>
 
             <p>
                 <input type="submit" value="Create" />

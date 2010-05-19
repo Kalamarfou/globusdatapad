@@ -1,25 +1,19 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Cursuses>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
+	Create
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit</h2>
+    <h2>Create</h2>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
-        
+
         <fieldset>
             <legend>Fields</legend>
             
-            <%: Html.HiddenFor(model => model.CampusID) %>
-
-            <%: Html.HiddenFor(model => model.ConcurrencyToken) %>
-
-            <%: Html.HiddenFor(model => model.AddressID) %>
-
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>
             </div>
@@ -28,10 +22,8 @@
                 <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
             
-            <%= Html.EditorFor(model => model.Address, "AddressEdition") %>
-
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Create" />
             </p>
         </fieldset>
 
