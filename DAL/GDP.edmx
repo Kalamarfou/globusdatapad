@@ -203,7 +203,7 @@
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="VenueAddress_Address_Id" Type="int" Nullable="false" />
+    <Property Name="VenueAddress_Address_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Classes">
     <Key>
@@ -409,7 +409,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="VenueAddress">
-    <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="1" />
+    <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="0..1" />
     <End Role="Address" Type="GDP.Store.Addresses" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Venue">
@@ -953,7 +953,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="VenueAddress">
-          <End Type="GDP.Venue" Role="Venue" Multiplicity="1" />
+          <End Type="GDP.Venue" Role="Venue" Multiplicity="0..1" />
           <End Type="GDP.Address" Role="Address" Multiplicity="0..1" />
         </Association>
         <EntityType Name="Course" BaseType="GDP.BaseCourse" >
@@ -1412,6 +1412,7 @@
       <EndProperty Name="Address">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="VenueAddress_Address_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="CampusEvent" TypeName="GDP.CampusEvent" StoreEntitySet="Events">
       <EndProperty Name="Campus">

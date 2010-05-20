@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/20/2010 17:20:46
+-- Date Created: 05/20/2010 17:34:46
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,161 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CursusStudyPeriod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StudyPeriods] DROP CONSTRAINT [FK_CursusStudyPeriod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CampusAddress]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Campuses] DROP CONSTRAINT [FK_CampusAddress];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CampusVenues]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Venues] DROP CONSTRAINT [FK_CampusVenues];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VenueAddress]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Addresses] DROP CONSTRAINT [FK_VenueAddress];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CampusEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_CampusEvent];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EventVenue]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Venues] DROP CONSTRAINT [FK_EventVenue];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClassStudyPeriod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StudyPeriods] DROP CONSTRAINT [FK_ClassStudyPeriod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_PersonUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BaseCourseDiscipline]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourseDiscipline];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonRole]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Roles] DROP CONSTRAINT [FK_PersonRole];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClassPerson]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_ClassPerson];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonClass_Person]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonClass] DROP CONSTRAINT [FK_PersonClass_Person];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonClass_Class]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonClass] DROP CONSTRAINT [FK_PersonClass_Class];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonAvailability]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Availabilities] DROP CONSTRAINT [FK_PersonAvailability];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EvaluationEvaluationType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_Evaluation] DROP CONSTRAINT [FK_EvaluationEvaluationType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourseCourseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_Course] DROP CONSTRAINT [FK_CourseCourseType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CampusPerson_Campus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CampusPerson] DROP CONSTRAINT [FK_CampusPerson_Campus];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CampusPerson_Person]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CampusPerson] DROP CONSTRAINT [FK_CampusPerson_Person];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BaseCoursePerson]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCoursePerson];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClassBaseCourse]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_ClassBaseCourse];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DisciplineStudyPeriod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Disciplines] DROP CONSTRAINT [FK_DisciplineStudyPeriod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DisciplineCourseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BaseTypes_CourseType] DROP CONSTRAINT [FK_DisciplineCourseType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DisciplineEvaluationType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BaseTypes_EvaluationType] DROP CONSTRAINT [FK_DisciplineEvaluationType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_BaseCourse_inherits_Event]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourse_inherits_Event];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Evaluation_inherits_BaseCourse]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_Evaluation] DROP CONSTRAINT [FK_Evaluation_inherits_BaseCourse];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EvaluationType_inherits_BaseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BaseTypes_EvaluationType] DROP CONSTRAINT [FK_EvaluationType_inherits_BaseType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Course_inherits_BaseCourse]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_Course] DROP CONSTRAINT [FK_Course_inherits_BaseCourse];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourseType_inherits_BaseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BaseTypes_CourseType] DROP CONSTRAINT [FK_CourseType_inherits_BaseType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorldWideEvent_inherits_Event]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_WorldWideEvent] DROP CONSTRAINT [FK_WorldWideEvent_inherits_Event];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Cursuses]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Cursuses];
+GO
+IF OBJECT_ID(N'[dbo].[StudyPeriods]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[StudyPeriods];
+GO
+IF OBJECT_ID(N'[dbo].[Campuses]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Campuses];
+GO
+IF OBJECT_ID(N'[dbo].[Addresses]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Addresses];
+GO
+IF OBJECT_ID(N'[dbo].[Classes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Classes];
+GO
+IF OBJECT_ID(N'[dbo].[Venues]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Venues];
+GO
+IF OBJECT_ID(N'[dbo].[Events]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[People]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[People];
+GO
+IF OBJECT_ID(N'[dbo].[Availabilities]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Availabilities];
+GO
+IF OBJECT_ID(N'[dbo].[Disciplines]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Disciplines];
+GO
+IF OBJECT_ID(N'[dbo].[Roles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Roles];
+GO
+IF OBJECT_ID(N'[dbo].[BaseTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BaseTypes];
+GO
+IF OBJECT_ID(N'[dbo].[Events_BaseCourse]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events_BaseCourse];
+GO
+IF OBJECT_ID(N'[dbo].[Events_Evaluation]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events_Evaluation];
+GO
+IF OBJECT_ID(N'[dbo].[BaseTypes_EvaluationType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BaseTypes_EvaluationType];
+GO
+IF OBJECT_ID(N'[dbo].[Events_Course]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events_Course];
+GO
+IF OBJECT_ID(N'[dbo].[BaseTypes_CourseType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[BaseTypes_CourseType];
+GO
+IF OBJECT_ID(N'[dbo].[Events_WorldWideEvent]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events_WorldWideEvent];
+GO
+IF OBJECT_ID(N'[dbo].[PersonClass]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonClass];
+GO
+IF OBJECT_ID(N'[dbo].[CampusPerson]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CampusPerson];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -33,8 +183,8 @@ CREATE TABLE [dbo].[Cursuses] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
@@ -44,12 +194,12 @@ GO
 CREATE TABLE [dbo].[StudyPeriods] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [StartDate] datetime  NOT NULL,
-    [EndDate] datetime  NOT NULL,
+    [StartDate] datetime2  NOT NULL,
+    [EndDate] datetime2  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CursusId] int  NOT NULL,
@@ -63,8 +213,8 @@ CREATE TABLE [dbo].[Campuses] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [Address_Id] int  NOT NULL
@@ -80,11 +230,11 @@ CREATE TABLE [dbo].[Addresses] (
     [Country] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
-    [VenueAddress_Address_Id] int  NOT NULL
+    [VenueAddress_Address_Id] int  NULL
 );
 GO
 
@@ -94,8 +244,8 @@ CREATE TABLE [dbo].[Classes] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
@@ -107,8 +257,8 @@ CREATE TABLE [dbo].[Venues] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CampusId] int  NOT NULL,
@@ -121,12 +271,12 @@ CREATE TABLE [dbo].[Events] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [StartDate] datetime  NOT NULL,
-    [EndDate] datetime  NOT NULL,
+    [StartDate] datetime2  NOT NULL,
+    [EndDate] datetime2  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [IsMandatory] bit  NOT NULL,
@@ -141,8 +291,8 @@ CREATE TABLE [dbo].[Users] (
     [IsApproved] bit  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NOT NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
@@ -163,8 +313,8 @@ GO
 -- Creating table 'Availabilities'
 CREATE TABLE [dbo].[Availabilities] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [StartDate] datetime  NOT NULL,
-    [EndDate] datetime  NOT NULL,
+    [StartDate] datetime2  NOT NULL,
+    [EndDate] datetime2  NOT NULL,
     [PersonId] int  NOT NULL
 );
 GO
