@@ -29,9 +29,9 @@
                 <%: item.Address.Country %>
             </td>
             <td>
-                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Edit, "Edit", new { id=item.CampusID }) %> |
-                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Details, "Details", new { id = item.CampusID })%> |
-                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Delete, "Delete", new { id = item.CampusID })%>
+                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Edit, "Edit", new { id=item.Id }) %> |
+                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Details, "Details", new { id = item.Id })%> |
+                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Delete, "Delete", new { id = item.Id })%>
             </td>
         </tr>
     

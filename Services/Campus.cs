@@ -9,11 +9,11 @@ namespace Services
 {
     public class Campus
     {
-        private DAL.GlobusDataPadEntities db;
+        private DAL.GDPEntities db;
         
         public Campus()
         {
-            db = new DAL.GlobusDataPadEntities();
+            db = new DAL.GDPEntities();
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace Services
         /// <param name="c">The campus entity to persist</param>
         public void Create(DAL.Campus c, string authorId)
         {
-            c.CreatedBy = authorId;
+            c.Common.Audit.CreatedBy = authorId;
 
             DAL.Utils.GenericCrud.Create(c);
         }
@@ -34,7 +34,7 @@ namespace Services
         /// <returns>DAL.Campus</returns>
         public DAL.Campus GetById(int id)
         {
-            return db.Campuses.First(c => c.CampusID == id);
+            return db.Campuses.First(c => c.Id == id);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Services
 
         public void Update(int id, DAL.Campus c)
         {
-            if (id != c.CampusID)
+            if (id != c.Id)
             {
                 throw new Exception("id is different from CursusID");
             }
@@ -64,7 +64,7 @@ namespace Services
         /// <param name="id">CampusID</param>
         public void Delete(int id)
         {
-            db.Campuses.DeleteObject(db.Campuses.First(c => c.CampusID == id));
+            db.Campuses.DeleteObject(db.Campuses.First(c => c.Id == id));
         }
     }
 }

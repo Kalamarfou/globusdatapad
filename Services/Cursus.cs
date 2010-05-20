@@ -9,19 +9,19 @@ namespace Services
 {
     public class Cursus
     {
-        
-        private DAL.GlobusDataPadEntities db;
+
+        private DAL.GDPEntities db;
         
         public Cursus()
         {
-            db = new DAL.GlobusDataPadEntities();
+            db = new DAL.GDPEntities();
         }
 
         /// <summary>
         /// Persist a campus
         /// </summary>
         /// <param name="c">The campus entity to persist</param>
-        public void Create(DAL.Cursuses c)
+        public void Create(DAL.Cursus c)
         {
             db.AddToCursuses(c);
             db.SaveChanges();
@@ -32,9 +32,9 @@ namespace Services
         /// </summary>
         /// <param name="id">CampusID</param>
         /// <returns>DAL.Campus</returns>
-        public DAL.Cursuses GetById(int id)
+        public DAL.Cursus GetById(int id)
         {
-            return db.Cursuses.First(c => c.CursusID == id);
+            return db.Cursuses.First(c => c.Id == id);
         }
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace Services
         /// </summary>
         /// <remarks>Warning, this can be huge if there is a lot of campuses</remarks>
         /// <returns>List<Campus></returns>
-        public List<DAL.Cursuses> GetAll()
+        public List<DAL.Cursus> GetAll()
         {
-            return db.Cursuses.ToList<DAL.Cursuses>();
+            return db.Cursuses.ToList<DAL.Cursus>();
         }
 
-        public void Update(int id, DAL.Cursuses c)
+        public void Update(int id, DAL.Cursus c)
         {
 
             DAL.Utils.GenericCrud.Update(c);
@@ -75,7 +75,7 @@ namespace Services
         /// <param name="id">CampusID</param>
         public void Delete(int id)
         {
-            db.Cursuses.DeleteObject(db.Cursuses.First(c => c.CursusID == id));
+            db.Cursuses.DeleteObject(db.Cursuses.First(c => c.Id == id));
         }
     }
 }

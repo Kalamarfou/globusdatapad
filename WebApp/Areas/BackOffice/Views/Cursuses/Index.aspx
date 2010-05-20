@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.Cursuses>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.Cursus>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -23,12 +23,12 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.CursusID }) %> |
-                <%: Html.ActionLink("Details", "Details", new { id=item.CursusID })%> |
-                <%: Html.ActionLink("Delete", "Delete", new { id=item.CursusID })%>
+                <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
+                <%: Html.ActionLink("Details", "Details", new { id=item.Id })%> |
+                <%: Html.ActionLink("Delete", "Delete", new { id=item.Id })%>
             </td>
             <td>
-                <%: item.CursusID %>
+                <%: item.Id %>
             </td>
             <td>
                 <%: item.Name %>
