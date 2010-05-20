@@ -4,6 +4,7 @@
 
  * [http://adamyan.blogspot.com/2010/02/aspnet-mvc-2-localization-complete.html ASP.NET MVC 2 Localization Complete Guide]
  * [http://weblogs.asp.net/scottgu/archive/2010/01/15/asp-net-mvc-2-model-validation.aspx ASP.NET MVC 2 Model validation]
+ * [http://stackoverflow.com/questions/21184/how-do-i-use-linq-for-paging-a-generic-collection How do I use Linq for paging a generic collection?]
 
 == Securité ==
 
