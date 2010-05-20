@@ -46,7 +46,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         // POST: /BackOffice/Cursuses/Create
 
         [HttpPost]
-        public ActionResult Create(Cursuses c)
+        public ActionResult Create(Cursus c)
         {
             if (!ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         // POST: /BackOffice/Cursuses/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, Cursuses c)
+        public ActionResult Edit(int id, Cursus c)
         {
             service.Update(id, c);
             return RedirectToAction("Index");

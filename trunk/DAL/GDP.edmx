@@ -1,0 +1,1692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GDP.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="GDPStoreContainer">
+    <EntitySet Name="Cursuses" EntityType="GDP.Store.Cursuses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StudyPeriods" EntityType="GDP.Store.StudyPeriods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Campuses" EntityType="GDP.Store.Campuses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Addresses" EntityType="GDP.Store.Addresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Classes" EntityType="GDP.Store.Classes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Venues" EntityType="GDP.Store.Venues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events" EntityType="GDP.Store.Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="GDP.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="GDP.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Availabilities" EntityType="GDP.Store.Availabilities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Disciplines" EntityType="GDP.Store.Disciplines" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="GDP.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseTypes" EntityType="GDP.Store.BaseTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events_BaseCourse" EntityType="GDP.Store.Events_BaseCourse" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events_Evaluation" EntityType="GDP.Store.Events_Evaluation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseTypes_EvaluationType" EntityType="GDP.Store.BaseTypes_EvaluationType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events_Course" EntityType="GDP.Store.Events_Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BaseTypes_CourseType" EntityType="GDP.Store.BaseTypes_CourseType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events_WorldWideEvent" EntityType="GDP.Store.Events_WorldWideEvent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonClass" EntityType="GDP.Store.PersonClass" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CampusPerson" EntityType="GDP.Store.CampusPerson" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CursusStudyPeriod" Association="GDP.Store.CursusStudyPeriod">
+      <End Role="Cursus" EntitySet="Cursuses" />
+      <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+    </AssociationSet>
+    <AssociationSet Name="CampusAddress" Association="GDP.Store.CampusAddress">
+      <End Role="Campus" EntitySet="Campuses" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="CampusVenues" Association="GDP.Store.CampusVenues">
+      <End Role="Campus" EntitySet="Campuses" />
+      <End Role="Venue" EntitySet="Venues" />
+    </AssociationSet>
+    <AssociationSet Name="VenueAddress" Association="GDP.Store.VenueAddress">
+      <End Role="Venue" EntitySet="Venues" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="CampusEvent" Association="GDP.Store.CampusEvent">
+      <End Role="Campus" EntitySet="Campuses" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="EventVenue" Association="GDP.Store.EventVenue">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Venue" EntitySet="Venues" />
+    </AssociationSet>
+    <AssociationSet Name="ClassStudyPeriod" Association="GDP.Store.ClassStudyPeriod">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+    </AssociationSet>
+    <AssociationSet Name="PersonUser" Association="GDP.Store.PersonUser">
+      <End Role="Person" EntitySet="People" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="BaseCourseDiscipline" Association="GDP.Store.BaseCourseDiscipline">
+      <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
+      <End Role="Discipline" EntitySet="Disciplines" />
+    </AssociationSet>
+    <AssociationSet Name="PersonRole" Association="GDP.Store.PersonRole">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="ClassPerson" Association="GDP.Store.ClassPerson">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonClass_Person" Association="GDP.Store.FK_PersonClass_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="PersonClass" EntitySet="PersonClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonClass_Class" Association="GDP.Store.FK_PersonClass_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="PersonClass" EntitySet="PersonClass" />
+    </AssociationSet>
+    <AssociationSet Name="PersonAvailability" Association="GDP.Store.PersonAvailability">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Availability" EntitySet="Availabilities" />
+    </AssociationSet>
+    <AssociationSet Name="EvaluationEvaluationType" Association="GDP.Store.EvaluationEvaluationType">
+      <End Role="Evaluation" EntitySet="Events_Evaluation" />
+      <End Role="EvaluationType" EntitySet="BaseTypes_EvaluationType" />
+    </AssociationSet>
+    <AssociationSet Name="CourseCourseType" Association="GDP.Store.CourseCourseType">
+      <End Role="Course" EntitySet="Events_Course" />
+      <End Role="CourseType" EntitySet="BaseTypes_CourseType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CampusPerson_Campus" Association="GDP.Store.FK_CampusPerson_Campus">
+      <End Role="Campus" EntitySet="Campuses" />
+      <End Role="CampusPerson" EntitySet="CampusPerson" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CampusPerson_Person" Association="GDP.Store.FK_CampusPerson_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="CampusPerson" EntitySet="CampusPerson" />
+    </AssociationSet>
+    <AssociationSet Name="BaseCoursePerson" Association="GDP.Store.BaseCoursePerson">
+      <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="ClassBaseCourse" Association="GDP.Store.ClassBaseCourse">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
+    </AssociationSet>
+    <AssociationSet Name="DisciplineStudyPeriod" Association="GDP.Store.DisciplineStudyPeriod">
+      <End Role="Discipline" EntitySet="Disciplines" />
+      <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+    </AssociationSet>
+    <AssociationSet Name="DisciplineCourseType" Association="GDP.Store.DisciplineCourseType">
+      <End Role="Discipline" EntitySet="Disciplines" />
+      <End Role="CourseType" EntitySet="BaseTypes_CourseType" />
+    </AssociationSet>
+    <AssociationSet Name="DisciplineEvaluationType" Association="GDP.Store.DisciplineEvaluationType">
+      <End Role="Discipline" EntitySet="Disciplines" />
+      <End Role="EvaluationType" EntitySet="BaseTypes_EvaluationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BaseCourse_inherits_Event" Association="GDP.Store.FK_BaseCourse_inherits_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Evaluation_inherits_BaseCourse" Association="GDP.Store.FK_Evaluation_inherits_BaseCourse">
+      <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
+      <End Role="Evaluation" EntitySet="Events_Evaluation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EvaluationType_inherits_BaseType" Association="GDP.Store.FK_EvaluationType_inherits_BaseType">
+      <End Role="BaseType" EntitySet="BaseTypes" />
+      <End Role="EvaluationType" EntitySet="BaseTypes_EvaluationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_inherits_BaseCourse" Association="GDP.Store.FK_Course_inherits_BaseCourse">
+      <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
+      <End Role="Course" EntitySet="Events_Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseType_inherits_BaseType" Association="GDP.Store.FK_CourseType_inherits_BaseType">
+      <End Role="BaseType" EntitySet="BaseTypes" />
+      <End Role="CourseType" EntitySet="BaseTypes_CourseType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorldWideEvent_inherits_Event" Association="GDP.Store.FK_WorldWideEvent_inherits_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="WorldWideEvent" EntitySet="Events_WorldWideEvent" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cursuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudyPeriods">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CursusId" Type="int" Nullable="false" />
+    <Property Name="ClassId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Campuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VenueAddress_Address_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Classes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venues">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CampusId" Type="int" Nullable="false" />
+    <Property Name="EventVenue_Venue_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsMandatory" Type="bit" Nullable="false" />
+    <Property Name="CampusEvent_Event_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="CurrentClass_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Availabilities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Disciplines">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StudyPeriod_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonRole_Role_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BaseTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Volume" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events_BaseCourse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ClassId1" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Discipline_Id" Type="int" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events_Evaluation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ClassId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="EvaluationType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BaseTypes_EvaluationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="DisciplineId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events_Course">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ClassId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CourseType_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BaseTypes_CourseType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="DisciplineId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events_WorldWideEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonClass">
+    <Key>
+      <PropertyRef Name="PersonClass_Class_Id" />
+      <PropertyRef Name="PreviousClasses_Id" />
+    </Key>
+    <Property Name="PersonClass_Class_Id" Type="int" Nullable="false" />
+    <Property Name="PreviousClasses_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CampusPerson">
+    <Key>
+      <PropertyRef Name="ManagedCampuses_Id" />
+      <PropertyRef Name="Managers_Id" />
+    </Key>
+    <Property Name="ManagedCampuses_Id" Type="int" Nullable="false" />
+    <Property Name="Managers_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CursusStudyPeriod">
+    <End Role="Cursus" Type="GDP.Store.Cursuses" Multiplicity="1" />
+    <End Role="StudyPeriod" Type="GDP.Store.StudyPeriods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cursus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StudyPeriod">
+        <PropertyRef Name="CursusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CampusAddress">
+    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="*" />
+    <End Role="Address" Type="GDP.Store.Addresses" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Campus">
+        <PropertyRef Name="Address_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CampusVenues">
+    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="1" />
+    <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venue">
+        <PropertyRef Name="CampusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VenueAddress">
+    <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="1" />
+    <End Role="Address" Type="GDP.Store.Addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="VenueAddress_Address_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CampusEvent">
+    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="1" />
+    <End Role="Event" Type="GDP.Store.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CampusEvent_Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EventVenue">
+    <End Role="Event" Type="GDP.Store.Events" Multiplicity="1" />
+    <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venue">
+        <PropertyRef Name="EventVenue_Venue_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClassStudyPeriod">
+    <End Role="Class" Type="GDP.Store.Classes" Multiplicity="1" />
+    <End Role="StudyPeriod" Type="GDP.Store.StudyPeriods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StudyPeriod">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonUser">
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="*" />
+    <End Role="User" Type="GDP.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BaseCourseDiscipline">
+    <End Role="BaseCourse" Type="GDP.Store.Events_BaseCourse" Multiplicity="*" />
+    <End Role="Discipline" Type="GDP.Store.Disciplines" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Discipline">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BaseCourse">
+        <PropertyRef Name="Discipline_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonRole">
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
+    <End Role="Role" Type="GDP.Store.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="PersonRole_Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClassPerson">
+    <End Role="Class" Type="GDP.Store.Classes" Multiplicity="0..1" />
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="CurrentClass_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonAvailability">
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
+    <End Role="Availability" Type="GDP.Store.Availabilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Availability">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EvaluationEvaluationType">
+    <End Role="Evaluation" Type="GDP.Store.Events_Evaluation" Multiplicity="*" />
+    <End Role="EvaluationType" Type="GDP.Store.BaseTypes_EvaluationType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="EvaluationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Evaluation">
+        <PropertyRef Name="EvaluationType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CourseCourseType">
+    <End Role="Course" Type="GDP.Store.Events_Course" Multiplicity="*" />
+    <End Role="CourseType" Type="GDP.Store.BaseTypes_CourseType" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="CourseType_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BaseCoursePerson">
+    <End Role="BaseCourse" Type="GDP.Store.Events_BaseCourse" Multiplicity="*" />
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BaseCourse">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClassBaseCourse">
+    <End Role="Class" Type="GDP.Store.Classes" Multiplicity="1" />
+    <End Role="BaseCourse" Type="GDP.Store.Events_BaseCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BaseCourse">
+        <PropertyRef Name="ClassId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DisciplineStudyPeriod">
+    <End Role="Discipline" Type="GDP.Store.Disciplines" Multiplicity="*" />
+    <End Role="StudyPeriod" Type="GDP.Store.StudyPeriods" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="StudyPeriod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Discipline">
+        <PropertyRef Name="StudyPeriod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DisciplineCourseType">
+    <End Role="Discipline" Type="GDP.Store.Disciplines" Multiplicity="1" />
+    <End Role="CourseType" Type="GDP.Store.BaseTypes_CourseType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discipline">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseType">
+        <PropertyRef Name="DisciplineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DisciplineEvaluationType">
+    <End Role="Discipline" Type="GDP.Store.Disciplines" Multiplicity="1" />
+    <End Role="EvaluationType" Type="GDP.Store.BaseTypes_EvaluationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discipline">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationType">
+        <PropertyRef Name="DisciplineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonClass_Person">
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
+    <End Role="PersonClass" Type="GDP.Store.PersonClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonClass">
+        <PropertyRef Name="PersonClass_Class_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonClass_Class">
+    <End Role="PersonClass" Type="GDP.Store.PersonClass" Multiplicity="*" />
+    <End Role="Class" Type="GDP.Store.Classes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonClass">
+        <PropertyRef Name="PreviousClasses_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CampusPerson_Campus">
+    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="1" />
+    <End Role="CampusPerson" Type="GDP.Store.CampusPerson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CampusPerson">
+        <PropertyRef Name="ManagedCampuses_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CampusPerson_Person">
+    <End Role="CampusPerson" Type="GDP.Store.CampusPerson" Multiplicity="*" />
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CampusPerson">
+        <PropertyRef Name="Managers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BaseCourse_inherits_Event">
+    <End Role="Event" Type="GDP.Store.Events" Multiplicity="1" />
+    <End Role="BaseCourse" Type="GDP.Store.Events_BaseCourse" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BaseCourse">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Evaluation_inherits_BaseCourse">
+    <End Role="BaseCourse" Type="GDP.Store.Events_BaseCourse" Multiplicity="1" />
+    <End Role="Evaluation" Type="GDP.Store.Events_Evaluation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseCourse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Evaluation">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EvaluationType_inherits_BaseType">
+    <End Role="BaseType" Type="GDP.Store.BaseTypes" Multiplicity="1" />
+    <End Role="EvaluationType" Type="GDP.Store.BaseTypes_EvaluationType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EvaluationType">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_inherits_BaseCourse">
+    <End Role="BaseCourse" Type="GDP.Store.Events_BaseCourse" Multiplicity="1" />
+    <End Role="Course" Type="GDP.Store.Events_Course" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseCourse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseType_inherits_BaseType">
+    <End Role="BaseType" Type="GDP.Store.BaseTypes" Multiplicity="1" />
+    <End Role="CourseType" Type="GDP.Store.BaseTypes_CourseType" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BaseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseType">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorldWideEvent_inherits_Event">
+    <End Role="Event" Type="GDP.Store.Events" Multiplicity="1" />
+    <End Role="WorldWideEvent" Type="GDP.Store.Events_WorldWideEvent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorldWideEvent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="GDP" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="GDPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cursuses" EntityType="GDP.Cursus" />
+          <EntitySet Name="StudyPeriods" EntityType="GDP.StudyPeriod" />
+          <EntitySet Name="Campuses" EntityType="GDP.Campus" />
+          <EntitySet Name="Addresses" EntityType="GDP.Address" />
+          <EntitySet Name="Classes" EntityType="GDP.Class" />
+          <EntitySet Name="Venues" EntityType="GDP.Venue" />
+          <EntitySet Name="Events" EntityType="GDP.Event" />
+          <AssociationSet Name="CursusStudyPeriod" Association="GDP.CursusStudyPeriod">
+            <End Role="Cursus" EntitySet="Cursuses" />
+            <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+          </AssociationSet>
+          <AssociationSet Name="CampusAddress" Association="GDP.CampusAddress">
+            <End Role="Campus" EntitySet="Campuses" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="CampusVenues" Association="GDP.CampusVenues">
+            <End Role="Campus" EntitySet="Campuses" />
+            <End Role="Venue" EntitySet="Venues" />
+          </AssociationSet>
+          <AssociationSet Name="VenueAddress" Association="GDP.VenueAddress">
+            <End Role="Venue" EntitySet="Venues" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="CampusEvent" Association="GDP.CampusEvent">
+            <End Role="Campus" EntitySet="Campuses" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="GDP.User" />
+          <AssociationSet Name="EventVenue" Association="GDP.EventVenue">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Venue" EntitySet="Venues" />
+          </AssociationSet>
+          <AssociationSet Name="ClassStudyPeriod" Association="GDP.ClassStudyPeriod">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+          </AssociationSet>
+          <EntitySet Name="People" EntityType="GDP.Person" />
+          <AssociationSet Name="PersonUser" Association="GDP.PersonUser">
+            <End Role="Person" EntitySet="People" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Availabilities" EntityType="GDP.Availability" />
+          <EntitySet Name="Disciplines" EntityType="GDP.Discipline" />
+          <AssociationSet Name="BaseCourseDiscipline" Association="GDP.BaseCourseDiscipline">
+            <End Role="BaseCourse" EntitySet="Events" />
+            <End Role="Discipline" EntitySet="Disciplines" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="GDP.Role" />
+          <AssociationSet Name="PersonRole" Association="GDP.PersonRole">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="ClassPerson" Association="GDP.ClassPerson">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="PersonClass" Association="GDP.PersonClass">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="PersonAvailability" Association="GDP.PersonAvailability">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Availability" EntitySet="Availabilities" />
+          </AssociationSet>
+          <EntitySet Name="BaseTypes" EntityType="GDP.BaseType" />
+          <AssociationSet Name="EvaluationEvaluationType" Association="GDP.EvaluationEvaluationType">
+            <End Role="Evaluation" EntitySet="Events" />
+            <End Role="EvaluationType" EntitySet="BaseTypes" />
+          </AssociationSet>
+          <AssociationSet Name="CourseCourseType" Association="GDP.CourseCourseType">
+            <End Role="Course" EntitySet="Events" />
+            <End Role="CourseType" EntitySet="BaseTypes" />
+          </AssociationSet>
+          <AssociationSet Name="CampusPerson" Association="GDP.CampusPerson">
+            <End Role="Campus" EntitySet="Campuses" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="BaseCoursePerson" Association="GDP.BaseCoursePerson">
+            <End Role="BaseCourse" EntitySet="Events" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="ClassBaseCourse" Association="GDP.ClassBaseCourse">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="BaseCourse" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="DisciplineStudyPeriod" Association="GDP.DisciplineStudyPeriod">
+            <End Role="Discipline" EntitySet="Disciplines" />
+            <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+          </AssociationSet>
+          <AssociationSet Name="DisciplineCourseType" Association="GDP.DisciplineCourseType">
+            <End Role="Discipline" EntitySet="Disciplines" />
+            <End Role="CourseType" EntitySet="BaseTypes" />
+          </AssociationSet>
+          <AssociationSet Name="DisciplineEvaluationType" Association="GDP.DisciplineEvaluationType">
+            <End Role="Discipline" EntitySet="Disciplines" />
+            <End Role="EvaluationType" EntitySet="BaseTypes" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="Audit" >
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
+          <Property Type="DateTime" Name="LastModifiedAt" Nullable="false" />
+          <Property Type="String" Name="CreatedBy" Nullable="false" />
+          <Property Type="String" Name="LastModifiedBy" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Cursus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="StudyPeriods" Relationship="GDP.CursusStudyPeriod" FromRole="Cursus" ToRole="StudyPeriod" />
+        </EntityType>
+        <ComplexType Name="Common" >
+          <Property Type="Binary" Name="ConcurrencyToken" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" FixedLength="true" MaxLength="8" >
+            <Documentation>
+              <Summary>Timestamp in order to manage concurrency</Summary>
+            </Documentation>
+          </Property>
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" DefaultValue="false" >
+            <Documentation>
+              <Summary>Object has been deleted by user</Summary>
+            </Documentation>
+          </Property>
+          <Property Type="GDP.Audit" Name="Audit" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="StudyPeriod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="Cursus" Relationship="GDP.CursusStudyPeriod" FromRole="StudyPeriod" ToRole="Cursus" />
+          <Property Type="Int32" Name="CursusId" Nullable="false" />
+          <NavigationProperty Name="Class" Relationship="GDP.ClassStudyPeriod" FromRole="StudyPeriod" ToRole="Class" />
+          <Property Type="Int32" Name="ClassId" Nullable="false" />
+          <NavigationProperty Name="Disciplines" Relationship="GDP.DisciplineStudyPeriod" FromRole="StudyPeriod" ToRole="Discipline" />
+        </EntityType>
+        <EntityType Name="Campus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="GDP.CampusAddress" FromRole="Campus" ToRole="Address" />
+          <NavigationProperty Name="Venues" Relationship="GDP.CampusVenues" FromRole="Campus" ToRole="Venue" />
+          <NavigationProperty Name="Events" Relationship="GDP.CampusEvent" FromRole="Campus" ToRole="Event" />
+          <NavigationProperty Name="Managers" Relationship="GDP.CampusPerson" FromRole="Campus" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Street" Nullable="false" />
+          <Property Type="String" Name="PostalCode" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="false" />
+          <Property Type="String" Name="Country" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="StudyPeriods" Relationship="GDP.ClassStudyPeriod" FromRole="Class" ToRole="StudyPeriod" />
+          <NavigationProperty Name="People" Relationship="GDP.ClassPerson" FromRole="Class" ToRole="Person" />
+          <NavigationProperty Name="Courses" Relationship="GDP.ClassBaseCourse" FromRole="Class" ToRole="BaseCourse" />
+        </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="Campus" Relationship="GDP.CampusVenues" FromRole="Venue" ToRole="Campus" />
+          <Property Type="Int32" Name="CampusId" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="GDP.VenueAddress" FromRole="Venue" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="Venue" Relationship="GDP.EventVenue" FromRole="Event" ToRole="Venue" />
+          <Property Type="Boolean" Name="IsMandatory" Nullable="false" />
+        </EntityType>
+        <Association Name="CursusStudyPeriod">
+          <End Type="GDP.Cursus" Role="Cursus" Multiplicity="1" />
+          <End Type="GDP.StudyPeriod" Role="StudyPeriod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cursus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudyPeriod">
+              <PropertyRef Name="CursusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CampusAddress">
+          <End Type="GDP.Campus" Role="Campus" Multiplicity="1" />
+          <End Type="GDP.Address" Role="Address" Multiplicity="1" />
+        </Association>
+        <Association Name="CampusVenues">
+          <End Type="GDP.Campus" Role="Campus" Multiplicity="1" />
+          <End Type="GDP.Venue" Role="Venue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venue">
+              <PropertyRef Name="CampusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VenueAddress">
+          <End Type="GDP.Venue" Role="Venue" Multiplicity="1" />
+          <End Type="GDP.Address" Role="Address" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Course" BaseType="GDP.BaseCourse" >
+          <Property Type="Int32" Name="ClassId" Nullable="false" />
+          <NavigationProperty Name="CourseType" Relationship="GDP.CourseCourseType" FromRole="Course" ToRole="CourseType" />
+        </EntityType>
+        <EntityType Name="Evaluation" BaseType="GDP.BaseCourse" >
+          <Property Type="Int32" Name="ClassId" Nullable="false" />
+          <NavigationProperty Name="EvaluationType" Relationship="GDP.EvaluationEvaluationType" FromRole="Evaluation" ToRole="EvaluationType" />
+        </EntityType>
+        <Association Name="CampusEvent">
+          <End Type="GDP.Campus" Role="Campus" Multiplicity="1" />
+          <End Type="GDP.Event" Role="Event" Multiplicity="*" />
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Password" Nullable="false" />
+          <Property Type="Boolean" Name="IsApproved" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="GDP.PersonUser" FromRole="User" ToRole="Person" />
+        </EntityType>
+        <Association Name="EventVenue">
+          <End Type="GDP.Event" Role="Event" Multiplicity="1" />
+          <End Type="GDP.Venue" Role="Venue" Multiplicity="0..1" />
+        </Association>
+        <Association Name="ClassStudyPeriod">
+          <End Type="GDP.Class" Role="Class" Multiplicity="1" />
+          <End Type="GDP.StudyPeriod" Role="StudyPeriod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudyPeriod">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="WorldWideEvent" BaseType="GDP.Event" />
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" />
+          <Property Type="String" Name="LastName" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="GDP.PersonUser" FromRole="Person" ToRole="User" />
+          <NavigationProperty Name="Roles" Relationship="GDP.PersonRole" FromRole="Person" ToRole="Role" />
+          <NavigationProperty Name="CurrentClass" Relationship="GDP.ClassPerson" FromRole="Person" ToRole="Class" />
+          <NavigationProperty Name="PreviousClasses" Relationship="GDP.PersonClass" FromRole="Person" ToRole="Class" />
+          <NavigationProperty Name="Availabilities" Relationship="GDP.PersonAvailability" FromRole="Person" ToRole="Availability" />
+          <NavigationProperty Name="ManagedCampuses" Relationship="GDP.CampusPerson" FromRole="Person" ToRole="Campus" />
+          <Property Type="String" Name="Title" Nullable="false" />
+          <NavigationProperty Name="BaseCourses" Relationship="GDP.BaseCoursePerson" FromRole="Person" ToRole="BaseCourse" />
+        </EntityType>
+        <Association Name="PersonUser">
+          <End Type="GDP.Person" Role="Person" Multiplicity="1" />
+          <End Type="GDP.User" Role="User" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Availability">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="GDP.PersonAvailability" FromRole="Availability" ToRole="Person" />
+          <Property Type="Int32" Name="PersonId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discipline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="StudyPeriod" Relationship="GDP.DisciplineStudyPeriod" FromRole="Discipline" ToRole="StudyPeriod" />
+          <NavigationProperty Name="CourseTypes" Relationship="GDP.DisciplineCourseType" FromRole="Discipline" ToRole="CourseType" />
+          <NavigationProperty Name="EvaluationTypes" Relationship="GDP.DisciplineEvaluationType" FromRole="Discipline" ToRole="EvaluationType" />
+        </EntityType>
+        <EntityType Name="BaseCourse" BaseType="GDP.Event" Abstract="true" >
+          <NavigationProperty Name="Discipline" Relationship="GDP.BaseCourseDiscipline" FromRole="BaseCourse" ToRole="Discipline" />
+          <NavigationProperty Name="Person" Relationship="GDP.BaseCoursePerson" FromRole="BaseCourse" ToRole="Person" />
+          <NavigationProperty Name="Class" Relationship="GDP.ClassBaseCourse" FromRole="BaseCourse" ToRole="Class" />
+          <Property Type="Int32" Name="ClassId1" Nullable="false" />
+        </EntityType>
+        <Association Name="BaseCourseDiscipline">
+          <End Type="GDP.BaseCourse" Role="BaseCourse" Multiplicity="1" />
+          <End Type="GDP.Discipline" Role="Discipline" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ShortName" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+        </EntityType>
+        <Association Name="PersonRole">
+          <End Type="GDP.Person" Role="Person" Multiplicity="1" />
+          <End Type="GDP.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <Association Name="ClassPerson">
+          <End Type="GDP.Class" Role="Class" Multiplicity="0..1" />
+          <End Type="GDP.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonClass">
+          <End Type="GDP.Person" Role="Person" Multiplicity="*" />
+          <End Type="GDP.Class" Role="Class" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonAvailability">
+          <End Type="GDP.Person" Role="Person" Multiplicity="1" />
+          <End Type="GDP.Availability" Role="Availability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Availability">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BaseType" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="Int32" Name="Volume" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourseType" BaseType="GDP.BaseType" >
+          <NavigationProperty Name="Courses" Relationship="GDP.CourseCourseType" FromRole="CourseType" ToRole="Course" />
+          <NavigationProperty Name="Discipline" Relationship="GDP.DisciplineCourseType" FromRole="CourseType" ToRole="Discipline" />
+          <Property Type="Int32" Name="DisciplineId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EvaluationType" BaseType="GDP.BaseType" >
+          <NavigationProperty Name="Evaluations" Relationship="GDP.EvaluationEvaluationType" FromRole="EvaluationType" ToRole="Evaluation" />
+          <NavigationProperty Name="Discipline" Relationship="GDP.DisciplineEvaluationType" FromRole="EvaluationType" ToRole="Discipline" />
+          <Property Type="Int32" Name="DisciplineId" Nullable="false" />
+        </EntityType>
+        <Association Name="EvaluationEvaluationType">
+          <End Type="GDP.Evaluation" Role="Evaluation" Multiplicity="*" />
+          <End Type="GDP.EvaluationType" Role="EvaluationType" Multiplicity="1" />
+        </Association>
+        <Association Name="CourseCourseType">
+          <End Type="GDP.Course" Role="Course" Multiplicity="*" />
+          <End Type="GDP.CourseType" Role="CourseType" Multiplicity="1" />
+        </Association>
+        <Association Name="CampusPerson">
+          <End Type="GDP.Campus" Role="Campus" Multiplicity="*" />
+          <End Type="GDP.Person" Role="Person" Multiplicity="*" />
+        </Association>
+        <Association Name="BaseCoursePerson">
+          <End Type="GDP.BaseCourse" Role="BaseCourse" Multiplicity="*" />
+          <End Type="GDP.Person" Role="Person" Multiplicity="1" />
+        </Association>
+        <Association Name="ClassBaseCourse">
+          <End Type="GDP.Class" Role="Class" Multiplicity="1" />
+          <End Type="GDP.BaseCourse" Role="BaseCourse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BaseCourse">
+              <PropertyRef Name="ClassId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DisciplineStudyPeriod">
+          <End Type="GDP.Discipline" Role="Discipline" Multiplicity="*" />
+          <End Type="GDP.StudyPeriod" Role="StudyPeriod" Multiplicity="1" />
+        </Association>
+        <Association Name="DisciplineCourseType">
+          <End Type="GDP.Discipline" Role="Discipline" Multiplicity="1" />
+          <End Type="GDP.CourseType" Role="CourseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseType">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DisciplineEvaluationType">
+          <End Type="GDP.Discipline" Role="Discipline" Multiplicity="1" />
+          <End Type="GDP.EvaluationType" Role="EvaluationType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discipline">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EvaluationType">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GDPStoreContainer" CdmEntityContainer="GDPEntities">
+    <EntitySetMapping Name="Cursuses">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Cursus)">
+        <MappingFragment StoreEntitySet="Cursuses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudyPeriods">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.StudyPeriod)">
+        <MappingFragment StoreEntitySet="StudyPeriods">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+          <ScalarProperty Name="CursusId" ColumnName="CursusId" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campuses">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Campus)">
+        <MappingFragment StoreEntitySet="Campuses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Address)">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classes">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Class)">
+        <MappingFragment StoreEntitySet="Classes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venues">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Venue)">
+        <MappingFragment StoreEntitySet="Venues">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+          <ScalarProperty Name="CampusId" ColumnName="CampusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Event)">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+          <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.BaseCourse)">
+        <MappingFragment StoreEntitySet="Events_BaseCourse">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClassId1" ColumnName="ClassId1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Evaluation)">
+        <MappingFragment StoreEntitySet="Events_Evaluation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Course)">
+        <MappingFragment StoreEntitySet="Events_Course">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.WorldWideEvent)">
+        <MappingFragment StoreEntitySet="Events_WorldWideEvent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Availabilities">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Availability)">
+        <MappingFragment StoreEntitySet="Availabilities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Disciplines">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Discipline)">
+        <MappingFragment StoreEntitySet="Disciplines">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BaseTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.BaseType)">
+        <MappingFragment StoreEntitySet="BaseTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.EvaluationType)">
+        <MappingFragment StoreEntitySet="BaseTypes_EvaluationType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DisciplineId" ColumnName="DisciplineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(GDP.CourseType)">
+        <MappingFragment StoreEntitySet="BaseTypes_CourseType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DisciplineId" ColumnName="DisciplineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CampusAddress" TypeName="GDP.CampusAddress" StoreEntitySet="Campuses">
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Address_Id" />
+      </EndProperty>
+      <EndProperty Name="Campus">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VenueAddress" TypeName="GDP.VenueAddress" StoreEntitySet="Addresses">
+      <EndProperty Name="Venue">
+        <ScalarProperty Name="Id" ColumnName="VenueAddress_Address_Id" />
+      </EndProperty>
+      <EndProperty Name="Address">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CampusEvent" TypeName="GDP.CampusEvent" StoreEntitySet="Events">
+      <EndProperty Name="Campus">
+        <ScalarProperty Name="Id" ColumnName="CampusEvent_Event_Id" />
+      </EndProperty>
+      <EndProperty Name="Event">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EventVenue" TypeName="GDP.EventVenue" StoreEntitySet="Venues">
+      <EndProperty Name="Event">
+        <ScalarProperty Name="Id" ColumnName="EventVenue_Venue_Id" />
+      </EndProperty>
+      <EndProperty Name="Venue">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonUser" TypeName="GDP.PersonUser" StoreEntitySet="People">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BaseCourseDiscipline" TypeName="GDP.BaseCourseDiscipline" StoreEntitySet="Events_BaseCourse">
+      <EndProperty Name="Discipline">
+        <ScalarProperty Name="Id" ColumnName="Discipline_Id" />
+      </EndProperty>
+      <EndProperty Name="BaseCourse">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonRole" TypeName="GDP.PersonRole" StoreEntitySet="Roles">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="PersonRole_Role_Id" />
+      </EndProperty>
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClassPerson" TypeName="GDP.ClassPerson" StoreEntitySet="People">
+      <EndProperty Name="Class">
+        <ScalarProperty Name="Id" ColumnName="CurrentClass_Id" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="CurrentClass_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonClass" TypeName="GDP.PersonClass" StoreEntitySet="PersonClass">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="PersonClass_Class_Id" />
+      </EndProperty>
+      <EndProperty Name="Class">
+        <ScalarProperty Name="Id" ColumnName="PreviousClasses_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EvaluationEvaluationType" TypeName="GDP.EvaluationEvaluationType" StoreEntitySet="Events_Evaluation">
+      <EndProperty Name="EvaluationType">
+        <ScalarProperty Name="Id" ColumnName="EvaluationType_Id" />
+      </EndProperty>
+      <EndProperty Name="Evaluation">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CourseCourseType" TypeName="GDP.CourseCourseType" StoreEntitySet="Events_Course">
+      <EndProperty Name="CourseType">
+        <ScalarProperty Name="Id" ColumnName="CourseType_Id" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CampusPerson" TypeName="GDP.CampusPerson" StoreEntitySet="CampusPerson">
+      <EndProperty Name="Campus">
+        <ScalarProperty Name="Id" ColumnName="ManagedCampuses_Id" />
+      </EndProperty>
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Managers_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BaseCoursePerson" TypeName="GDP.BaseCoursePerson" StoreEntitySet="Events_BaseCourse">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="BaseCourse">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DisciplineStudyPeriod" TypeName="GDP.DisciplineStudyPeriod" StoreEntitySet="Disciplines">
+      <EndProperty Name="StudyPeriod">
+        <ScalarProperty Name="Id" ColumnName="StudyPeriod_Id" />
+      </EndProperty>
+      <EndProperty Name="Discipline">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="GDP" ZoomLevel="55" >
+        <EntityTypeShape EntityType="GDP.Cursus" Width="1.5" PointX="12.625" PointY="17.875" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="GDP.StudyPeriod" Width="1.5" PointX="12.625" PointY="22.25" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="GDP.Campus" Width="1.5" PointX="5.25" PointY="18.125" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="GDP.Address" Width="1.5" PointX="10.5" PointY="18.125" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="GDP.Class" Width="1.5" PointX="4" PointY="24.125" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="GDP.Venue" Width="1.5" PointX="7.875" PointY="16" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="GDP.Event" Width="1.5" PointX="7.75" PointY="20.875" Height="2.5571907552083388" />
+        <AssociationConnector Association="GDP.CursusStudyPeriod">
+          <ConnectorPoint PointX="13.375" PointY="19.662985026041667" />
+          <ConnectorPoint PointX="13.375" PointY="22.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.CampusAddress">
+          <ConnectorPoint PointX="6.75" PointY="19.2112939453125" />
+          <ConnectorPoint PointX="8.0416666666666661" PointY="19.2112939453125" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="19.2112939453125" />
+          <ConnectorPoint PointX="10.5" PointY="19.2112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.CampusVenues">
+          <ConnectorPoint PointX="6.75" PointY="18.660688917968752" />
+          <ConnectorPoint PointX="8.0416666666666661" PointY="18.660688917968752" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="18.660688917968752" />
+          <ConnectorPoint PointX="8.9375" PointY="18.660688917968752" />
+          <ConnectorPoint PointX="8.9375" PointY="18.172587890625003" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.VenueAddress">
+          <ConnectorPoint PointX="9.375" PointY="17.0624995" />
+          <ConnectorPoint PointX="11.25" PointY="17.0624995" />
+          <ConnectorPoint PointX="11.25" PointY="18.125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GDP.Course" Width="1.5" PointX="4.25" PointY="27.375" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="GDP.Evaluation" Width="1.5" PointX="7.625" PointY="27.5" Height="1.4033821614583388" />
+        <AssociationConnector Association="GDP.CampusEvent">
+          <ConnectorPoint PointX="6.75" PointY="19.881844134114587" />
+          <ConnectorPoint PointX="8.0416666666666661" PointY="19.881844134114587" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="19.881844134114587" />
+          <ConnectorPoint PointX="8.5" PointY="19.881844134114587" />
+          <ConnectorPoint PointX="8.5" PointY="20.875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GDP.User" Width="1.5" PointX="0.5" PointY="21" Height="1.9802864583333353" />
+        <AssociationConnector Association="GDP.EventVenue">
+          <ConnectorPoint PointX="8.125" PointY="20.875" />
+          <ConnectorPoint PointX="8.125" PointY="18.172587890625003" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.ClassStudyPeriod">
+          <ConnectorPoint PointX="5.5" PointY="24.25" />
+          <ConnectorPoint PointX="7.447916666666667" PointY="24.25" />
+          <ConnectorPoint PointX="7.614583333333333" PointY="24.25" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="24.25" />
+          <ConnectorPoint PointX="8.5833333333333339" PointY="24.25" />
+          <ConnectorPoint PointX="12.625" PointY="24.25" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GDP.WorldWideEvent" Width="1.5" PointX="10.5" PointY="21.625" Height="1.0187792968750031" />
+        <InheritanceConnector EntityType="GDP.WorldWideEvent" >
+          <ConnectorPoint PointX="9.25" PointY="22.1343896484375" />
+          <ConnectorPoint PointX="10.5" PointY="22.1343896484375" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="GDP.Person" Width="1.5" PointX="2.375" PointY="20.25" Height="3.3263964843750031" />
+        <AssociationConnector Association="GDP.PersonUser">
+          <ConnectorPoint PointX="2.375" PointY="21.990143229166669" />
+          <ConnectorPoint PointX="2" PointY="21.990143229166669" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GDP.Availability" Width="1.5" PointX="1.375" PointY="16.75" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="GDP.Discipline" Width="1.5" PointX="12.625" PointY="26.875" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="GDP.BaseCourse" Width="1.5" PointX="7.375" PointY="24.875" Height="1.7879850260416674" />
+        <InheritanceConnector EntityType="GDP.BaseCourse" >
+          <ConnectorPoint PointX="8.5" PointY="23.432190755208339" />
+          <ConnectorPoint PointX="8.5" PointY="24.5" />
+          <ConnectorPoint PointX="8.125" PointY="24.5" />
+          <ConnectorPoint PointX="8.125" PointY="24.875" />
+        </InheritanceConnector>
+        <AssociationConnector Association="GDP.BaseCourseDiscipline">
+          <ConnectorPoint PointX="7.46875" PointY="26.662985026041667" />
+          <ConnectorPoint PointX="7.46875" PointY="27.28125" />
+          <ConnectorPoint PointX="8.2916666666666661" PointY="27.28125" />
+          <ConnectorPoint PointX="8.4583333333333339" PointY="27.28125" />
+          <ConnectorPoint PointX="12.625" PointY="27.28125" />
+        </AssociationConnector>
+        <InheritanceConnector EntityType="GDP.Course" >
+          <ConnectorPoint PointX="8.125" PointY="26.662985026041667" />
+          <ConnectorPoint PointX="8.125" PointY="27" />
+          <ConnectorPoint PointX="7.552083333333333" PointY="27" />
+          <ConnectorPoint PointX="7.385416666666667" PointY="27" />
+          <ConnectorPoint PointX="5" PointY="27" />
+          <ConnectorPoint PointX="5" PointY="27.375" />
+        </InheritanceConnector>
+        <InheritanceConnector EntityType="GDP.Evaluation" >
+          <ConnectorPoint PointX="8.125" PointY="26.662985026041667" />
+          <ConnectorPoint PointX="8.125" PointY="27.125" />
+          <ConnectorPoint PointX="8.375" PointY="27.125" />
+          <ConnectorPoint PointX="8.375" PointY="27.5" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="GDP.Role" Width="1.5" PointX="0.5" PointY="24" Height="1.595683593749996" />
+        <AssociationConnector Association="GDP.PersonRole">
+          <ConnectorPoint PointX="2.375" PointY="23.576396484375003" />
+          <ConnectorPoint PointX="2" PointY="24" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.ClassPerson">
+          <ConnectorPoint PointX="4" PointY="24.125" />
+          <ConnectorPoint PointX="3.875" PointY="23.576396484375003" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.PersonClass">
+          <ConnectorPoint PointX="3.875" PointY="23.576396484375003" />
+          <ConnectorPoint PointX="4" PointY="24.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.PersonAvailability">
+          <ConnectorPoint PointX="2.625" PointY="20.25" />
+          <ConnectorPoint PointX="2.625" PointY="18.730286458333332" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GDP.BaseType" Width="1.5" PointX="5.875" PointY="29.125" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="GDP.CourseType" Width="1.5" PointX="3.75" PointY="30" Height="1.595683593749996" />
+        <InheritanceConnector EntityType="GDP.CourseType" >
+          <ConnectorPoint PointX="6.6457797411311264" PointY="30.720683593749996" />
+          <ConnectorPoint PointX="6.6457797411311264" PointY="31.215628140994312" />
+          <ConnectorPoint PointX="5.25" PointY="31.215628140994312" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="GDP.EvaluationType" Width="1.5" PointX="8.25" PointY="29.875" Height="1.595683593749996" />
+        <InheritanceConnector EntityType="GDP.EvaluationType" >
+          <ConnectorPoint PointX="7.375" PointY="30.297841796874998" />
+          <ConnectorPoint PointX="8.25" PointY="30.297841796874998" />
+        </InheritanceConnector>
+        <AssociationConnector Association="GDP.EvaluationEvaluationType">
+          <ConnectorPoint PointX="8.6875" PointY="28.903382161458339" />
+          <ConnectorPoint PointX="8.6875" PointY="29.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.CourseCourseType">
+          <ConnectorPoint PointX="4.9375" PointY="28.778382161458339" />
+          <ConnectorPoint PointX="4.9375" PointY="30" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.CampusPerson">
+          <ConnectorPoint PointX="5.25" PointY="19.490140729166665" />
+          <ConnectorPoint PointX="3.40625" PointY="19.490140729166665" />
+          <ConnectorPoint PointX="3.40625" PointY="20.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.BaseCoursePerson">
+          <ConnectorPoint PointX="7.53125" PointY="24.875" />
+          <ConnectorPoint PointX="7.53125" PointY="20.747472330729167" />
+          <ConnectorPoint PointX="3.875" PointY="20.747472330729167" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.ClassBaseCourse">
+          <ConnectorPoint PointX="5.5" PointY="25.5862939453125" />
+          <ConnectorPoint PointX="7.375" PointY="25.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.DisciplineStudyPeriod">
+          <ConnectorPoint PointX="13.375" PointY="26.875" />
+          <ConnectorPoint PointX="13.375" PointY="25.191793619791667" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.DisciplineCourseType" ManuallyRouted="false">
+          <ConnectorPoint PointX="13.375" PointY="28.855286458333339" />
+          <ConnectorPoint PointX="13.375" PointY="31.970683593749996" />
+          <ConnectorPoint PointX="4.6445306241352622" PointY="31.970683593749996" />
+          <ConnectorPoint PointX="4.6445306241352622" PointY="31.595683593749996" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.DisciplineEvaluationType">
+          <ConnectorPoint PointX="12.9687475" PointY="28.855286458333339" />
+          <ConnectorPoint PointX="12.9687475" PointY="30.672841796874998" />
+          <ConnectorPoint PointX="9.75" PointY="30.672841796874998" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

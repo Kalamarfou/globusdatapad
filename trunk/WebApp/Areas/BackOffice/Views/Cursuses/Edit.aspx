@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Cursuses>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Cursus>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -14,9 +14,9 @@
         <fieldset>
             <legend>Fields</legend>
         
-        <%: Html.HiddenFor(model => model.CursusID) %>
+        <%: Html.HiddenFor(model => model.Id) %>
             
-            <%: Html.HiddenFor(model => model.ConcurrencyToken) %>
+            <%: Html.HiddenFor(model => model.Common.ConcurrencyToken) %>
 
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>

@@ -11,7 +11,7 @@ namespace DAL.Utils
     {
         public static void Create<T>(T e) where T : EntityObject
         {
-            using (GlobusDataPadEntities db = new GlobusDataPadEntities())
+            using (GDPEntities db = new GDPEntities())
             {
                 db.AddObject(GetEntitySetName(e), e);
                 db.SaveChanges();
@@ -20,7 +20,7 @@ namespace DAL.Utils
 
         public static void Update<T>(T e) where T : EntityObject
         {
-            using (GlobusDataPadEntities db = new GlobusDataPadEntities())
+            using (GDPEntities db = new GDPEntities())
             {
                 db.AttachTo(GetEntitySetName(e), e);
                 db.ObjectStateManager.ChangeObjectState(e, System.Data.EntityState.Modified);
@@ -50,8 +50,10 @@ namespace DAL.Utils
                     return "Campuses";
                 case "Address":
                     return "Addresses";
-                case "Cursuses":
+                case "Cursus":
                     return "Cursuses";
+                case "Availability":
+                    return "Availabilities";
                 default:
                     throw new ApplicationException("Unknown entity: could not find EntitySetName for :" + e.GetType().Name);
             }

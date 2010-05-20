@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Cursuses>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Cursus>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Delete
@@ -13,7 +13,7 @@
         <legend>Fields</legend>
         
         <div class="display-label">CursusID</div>
-        <div class="display-field"><%: Model.CursusID %></div>
+        <div class="display-field"><%: Model.Id %></div>
         
         <div class="display-label">Name</div>
         <div class="display-field"><%: Model.Name %></div>
