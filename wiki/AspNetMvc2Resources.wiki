@@ -4,7 +4,14 @@
 
  * [http://adamyan.blogspot.com/2010/02/aspnet-mvc-2-localization-complete.html ASP.NET MVC 2 Localization Complete Guide]
  * [http://weblogs.asp.net/scottgu/archive/2010/01/15/asp-net-mvc-2-model-validation.aspx ASP.NET MVC 2 Model validation]
+
+== Securité ==
+
  * [http://weblogs.asp.net/rajbk/archive/2010/04/01/securing-an-asp-net-mvc-2-application.aspx Securing an ASP.NET MVC 2 application]
+ * [http://www.codeproject.com/KB/web-security/EFMembershipProvider.aspx Custom membership provider for the ADO.NET Entity Framework]
+ * [http://odetocode.com/Articles/428.aspx Membership and Roles provider]
+
+== Autre ==
 
  * [http://www.asp.net/learn/whitepapers/what-is-new-in-aspnet-mvc/ What's new in ASP.NET MVC (2)]
  * [http://stackoverflow.com StackOverflow]
