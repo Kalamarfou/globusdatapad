@@ -64,8 +64,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\DALMembershipProvider.cs" />
+    <Compile Include="Extensions\DALRolesProvider.cs" />
+    <Compile Include="Extensions\GlobalUtils.cs" />
     <Compile Include="Extensions\MobileEnabledViewEngine.cs" />
     <Compile Include="Extensions\MobilePagingRestrictionAttribute.cs" />
+    <Compile Include="Extensions\ProviderUtils.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
