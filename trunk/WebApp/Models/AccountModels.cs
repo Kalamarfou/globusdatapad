@@ -69,6 +69,22 @@ namespace WebApp.Models
         [DataType(DataType.Password)]
         [DisplayName("Confirm password")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DisplayName("Question")]
+        public string SecurityQuestion { get; set; }
+
+        [Required]
+        [DisplayName("Answer")]
+        public string SecurityAnswer { get; set; }
+
+        [Required]
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DisplayName("Last Name")]
+        public string LastName { get; set; }
     }
     #endregion
 
@@ -83,7 +99,7 @@ namespace WebApp.Models
         int MinPasswordLength { get; }
 
         bool ValidateUser(string userName, string password);
-        MembershipCreateStatus CreateUser(string userName, string password, string email);
+        MembershipCreateStatus CreateUser(string userName, string password, string email, string securityQuestion, string securityAnswer);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
     }
 
@@ -117,14 +133,14 @@ namespace WebApp.Models
             return _provider.ValidateUser(userName, password);
         }
 
-        public MembershipCreateStatus CreateUser(string userName, string password, string email)
+        public MembershipCreateStatus CreateUser(string userName, string password, string email, string securityQuestion, string securityAnswer)
         {
             if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
             if (String.IsNullOrEmpty(email)) throw new ArgumentException("Value cannot be null or empty.", "email");
 
             MembershipCreateStatus status;
-            _provider.CreateUser(userName, password, email, null, null, true, null, out status);
+            _provider.CreateUser(userName, password, email, securityQuestion, securityAnswer, true, null, out status);
             return status;
         }
 

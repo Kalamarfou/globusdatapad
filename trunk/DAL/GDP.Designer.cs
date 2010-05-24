@@ -25,9 +25,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "CampusEvent", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 [assembly: EdmRelationshipAttribute("GDP", "EventVenue", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Event), "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue))]
 [assembly: EdmRelationshipAttribute("GDP", "ClassStudyPeriod", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Class), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod), true)]
-[assembly: EdmRelationshipAttribute("GDP", "PersonUser", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User))]
+[assembly: EdmRelationshipAttribute("GDP", "PersonUser", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Person), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.User))]
 [assembly: EdmRelationshipAttribute("GDP", "BaseCourseDiscipline", "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.BaseCourse), "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline))]
-[assembly: EdmRelationshipAttribute("GDP", "PersonRole", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Role))]
 [assembly: EdmRelationshipAttribute("GDP", "ClassPerson", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Class), "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Person))]
 [assembly: EdmRelationshipAttribute("GDP", "PersonClass", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Person), "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Class))]
 [assembly: EdmRelationshipAttribute("GDP", "PersonAvailability", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person), "Availability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Availability), true)]
@@ -39,6 +38,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "DisciplineStudyPeriod", "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Discipline), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.StudyPeriod))]
 [assembly: EdmRelationshipAttribute("GDP", "DisciplineCourseType", "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline), "CourseType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.CourseType), true)]
 [assembly: EdmRelationshipAttribute("GDP", "DisciplineEvaluationType", "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline), "EvaluationType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.EvaluationType), true)]
+[assembly: EdmRelationshipAttribute("GDP", "PersonEvent", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
+[assembly: EdmRelationshipAttribute("GDP", "UserRole", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Role))]
 
 #endregion
 
@@ -2490,7 +2491,8 @@ namespace DAL
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="email">Initial value of the Email property.</param>
         /// <param name="title">Initial value of the Title property.</param>
-        public static Person CreatePerson(global::System.Int32 id, global::System.String firstName, global::System.String lastName, global::System.String email, global::System.String title)
+        /// <param name="common">Initial value of the Common property.</param>
+        public static Person CreatePerson(global::System.Int32 id, global::System.String firstName, global::System.String lastName, global::System.String email, global::System.String title, Common common)
         {
             Person person = new Person();
             person.Id = id;
@@ -2498,6 +2500,7 @@ namespace DAL
             person.LastName = lastName;
             person.Email = email;
             person.Title = title;
+            person.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             return person;
         }
 
@@ -2628,6 +2631,40 @@ namespace DAL
         partial void OnTitleChanged();
 
         #endregion
+        #region Complex Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmComplexPropertyAttribute()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [XmlElement(IsNullable=true)]
+        [SoapElement(IsNullable=true)]
+        [DataMemberAttribute()]
+        public Common Common
+        {
+            get
+            {
+                _Common = GetValidValue(_Common, "Common", false, _CommonInitialized);
+                _CommonInitialized = true;
+                return _Common;
+            }
+            set
+            {
+                OnCommonChanging(value);
+                ReportPropertyChanging("Common");
+                _Common = SetValidValue(_Common, value, "Common");
+                _CommonInitialized = true;
+                ReportPropertyChanged("Common");
+                OnCommonChanged();
+            }
+        }
+        private Common _Common;
+        private bool _CommonInitialized;
+        partial void OnCommonChanging(Common value);
+        partial void OnCommonChanged();
+
+        #endregion
     
         #region Navigation Properties
     
@@ -2665,28 +2702,6 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("GDP.PersonUser", "User", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonRole", "Role")]
-        public EntityCollection<Role> Roles
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Role>("GDP.PersonRole", "Role");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("GDP.PersonRole", "Role", value);
                 }
             }
         }
@@ -2816,6 +2831,28 @@ namespace DAL
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonEvent", "Event")]
+        public EntityCollection<Event> Events
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("GDP.PersonEvent", "Event");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("GDP.PersonEvent", "Event", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -2836,12 +2873,14 @@ namespace DAL
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="shortName">Initial value of the ShortName property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Role CreateRole(global::System.Int32 id, global::System.String shortName, global::System.String name)
+        /// <param name="common">Initial value of the Common property.</param>
+        public static Role CreateRole(global::System.Int32 id, global::System.String shortName, global::System.String name, Common common)
         {
             Role role = new Role();
             role.Id = id;
             role.ShortName = shortName;
             role.Name = name;
+            role.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             return role;
         }
 
@@ -2924,7 +2963,66 @@ namespace DAL
         partial void OnNameChanged();
 
         #endregion
+        #region Complex Properties
     
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmComplexPropertyAttribute()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [XmlElement(IsNullable=true)]
+        [SoapElement(IsNullable=true)]
+        [DataMemberAttribute()]
+        public Common Common
+        {
+            get
+            {
+                _Common = GetValidValue(_Common, "Common", false, _CommonInitialized);
+                _CommonInitialized = true;
+                return _Common;
+            }
+            set
+            {
+                OnCommonChanging(value);
+                ReportPropertyChanging("Common");
+                _Common = SetValidValue(_Common, value, "Common");
+                _CommonInitialized = true;
+                ReportPropertyChanged("Common");
+                OnCommonChanged();
+            }
+        }
+        private Common _Common;
+        private bool _CommonInitialized;
+        partial void OnCommonChanging(Common value);
+        partial void OnCommonChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserRole", "User")]
+        public EntityCollection<User> Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("GDP.UserRole", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("GDP.UserRole", "User", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -3266,13 +3364,39 @@ namespace DAL
         /// <param name="password">Initial value of the Password property.</param>
         /// <param name="isApproved">Initial value of the IsApproved property.</param>
         /// <param name="common">Initial value of the Common property.</param>
-        public static User CreateUser(global::System.Int32 id, global::System.String password, global::System.Boolean isApproved, Common common)
+        /// <param name="username">Initial value of the Username property.</param>
+        /// <param name="passwordQuestion">Initial value of the PasswordQuestion property.</param>
+        /// <param name="passwordAnswer">Initial value of the PasswordAnswer property.</param>
+        /// <param name="lastActivityDate">Initial value of the LastActivityDate property.</param>
+        /// <param name="lastLoginDate">Initial value of the LastLoginDate property.</param>
+        /// <param name="lastPasswordChangedDate">Initial value of the LastPasswordChangedDate property.</param>
+        /// <param name="isOnline">Initial value of the IsOnline property.</param>
+        /// <param name="isLockedOut">Initial value of the IsLockedOut property.</param>
+        /// <param name="lastLockedOutDate">Initial value of the LastLockedOutDate property.</param>
+        /// <param name="failedPasswordAttemptCount">Initial value of the FailedPasswordAttemptCount property.</param>
+        /// <param name="failedPasswordAttemptWindowStart">Initial value of the FailedPasswordAttemptWindowStart property.</param>
+        /// <param name="failedPasswordAnswerAttemptCount">Initial value of the FailedPasswordAnswerAttemptCount property.</param>
+        /// <param name="failedPasswordAnswerAttemptWindowStart">Initial value of the FailedPasswordAnswerAttemptWindowStart property.</param>
+        public static User CreateUser(global::System.Int32 id, global::System.String password, global::System.Boolean isApproved, Common common, global::System.String username, global::System.String passwordQuestion, global::System.String passwordAnswer, global::System.DateTime lastActivityDate, global::System.DateTime lastLoginDate, global::System.DateTime lastPasswordChangedDate, global::System.Boolean isOnline, global::System.Boolean isLockedOut, global::System.DateTime lastLockedOutDate, global::System.Int32 failedPasswordAttemptCount, global::System.DateTime failedPasswordAttemptWindowStart, global::System.Int32 failedPasswordAnswerAttemptCount, global::System.DateTime failedPasswordAnswerAttemptWindowStart)
         {
             User user = new User();
             user.Id = id;
             user.Password = password;
             user.IsApproved = isApproved;
             user.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
+            user.Username = username;
+            user.PasswordQuestion = passwordQuestion;
+            user.PasswordAnswer = passwordAnswer;
+            user.LastActivityDate = lastActivityDate;
+            user.LastLoginDate = lastLoginDate;
+            user.LastPasswordChangedDate = lastPasswordChangedDate;
+            user.IsOnline = isOnline;
+            user.IsLockedOut = isLockedOut;
+            user.LastLockedOutDate = lastLockedOutDate;
+            user.FailedPasswordAttemptCount = failedPasswordAttemptCount;
+            user.FailedPasswordAttemptWindowStart = failedPasswordAttemptWindowStart;
+            user.FailedPasswordAnswerAttemptCount = failedPasswordAnswerAttemptCount;
+            user.FailedPasswordAnswerAttemptWindowStart = failedPasswordAnswerAttemptWindowStart;
             return user;
         }
 
@@ -3353,6 +3477,318 @@ namespace DAL
         private global::System.Boolean _IsApproved;
         partial void OnIsApprovedChanging(global::System.Boolean value);
         partial void OnIsApprovedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Username
+        {
+            get
+            {
+                return _Username;
+            }
+            set
+            {
+                OnUsernameChanging(value);
+                ReportPropertyChanging("Username");
+                _Username = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Username");
+                OnUsernameChanged();
+            }
+        }
+        private global::System.String _Username;
+        partial void OnUsernameChanging(global::System.String value);
+        partial void OnUsernameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PasswordQuestion
+        {
+            get
+            {
+                return _PasswordQuestion;
+            }
+            set
+            {
+                OnPasswordQuestionChanging(value);
+                ReportPropertyChanging("PasswordQuestion");
+                _PasswordQuestion = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PasswordQuestion");
+                OnPasswordQuestionChanged();
+            }
+        }
+        private global::System.String _PasswordQuestion;
+        partial void OnPasswordQuestionChanging(global::System.String value);
+        partial void OnPasswordQuestionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PasswordAnswer
+        {
+            get
+            {
+                return _PasswordAnswer;
+            }
+            set
+            {
+                OnPasswordAnswerChanging(value);
+                ReportPropertyChanging("PasswordAnswer");
+                _PasswordAnswer = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PasswordAnswer");
+                OnPasswordAnswerChanged();
+            }
+        }
+        private global::System.String _PasswordAnswer;
+        partial void OnPasswordAnswerChanging(global::System.String value);
+        partial void OnPasswordAnswerChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastActivityDate
+        {
+            get
+            {
+                return _LastActivityDate;
+            }
+            set
+            {
+                OnLastActivityDateChanging(value);
+                ReportPropertyChanging("LastActivityDate");
+                _LastActivityDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastActivityDate");
+                OnLastActivityDateChanged();
+            }
+        }
+        private global::System.DateTime _LastActivityDate;
+        partial void OnLastActivityDateChanging(global::System.DateTime value);
+        partial void OnLastActivityDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastLoginDate
+        {
+            get
+            {
+                return _LastLoginDate;
+            }
+            set
+            {
+                OnLastLoginDateChanging(value);
+                ReportPropertyChanging("LastLoginDate");
+                _LastLoginDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastLoginDate");
+                OnLastLoginDateChanged();
+            }
+        }
+        private global::System.DateTime _LastLoginDate;
+        partial void OnLastLoginDateChanging(global::System.DateTime value);
+        partial void OnLastLoginDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastPasswordChangedDate
+        {
+            get
+            {
+                return _LastPasswordChangedDate;
+            }
+            set
+            {
+                OnLastPasswordChangedDateChanging(value);
+                ReportPropertyChanging("LastPasswordChangedDate");
+                _LastPasswordChangedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastPasswordChangedDate");
+                OnLastPasswordChangedDateChanged();
+            }
+        }
+        private global::System.DateTime _LastPasswordChangedDate;
+        partial void OnLastPasswordChangedDateChanging(global::System.DateTime value);
+        partial void OnLastPasswordChangedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsOnline
+        {
+            get
+            {
+                return _IsOnline;
+            }
+            set
+            {
+                OnIsOnlineChanging(value);
+                ReportPropertyChanging("IsOnline");
+                _IsOnline = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsOnline");
+                OnIsOnlineChanged();
+            }
+        }
+        private global::System.Boolean _IsOnline;
+        partial void OnIsOnlineChanging(global::System.Boolean value);
+        partial void OnIsOnlineChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsLockedOut
+        {
+            get
+            {
+                return _IsLockedOut;
+            }
+            set
+            {
+                OnIsLockedOutChanging(value);
+                ReportPropertyChanging("IsLockedOut");
+                _IsLockedOut = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsLockedOut");
+                OnIsLockedOutChanged();
+            }
+        }
+        private global::System.Boolean _IsLockedOut;
+        partial void OnIsLockedOutChanging(global::System.Boolean value);
+        partial void OnIsLockedOutChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastLockedOutDate
+        {
+            get
+            {
+                return _LastLockedOutDate;
+            }
+            set
+            {
+                OnLastLockedOutDateChanging(value);
+                ReportPropertyChanging("LastLockedOutDate");
+                _LastLockedOutDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastLockedOutDate");
+                OnLastLockedOutDateChanged();
+            }
+        }
+        private global::System.DateTime _LastLockedOutDate;
+        partial void OnLastLockedOutDateChanging(global::System.DateTime value);
+        partial void OnLastLockedOutDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FailedPasswordAttemptCount
+        {
+            get
+            {
+                return _FailedPasswordAttemptCount;
+            }
+            set
+            {
+                OnFailedPasswordAttemptCountChanging(value);
+                ReportPropertyChanging("FailedPasswordAttemptCount");
+                _FailedPasswordAttemptCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FailedPasswordAttemptCount");
+                OnFailedPasswordAttemptCountChanged();
+            }
+        }
+        private global::System.Int32 _FailedPasswordAttemptCount;
+        partial void OnFailedPasswordAttemptCountChanging(global::System.Int32 value);
+        partial void OnFailedPasswordAttemptCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FailedPasswordAttemptWindowStart
+        {
+            get
+            {
+                return _FailedPasswordAttemptWindowStart;
+            }
+            set
+            {
+                OnFailedPasswordAttemptWindowStartChanging(value);
+                ReportPropertyChanging("FailedPasswordAttemptWindowStart");
+                _FailedPasswordAttemptWindowStart = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FailedPasswordAttemptWindowStart");
+                OnFailedPasswordAttemptWindowStartChanged();
+            }
+        }
+        private global::System.DateTime _FailedPasswordAttemptWindowStart;
+        partial void OnFailedPasswordAttemptWindowStartChanging(global::System.DateTime value);
+        partial void OnFailedPasswordAttemptWindowStartChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FailedPasswordAnswerAttemptCount
+        {
+            get
+            {
+                return _FailedPasswordAnswerAttemptCount;
+            }
+            set
+            {
+                OnFailedPasswordAnswerAttemptCountChanging(value);
+                ReportPropertyChanging("FailedPasswordAnswerAttemptCount");
+                _FailedPasswordAnswerAttemptCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FailedPasswordAnswerAttemptCount");
+                OnFailedPasswordAnswerAttemptCountChanged();
+            }
+        }
+        private global::System.Int32 _FailedPasswordAnswerAttemptCount;
+        partial void OnFailedPasswordAnswerAttemptCountChanging(global::System.Int32 value);
+        partial void OnFailedPasswordAnswerAttemptCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime FailedPasswordAnswerAttemptWindowStart
+        {
+            get
+            {
+                return _FailedPasswordAnswerAttemptWindowStart;
+            }
+            set
+            {
+                OnFailedPasswordAnswerAttemptWindowStartChanging(value);
+                ReportPropertyChanging("FailedPasswordAnswerAttemptWindowStart");
+                _FailedPasswordAnswerAttemptWindowStart = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FailedPasswordAnswerAttemptWindowStart");
+                OnFailedPasswordAnswerAttemptWindowStartChanged();
+            }
+        }
+        private global::System.DateTime _FailedPasswordAnswerAttemptWindowStart;
+        partial void OnFailedPasswordAnswerAttemptWindowStartChanging(global::System.DateTime value);
+        partial void OnFailedPasswordAnswerAttemptWindowStartChanged();
 
         #endregion
         #region Complex Properties
@@ -3426,6 +3862,28 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("GDP.PersonUser", "Person", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserRole", "Role")]
+        public EntityCollection<Role> Roles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Role>("GDP.UserRole", "Role");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("GDP.UserRole", "Role", value);
                 }
             }
         }
@@ -3837,12 +4295,10 @@ namespace DAL
         /// <summary>
         /// Create a new Common object.
         /// </summary>
-        /// <param name="concurrencyToken">Initial value of the ConcurrencyToken property.</param>
         /// <param name="audit">Initial value of the Audit property.</param>
-        public static Common CreateCommon(global::System.Byte[] concurrencyToken, Audit audit)
+        public static Common CreateCommon(Audit audit)
         {
             Common common = new Common();
-            common.ConcurrencyToken = concurrencyToken;
             common.Audit = StructuralObject.VerifyComplexObjectIsNotNull(audit, "Audit");
             return common;
         }
@@ -3853,7 +4309,7 @@ namespace DAL
         /// <summary>
         /// Timestamp in order to manage concurrency
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.Byte[] ConcurrencyToken
         {

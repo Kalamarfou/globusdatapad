@@ -44,6 +44,8 @@ namespace Services
         /// <returns>List<Campus></returns>
         public List<DAL.Campus> GetAll()
         {
+            int test;
+            
             return db.Campuses.ToList<DAL.Campus>();
         }
 
