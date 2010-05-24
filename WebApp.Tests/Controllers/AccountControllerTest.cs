@@ -378,7 +378,7 @@ namespace WebApp.Tests.Controllers
                 return (userName == "someUser" && password == "goodPassword");
             }
 
-            public MembershipCreateStatus CreateUser(string userName, string password, string email)
+            public MembershipCreateStatus CreateUser(string userName, string password, string email, string securityQuestion, string securityAnswer)
             {
                 if (userName == "duplicateUser")
                 {

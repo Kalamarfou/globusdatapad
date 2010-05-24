@@ -23,6 +23,8 @@ namespace Services
         /// <param name="c">The campus entity to persist</param>
         public void Create(DAL.Cursus c)
         {
+            
+
             db.AddToCursuses(c);
             db.SaveChanges();
         }

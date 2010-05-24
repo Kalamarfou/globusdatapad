@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/20/2010 17:34:46
+-- Date Created: 05/24/2010 18:20:44
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -39,7 +39,7 @@ IF OBJECT_ID(N'[dbo].[FK_ClassStudyPeriod]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[StudyPeriods] DROP CONSTRAINT [FK_ClassStudyPeriod];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_PersonUser];
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_PersonUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourseDiscipline]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourseDiscipline];
@@ -85,6 +85,9 @@ IF OBJECT_ID(N'[dbo].[FK_DisciplineCourseType]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_DisciplineEvaluationType]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[BaseTypes_EvaluationType] DROP CONSTRAINT [FK_DisciplineEvaluationType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_PersonEvent];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourse_inherits_Event]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourse_inherits_Event];
@@ -181,7 +184,7 @@ GO
 CREATE TABLE [dbo].[Cursuses] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
@@ -196,7 +199,7 @@ CREATE TABLE [dbo].[StudyPeriods] (
     [Name] nvarchar(max)  NOT NULL,
     [StartDate] datetime2  NOT NULL,
     [EndDate] datetime2  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
@@ -211,7 +214,7 @@ GO
 CREATE TABLE [dbo].[Campuses] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
@@ -228,7 +231,7 @@ CREATE TABLE [dbo].[Addresses] (
     [PostalCode] nvarchar(max)  NOT NULL,
     [City] nvarchar(max)  NOT NULL,
     [Country] nvarchar(max)  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
@@ -242,7 +245,7 @@ GO
 CREATE TABLE [dbo].[Classes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
@@ -255,7 +258,7 @@ GO
 CREATE TABLE [dbo].[Venues] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
@@ -273,14 +276,15 @@ CREATE TABLE [dbo].[Events] (
     [Description] nvarchar(max)  NOT NULL,
     [StartDate] datetime2  NOT NULL,
     [EndDate] datetime2  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [IsMandatory] bit  NOT NULL,
-    [CampusEvent_Event_Id] int  NOT NULL
+    [CampusEvent_Event_Id] int  NOT NULL,
+    [PersonEvent_Event_Id] int  NOT NULL
 );
 GO
 
@@ -289,12 +293,26 @@ CREATE TABLE [dbo].[Users] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
     [IsApproved] bit  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
     [Common_Audit_CreatedAt] datetime2  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
-    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
+    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
+    [Username] nvarchar(max)  NOT NULL,
+    [PasswordQuestion] nvarchar(max)  NOT NULL,
+    [PasswordAnswer] nvarchar(max)  NOT NULL,
+    [LastActivityDate] datetime2  NOT NULL,
+    [LastLoginDate] datetime2  NOT NULL,
+    [LastPasswordChangedDate] datetime2  NOT NULL,
+    [IsOnline] bit  NOT NULL,
+    [IsLockedOut] bit  NOT NULL,
+    [LastLockedOutDate] datetime2  NOT NULL,
+    [FailedPasswordAttemptCount] int  NOT NULL,
+    [FailedPasswordAttemptWindowStart] datetime2  NOT NULL,
+    [FailedPasswordAnswerAttemptCount] int  NOT NULL,
+    [FailedPasswordAnswerAttemptWindowStart] datetime2  NOT NULL,
+    [Person_Id] int  NULL
 );
 GO
 
@@ -305,7 +323,12 @@ CREATE TABLE [dbo].[People] (
     [LastName] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
-    [User_Id] int  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
+    [Common_IsDeleted] bit  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
+    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CurrentClass_Id] int  NULL
 );
 GO
@@ -332,7 +355,12 @@ CREATE TABLE [dbo].[Roles] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ShortName] nvarchar(max)  NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [PersonRole_Role_Id] int  NOT NULL
+    [Common_ConcurrencyToken] binary(8)  NULL,
+    [Common_IsDeleted] bit  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
+    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -400,6 +428,13 @@ GO
 CREATE TABLE [dbo].[CampusPerson] (
     [ManagedCampuses_Id] int  NOT NULL,
     [Managers_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserRole'
+CREATE TABLE [dbo].[UserRole] (
+    [Users_Id] int  NOT NULL,
+    [Roles_Id] int  NOT NULL
 );
 GO
 
@@ -533,6 +568,12 @@ ADD CONSTRAINT [PK_CampusPerson]
     PRIMARY KEY NONCLUSTERED ([ManagedCampuses_Id], [Managers_Id] ASC);
 GO
 
+-- Creating primary key on [Users_Id], [Roles_Id] in table 'UserRole'
+ALTER TABLE [dbo].[UserRole]
+ADD CONSTRAINT [PK_UserRole]
+    PRIMARY KEY NONCLUSTERED ([Users_Id], [Roles_Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -635,18 +676,18 @@ ON [dbo].[StudyPeriods]
     ([ClassId]);
 GO
 
--- Creating foreign key on [User_Id] in table 'People'
-ALTER TABLE [dbo].[People]
+-- Creating foreign key on [Person_Id] in table 'Users'
+ALTER TABLE [dbo].[Users]
 ADD CONSTRAINT [FK_PersonUser]
-    FOREIGN KEY ([User_Id])
-    REFERENCES [dbo].[Users]
+    FOREIGN KEY ([Person_Id])
+    REFERENCES [dbo].[People]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
 CREATE INDEX [IX_FK_PersonUser]
-ON [dbo].[People]
-    ([User_Id]);
+ON [dbo].[Users]
+    ([Person_Id]);
 GO
 
 -- Creating foreign key on [Discipline_Id] in table 'Events_BaseCourse'
@@ -661,20 +702,6 @@ ADD CONSTRAINT [FK_BaseCourseDiscipline]
 CREATE INDEX [IX_FK_BaseCourseDiscipline]
 ON [dbo].[Events_BaseCourse]
     ([Discipline_Id]);
-GO
-
--- Creating foreign key on [PersonRole_Role_Id] in table 'Roles'
-ALTER TABLE [dbo].[Roles]
-ADD CONSTRAINT [FK_PersonRole]
-    FOREIGN KEY ([PersonRole_Role_Id])
-    REFERENCES [dbo].[People]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonRole'
-CREATE INDEX [IX_FK_PersonRole]
-ON [dbo].[Roles]
-    ([PersonRole_Role_Id]);
 GO
 
 -- Creating foreign key on [CurrentClass_Id] in table 'People'
@@ -847,6 +874,43 @@ ADD CONSTRAINT [FK_DisciplineEvaluationType]
 CREATE INDEX [IX_FK_DisciplineEvaluationType]
 ON [dbo].[BaseTypes_EvaluationType]
     ([DisciplineId]);
+GO
+
+-- Creating foreign key on [PersonEvent_Event_Id] in table 'Events'
+ALTER TABLE [dbo].[Events]
+ADD CONSTRAINT [FK_PersonEvent]
+    FOREIGN KEY ([PersonEvent_Event_Id])
+    REFERENCES [dbo].[People]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonEvent'
+CREATE INDEX [IX_FK_PersonEvent]
+ON [dbo].[Events]
+    ([PersonEvent_Event_Id]);
+GO
+
+-- Creating foreign key on [Users_Id] in table 'UserRole'
+ALTER TABLE [dbo].[UserRole]
+ADD CONSTRAINT [FK_UserRole_User]
+    FOREIGN KEY ([Users_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Roles_Id] in table 'UserRole'
+ALTER TABLE [dbo].[UserRole]
+ADD CONSTRAINT [FK_UserRole_Role]
+    FOREIGN KEY ([Roles_Id])
+    REFERENCES [dbo].[Roles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserRole_Role'
+CREATE INDEX [IX_FK_UserRole_Role]
+ON [dbo].[UserRole]
+    ([Roles_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Events_BaseCourse'

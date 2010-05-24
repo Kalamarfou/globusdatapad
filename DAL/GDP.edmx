@@ -27,6 +27,7 @@
     <EntitySet Name="Events_WorldWideEvent" EntityType="GDP.Store.Events_WorldWideEvent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PersonClass" EntityType="GDP.Store.PersonClass" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CampusPerson" EntityType="GDP.Store.CampusPerson" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRole" EntityType="GDP.Store.UserRole" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="CursusStudyPeriod" Association="GDP.Store.CursusStudyPeriod">
       <End Role="Cursus" EntitySet="Cursuses" />
       <End Role="StudyPeriod" EntitySet="StudyPeriods" />
@@ -62,10 +63,6 @@
     <AssociationSet Name="BaseCourseDiscipline" Association="GDP.Store.BaseCourseDiscipline">
       <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
       <End Role="Discipline" EntitySet="Disciplines" />
-    </AssociationSet>
-    <AssociationSet Name="PersonRole" Association="GDP.Store.PersonRole">
-      <End Role="Person" EntitySet="People" />
-      <End Role="Role" EntitySet="Roles" />
     </AssociationSet>
     <AssociationSet Name="ClassPerson" Association="GDP.Store.ClassPerson">
       <End Role="Class" EntitySet="Classes" />
@@ -119,6 +116,18 @@
       <End Role="Discipline" EntitySet="Disciplines" />
       <End Role="EvaluationType" EntitySet="BaseTypes_EvaluationType" />
     </AssociationSet>
+    <AssociationSet Name="PersonEvent" Association="GDP.Store.PersonEvent">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="GDP.Store.FK_UserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="GDP.Store.FK_UserRole_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
     <AssociationSet Name="FK_BaseCourse_inherits_Event" Association="GDP.Store.FK_BaseCourse_inherits_Event">
       <End Role="Event" EntitySet="Events" />
       <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
@@ -150,7 +159,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
@@ -165,7 +174,7 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
@@ -180,7 +189,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
@@ -197,7 +206,7 @@
     <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
@@ -211,7 +220,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
@@ -224,7 +233,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
@@ -242,7 +251,7 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
@@ -250,6 +259,7 @@
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsMandatory" Type="bit" Nullable="false" />
     <Property Name="CampusEvent_Event_Id" Type="int" Nullable="false" />
+    <Property Name="PersonEvent_Event_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -258,12 +268,26 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsApproved" Type="bit" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PasswordQuestion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PasswordAnswer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsOnline" Type="bit" Nullable="false" />
+    <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+    <Property Name="LastLockedOutDate" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="People">
     <Key>
@@ -274,7 +298,12 @@
     <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CurrentClass_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Availabilities">
@@ -301,7 +330,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ShortName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PersonRole_Role_Id" Type="int" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
+    <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
+    <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="BaseTypes">
     <Key>
@@ -371,6 +405,14 @@
     </Key>
     <Property Name="ManagedCampuses_Id" Type="int" Nullable="false" />
     <Property Name="Managers_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Users_Id" />
+      <PropertyRef Name="Roles_Id" />
+    </Key>
+    <Property Name="Users_Id" Type="int" Nullable="false" />
+    <Property Name="Roles_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="CursusStudyPeriod">
     <End Role="Cursus" Type="GDP.Store.Cursuses" Multiplicity="1" />
@@ -457,14 +499,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="PersonUser">
-    <End Role="Person" Type="GDP.Store.People" Multiplicity="*" />
-    <End Role="User" Type="GDP.Store.Users" Multiplicity="1" />
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="0..1" />
+    <End Role="User" Type="GDP.Store.Users" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
+      <Principal Role="Person">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Person">
-        <PropertyRef Name="User_Id" />
+      <Dependent Role="User">
+        <PropertyRef Name="Person_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -477,18 +519,6 @@
       </Principal>
       <Dependent Role="BaseCourse">
         <PropertyRef Name="Discipline_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PersonRole">
-    <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
-    <End Role="Role" Type="GDP.Store.Roles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Person">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Role">
-        <PropertyRef Name="PersonRole_Role_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -600,6 +630,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PersonEvent">
+    <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
+    <End Role="Event" Type="GDP.Store.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="PersonEvent_Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PersonClass_Person">
     <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
     <End Role="PersonClass" Type="GDP.Store.PersonClass" Multiplicity="*" />
@@ -645,6 +687,30 @@
       </Principal>
       <Dependent Role="CampusPerson">
         <PropertyRef Name="Managers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="GDP.Store.Users" Multiplicity="1" />
+    <End Role="UserRole" Type="GDP.Store.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="UserRole" Type="GDP.Store.UserRole" Multiplicity="*" />
+    <End Role="Role" Type="GDP.Store.Roles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Roles_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -773,10 +839,6 @@
             <End Role="Discipline" EntitySet="Disciplines" />
           </AssociationSet>
           <EntitySet Name="Roles" EntityType="GDP.Role" />
-          <AssociationSet Name="PersonRole" Association="GDP.PersonRole">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Role" EntitySet="Roles" />
-          </AssociationSet>
           <AssociationSet Name="ClassPerson" Association="GDP.ClassPerson">
             <End Role="Class" EntitySet="Classes" />
             <End Role="Person" EntitySet="People" />
@@ -822,6 +884,14 @@
             <End Role="Discipline" EntitySet="Disciplines" />
             <End Role="EvaluationType" EntitySet="BaseTypes" />
           </AssociationSet>
+          <AssociationSet Name="PersonEvent" Association="GDP.PersonEvent">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="UserRole" Association="GDP.UserRole">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="Audit" >
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
@@ -839,7 +909,7 @@
           <NavigationProperty Name="StudyPeriods" Relationship="GDP.CursusStudyPeriod" FromRole="Cursus" ToRole="StudyPeriod" />
         </EntityType>
         <ComplexType Name="Common" >
-          <Property Type="Binary" Name="ConcurrencyToken" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" FixedLength="true" MaxLength="8" >
+          <Property Type="Binary" Name="ConcurrencyToken" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" FixedLength="true" MaxLength="8" Nullable="true" >
             <Documentation>
               <Summary>Timestamp in order to manage concurrency</Summary>
             </Documentation>
@@ -977,6 +1047,20 @@
           <Property Type="Boolean" Name="IsApproved" Nullable="false" />
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="GDP.PersonUser" FromRole="User" ToRole="Person" />
+          <Property Type="String" Name="Username" Nullable="false" />
+          <Property Type="String" Name="PasswordQuestion" Nullable="false" />
+          <Property Type="String" Name="PasswordAnswer" Nullable="false" />
+          <Property Type="DateTime" Name="LastActivityDate" Nullable="false" />
+          <Property Type="DateTime" Name="LastLoginDate" Nullable="false" />
+          <Property Type="DateTime" Name="LastPasswordChangedDate" Nullable="false" />
+          <Property Type="Boolean" Name="IsOnline" Nullable="false" />
+          <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+          <Property Type="DateTime" Name="LastLockedOutDate" Nullable="false" />
+          <Property Type="Int32" Name="FailedPasswordAttemptCount" Nullable="false" />
+          <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart" Nullable="false" />
+          <Property Type="Int32" Name="FailedPasswordAnswerAttemptCount" Nullable="false" />
+          <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowStart" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="GDP.UserRole" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="EventVenue">
           <End Type="GDP.Event" Role="Event" Multiplicity="1" />
@@ -1004,17 +1088,18 @@
           <Property Type="String" Name="LastName" Nullable="false" />
           <Property Type="String" Name="Email" Nullable="false" />
           <NavigationProperty Name="User" Relationship="GDP.PersonUser" FromRole="Person" ToRole="User" />
-          <NavigationProperty Name="Roles" Relationship="GDP.PersonRole" FromRole="Person" ToRole="Role" />
           <NavigationProperty Name="CurrentClass" Relationship="GDP.ClassPerson" FromRole="Person" ToRole="Class" />
           <NavigationProperty Name="PreviousClasses" Relationship="GDP.PersonClass" FromRole="Person" ToRole="Class" />
           <NavigationProperty Name="Availabilities" Relationship="GDP.PersonAvailability" FromRole="Person" ToRole="Availability" />
           <NavigationProperty Name="ManagedCampuses" Relationship="GDP.CampusPerson" FromRole="Person" ToRole="Campus" />
           <Property Type="String" Name="Title" Nullable="false" />
           <NavigationProperty Name="BaseCourses" Relationship="GDP.BaseCoursePerson" FromRole="Person" ToRole="BaseCourse" />
+          <NavigationProperty Name="Events" Relationship="GDP.PersonEvent" FromRole="Person" ToRole="Event" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
         </EntityType>
         <Association Name="PersonUser">
-          <End Type="GDP.Person" Role="Person" Multiplicity="1" />
-          <End Type="GDP.User" Role="User" Multiplicity="1" />
+          <End Type="GDP.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="GDP.User" Role="User" Multiplicity="0..1" />
         </Association>
         <EntityType Name="Availability">
           <Key>
@@ -1053,11 +1138,9 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="ShortName" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" />
+          <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="GDP.UserRole" FromRole="Role" ToRole="User" />
         </EntityType>
-        <Association Name="PersonRole">
-          <End Type="GDP.Person" Role="Person" Multiplicity="1" />
-          <End Type="GDP.Role" Role="Role" Multiplicity="*" />
-        </Association>
         <Association Name="ClassPerson">
           <End Type="GDP.Class" Role="Class" Multiplicity="0..1" />
           <End Type="GDP.Person" Role="Person" Multiplicity="*" />
@@ -1151,6 +1234,14 @@
               <PropertyRef Name="DisciplineId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonEvent">
+          <End Type="GDP.Person" Role="Person" Multiplicity="1" />
+          <End Type="GDP.Event" Role="Event" Multiplicity="*" />
+        </Association>
+        <Association Name="UserRole">
+          <End Type="GDP.User" Role="User" Multiplicity="*" />
+          <End Type="GDP.Role" Role="Role" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1335,6 +1426,19 @@
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
           </ComplexProperty>
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+          <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1346,6 +1450,16 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1373,6 +1487,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ShortName" ColumnName="ShortName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ComplexProperty Name="Common" TypeName="GDP.Common">
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
+            <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
+            <ComplexProperty Name="Audit" TypeName="GDP.Audit">
+              <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
+              <ScalarProperty Name="LastModifiedAt" ColumnName="Common_Audit_LastModifiedAt" />
+              <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
+              <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
+            </ComplexProperty>
+          </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1430,27 +1554,20 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="PersonUser" TypeName="GDP.PersonUser" StoreEntitySet="People">
-      <EndProperty Name="User">
-        <ScalarProperty Name="Id" ColumnName="User_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="PersonUser" TypeName="GDP.PersonUser" StoreEntitySet="Users">
       <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Person_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="BaseCourseDiscipline" TypeName="GDP.BaseCourseDiscipline" StoreEntitySet="Events_BaseCourse">
       <EndProperty Name="Discipline">
         <ScalarProperty Name="Id" ColumnName="Discipline_Id" />
       </EndProperty>
       <EndProperty Name="BaseCourse">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="PersonRole" TypeName="GDP.PersonRole" StoreEntitySet="Roles">
-      <EndProperty Name="Person">
-        <ScalarProperty Name="Id" ColumnName="PersonRole_Role_Id" />
-      </EndProperty>
-      <EndProperty Name="Role">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
@@ -1511,6 +1628,22 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="PersonEvent" TypeName="GDP.PersonEvent" StoreEntitySet="Events">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="PersonEvent_Event_Id" />
+      </EndProperty>
+      <EndProperty Name="Event">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRole" TypeName="GDP.UserRole" StoreEntitySet="UserRole">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Roles_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1529,7 +1662,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="GDP" ZoomLevel="55" >
+      <Diagram Name="GDP" ZoomLevel="82" >
         <EntityTypeShape EntityType="GDP.Cursus" Width="1.5" PointX="12.625" PointY="17.875" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="GDP.StudyPeriod" Width="1.5" PointX="12.625" PointY="22.25" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="GDP.Campus" Width="1.5" PointX="5.25" PointY="18.125" Height="2.3648893229166674" />
@@ -1568,7 +1701,7 @@
           <ConnectorPoint PointX="8.5" PointY="19.881844134114587" />
           <ConnectorPoint PointX="8.5" PointY="20.875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="GDP.User" Width="1.5" PointX="0.5" PointY="21" Height="1.9802864583333353" />
+        <EntityTypeShape EntityType="GDP.User" Width="2.25" PointX="0.5" PointY="20.25" Height="4.4802050781250031" />
         <AssociationConnector Association="GDP.EventVenue">
           <ConnectorPoint PointX="8.125" PointY="20.875" />
           <ConnectorPoint PointX="8.125" PointY="18.172587890625003" />
@@ -1586,10 +1719,10 @@
           <ConnectorPoint PointX="9.25" PointY="22.1343896484375" />
           <ConnectorPoint PointX="10.5" PointY="22.1343896484375" />
         </InheritanceConnector>
-        <EntityTypeShape EntityType="GDP.Person" Width="1.5" PointX="2.375" PointY="20.25" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="GDP.Person" Width="1.5" PointX="3.125" PointY="19.75" Height="3.7109993489583353" />
         <AssociationConnector Association="GDP.PersonUser">
-          <ConnectorPoint PointX="2.375" PointY="21.990143229166669" />
-          <ConnectorPoint PointX="2" PointY="21.990143229166669" />
+          <ConnectorPoint PointX="3.125" PointY="21.855499674479169" />
+          <ConnectorPoint PointX="2.75" PointY="21.855499674479169" />
         </AssociationConnector>
         <EntityTypeShape EntityType="GDP.Availability" Width="1.5" PointX="1.375" PointY="16.75" Height="1.9802864583333317" />
         <EntityTypeShape EntityType="GDP.Discipline" Width="1.5" PointX="12.625" PointY="26.875" Height="1.9802864583333388" />
@@ -1621,22 +1754,19 @@
           <ConnectorPoint PointX="8.375" PointY="27.125" />
           <ConnectorPoint PointX="8.375" PointY="27.5" />
         </InheritanceConnector>
-        <EntityTypeShape EntityType="GDP.Role" Width="1.5" PointX="0.5" PointY="24" Height="1.595683593749996" />
-        <AssociationConnector Association="GDP.PersonRole">
-          <ConnectorPoint PointX="2.375" PointY="23.576396484375003" />
-          <ConnectorPoint PointX="2" PointY="24" />
-        </AssociationConnector>
+        <EntityTypeShape EntityType="GDP.Role" Width="1.5" PointX="2" PointY="25.375" Height="1.7879850260416674" />
         <AssociationConnector Association="GDP.ClassPerson">
-          <ConnectorPoint PointX="4" PointY="24.125" />
-          <ConnectorPoint PointX="3.875" PointY="23.576396484375003" />
+          <ConnectorPoint PointX="4.3125" PointY="24.125" />
+          <ConnectorPoint PointX="4.3125" PointY="23.460999348958335" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.PersonClass">
-          <ConnectorPoint PointX="3.875" PointY="23.576396484375003" />
-          <ConnectorPoint PointX="4" PointY="24.125" />
+          <ConnectorPoint PointX="4.53125" PointY="23.460999348958335" />
+          <ConnectorPoint PointX="4.53125" PointY="24.125" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.PersonAvailability">
-          <ConnectorPoint PointX="2.625" PointY="20.25" />
-          <ConnectorPoint PointX="2.625" PointY="18.730286458333332" />
+          <ConnectorPoint PointX="3.875" PointY="19.75" />
+          <ConnectorPoint PointX="3.875" PointY="17.740143229166666" />
+          <ConnectorPoint PointX="2.875" PointY="17.740143229166666" />
         </AssociationConnector>
         <EntityTypeShape EntityType="GDP.BaseType" Width="1.5" PointX="5.875" PointY="29.125" Height="1.595683593749996" />
         <EntityTypeShape EntityType="GDP.CourseType" Width="1.5" PointX="3.75" PointY="30" Height="1.595683593749996" />
@@ -1659,14 +1789,13 @@
           <ConnectorPoint PointX="4.9375" PointY="30" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.CampusPerson">
-          <ConnectorPoint PointX="5.25" PointY="19.490140729166665" />
-          <ConnectorPoint PointX="3.40625" PointY="19.490140729166665" />
-          <ConnectorPoint PointX="3.40625" PointY="20.25" />
+          <ConnectorPoint PointX="5.25" PointY="20.119944661458334" />
+          <ConnectorPoint PointX="4.625" PointY="20.119944661458334" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.BaseCoursePerson">
           <ConnectorPoint PointX="7.53125" PointY="24.875" />
-          <ConnectorPoint PointX="7.53125" PointY="20.747472330729167" />
-          <ConnectorPoint PointX="3.875" PointY="20.747472330729167" />
+          <ConnectorPoint PointX="7.53125" PointY="20.682444661458334" />
+          <ConnectorPoint PointX="4.625" PointY="20.682444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.ClassBaseCourse">
           <ConnectorPoint PointX="5.5" PointY="25.5862939453125" />
@@ -1686,6 +1815,16 @@
           <ConnectorPoint PointX="12.9687475" PointY="28.855286458333339" />
           <ConnectorPoint PointX="12.9687475" PointY="30.672841796874998" />
           <ConnectorPoint PointX="9.75" PointY="30.672841796874998" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.PersonEvent">
+          <ConnectorPoint PointX="4.625" PointY="22.153595377604169" />
+          <ConnectorPoint PointX="7.447916666666667" PointY="22.153595377604169" />
+          <ConnectorPoint PointX="7.614583333333333" PointY="22.153595377604169" />
+          <ConnectorPoint PointX="7.75" PointY="22.153595377604169" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.UserRole">
+          <ConnectorPoint PointX="2.375" PointY="24.922506510416667" />
+          <ConnectorPoint PointX="2.375" PointY="25.375" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

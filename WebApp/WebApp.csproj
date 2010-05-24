@@ -63,6 +63,7 @@
     <Compile Include="Areas\BackOffice\Controllers\CursusesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\DALMembershipProvider.cs" />
     <Compile Include="Extensions\MobileEnabledViewEngine.cs" />
     <Compile Include="Extensions\MobilePagingRestrictionAttribute.cs" />
     <Compile Include="Global.asax.cs">
