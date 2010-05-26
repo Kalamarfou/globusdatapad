@@ -8,11 +8,11 @@ namespace WebApp.Areas.BackOffice.Controllers
 {
     public class CampusesController : Controller
     {
-        private Services.Campus service;
+        private Services.Campus.ICampusService service;
 
         public CampusesController()
         {
-            service = new Services.Campus();
+            service = new Services.Campus.CampusService();
             
         }
 

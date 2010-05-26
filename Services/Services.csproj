@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Campus.cs" />
-    <Compile Include="Cursus.cs" />
+    <Compile Include="Campus\CampusService.cs" />
+    <Compile Include="Cursus\CursusService.cs" />
+    <Compile Include="Campus\ICampusService.cs" />
+    <Compile Include="Cursus\ICursusService.cs" />
+    <Compile Include="Event\EventService.cs" />
+    <Compile Include="Event\IEventService.cs" />
     <Compile Include="People\ISecurityService.cs" />
     <Compile Include="People\SecurityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +57,7 @@
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

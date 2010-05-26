@@ -9,11 +9,11 @@ namespace WebApp.Areas.BackOffice.Controllers
 {
     public class CursusesController : Controller
     {
-        private Services.Cursus service;
+        private Services.Cursus.ICursusService service;
 
         public CursusesController()
         {
-            service = new Services.Cursus();
+            service = new Services.Cursus.CursusService();
         }
 
         //

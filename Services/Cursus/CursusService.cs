@@ -5,14 +5,14 @@ using System.Text;
 using System.Data;
 using DAL.Utils;
 
-namespace Services
+namespace Services.Cursus
 {
-    public class Cursus
+    public class CursusService : ICursusService
     {
 
         private DAL.GDPEntities db;
         
-        public Cursus()
+        public CursusService()
         {
             db = new DAL.GDPEntities();
         }
