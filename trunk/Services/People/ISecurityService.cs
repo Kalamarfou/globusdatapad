@@ -19,6 +19,8 @@ namespace Services.People
         /// <returns></returns>
         DAL.User getUserByUsername(string username);
 
+        DAL.User getUserById(int userId);
+
         void updateUser(DAL.User user);
 
         void deleteUser(DAL.User user);

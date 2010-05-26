@@ -9,8 +9,6 @@ namespace Services.People
     public class SecurityService : ISecurityService
     {
 
-        #region ISecurityService Members
-
         public void createUser(DAL.User user)
         {
             user.Common.IsDeleted = false;
@@ -47,6 +45,20 @@ namespace Services.People
                 user = (from u in db.Users
                     where u.Username == username
                     select u).SingleOrDefault<DAL.User>();
+            }
+
+            return user;
+        }
+
+        public User getUserById(int userId)
+        {
+            DAL.User user = null;
+
+            using (GDPEntities db = new GDPEntities())
+            {
+                user = (from u in db.Users
+                        where u.Id == userId
+                        select u).SingleOrDefault<DAL.User>();
             }
 
             return user;
@@ -178,6 +190,5 @@ namespace Services.People
             }
         }
 
-        #endregion
     }
 }
