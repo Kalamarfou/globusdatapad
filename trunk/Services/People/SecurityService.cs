@@ -147,15 +147,15 @@ namespace Services.People
             }
         }
 
-        public void createRole(string name)
+        public void createRole(string shortName, string name, string authorId)
         {
             Role role = new Role();
-            role.ShortName = name;
-            role.Name = "";
+            role.ShortName = shortName;
+            role.Name = name;
             role.Common.Audit.CreatedAt = DateTime.Now;
             role.Common.Audit.LastModifiedAt = DateTime.Now;
-            role.Common.Audit.CreatedBy = "";
-            role.Common.Audit.LastModifiedBy = "";
+            role.Common.Audit.CreatedBy = authorId;
+            role.Common.Audit.LastModifiedBy = authorId;
 
             DAL.Utils.GenericCrud.Create<DAL.Role>(role);
         }

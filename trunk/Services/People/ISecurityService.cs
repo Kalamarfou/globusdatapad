@@ -44,7 +44,7 @@ namespace Services.People
 
         string[] getUserRoles(string username);
 
-        void createRole(string name);
+        void createRole(string shortName, string name, string authorId);
 
         bool roleExists(string name);
 
