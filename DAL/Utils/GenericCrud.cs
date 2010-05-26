@@ -87,21 +87,31 @@ namespace DAL.Utils
                 case "Class":
                     return "Classes";
                 case "Course":
-                    return "Courses";
+                    return "Events";
+                case "CourseType":
+                    return "BaseTypes";
                 case "Cursus":
                     return "Cursuses";
                 case "Discipline":
                     return "Disciplines";
                 case "Evaluation":
-                    return "Evaluations";
+                    return "Events";
+                case "EvaluationType":
+                    return "BaseTypes";
                 case "Event":
                     return "Events";
                 case "Person":
                     return "People";
+                case "Role":
+                    return "Roles";
+                case "StudyPeriod":
+                    return "StudyPeriods";
                 case "User":
                     return "Users";
                 case "Venue":
                     return "Venues";
+                case "WorldWideEvent":
+                    return "Events";
                 default:
                     throw new ApplicationException("Unknown entity: could not find EntitySetName for :" + e.GetType().Name);
             }
