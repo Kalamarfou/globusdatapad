@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/24/2010 18:20:44
+-- Date Created: 05/26/2010 15:54:08
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -43,9 +43,6 @@ IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourseDiscipline]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourseDiscipline];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonRole]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Roles] DROP CONSTRAINT [FK_PersonRole];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ClassPerson]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_ClassPerson];
@@ -88,6 +85,12 @@ IF OBJECT_ID(N'[dbo].[FK_DisciplineEvaluationType]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonEvent]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_PersonEvent];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserRole_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserRole_Role]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_Role];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourse_inherits_Event]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourse_inherits_Event];
@@ -175,6 +178,9 @@ GO
 IF OBJECT_ID(N'[dbo].[CampusPerson]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CampusPerson];
 GO
+IF OBJECT_ID(N'[dbo].[UserRole]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserRole];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -186,8 +192,8 @@ CREATE TABLE [dbo].[Cursuses] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
@@ -197,12 +203,12 @@ GO
 CREATE TABLE [dbo].[StudyPeriods] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [StartDate] datetime2  NOT NULL,
-    [EndDate] datetime2  NOT NULL,
+    [StartDate] datetime  NOT NULL,
+    [EndDate] datetime  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CursusId] int  NOT NULL,
@@ -216,8 +222,8 @@ CREATE TABLE [dbo].[Campuses] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [Address_Id] int  NOT NULL
@@ -233,8 +239,8 @@ CREATE TABLE [dbo].[Addresses] (
     [Country] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [VenueAddress_Address_Id] int  NULL
@@ -247,8 +253,8 @@ CREATE TABLE [dbo].[Classes] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
@@ -260,8 +266,8 @@ CREATE TABLE [dbo].[Venues] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CampusId] int  NOT NULL,
@@ -274,12 +280,12 @@ CREATE TABLE [dbo].[Events] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [StartDate] datetime2  NOT NULL,
-    [EndDate] datetime2  NOT NULL,
+    [StartDate] datetime  NOT NULL,
+    [EndDate] datetime  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [IsMandatory] bit  NOT NULL,
@@ -295,23 +301,23 @@ CREATE TABLE [dbo].[Users] (
     [IsApproved] bit  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [Username] nvarchar(max)  NOT NULL,
     [PasswordQuestion] nvarchar(max)  NOT NULL,
     [PasswordAnswer] nvarchar(max)  NOT NULL,
-    [LastActivityDate] datetime2  NOT NULL,
-    [LastLoginDate] datetime2  NOT NULL,
-    [LastPasswordChangedDate] datetime2  NOT NULL,
+    [LastActivityDate] datetime  NOT NULL,
+    [LastLoginDate] datetime  NOT NULL,
+    [LastPasswordChangedDate] datetime  NOT NULL,
     [IsOnline] bit  NOT NULL,
     [IsLockedOut] bit  NOT NULL,
-    [LastLockedOutDate] datetime2  NOT NULL,
+    [LastLockedOutDate] datetime  NOT NULL,
     [FailedPasswordAttemptCount] int  NOT NULL,
-    [FailedPasswordAttemptWindowStart] datetime2  NOT NULL,
+    [FailedPasswordAttemptWindowStart] datetime  NOT NULL,
     [FailedPasswordAnswerAttemptCount] int  NOT NULL,
-    [FailedPasswordAnswerAttemptWindowStart] datetime2  NOT NULL,
+    [FailedPasswordAnswerAttemptWindowStart] datetime  NOT NULL,
     [Person_Id] int  NULL
 );
 GO
@@ -325,8 +331,8 @@ CREATE TABLE [dbo].[People] (
     [Title] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CurrentClass_Id] int  NULL
@@ -336,8 +342,8 @@ GO
 -- Creating table 'Availabilities'
 CREATE TABLE [dbo].[Availabilities] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [StartDate] datetime2  NOT NULL,
-    [EndDate] datetime2  NOT NULL,
+    [StartDate] datetime  NOT NULL,
+    [EndDate] datetime  NOT NULL,
     [PersonId] int  NOT NULL
 );
 GO
@@ -357,8 +363,8 @@ CREATE TABLE [dbo].[Roles] (
     [Name] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] binary(8)  NULL,
     [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime2  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedAt] datetime  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );

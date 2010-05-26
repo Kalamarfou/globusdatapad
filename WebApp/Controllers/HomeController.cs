@@ -16,6 +16,7 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [Authorize(Roles="Admin")]
         public ActionResult About()
         {
             return View();
