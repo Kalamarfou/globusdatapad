@@ -158,14 +158,24 @@ namespace Services.People
             }
         }
 
-        public string[] getUsersInRole(string username)
+        public string[] getUsersInRole(string roleName)
         {
-            throw new NotImplementedException();
+            using (GDPEntities db = new GDPEntities())
+            {
+                return (from r in db.Roles
+                        where r.ShortName == roleName
+                        from u in r.Users
+                        select u.Username).ToArray();
+            }
         }
 
-        List<User> ISecurityService.getUsersInRole(string username)
+        public string[] getAllRoles()
         {
-            throw new NotImplementedException();
+            using (GDPEntities db = new GDPEntities())
+            {
+                return (from r in db.Roles
+                            select r.ShortName).ToArray();
+            }
         }
 
         #endregion

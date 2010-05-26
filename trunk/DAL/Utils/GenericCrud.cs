@@ -61,7 +61,7 @@ namespace DAL.Utils
         {
             using (GDPEntities db = new GDPEntities())
             {
-                return db.CreateQuery<T>(GetEntitySetName(e), null).Skip<T>(20).Take(50).ToList<T>();
+               return db.CreateQuery<T>(GetEntitySetName(e), null).Skip<T>(20).Take(50).ToList<T>();
             }
             return null;
         }

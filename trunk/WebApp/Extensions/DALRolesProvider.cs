@@ -334,21 +334,9 @@ namespace WebApp.Extensions
         /// </returns>
         public override string[] GetUsersInRole(string roleName)
         {
-            using (EFDataModelEntities context = new EFDataModelEntities(connectionString))
-            {
-                Role role = GetRole(r => r.Name == roleName, context);
-                if (role == null)
-                {
-                    throw new ProviderException("Role not found.");
-                }
+            ISecurityService service = new SecurityService();
+            return service.getUsersInRole(roleName);
 
-                if (!role.User.IsLoaded)
-                {
-                    role.User.Load();
-                }
-
-                return role.User.Select(u => u.Name).ToArray();
-            }
         }
 
         /// <summary>
@@ -357,10 +345,8 @@ namespace WebApp.Extensions
         /// <returns>A string array containing the names of all the roles stored in the data source for the configured applicationName.</returns>
         public override string[] GetAllRoles()
         {
-            using (EFDataModelEntities context = new EFDataModelEntities(connectionString))
-            {
-                return context.Role.Where(MatchRoleApplication()).Select(r => r.Name).ToArray();
-            }
+            ISecurityService service = new SecurityService();
+            return service.getAllRoles();
         }
 
         /// <summary>
@@ -372,6 +358,8 @@ namespace WebApp.Extensions
         /// <param name="usernameToMatch">The user name to search for.</param>
         public override string[] FindUsersInRole(string roleName, string usernameToMatch)
         {
+            throw new NotImplementedException("OSEF");
+            /*
             using (EFDataModelEntities context = new EFDataModelEntities(connectionString))
             {
                 Role role = GetRole(r => r.Name == roleName, context);
@@ -387,6 +375,7 @@ namespace WebApp.Extensions
 
                 return role.User.Select(u => u.Username).Where(un => un.Contains(usernameToMatch)).ToArray();
             }
+             */
         }
 
         #endregion

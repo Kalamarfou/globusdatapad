@@ -7,6 +7,6 @@ namespace WebApp.Extensions
 {
     public class GlobalUtils
     {
-        public static const string applicationName = "GlobusDataPad";
+        public const string applicationName = "GlobusDataPad";
     }
 }
