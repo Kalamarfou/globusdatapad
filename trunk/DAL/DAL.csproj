@@ -51,6 +51,17 @@
     </Compile>
     <Compile Include="Personalized\Address.cs" />
     <Compile Include="Personalized\Campus.cs" />
+    <Compile Include="Personalized\Class.cs" />
+    <Compile Include="Personalized\BaseType.cs" />
+    <Compile Include="Personalized\Availability.cs" />
+    <Compile Include="Personalized\Role.cs" />
+    <Compile Include="Personalized\User.cs" />
+    <Compile Include="Personalized\Person.cs" />
+    <Compile Include="Personalized\Discipline.cs" />
+    <Compile Include="Personalized\Event.cs" />
+    <Compile Include="Personalized\StudyPeriod.cs" />
+    <Compile Include="Personalized\Venue.cs" />
+    <Compile Include="Personalized\Cursus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Address.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -61,6 +72,61 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Campus.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Class.Designer.cs">
+      <DependentUpon>Class.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\BaseType.Designer.cs">
+      <DependentUpon>BaseType.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Availability.Designer.cs">
+      <DependentUpon>Availability.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Role.Designer.cs">
+      <DependentUpon>Role.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\User.Designer.cs">
+      <DependentUpon>User.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Person.Designer.cs">
+      <DependentUpon>Person.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Discipline.Designer.cs">
+      <DependentUpon>Discipline.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Cursus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cursus.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Event.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Event.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\StudyPeriod.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudyPeriod.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Venue.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Venue.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\GenericCrud.cs" />
     <Compile Include="Utils\LocalizedDisplayNameAttribute.cs" />
@@ -80,6 +146,50 @@
     <EmbeddedResource Include="Resources\Campus.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Campus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Class.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Class.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BaseType.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BaseType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Availability.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Availability.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Role.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Role.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\User.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>User.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Person.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Person.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Discipline.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Discipline.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Cursus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Cursus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Event.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Event.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StudyPeriod.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StudyPeriod.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Venue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Venue.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
