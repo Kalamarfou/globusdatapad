@@ -1,8 +1,8 @@
 #summary Résumé des rôles des utilisateurs
 
-|| Full name || Short name || Comment ||
+|| *Full name* || *Short name* || *Comment* ||
 || Administrator || Admin || Administrateur global / grand manitou ||
-|| Campus Manager || CampusManager || Administrateurs des campus ||
+|| Campus Manager || `CampusManager` || Administrateurs des campus ||
 || Student || Student || Etudiant ||
 || Stakeholder || Stakeholder || Intervenant ||
 
