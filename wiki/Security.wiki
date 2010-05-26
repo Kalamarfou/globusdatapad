@@ -1,0 +1,8 @@
+#summary Workflow security
+
+= Inscription =
+
+ # l'utilisateur s'inscrit et donne ses informations de base
+ # si c'est validé, alors persister le nouvel utilisateur, et le désactiver, et lui indiquer qu'il doit être validé
+ # l'administrateur le valide et lui affecte un ou des rôles
+
