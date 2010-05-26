@@ -10,13 +10,15 @@ namespace DAL.Utils
 {
     public static class GenericCrud
     {
-        public static void Create<T>(T e) where T : EntityObject
+        public static T Create<T>(T e) where T : EntityObject
         {
             using (GDPEntities db = new GDPEntities())
             {
                 db.AddObject(GetEntitySetName(e), e);
                 db.SaveChanges();
             }
+        
+            return  e;
         }
 
         public static void Update<T>(T e) where T : EntityObject

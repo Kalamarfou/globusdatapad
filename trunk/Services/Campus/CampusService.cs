@@ -5,13 +5,13 @@ using System.Text;
 using System.Data;
 using DAL;
 
-namespace Services
+namespace Services.Campus
 {
-    public class Campus
+    public class CampusService : ICampusService
     {
         private DAL.GDPEntities db;
         
-        public Campus()
+        public CampusService()
         {
             db = new DAL.GDPEntities();
         }
@@ -66,7 +66,52 @@ namespace Services
         /// <param name="id">CampusID</param>
         public void Delete(int id)
         {
-            db.Campuses.DeleteObject(db.Campuses.First(c => c.Id == id));
+            DAL.Campus campus = GetById(id);
+            campus.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.Update(campus);
+            //db.Campuses.DeleteObject(db.Campuses.First(c => c.Id == id));
         }
+
+        #region ICampus Members
+
+
+        public void CreateVenue(Venue v, string authorId, int campusId)
+        {
+            v.Common.Audit.CreatedBy = authorId;
+
+            DAL.Campus campus = GetById(campusId);
+            campus.Venues.Add(DAL.Utils.GenericCrud.Create(v));
+            DAL.Utils.GenericCrud.Update(campus);
+        }
+
+        public Venue GetVenueById(int id)
+        {
+            return db.Venues.First(v => v.Id == id);
+        }
+
+        public List<Venue> GetAllVenues()
+        {
+            return db.Venues.ToList<DAL.Venue>();
+        }
+
+        public void UpdateVenue(int id, Venue v)
+        {
+            if (id != v.Id)
+            {
+                throw new Exception("id is different from VenueID");
+            }
+
+            DAL.Utils.GenericCrud.Update(v.Address);
+            DAL.Utils.GenericCrud.Update(v);
+        }
+
+        public void DeleteVenue(int id)
+        {
+            DAL.Venue venue = GetVenueById(id);
+            venue.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.Update(venue);
+        }
+
+        #endregion
     }
 }
