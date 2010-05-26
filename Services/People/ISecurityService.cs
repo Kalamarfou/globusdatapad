@@ -46,8 +46,8 @@ namespace Services.People
 
         bool roleExists(string name);
 
-        string[] getUsersInRole(string username);
+        string[] getUsersInRole(string roleName);
 
-        List<DAL.User> getUsersInRole(string username);
+        string[] getAllRoles();
     }
 }
