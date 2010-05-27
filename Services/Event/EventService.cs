@@ -6,7 +6,7 @@ using Services;
 
 namespace Services.Event
 {
-    class EventService:IEventService
+    public class EventService : IEventService
     {
 
         private DAL.GDPEntities db;
@@ -35,13 +35,24 @@ namespace Services.Event
 
         }
 
-        public void CreateWorldWideEvent(DAL.WorldWideEvent ev, string authorId, int userId)
+        public void CreateWorldWideEvent(DAL.WorldWideEvent ev, string authorId)
         {
-            ev.Common.Audit.CreatedBy = authorId;
+            Services.People.ISecurityService serv = new People.SecurityService();
+            
+            if (serv.isUserInRole(authorId, "Admin"))
+            {
+                ev.Common.Audit.CreatedBy = authorId;
+                ev.Common.Audit.CreatedAt = DateTime.Now;
+                ev.Common.Audit.LastModifiedBy = authorId;
+                ev.Common.Audit.LastModifiedAt = DateTime.Now;
+                ev.Common.IsDeleted = false;
 
-            Services.People.SecurityService serv = new People.SecurityService();
-            DAL.User user = serv.getUserById(userId);
-            user.Person.Events.Add(DAL.Utils.GenericCrud.Create(ev));
+                DAL.Utils.GenericCrud.Create<DAL.WorldWideEvent>(ev);
+            }
+            else
+            {
+                throw new ApplicationException("User " + authorId + " is not in role Admin, and does not have the right to create a WorldWideEvent.");
+            }
         }
 
         public DAL.Event GetById(int id)
@@ -51,13 +62,13 @@ namespace Services.Event
 
         public DAL.WorldWideEvent GetWorldWideEventById(int wweId)
         {
-            return (DAL.WorldWideEvent)db.Events.First(ev => ev.Id == wweId); 
+            return db.Events.OfType<DAL.WorldWideEvent>().First(ev => ev.Id == wweId); 
         }
 
         public List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize)
         {   
             List<DAL.WorldWideEvent> wevents = (from we in db.Events.OfType<DAL.WorldWideEvent>()
-                                                where we.Common.IsDeleted == false && we.StartDate >= startDate && we.EndDate <= endDate
+                                                where we.Common.IsDeleted == false && we.StartDate >= startDate && we.StartDate <= endDate
                                                 orderby we.StartDate
                        select we).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
 
@@ -122,6 +133,14 @@ namespace Services.Event
         {
             DAL.Utils.GenericCrud.Update(e.Venue);
             DAL.Utils.GenericCrud.Update(e);
+        }
+
+        public void UpdateWorldWideEvent(DAL.WorldWideEvent wwe, string authorId)
+        {
+            wwe.Common.Audit.LastModifiedAt = DateTime.Now;
+            wwe.Common.Audit.LastModifiedBy = authorId;
+
+            DAL.Utils.GenericCrud.Update<DAL.WorldWideEvent>(wwe);
         }
 
         public void Delete(int id)

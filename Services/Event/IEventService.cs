@@ -11,7 +11,7 @@ namespace Services.Event
 
         void CreateUserEvent(DAL.Event ev, string authorId, int userId);
 
-        void CreateWorldWideEvent(DAL.WorldWideEvent ev, string authorId, int userId);
+        void CreateWorldWideEvent(DAL.WorldWideEvent ev, string authorId);
 
         DAL.Event GetById(int id);
 
@@ -36,6 +36,8 @@ namespace Services.Event
         List<DAL.Event> GetClassEventForUser(int userId, int pageNum, int pageSize);
 
         void Update(int id, DAL.Event e);
+
+        void UpdateWorldWideEvent(DAL.WorldWideEvent wwe, string authorId);
 
         void Delete(int id);
 
