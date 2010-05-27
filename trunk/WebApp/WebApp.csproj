@@ -61,6 +61,7 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CampusesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CursusesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\WorldWideEventsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\DALMembershipProvider.cs" />
@@ -106,9 +107,15 @@
     <Content Include="Areas\BackOffice\Views\Cursuses\Details.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Index.aspx" />
+    <Content Include="Areas\BackOffice\Views\Shared\BackOfficeMenu.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\AddressVisualization.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressEdition.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressCreation.ascx" />
+    <Content Include="Areas\BackOffice\Views\WorldWideEvents\Create.aspx" />
+    <Content Include="Areas\BackOffice\Views\WorldWideEvents\Delete.aspx" />
+    <Content Include="Areas\BackOffice\Views\WorldWideEvents\Details.aspx" />
+    <Content Include="Areas\BackOffice\Views\WorldWideEvents\Edit.aspx" />
+    <Content Include="Areas\BackOffice\Views\WorldWideEvents\Index.aspx" />
     <Content Include="Content\iPhone.css" />
     <Content Include="Content\iui-default\back-img.png" />
     <Content Include="Content\iui-default\backButton.png" />

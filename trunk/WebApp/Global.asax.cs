@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using WebApp.Extensions;
+using Services.People;
 
 namespace WebApp
 {
@@ -27,6 +28,32 @@ namespace WebApp
 
         protected void Application_Start()
         {
+            #region "Roles verification and creation"
+
+            ISecurityService securityService = new SecurityService();
+
+            if (!securityService.roleExists("Admin"))
+            {
+                securityService.createRole("Admin", "Administrator", "System");
+            }
+
+            if (!securityService.roleExists("CampusManager"))
+            {
+                securityService.createRole("CampusManager", "Campus Manager", "System");
+            }
+
+            if (!securityService.roleExists("Student"))
+            {
+                securityService.createRole("Student", "Student", "System");
+            }
+
+            if (!securityService.roleExists("Stakeholder"))
+            {
+                securityService.createRole("Stakeholder", "Stakeholder", "System");
+            }
+
+            #endregion
+
             AreaRegistration.RegisterAllAreas();
 
             ViewEngines.Engines.Clear();

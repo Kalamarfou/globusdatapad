@@ -24,7 +24,7 @@
             <div id="menucontainer">
             
                 <ul id="menu">
-                    <li><%= Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Campuses, "Index", "Campuses") %></li>
+                    <% Html.RenderPartial("BackOfficeMenu"); %>
                 </ul>
             
             </div>
