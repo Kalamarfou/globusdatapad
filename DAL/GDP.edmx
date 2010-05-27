@@ -36,17 +36,9 @@
       <End Role="Campus" EntitySet="Campuses" />
       <End Role="Address" EntitySet="Addresses" />
     </AssociationSet>
-    <AssociationSet Name="CampusVenues" Association="GDP.Store.CampusVenues">
-      <End Role="Campus" EntitySet="Campuses" />
-      <End Role="Venue" EntitySet="Venues" />
-    </AssociationSet>
     <AssociationSet Name="VenueAddress" Association="GDP.Store.VenueAddress">
       <End Role="Venue" EntitySet="Venues" />
       <End Role="Address" EntitySet="Addresses" />
-    </AssociationSet>
-    <AssociationSet Name="CampusEvent" Association="GDP.Store.CampusEvent">
-      <End Role="Campus" EntitySet="Campuses" />
-      <End Role="Event" EntitySet="Events" />
     </AssociationSet>
     <AssociationSet Name="EventVenue" Association="GDP.Store.EventVenue">
       <End Role="Event" EntitySet="Events" />
@@ -127,6 +119,14 @@
     <AssociationSet Name="FK_UserRole_Role" Association="GDP.Store.FK_UserRole_Role">
       <End Role="Role" EntitySet="Roles" />
       <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="VenueCampus" Association="GDP.Store.VenueCampus">
+      <End Role="Venue" EntitySet="Venues" />
+      <End Role="Campus" EntitySet="Campuses" />
+    </AssociationSet>
+    <AssociationSet Name="CampusEvent" Association="GDP.Store.CampusEvent">
+      <End Role="Campus" EntitySet="Campuses" />
+      <End Role="Event" EntitySet="Events" />
     </AssociationSet>
     <AssociationSet Name="FK_BaseCourse_inherits_Event" Association="GDP.Store.FK_BaseCourse_inherits_Event">
       <End Role="Event" EntitySet="Events" />
@@ -241,6 +241,7 @@
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CampusId" Type="int" Nullable="false" />
     <Property Name="EventVenue_Venue_Id" Type="int" Nullable="false" />
+    <Property Name="Campus_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Events">
     <Key>
@@ -258,8 +259,8 @@
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsMandatory" Type="bit" Nullable="false" />
-    <Property Name="CampusEvent_Event_Id" Type="int" Nullable="false" />
     <Property Name="PersonEvent_Event_Id" Type="int" Nullable="false" />
+    <Property Name="Campus_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -438,18 +439,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CampusVenues">
-    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="1" />
-    <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Campus">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Venue">
-        <PropertyRef Name="CampusId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="VenueAddress">
     <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="0..1" />
     <End Role="Address" Type="GDP.Store.Addresses" Multiplicity="*" />
@@ -459,18 +448,6 @@
       </Principal>
       <Dependent Role="Address">
         <PropertyRef Name="VenueAddress_Address_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CampusEvent">
-    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="1" />
-    <End Role="Event" Type="GDP.Store.Events" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Campus">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Event">
-        <PropertyRef Name="CampusEvent_Event_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -642,6 +619,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="VenueCampus">
+    <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="*" />
+    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venue">
+        <PropertyRef Name="Campus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CampusEvent">
+    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="0..1" />
+    <End Role="Event" Type="GDP.Store.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="Campus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PersonClass_Person">
     <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
     <End Role="PersonClass" Type="GDP.Store.PersonClass" Multiplicity="*" />
@@ -806,17 +807,9 @@
             <End Role="Campus" EntitySet="Campuses" />
             <End Role="Address" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="CampusVenues" Association="GDP.CampusVenues">
-            <End Role="Campus" EntitySet="Campuses" />
-            <End Role="Venue" EntitySet="Venues" />
-          </AssociationSet>
           <AssociationSet Name="VenueAddress" Association="GDP.VenueAddress">
             <End Role="Venue" EntitySet="Venues" />
             <End Role="Address" EntitySet="Addresses" />
-          </AssociationSet>
-          <AssociationSet Name="CampusEvent" Association="GDP.CampusEvent">
-            <End Role="Campus" EntitySet="Campuses" />
-            <End Role="Event" EntitySet="Events" />
           </AssociationSet>
           <EntitySet Name="Users" EntityType="GDP.User" />
           <AssociationSet Name="EventVenue" Association="GDP.EventVenue">
@@ -892,6 +885,14 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Role" EntitySet="Roles" />
           </AssociationSet>
+          <AssociationSet Name="VenueCampus" Association="GDP.VenueCampus">
+            <End Role="Venue" EntitySet="Venues" />
+            <End Role="Campus" EntitySet="Campuses" />
+          </AssociationSet>
+          <AssociationSet Name="CampusEvent" Association="GDP.CampusEvent">
+            <End Role="Campus" EntitySet="Campuses" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="Audit" >
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
@@ -944,9 +945,9 @@
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="GDP.CampusAddress" FromRole="Campus" ToRole="Address" />
-          <NavigationProperty Name="Venues" Relationship="GDP.CampusVenues" FromRole="Campus" ToRole="Venue" />
-          <NavigationProperty Name="Events" Relationship="GDP.CampusEvent" FromRole="Campus" ToRole="Event" />
           <NavigationProperty Name="Managers" Relationship="GDP.CampusPerson" FromRole="Campus" ToRole="Person" />
+          <NavigationProperty Name="Venues" Relationship="GDP.VenueCampus" FromRole="Campus" ToRole="Venue" />
+          <NavigationProperty Name="Events" Relationship="GDP.CampusEvent" FromRole="Campus" ToRole="Event" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -977,9 +978,9 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
-          <NavigationProperty Name="Campus" Relationship="GDP.CampusVenues" FromRole="Venue" ToRole="Campus" />
           <Property Type="Int32" Name="CampusId" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="GDP.VenueAddress" FromRole="Venue" ToRole="Address" />
+          <NavigationProperty Name="Campus" Relationship="GDP.VenueCampus" FromRole="Venue" ToRole="Campus" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -993,6 +994,7 @@
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
           <NavigationProperty Name="Venue" Relationship="GDP.EventVenue" FromRole="Event" ToRole="Venue" />
           <Property Type="Boolean" Name="IsMandatory" Nullable="false" />
+          <NavigationProperty Name="Campus" Relationship="GDP.CampusEvent" FromRole="Event" ToRole="Campus" />
         </EntityType>
         <Association Name="CursusStudyPeriod">
           <End Type="GDP.Cursus" Role="Cursus" Multiplicity="1" />
@@ -1010,18 +1012,6 @@
           <End Type="GDP.Campus" Role="Campus" Multiplicity="1" />
           <End Type="GDP.Address" Role="Address" Multiplicity="1" />
         </Association>
-        <Association Name="CampusVenues">
-          <End Type="GDP.Campus" Role="Campus" Multiplicity="1" />
-          <End Type="GDP.Venue" Role="Venue" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Campus">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Venue">
-              <PropertyRef Name="CampusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="VenueAddress">
           <End Type="GDP.Venue" Role="Venue" Multiplicity="0..1" />
           <End Type="GDP.Address" Role="Address" Multiplicity="0..1" />
@@ -1034,10 +1024,6 @@
           <Property Type="Int32" Name="ClassId" Nullable="false" />
           <NavigationProperty Name="EvaluationType" Relationship="GDP.EvaluationEvaluationType" FromRole="Evaluation" ToRole="EvaluationType" />
         </EntityType>
-        <Association Name="CampusEvent">
-          <End Type="GDP.Campus" Role="Campus" Multiplicity="1" />
-          <End Type="GDP.Event" Role="Event" Multiplicity="*" />
-        </Association>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -1242,6 +1228,14 @@
         <Association Name="UserRole">
           <End Type="GDP.User" Role="User" Multiplicity="*" />
           <End Type="GDP.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <Association Name="VenueCampus">
+          <End Type="GDP.Venue" Role="Venue" Multiplicity="*" />
+          <End Type="GDP.Campus" Role="Campus" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CampusEvent">
+          <End Type="GDP.Campus" Role="Campus" Multiplicity="0..1" />
+          <End Type="GDP.Event" Role="Event" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1538,14 +1532,6 @@
       </EndProperty>
       <Condition ColumnName="VenueAddress_Address_Id" IsNull="false" />
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CampusEvent" TypeName="GDP.CampusEvent" StoreEntitySet="Events">
-      <EndProperty Name="Campus">
-        <ScalarProperty Name="Id" ColumnName="CampusEvent_Event_Id" />
-      </EndProperty>
-      <EndProperty Name="Event">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="EventVenue" TypeName="GDP.EventVenue" StoreEntitySet="Venues">
       <EndProperty Name="Event">
         <ScalarProperty Name="Id" ColumnName="EventVenue_Venue_Id" />
@@ -1644,6 +1630,24 @@
         <ScalarProperty Name="Id" ColumnName="Roles_Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="VenueCampus" TypeName="GDP.VenueCampus" StoreEntitySet="Venues">
+      <EndProperty Name="Campus">
+        <ScalarProperty Name="Id" ColumnName="Campus_Id" />
+      </EndProperty>
+      <EndProperty Name="Venue">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Campus_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CampusEvent" TypeName="GDP.CampusEvent" StoreEntitySet="Events">
+      <EndProperty Name="Campus">
+        <ScalarProperty Name="Id" ColumnName="Campus_Id" />
+      </EndProperty>
+      <EndProperty Name="Event">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Campus_Id" IsNull="false" />
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1680,13 +1684,6 @@
           <ConnectorPoint PointX="8.2083333333333339" PointY="19.2112939453125" />
           <ConnectorPoint PointX="10.5" PointY="19.2112939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="GDP.CampusVenues">
-          <ConnectorPoint PointX="6.75" PointY="18.660688917968752" />
-          <ConnectorPoint PointX="8.0416666666666661" PointY="18.660688917968752" />
-          <ConnectorPoint PointX="8.2083333333333339" PointY="18.660688917968752" />
-          <ConnectorPoint PointX="8.9375" PointY="18.660688917968752" />
-          <ConnectorPoint PointX="8.9375" PointY="18.172587890625003" />
-        </AssociationConnector>
         <AssociationConnector Association="GDP.VenueAddress">
           <ConnectorPoint PointX="9.375" PointY="17.0624995" />
           <ConnectorPoint PointX="11.25" PointY="17.0624995" />
@@ -1694,17 +1691,10 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="GDP.Course" Width="1.5" PointX="4.25" PointY="27.375" Height="1.4033821614583388" />
         <EntityTypeShape EntityType="GDP.Evaluation" Width="1.5" PointX="7.625" PointY="27.5" Height="1.4033821614583388" />
-        <AssociationConnector Association="GDP.CampusEvent">
-          <ConnectorPoint PointX="6.75" PointY="19.881844134114587" />
-          <ConnectorPoint PointX="8.0416666666666661" PointY="19.881844134114587" />
-          <ConnectorPoint PointX="8.2083333333333339" PointY="19.881844134114587" />
-          <ConnectorPoint PointX="8.5" PointY="19.881844134114587" />
-          <ConnectorPoint PointX="8.5" PointY="20.875" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="GDP.User" Width="2.25" PointX="0.5" PointY="20.25" Height="4.4802050781250031" />
         <AssociationConnector Association="GDP.EventVenue">
-          <ConnectorPoint PointX="8.125" PointY="20.875" />
-          <ConnectorPoint PointX="8.125" PointY="18.172587890625003" />
+          <ConnectorPoint PointX="8.23437625" PointY="20.875" />
+          <ConnectorPoint PointX="8.23437625" PointY="17.980286458333335" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.ClassStudyPeriod">
           <ConnectorPoint PointX="5.5" PointY="24.25" />
@@ -1825,6 +1815,16 @@
         <AssociationConnector Association="GDP.UserRole">
           <ConnectorPoint PointX="2.375" PointY="24.922506510416667" />
           <ConnectorPoint PointX="2.375" PointY="25.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.VenueCampus">
+          <ConnectorPoint PointX="7.875" PointY="17.0624995" />
+          <ConnectorPoint PointX="6" PointY="17.0624995" />
+          <ConnectorPoint PointX="6" PointY="18.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.CampusEvent">
+          <ConnectorPoint PointX="6.75" PointY="19.757022981770838" />
+          <ConnectorPoint PointX="7.78125" PointY="19.757022981770838" />
+          <ConnectorPoint PointX="7.78125" PointY="20.875" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

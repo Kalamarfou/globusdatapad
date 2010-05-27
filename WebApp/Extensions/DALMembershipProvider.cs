@@ -155,7 +155,7 @@ namespace WebApp.Extensions
         public string ConnectionString { get; set; }
         #endregion
 
-        #region public methods
+       #region public methods
         /// <summary>
         /// Initialize this membership provider. Loads the configuration settings.
         /// </summary>
@@ -208,8 +208,8 @@ namespace WebApp.Extensions
             Configuration cfg = WebConfigurationManager.OpenWebConfiguration(HostingEnvironment.ApplicationVirtualPath);
             machineKey = (MachineKeySection)cfg.GetSection("system.web/machineKey");
 
-        //    if (machineKey.ValidationKey.Contains("AutoGenerate"))
-        //        if (PasswordFormat != MembershipPasswordFormat.Clear) throw new ProviderException("Hashed or Encrypted passwords are not supported with auto-generated keys.");
+            if (machineKey.ValidationKey.Contains("AutoGenerate"))
+                if (PasswordFormat != MembershipPasswordFormat.Clear) throw new ProviderException("Hashed or Encrypted passwords are not supported with auto-generated keys.");
         }
 
         /// <summary>
@@ -276,8 +276,8 @@ namespace WebApp.Extensions
                 user.Common.IsDeleted = false;
                 user.Common.Audit.CreatedAt = createDate;
                 user.Common.Audit.LastModifiedAt = createDate;
-                user.Common.Audit.CreatedBy = "";   // TODO
-                user.Common.Audit.LastModifiedBy = "";
+                user.Common.Audit.CreatedBy = "System";
+                user.Common.Audit.LastModifiedBy = "System";
                 user.IsOnline = false;
                 user.IsLockedOut = false;
                 user.LastLockedOutDate = createDate;
@@ -349,26 +349,6 @@ namespace WebApp.Extensions
             if (PasswordFormat == MembershipPasswordFormat.Hashed) throw new ProviderException("Cannot retrieve Hashed passwords.");
 
             throw new NotImplementedException("This over-secure function has not been yet implemented...");
-
-            //string password = string.Empty;
-            //EFDataModelEntities context = new EFDataModelEntities(ConnectionString);
-            //IQueryable<User> users = from u in context.User
-            //                         where u.Username == username && u.ApplicationName == applicationName
-            //                         select u;
-            //if (users.Count() != 1) throw new ProviderException("Get password failed. No unique user found.");
-            //User user = users.First();
-            //if (user != null)
-            //{
-            //    if (Convert.ToBoolean(user.IsLockedOut)) throw new MembershipPasswordException("The supplied user is locked out.");
-            //}
-            //else throw new MembershipPasswordException("The supplied user name is not found.");
-            //if (RequiresQuestionAndAnswer && !CheckPassword(answer, user.PasswordAnswer))
-            //{
-            //    UpdateFailureCount(username, "passwordAnswer");
-            //    throw new MembershipPasswordException("Incorrect password answer.");
-            //}
-            //if (PasswordFormat == MembershipPasswordFormat.Encrypted) password = UnEncodePassword(user.Password);
-            //return password;
         }
 
         /// <summary>
@@ -576,7 +556,6 @@ namespace WebApp.Extensions
                     service.updateUser(user);
                 }
             }
-
 
             return membershipUser;
         }

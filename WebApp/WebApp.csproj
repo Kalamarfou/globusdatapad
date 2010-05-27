@@ -109,6 +109,7 @@
     <Content Include="Areas\BackOffice\Views\Cursuses\Index.aspx" />
     <Content Include="Areas\BackOffice\Views\Shared\BackOfficeMenu.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\AddressVisualization.ascx" />
+    <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\VenueVisualization.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressEdition.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressCreation.ascx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Create.aspx" />

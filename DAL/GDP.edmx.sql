@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/26/2010 15:54:08
+-- Date Created: 05/27/2010 13:00:30
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -22,9 +22,6 @@ IF OBJECT_ID(N'[dbo].[FK_CursusStudyPeriod]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CampusAddress]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Campuses] DROP CONSTRAINT [FK_CampusAddress];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CampusVenues]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Venues] DROP CONSTRAINT [FK_CampusVenues];
 GO
 IF OBJECT_ID(N'[dbo].[FK_VenueAddress]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Addresses] DROP CONSTRAINT [FK_VenueAddress];
@@ -91,6 +88,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserRole_User]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserRole_Role]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_Role];
+GO
+IF OBJECT_ID(N'[dbo].[FK_VenueCampus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Venues] DROP CONSTRAINT [FK_VenueCampus];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourse_inherits_Event]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourse_inherits_Event];
@@ -271,7 +271,8 @@ CREATE TABLE [dbo].[Venues] (
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CampusId] int  NOT NULL,
-    [EventVenue_Venue_Id] int  NOT NULL
+    [EventVenue_Venue_Id] int  NOT NULL,
+    [Campus_Id] int  NULL
 );
 GO
 
@@ -289,8 +290,8 @@ CREATE TABLE [dbo].[Events] (
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [IsMandatory] bit  NOT NULL,
-    [CampusEvent_Event_Id] int  NOT NULL,
-    [PersonEvent_Event_Id] int  NOT NULL
+    [PersonEvent_Event_Id] int  NOT NULL,
+    [Campus_Id] int  NULL
 );
 GO
 
@@ -612,20 +613,6 @@ ON [dbo].[Campuses]
     ([Address_Id]);
 GO
 
--- Creating foreign key on [CampusId] in table 'Venues'
-ALTER TABLE [dbo].[Venues]
-ADD CONSTRAINT [FK_CampusVenues]
-    FOREIGN KEY ([CampusId])
-    REFERENCES [dbo].[Campuses]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CampusVenues'
-CREATE INDEX [IX_FK_CampusVenues]
-ON [dbo].[Venues]
-    ([CampusId]);
-GO
-
 -- Creating foreign key on [VenueAddress_Address_Id] in table 'Addresses'
 ALTER TABLE [dbo].[Addresses]
 ADD CONSTRAINT [FK_VenueAddress]
@@ -638,20 +625,6 @@ ADD CONSTRAINT [FK_VenueAddress]
 CREATE INDEX [IX_FK_VenueAddress]
 ON [dbo].[Addresses]
     ([VenueAddress_Address_Id]);
-GO
-
--- Creating foreign key on [CampusEvent_Event_Id] in table 'Events'
-ALTER TABLE [dbo].[Events]
-ADD CONSTRAINT [FK_CampusEvent]
-    FOREIGN KEY ([CampusEvent_Event_Id])
-    REFERENCES [dbo].[Campuses]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CampusEvent'
-CREATE INDEX [IX_FK_CampusEvent]
-ON [dbo].[Events]
-    ([CampusEvent_Event_Id]);
 GO
 
 -- Creating foreign key on [EventVenue_Venue_Id] in table 'Venues'
@@ -917,6 +890,34 @@ ADD CONSTRAINT [FK_UserRole_Role]
 CREATE INDEX [IX_FK_UserRole_Role]
 ON [dbo].[UserRole]
     ([Roles_Id]);
+GO
+
+-- Creating foreign key on [Campus_Id] in table 'Venues'
+ALTER TABLE [dbo].[Venues]
+ADD CONSTRAINT [FK_VenueCampus]
+    FOREIGN KEY ([Campus_Id])
+    REFERENCES [dbo].[Campuses]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_VenueCampus'
+CREATE INDEX [IX_FK_VenueCampus]
+ON [dbo].[Venues]
+    ([Campus_Id]);
+GO
+
+-- Creating foreign key on [Campus_Id] in table 'Events'
+ALTER TABLE [dbo].[Events]
+ADD CONSTRAINT [FK_CampusEvent]
+    FOREIGN KEY ([Campus_Id])
+    REFERENCES [dbo].[Campuses]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CampusEvent'
+CREATE INDEX [IX_FK_CampusEvent]
+ON [dbo].[Events]
+    ([Campus_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Events_BaseCourse'
