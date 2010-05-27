@@ -20,9 +20,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("GDP", "CursusStudyPeriod", "Cursus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Cursus), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod), true)]
 [assembly: EdmRelationshipAttribute("GDP", "CampusAddress", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Address))]
-[assembly: EdmRelationshipAttribute("GDP", "CampusVenues", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus), "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Venue), true)]
 [assembly: EdmRelationshipAttribute("GDP", "VenueAddress", "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Address))]
-[assembly: EdmRelationshipAttribute("GDP", "CampusEvent", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 [assembly: EdmRelationshipAttribute("GDP", "EventVenue", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Event), "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue))]
 [assembly: EdmRelationshipAttribute("GDP", "ClassStudyPeriod", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Class), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod), true)]
 [assembly: EdmRelationshipAttribute("GDP", "PersonUser", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Person), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.User))]
@@ -40,6 +38,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "DisciplineEvaluationType", "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline), "EvaluationType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.EvaluationType), true)]
 [assembly: EdmRelationshipAttribute("GDP", "PersonEvent", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 [assembly: EdmRelationshipAttribute("GDP", "UserRole", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Role))]
+[assembly: EdmRelationshipAttribute("GDP", "VenueCampus", "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Venue), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Campus))]
+[assembly: EdmRelationshipAttribute("GDP", "CampusEvent", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Campus), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 
 #endregion
 
@@ -1192,18 +1192,40 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "CampusVenues", "Venue")]
-        public EntityCollection<Venue> Venues
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "CampusPerson", "Person")]
+        public EntityCollection<Person> Managers
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Venue>("GDP.CampusVenues", "Venue");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Person>("GDP.CampusPerson", "Person");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Venue>("GDP.CampusVenues", "Venue", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Person>("GDP.CampusPerson", "Person", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "VenueCampus", "Venue")]
+        public EntityCollection<Venue> Venues
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Venue>("GDP.VenueCampus", "Venue");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Venue>("GDP.VenueCampus", "Venue", value);
                 }
             }
         }
@@ -1226,28 +1248,6 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("GDP.CampusEvent", "Event", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "CampusPerson", "Person")]
-        public EntityCollection<Person> Managers
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Person>("GDP.CampusPerson", "Person");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Person>("GDP.CampusPerson", "Person", value);
                 }
             }
         }
@@ -2466,6 +2466,44 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Venue>("GDP.EventVenue", "Venue", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "CampusEvent", "Campus")]
+        public Campus Campus
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.CampusEvent", "Campus").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.CampusEvent", "Campus").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Campus> CampusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.CampusEvent", "Campus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Campus>("GDP.CampusEvent", "Campus", value);
                 }
             }
         }
@@ -4040,44 +4078,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "CampusVenues", "Campus")]
-        public Campus Campus
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.CampusVenues", "Campus").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.CampusVenues", "Campus").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Campus> CampusReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.CampusVenues", "Campus");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Campus>("GDP.CampusVenues", "Campus", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "VenueAddress", "Address")]
         public Address Address
         {
@@ -4106,6 +4106,44 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Address>("GDP.VenueAddress", "Address", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "VenueCampus", "Campus")]
+        public Campus Campus
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.VenueCampus", "Campus").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.VenueCampus", "Campus").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Campus> CampusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Campus>("GDP.VenueCampus", "Campus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Campus>("GDP.VenueCampus", "Campus", value);
                 }
             }
         }

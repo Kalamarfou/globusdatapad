@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using DAL.Utils;
 
 namespace WebApp.Models
 {
@@ -55,8 +56,8 @@ namespace WebApp.Models
         public string UserName { get; set; }
 
         [Required]
-        [DataType(DataType.EmailAddress)]
         [DisplayName("Email address")]
+        [EmailAddressAttribute(ErrorMessage="Invalid email address")]    // TODO i18n
         public string Email { get; set; }
 
         [Required]
