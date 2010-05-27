@@ -57,7 +57,7 @@ namespace WebApp.Models
 
         [Required]
         [DisplayName("Email address")]
-        [EmailAddressAttribute(ErrorMessage="Invalid email address")]    // TODO i18n
+        [EmailAddressAttribute(ErrorMessageResourceName = "InvalidEmailAddress", ErrorMessageResourceType = typeof(DAL.Resources.Person))]
         public string Email { get; set; }
 
         [Required]

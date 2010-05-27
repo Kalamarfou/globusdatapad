@@ -22,7 +22,7 @@ namespace DAL.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Person {
+    public class Person {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DAL.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DAL.Resources.Person", typeof(Person).Assembly);
@@ -51,7 +51,7 @@ namespace DAL.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to E-mail address.
         /// </summary>
-        internal static string Email {
+        public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The email address is required.
         /// </summary>
-        internal static string EmailRequired {
+        public static string EmailRequired {
             get {
                 return ResourceManager.GetString("EmailRequired", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to First name.
         /// </summary>
-        internal static string FirstName {
+        public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
             }
@@ -90,16 +90,25 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The first name is required.
         /// </summary>
-        internal static string FirstNameRequired {
+        public static string FirstNameRequired {
             get {
                 return ResourceManager.GetString("FirstNameRequired", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The email address is invalid.
+        /// </summary>
+        public static string InvalidEmailAddress {
+            get {
+                return ResourceManager.GetString("InvalidEmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
-        internal static string LastName {
+        public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The last name is required.
         /// </summary>
-        internal static string LastNameRequired {
+        public static string LastNameRequired {
             get {
                 return ResourceManager.GetString("LastNameRequired", resourceCulture);
             }
@@ -117,7 +126,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
-        internal static string Title {
+        public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
