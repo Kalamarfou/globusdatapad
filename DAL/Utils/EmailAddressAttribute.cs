@@ -28,7 +28,7 @@ namespace DAL.Utils
             string str = Convert.ToString(value, CultureInfo.CurrentCulture);
 
             if (string.IsNullOrEmpty(str))
-                return true;
+                return true;                    // because we ONLY validate if it is a good string, not an empty one (use Required attribute for that).
 
             Match match = regex.Match(str);
             return ((match.Success && (match.Index == 0)) && (match.Length == str.Length));

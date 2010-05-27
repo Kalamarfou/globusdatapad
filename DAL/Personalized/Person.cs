@@ -25,6 +25,7 @@ namespace DAL.Personalized
 
         [LocalizedDisplayName("Email", NameResourceType = typeof(DAL.Resources.Person))]
         [Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(DAL.Resources.Person))]
+        [EmailAddressAttribute(ErrorMessageResourceName = "InvalidEmailAddress", ErrorMessageResourceType = typeof(DAL.Resources.Person))]
         public string Email { get; set; }
 
         [LocalizedDisplayName("Title", NameResourceType = typeof(DAL.Resources.Person))]
