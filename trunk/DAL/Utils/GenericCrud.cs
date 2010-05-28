@@ -116,5 +116,22 @@ namespace DAL.Utils
                     throw new ApplicationException("Unknown entity: could not find EntitySetName for :" + e.GetType().Name);
             }
         }
+
+
+        /// <summary>
+        /// Met a jour les champs d'audit
+        /// </summary>
+        /// <param name="audit">les champs d'audit</param>
+        /// <param name="authorId">l'id de l'user</param>
+        public static void SetAudit(Audit audit, string authorId)
+        {
+            if (audit.CreatedBy == null && audit.CreatedAt == null)
+            {
+                audit.CreatedAt = DateTime.Now;
+                audit.CreatedBy = authorId;
+            }
+            audit.LastModifiedAt = DateTime.Now;
+            audit.LastModifiedBy = authorId;
+        }
     }
 }

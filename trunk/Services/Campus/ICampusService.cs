@@ -31,7 +31,7 @@ namespace Services.Campus
 
         void UpdateVenue(DAL.Venue v, string authorId);
 
-        void DeleteVenue(DAL.Venue v);
+        void DeleteVenue(DAL.Venue v, string authorId);
 
         #endregion
     }
