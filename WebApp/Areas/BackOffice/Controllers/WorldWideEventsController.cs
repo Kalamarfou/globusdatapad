@@ -17,7 +17,9 @@ namespace WebApp.Areas.BackOffice.Controllers
         {
             IEventService service = new EventService();
 
-            ViewData.Model = service.GetWorldWideEvents(0, 100);
+            int i;
+
+            ViewData.Model = service.GetWorldWideEvents(0, 100, out i);
 
             return View();
         }

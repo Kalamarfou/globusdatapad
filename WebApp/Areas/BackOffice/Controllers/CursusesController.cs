@@ -21,7 +21,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
         public ActionResult Index()
         {
-            ViewData.Model = service.GetAll();
+            //ViewData.Model = service.GetAll();    TODO
             return View();
         }
 
@@ -30,7 +30,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewData.Model = service.GetById(id);
+            ViewData.Model = service.GetCursusById(id);
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace WebApp.Areas.BackOffice.Controllers
             {
                 return View(c);
             }
-            service.Create(c);
+            service.CreateCursus(c, User.Identity.Name);
             return RedirectToAction("Index");
         }
         
@@ -61,7 +61,7 @@ namespace WebApp.Areas.BackOffice.Controllers
  
         public ActionResult Edit(int id)
         {
-            ViewData.Model = service.GetById(id);
+            ViewData.Model = service.GetCursusById(id);
             return View();
         }
 
@@ -71,7 +71,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Cursus c)
         {
-            service.Update(id, c);
+            service.UpdateCursus(c, User.Identity.Name);
             return RedirectToAction("Index");
         }
 
@@ -80,7 +80,7 @@ namespace WebApp.Areas.BackOffice.Controllers
  
         public ActionResult Delete(int id)
         {
-            ViewData.Model = service.GetById(id);
+            ViewData.Model = service.GetCursusById(id);
             return View();
         }
 
@@ -90,7 +90,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            service.Delete(id);
+            // TODO
             return RedirectToAction("Index");
         }
     }

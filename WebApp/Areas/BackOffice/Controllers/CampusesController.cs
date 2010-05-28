@@ -21,7 +21,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
         public ActionResult Index()
         {
-            ViewData.Model = service.GetAll();
+            //ViewData.Model = service.GetAll();    TODO
             return View();
         }
 
@@ -94,7 +94,7 @@ namespace WebApp.Areas.BackOffice.Controllers
             campus.Address.ModifiedAt = DateTime.Now;
             campus.Address.ModifiedBy = "wam";
             */
-            service.Update(id, campus);
+            service.Update(campus, User.Identity.Name);
             return RedirectToAction("Index");
         }
 
@@ -113,7 +113,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Delete(int id, DAL.Campus c)
         {
-            service.Delete(id);
+            service.Delete(c, User.Identity.Name);
             return RedirectToAction("Index");
         }
     }

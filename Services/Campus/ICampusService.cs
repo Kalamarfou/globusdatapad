@@ -7,24 +7,32 @@ namespace Services.Campus
 {
     public interface ICampusService
     {
+        #region "Campus"
+
         void Create(DAL.Campus c, string authorId);
 
         DAL.Campus GetById(int id);
 
-        List<DAL.Campus> GetAll();
+        List<DAL.Campus> GetAll(int pageNum, int pageSize, out int totalRecords);
 
-        void Update(int id, DAL.Campus c);
+        void Update(DAL.Campus c, string authorId);
 
-        void Delete(int id);
+        void Delete(DAL.Campus c, string authorId);
 
-        void CreateVenue(DAL.Venue v, string authorId, int campusId);
+        #endregion
+
+        #region "Venues"
+
+        void CreateVenue(DAL.Venue v, string authorId);
 
         DAL.Venue GetVenueById(int id);
 
-        List<DAL.Venue> GetAllVenues();
+        List<DAL.Venue> GetAllVenues(int pageNum, int pageSize, out int totalRecords);
 
-        void UpdateVenue(int id, DAL.Venue v);
+        void UpdateVenue(DAL.Venue v, string authorId);
 
-        void DeleteVenue(int id);
+        void DeleteVenue(DAL.Venue v);
+
+        #endregion
     }
 }

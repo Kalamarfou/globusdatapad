@@ -113,5 +113,45 @@ namespace Services.Campus
         }
 
         #endregion
+
+        #region ICampusService Members
+
+
+        public List<DAL.Campus> GetAll(int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(DAL.Campus c, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(DAL.Campus c, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateVenue(Venue v, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Venue> GetAllVenues(int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateVenue(Venue v, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteVenue(Venue v)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
