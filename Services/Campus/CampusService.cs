@@ -16,15 +16,19 @@ namespace Services.Campus
             db = new DAL.GDPEntities();
         }
 
+        #region ICampusService Members
+
         /// <summary>
         /// Persist a campus
         /// </summary>
         /// <param name="c">The campus entity to persist</param>
         public void Create(DAL.Campus c, string authorId)
         {
-            c.Common.Audit.CreatedBy = authorId;
-
+            DAL.Utils.GenericCrud.SetAudit(c.Address.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(c.Address);
             DAL.Utils.GenericCrud.Create(c);
+
         }
 
         /// <summary>
@@ -37,51 +41,35 @@ namespace Services.Campus
             return db.Campuses.First(c => c.Id == id);
         }
 
-        /// <summary>
-        /// Retrieve ALL campuses
-        /// </summary>
-        /// <remarks>Warning, this can be huge if there is a lot of campuses</remarks>
-        /// <returns>List<Campus></returns>
-        public List<DAL.Campus> GetAll()
+        public List<DAL.Campus> GetAll(int pageNum, int pageSize, out int totalRecords)
         {
-            int test;
-            
-            return db.Campuses.ToList<DAL.Campus>();
+            totalRecords = db.Campuses.Count();
+            return (from c in db.Campuses
+                    orderby c.Name
+                    select c).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Campus>();
         }
 
-        public void Update(int id, DAL.Campus c)
+        public void Update(DAL.Campus c, string authorId)
         {
-            if (id != c.Id)
-            {
-                throw new Exception("id is different from CursusID");
-            }
-
+            //GUILLAUME si on a modifié le campus mais pas son adresse, il ne faudrais pas changer les set audit sur l'adresse
+            DAL.Utils.GenericCrud.SetAudit(c.Address.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
+           
             DAL.Utils.GenericCrud.Update(c.Address);
             DAL.Utils.GenericCrud.Update(c);
         }
 
-        /// <summary>
-        /// Delete campus
-        /// </summary>
-        /// <param name="id">CampusID</param>
-        public void Delete(int id)
+        public void Delete(DAL.Campus c, string authorId)
         {
-            DAL.Campus campus = GetById(id);
-            campus.Common.IsDeleted = true;
-            DAL.Utils.GenericCrud.Update(campus);
-            //db.Campuses.DeleteObject(db.Campuses.First(c => c.Id == id));
+            c.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(c);
         }
 
-        #region ICampus Members
-
-
-        public void CreateVenue(Venue v, string authorId, int campusId)
+        public void CreateVenue(Venue v, string authorId)
         {
-            v.Common.Audit.CreatedBy = authorId;
-
-            DAL.Campus campus = GetById(campusId);
-            campus.Venues.Add(DAL.Utils.GenericCrud.Create(v));
-            DAL.Utils.GenericCrud.Update(campus);
+            DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(v);
         }
 
         public Venue GetVenueById(int id)
@@ -89,67 +77,26 @@ namespace Services.Campus
             return db.Venues.First(v => v.Id == id);
         }
 
-        public List<Venue> GetAllVenues()
-        {
-            return db.Venues.ToList<DAL.Venue>();
-        }
-
-        public void UpdateVenue(int id, Venue v)
-        {
-            if (id != v.Id)
-            {
-                throw new Exception("id is different from VenueID");
-            }
-
-            DAL.Utils.GenericCrud.Update(v.Address);
-            DAL.Utils.GenericCrud.Update(v);
-        }
-
-        public void DeleteVenue(int id)
-        {
-            DAL.Venue venue = GetVenueById(id);
-            venue.Common.IsDeleted = true;
-            DAL.Utils.GenericCrud.Update(venue);
-        }
-
-        #endregion
-
-        #region ICampusService Members
-
-
-        public List<DAL.Campus> GetAll(int pageNum, int pageSize, out int totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(DAL.Campus c, string authorId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(DAL.Campus c, string authorId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CreateVenue(Venue v, string authorId)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Venue> GetAllVenues(int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            totalRecords = db.Venues.Count();
+            return (from v in db.Venues
+                    orderby v.Name
+                    select v).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
         }
 
         public void UpdateVenue(Venue v, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(v.Address);
+            DAL.Utils.GenericCrud.Update(v);
         }
 
-        public void DeleteVenue(Venue v)
+        public void DeleteVenue(Venue v, string authorId)
         {
-            throw new NotImplementedException();
+            v.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(v);
         }
 
         #endregion

@@ -17,122 +17,82 @@ namespace Services.Cursus
             db = new DAL.GDPEntities();
         }
 
-        /// <summary>
-        /// Persist a campus
-        /// </summary>
-        /// <param name="c">The campus entity to persist</param>
-        public void Create(DAL.Cursus c)
-        {
-            db.AddToCursuses(c);
-            db.SaveChanges();
-        }
-
-        /// <summary>
-        /// Retrieve a Campus by his ID
-        /// </summary>
-        /// <param name="id">CampusID</param>
-        /// <returns>DAL.Campus</returns>
-        public DAL.Cursus GetById(int id)
-        {
-            return db.Cursuses.First(c => c.Id == id);
-        }
-
-        /// <summary>
-        /// Retrieve ALL campuses
-        /// </summary>
-        /// <remarks>Warning, this can be huge if there is a lot of campuses</remarks>
-        /// <returns>List<Campus></returns>
-        public List<DAL.Cursus> GetAll()
-        {
-            return db.Cursuses.ToList<DAL.Cursus>();
-        }
-
-        public void Update(int id, DAL.Cursus c)
-        {
-
-            DAL.Utils.GenericCrud.Update(c);
-
-            //if (id != c.CursusID)
-            //{
-            //    throw new Exception("id is different from CursusID");
-            //}
-            //db.Cursuses.Attach(c);
-            //db.ObjectStateManager.ChangeObjectState(c, System.Data.EntityState.Modified);
-            //try
-            //{
-            //    db.SaveChanges();
-            //}
-            //catch (OptimisticConcurrencyException e)
-            //{
-            //    db.Refresh(System.Data.Objects.RefreshMode.ClientWins, c);
-            //    db.SaveChanges();
-            //}
-        }
-
-        /// <summary>
-        /// Delete campus
-        /// </summary>
-        /// <param name="id">CampusID</param>
-        public void Delete(int id)
-        {
-            db.Cursuses.DeleteObject(db.Cursuses.First(c => c.Id == id));
-        }
-
         #region ICursusService Members
 
         public void CreateCursus(DAL.Cursus c, string authorId)
         {
-            throw new NotImplementedException();
-        }
+            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit ,authorId);
+            DAL.Utils.GenericCrud.Create(c);
 
+        }
+        
         public DAL.Cursus GetCursusById(int id)
         {
-            throw new NotImplementedException();
+            return db.Cursuses.First(c => c.Id == id);
         }
 
         public List<DAL.Cursus> GetAllCursuses(int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            totalRecords = db.Cursuses.Count();
+            return (from c in db.Cursuses
+                    orderby c.Name
+                    select c).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
         }
 
         public List<DAL.Cursus> GetAllActiveCursuses(int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            var result = (from s in db.StudyPeriods
+                          where s.EndDate >= DateTime.Now
+                          select s.Cursus);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
         }
 
         public void UpdateCursus(DAL.Cursus c, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(c);
         }
 
         public void DeleteCursus(DAL.Cursus c, string authorId)
         {
-            throw new NotImplementedException();
+            c.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(c);
         }
 
         public void CreateStudyPeriod(DAL.StudyPeriod sp, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(sp);
         }
 
         public DAL.StudyPeriod GetStudyPeriodById(int id)
         {
-            throw new NotImplementedException();
+            return db.StudyPeriods.First(s => s.Id == id);
         }
 
+        //GUILLAUME all vraiement tous ou all mais que les pas terminés?
         public List<DAL.StudyPeriod> GetAllStudyPeriodsForCursus(int cursusId, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            var result = (from s in db.StudyPeriods
+                          where s.CursusId == cursusId && s.EndDate >= DateTime.Now
+                          select s);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.StudyPeriod>();
         }
 
         public void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(sp);
         }
 
         public void DeleteStudyPeriod(DAL.StudyPeriod sp, string authorId)
         {
-            throw new NotImplementedException();
+            sp.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(sp);
         }
 
         #endregion

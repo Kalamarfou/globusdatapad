@@ -9,7 +9,8 @@ namespace Services.Event
     {
         #region "Creation"
 
-        void CreateCampusEvent(DAL.Event ev, string authorId, int campusId);
+        //GUILLAUME yavais un campusId, je l'ai viré en pensant qu'il servait a rien
+        void CreateCampusEvent(DAL.Event ev, string authorId);
 
         /// <summary>
         /// User create an event for himself

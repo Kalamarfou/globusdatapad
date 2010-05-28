@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Services;
 using Services.People;
+using Services.Campus;
 
 namespace Services.Event
 {
@@ -17,196 +18,135 @@ namespace Services.Event
             db = new DAL.GDPEntities();
         }
 
-        public void CreateCampusEvent(DAL.Event ev, string authorId, int campusId)
-        {
-            ev.Common.Audit.CreatedBy = authorId;
-
-            Services.Campus.CampusService service = new Campus.CampusService();
-            DAL.Campus campus = service.GetById(campusId);
-            campus.Events.Add(DAL.Utils.GenericCrud.Create(ev));
-        }
-
-        public void CreateUserEvent(DAL.Event ev, string authorId, int userId)
-        {
-            ev.Common.Audit.CreatedBy = authorId;
-
-            Services.People.SecurityService serv = new People.SecurityService();
-            DAL.User user = serv.getUserById(userId);
-            user.Person.Events.Add(DAL.Utils.GenericCrud.Create(ev));
-
-        }
-
-        public void CreateWorldWideEvent(DAL.WorldWideEvent ev, string authorId)
-        {
-            Services.People.ISecurityService serv = new People.SecurityService();
-            
-            if (serv.isUserInRole(authorId, "Admin"))
-            {
-                ev.Common.Audit.CreatedBy = authorId;
-                ev.Common.Audit.CreatedAt = DateTime.Now;
-                ev.Common.Audit.LastModifiedBy = authorId;
-                ev.Common.Audit.LastModifiedAt = DateTime.Now;
-                ev.Common.IsDeleted = false;
-
-                DAL.Utils.GenericCrud.Create<DAL.WorldWideEvent>(ev);
-            }
-            else
-            {
-                throw new ApplicationException("User " + authorId + " is not in role Admin, and does not have the right to create a WorldWideEvent.");
-            }
-        }
-
-        public DAL.Event GetById(int id)
-        {
-            return db.Events.First(ev => ev.Id == id);
-        }
-
-        public DAL.WorldWideEvent GetWorldWideEventById(int wweId)
-        {
-            return db.Events.OfType<DAL.WorldWideEvent>().First(ev => ev.Id == wweId); 
-        }
-
-        public List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize)
-        {   
-            List<DAL.WorldWideEvent> wevents = (from we in db.Events.OfType<DAL.WorldWideEvent>()
-                                                where we.Common.IsDeleted == false && we.StartDate >= startDate && we.StartDate <= endDate
-                                                orderby we.StartDate
-                       select we).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
-
-            return wevents;
-        }
-
-        public List<DAL.WorldWideEvent> GetWorldWideEvents(int pageNum, int pageSize)
-        {
-            return GetWorldWideEvents(new DateTime(1975, 01, 01), new DateTime(2050, 11, 28), pageNum, pageSize);
-        }
-
-        public DAL.Event GetCampusEventById(int eventId)
-        {
-            Services.Campus.CampusService campServ = new Services.Campus.CampusService();
-            DAL.Campus camp = campServ.GetById(eventId);
-            List<DAL.Event> campEvList = camp.Events.ToList<DAL.Event>();
-
-            DAL.Event ev = (from e in db.Events.OfType<DAL.Event>()
-                            where e.Id == eventId
-                            select e).Single<DAL.Event>();
-
-            return ev;
-        }
-
-        public List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize)
-        {
-            ISecurityService secService = new SecurityService();
-            DAL.User user = secService.getUserById(userId);
-
-            if(user != null) 
-            {
-                return (from e in user.Person.CurrentClass.Campus.Events
-                 where e.StartDate >= startDate && e.EndDate >= endDate
-                 select e).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
-            } else {
-                throw new ApplicationException("User " + userId + " does not exist.");
-            }
-        }
-
-        public List<DAL.Event> GetEventsForCampus(int userId, int pageNum, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DAL.Event GetClassEventById(int eventId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<DAL.Event> GetClassEventForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<DAL.Event> GetClassEventForUser(int userId, int pageNum, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<DAL.Event> GetCampusEventsForUser(int userId, int pageNum, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<DAL.Event> GetEventsForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public void Update(int id, DAL.Event e)
-        {
-            DAL.Utils.GenericCrud.Update(e.Venue);
-            DAL.Utils.GenericCrud.Update(e);
-        }
-
-        public void UpdateWorldWideEvent(DAL.WorldWideEvent wwe, string authorId)
-        {
-            wwe.Common.Audit.LastModifiedAt = DateTime.Now;
-            wwe.Common.Audit.LastModifiedBy = authorId;
-
-            DAL.Utils.GenericCrud.Update<DAL.WorldWideEvent>(wwe);
-        }
-
-        public void Delete(int id)
-        {
-            DAL.Event ev = GetById(id);
-            ev.Common.IsDeleted = true;
-            DAL.Utils.GenericCrud.Update(ev);
-        }
-
-        #region IEventService Members
-
-
         public void CreateUserEvent(DAL.Event ev, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(ev.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(ev);
         }
 
         public void CreateClassEvent(DAL.BaseCourse bc, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(bc.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(bc);
+        }
+
+        public void CreateWorldWideEvent(DAL.WorldWideEvent ev, string authorId)
+        {
+            DAL.Utils.GenericCrud.SetAudit(ev.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(ev);
+        }
+
+        public DAL.Event GetById(int id)
+        {
+            return db.Events.First(e => e.Id == id);
+        }
+
+        public DAL.WorldWideEvent GetWorldWideEventById(int wweId)
+        {
+            return db.Events.OfType<DAL.WorldWideEvent>().First(e => e.Id == wweId);
         }
 
         public List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
+                        where wwe.StartDate == startDate && wwe.EndDate >= endDate
+                        select wwe);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
         }
 
+        //GUILLAUME all ou que les pas finis?
         public List<DAL.WorldWideEvent> GetWorldWideEvents(int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
+                          where wwe.EndDate >= DateTime.Now
+                          select wwe);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
         }
 
         public List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+           
+            ISecurityService secService = new SecurityService();
+            DAL.User user = secService.getUserById(userId);
+            
+            if (user != null)
+            {
+                var result = (from e in user.Person.CurrentClass.Campus.Events
+                              where e.StartDate >= startDate && e.EndDate >= endDate
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + userId + " does not exist.");
+            }
         }
 
+        //GUILLAUME All ou que les pas fini?
         public List<DAL.Event> GetCampusEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            ISecurityService secService = new SecurityService();
+            DAL.User user = secService.getUserById(userId);
+            totalRecords = user.Person.CurrentClass.Campus.Events.Count();
+            if (user != null)
+            {
+                var result = (from e in user.Person.CurrentClass.Campus.Events
+                              where e.EndDate >= DateTime.Now
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + userId + " does not exist.");
+            }
         }
 
         public List<DAL.Event> GetEventsForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            ICampusService campusService = new CampusService();
+            DAL.Campus campus = campusService.GetById(campusId);
+            totalRecords = campus.Events.Count();
+            if (campus != null)
+            {
+                var result = (from e in campus.Events
+                              where e.StartDate >= startDate && e.EndDate >= endDate
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("Campus " + campus + " does not exist.");
+            }
         }
 
+        //GUILLAUME All ou que les pas finis?
         public List<DAL.Event> GetEventsForCampus(int campusId, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            ICampusService campusService = new CampusService();
+            DAL.Campus campus = campusService.GetById(campusId);
+            totalRecords = campus.Events.Count();
+            if (campus != null)
+            {
+                var result = (from e in campus.Events
+                              where e.EndDate >= DateTime.Now
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("Campus " + campus + " does not exist.");
+            }
         }
 
-        DAL.BaseCourse IEventService.GetClassEventById(int eventId)
+        public DAL.BaseCourse GetClassEventById(int eventId)
         {
-            throw new NotImplementedException();
+            return db.Events.OfType<DAL.BaseCourse>().First(e => e.Id == eventId);
         }
 
         public List<DAL.Event> GetClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
@@ -230,6 +170,11 @@ namespace Services.Event
         }
 
         public void Update(DAL.Event e, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateWorldWideEvent(DAL.WorldWideEvent wwe, string authorId)
         {
             throw new NotImplementedException();
         }
@@ -259,6 +204,9 @@ namespace Services.Event
             throw new NotImplementedException();
         }
 
-        #endregion
+        public void CreateCampusEvent(DAL.Event ev, string authorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
