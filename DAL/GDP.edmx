@@ -128,6 +128,10 @@
       <End Role="Campus" EntitySet="Campuses" />
       <End Role="Event" EntitySet="Events" />
     </AssociationSet>
+    <AssociationSet Name="ClassCampus" Association="GDP.Store.ClassCampus">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Campus" EntitySet="Campuses" />
+    </AssociationSet>
     <AssociationSet Name="FK_BaseCourse_inherits_Event" Association="GDP.Store.FK_BaseCourse_inherits_Event">
       <End Role="Event" EntitySet="Events" />
       <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
@@ -226,6 +230,7 @@
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Campus_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Venues">
     <Key>
@@ -643,6 +648,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ClassCampus">
+    <End Role="Class" Type="GDP.Store.Classes" Multiplicity="*" />
+    <End Role="Campus" Type="GDP.Store.Campuses" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="Campus_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PersonClass_Person">
     <End Role="Person" Type="GDP.Store.People" Multiplicity="1" />
     <End Role="PersonClass" Type="GDP.Store.PersonClass" Multiplicity="*" />
@@ -893,6 +910,10 @@
             <End Role="Campus" EntitySet="Campuses" />
             <End Role="Event" EntitySet="Events" />
           </AssociationSet>
+          <AssociationSet Name="ClassCampus" Association="GDP.ClassCampus">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Campus" EntitySet="Campuses" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="Audit" >
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
@@ -948,6 +969,7 @@
           <NavigationProperty Name="Managers" Relationship="GDP.CampusPerson" FromRole="Campus" ToRole="Person" />
           <NavigationProperty Name="Venues" Relationship="GDP.VenueCampus" FromRole="Campus" ToRole="Venue" />
           <NavigationProperty Name="Events" Relationship="GDP.CampusEvent" FromRole="Campus" ToRole="Event" />
+          <NavigationProperty Name="Classes" Relationship="GDP.ClassCampus" FromRole="Campus" ToRole="Class" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -970,6 +992,7 @@
           <NavigationProperty Name="StudyPeriods" Relationship="GDP.ClassStudyPeriod" FromRole="Class" ToRole="StudyPeriod" />
           <NavigationProperty Name="People" Relationship="GDP.ClassPerson" FromRole="Class" ToRole="Person" />
           <NavigationProperty Name="Courses" Relationship="GDP.ClassBaseCourse" FromRole="Class" ToRole="BaseCourse" />
+          <NavigationProperty Name="Campus" Relationship="GDP.ClassCampus" FromRole="Class" ToRole="Campus" />
         </EntityType>
         <EntityType Name="Venue">
           <Key>
@@ -1236,6 +1259,10 @@
         <Association Name="CampusEvent">
           <End Type="GDP.Campus" Role="Campus" Multiplicity="0..1" />
           <End Type="GDP.Event" Role="Event" Multiplicity="*" />
+        </Association>
+        <Association Name="ClassCampus">
+          <End Type="GDP.Class" Role="Class" Multiplicity="*" />
+          <End Type="GDP.Campus" Role="Campus" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1648,6 +1675,14 @@
       </EndProperty>
       <Condition ColumnName="Campus_Id" IsNull="false" />
     </AssociationSetMapping>
+    <AssociationSetMapping Name="ClassCampus" TypeName="GDP.ClassCampus" StoreEntitySet="Classes">
+      <EndProperty Name="Campus">
+        <ScalarProperty Name="Id" ColumnName="Campus_Id" />
+      </EndProperty>
+      <EndProperty Name="Class">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1779,13 +1814,17 @@
           <ConnectorPoint PointX="4.9375" PointY="30" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.CampusPerson">
-          <ConnectorPoint PointX="5.25" PointY="20.119944661458334" />
-          <ConnectorPoint PointX="4.625" PointY="20.119944661458334" />
+          <ConnectorPoint PointX="5.25" PointY="20.216095377604169" />
+          <ConnectorPoint PointX="5.0208308333333331" PointY="20.216095377604169" />
+          <ConnectorPoint PointX="4.8541641666666671" PointY="20.216095377604169" />
+          <ConnectorPoint PointX="4.625" PointY="20.216095377604169" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.BaseCoursePerson">
           <ConnectorPoint PointX="7.53125" PointY="24.875" />
-          <ConnectorPoint PointX="7.53125" PointY="20.682444661458334" />
-          <ConnectorPoint PointX="4.625" PointY="20.682444661458334" />
+          <ConnectorPoint PointX="7.53125" PointY="20.778595377604169" />
+          <ConnectorPoint PointX="5.0208308333333331" PointY="20.778595377604169" />
+          <ConnectorPoint PointX="4.8541641666666671" PointY="20.778595377604169" />
+          <ConnectorPoint PointX="4.625" PointY="20.778595377604169" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.ClassBaseCourse">
           <ConnectorPoint PointX="5.5" PointY="25.5862939453125" />
@@ -1807,10 +1846,12 @@
           <ConnectorPoint PointX="9.75" PointY="30.672841796874998" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.PersonEvent">
-          <ConnectorPoint PointX="4.625" PointY="22.153595377604169" />
-          <ConnectorPoint PointX="7.447916666666667" PointY="22.153595377604169" />
-          <ConnectorPoint PointX="7.614583333333333" PointY="22.153595377604169" />
-          <ConnectorPoint PointX="7.75" PointY="22.153595377604169" />
+          <ConnectorPoint PointX="4.625" PointY="22.071848958333334" />
+          <ConnectorPoint PointX="4.8541641666666671" PointY="22.071848958333334" />
+          <ConnectorPoint PointX="5.0208308333333331" PointY="22.071848958333334" />
+          <ConnectorPoint PointX="7.447916666666667" PointY="22.071848958333334" />
+          <ConnectorPoint PointX="7.614583333333333" PointY="22.071848958333334" />
+          <ConnectorPoint PointX="7.75" PointY="22.071848958333334" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserRole">
           <ConnectorPoint PointX="2.375" PointY="24.922506510416667" />
@@ -1825,6 +1866,11 @@
           <ConnectorPoint PointX="6.75" PointY="19.757022981770838" />
           <ConnectorPoint PointX="7.78125" PointY="19.757022981770838" />
           <ConnectorPoint PointX="7.78125" PointY="20.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.ClassCampus">
+          <ConnectorPoint PointX="4.9374975" PointY="24.125" />
+          <ConnectorPoint PointX="4.9374975" PointY="18.90625" />
+          <ConnectorPoint PointX="5.25" PointY="18.90625" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

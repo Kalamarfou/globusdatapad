@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/27/2010 13:00:30
+-- Date Created: 05/28/2010 14:03:21
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -25,9 +25,6 @@ IF OBJECT_ID(N'[dbo].[FK_CampusAddress]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_VenueAddress]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Addresses] DROP CONSTRAINT [FK_VenueAddress];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CampusEvent]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_CampusEvent];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EventVenue]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Venues] DROP CONSTRAINT [FK_EventVenue];
@@ -91,6 +88,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserRole_Role]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_VenueCampus]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Venues] DROP CONSTRAINT [FK_VenueCampus];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CampusEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_CampusEvent];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourse_inherits_Event]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourse_inherits_Event];
@@ -256,7 +256,8 @@ CREATE TABLE [dbo].[Classes] (
     [Common_Audit_CreatedAt] datetime  NOT NULL,
     [Common_Audit_LastModifiedAt] datetime  NOT NULL,
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
-    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
+    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
+    [Campus_Id] int  NOT NULL
 );
 GO
 
@@ -917,6 +918,20 @@ ADD CONSTRAINT [FK_CampusEvent]
 -- Creating non-clustered index for FOREIGN KEY 'FK_CampusEvent'
 CREATE INDEX [IX_FK_CampusEvent]
 ON [dbo].[Events]
+    ([Campus_Id]);
+GO
+
+-- Creating foreign key on [Campus_Id] in table 'Classes'
+ALTER TABLE [dbo].[Classes]
+ADD CONSTRAINT [FK_ClassCampus]
+    FOREIGN KEY ([Campus_Id])
+    REFERENCES [dbo].[Campuses]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ClassCampus'
+CREATE INDEX [IX_FK_ClassCampus]
+ON [dbo].[Classes]
     ([Campus_Id]);
 GO
 
