@@ -595,24 +595,17 @@ namespace WebApp.Extensions
         /// <param name="email">The e-mail address to search for.</param>
         public override string GetUserNameByEmail(string email)
         {
-            return string.Empty;
-            //throw new NotImplementedException("OSEF");
-            //try
-            //{
-            //    //EFDataModelEntities context = new EFDataModelEntities(ConnectionString);
-            //    //IQueryable<User> users = from u in context.User
-            //    //                         where u.Email == email && u.ApplicationName == applicationName
-            //    //                         select u;
+            ISecurityService service = new SecurityService();
+            DAL.User user = service.getUserByEmailAddress(email);
 
-            //    //if (users.Count() != 1) return string.Empty;
-
-            //    //User user = users.First();
-            //    //return user != null ? user.Username : string.Empty;
-            //}
-            //catch
-            //{
-            //    return string.Empty;
-            //}
+            if (user != null)
+            {
+                return user.Username;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -623,30 +616,7 @@ namespace WebApp.Extensions
         /// <param name="deleteAllRelatedData">true to delete data related to the user from the database; false to leave data related to the user in the database.</param>
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
         {
-            throw new NotImplementedException("OSEF");
-            //try
-            //{
-            //    EFDataModelEntities context = new EFDataModelEntities(ConnectionString);
-            //    IQueryable<User> users = from u in context.User
-            //                             where u.Username == username && u.ApplicationName == applicationName
-            //                             select u;
-
-            //    if (users.Count() != 1) return false;
-
-            //    User user = users.First();
-            //    context.DeleteObject(user);
-            //    context.SaveChanges();
-
-            //    if (deleteAllRelatedData)
-            //    {
-            //        // TODO: delete user related data
-            //    }
-            //    return true;
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
+            throw new NotImplementedException("TODO");      // Anyway, user should be disabled but never deleted...
         }
 
         /// <summary>
@@ -664,9 +634,7 @@ namespace WebApp.Extensions
 
             ISecurityService service = new SecurityService();
 
-            totalRecords = service.getTotalNumberOfUsers();
-
-            List<DAL.User> dbUsers = service.getAllUsers(pageIndex, pageSize);
+            List<DAL.User> dbUsers = service.getAllUsers(pageIndex, pageSize, out totalRecords);
 
             foreach (DAL.User user in dbUsers)
             {
@@ -743,12 +711,23 @@ namespace WebApp.Extensions
         /// <returns>membership user object</returns>
         private MembershipUser GetMembershipUserFromPersitentObject(DAL.User user)
         {
+            string emailAddress = "";
+            string comment = "";
+
+            DAL.Person person = user.Person;
+
+            if (person != null)
+            {
+                emailAddress = person.Email;
+                comment = person.Title;
+            }
+
             return new MembershipUser(Name,
                                       user.Username,
                                       user.Id,
-                                      "",
+                                      emailAddress,
                                       user.PasswordQuestion,
-                                      "",
+                                      comment,
                                       user.IsApproved,
                                       Convert.ToBoolean(user.IsLockedOut),
                                       Convert.ToDateTime(user.Common.Audit.CreatedAt),
@@ -763,98 +742,8 @@ namespace WebApp.Extensions
         /// </summary>
         private void UpdateFailureCount(string username, string failureType)
         {
-            throw new NotImplementedException("TODO");      // TODO vraiment à faire
-
-            //EFDataModelEntities context = new EFDataModelEntities(ConnectionString);
-            //IQueryable<User> users = from u in context.User
-            //                         where u.Username == username && u.ApplicationName == applicationName
-            //                         select u;
-
-            //if (users.Count() != 1) throw new ProviderException("Update failure count failed. No unique user found.");
-
-            //User user = users.First();
-
-            //DateTime windowStart = new DateTime();
-            //int failureCount = 0;
-
-            //if (failureType == "password")
-            //{
-            //    failureCount = Convert.ToInt32(user.FailedPasswordAttemptCount);
-            //    windowStart = Convert.ToDateTime(user.FailedPasswordAttemptWindowStart);
-            //}
-
-            //if (failureType == "passwordAnswer")
-            //{
-            //    failureCount = Convert.ToInt32(user.FailedPasswordAnswerAttemptCount);
-            //    windowStart = Convert.ToDateTime(user.FailedPasswordAnswerAttemptWindowStart);
-            //}
-
-            //DateTime windowEnd = windowStart.AddMinutes(PasswordAttemptWindow);
-
-            //if (failureCount == 0 || DateTime.Now > windowEnd)
-            //{
-            //    // First password failure or outside of PasswordAttemptWindow. 
-            //    // Start a new password failure count from 1 and a new window starting now.
-            //    if (failureType == "password")
-            //    {
-            //        user.FailedPasswordAttemptCount = 1;
-            //        user.FailedPasswordAttemptWindowStart = DateTime.Now;
-            //    }
-            //    if (failureType == "passwordAnswer")
-            //    {
-            //        user.FailedPasswordAnswerAttemptCount = 1;
-            //        user.FailedPasswordAnswerAttemptWindowStart = DateTime.Now;
-            //    }
-
-            //    try
-            //    {
-            //        context.SaveChanges();
-            //    }
-            //    catch
-            //    {
-            //        throw new ProviderException("Unable to update failure count and window start.");
-            //    }
-            //}
-            //else
-            //{
-            //    if (failureCount++ >= MaxInvalidPasswordAttempts)
-            //    {
-            //        // Max password attempts have exceeded the failure threshold. Lock out the user.
-            //        user.IsLockedOut = true;
-            //        user.LastLockedOutDate = DateTime.Now;
-
-            //        try
-            //        {
-            //            context.SaveChanges();
-            //        }
-            //        catch
-            //        {
-            //            throw new ProviderException("Unable to lock out user.");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        // Max password attempts have not exceeded the failure threshold. Update
-            //        // the failure counts. Leave the window the same.
-            //        if (failureType == "password")
-            //        {
-            //            user.FailedPasswordAttemptCount = failureCount;
-            //        }
-            //        if (failureType == "passwordAnswer")
-            //        {
-            //            user.FailedPasswordAnswerAttemptCount = failureCount;
-            //        }
-
-            //        try
-            //        {
-            //            context.SaveChanges();
-            //        }
-            //        catch
-            //        {
-            //            throw new ProviderException("Unable to update failure count.");
-            //        }
-            //    }
-            //}
+            ISecurityService service = new SecurityService();
+            service.logFailure(username, failureType, PasswordAttemptWindow, MaxInvalidPasswordAttempts);
         }
 
         /// <summary>

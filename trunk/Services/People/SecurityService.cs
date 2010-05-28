@@ -50,6 +50,20 @@ namespace Services.People
             return user;
         }
 
+        public User getUserByEmailAddress(string email)
+        {
+            DAL.User user = null;
+
+            using (GDPEntities db = new GDPEntities())
+            {
+                user = (from u in db.Users
+                        where u.Person.Email == email
+                        select u).SingleOrDefault<DAL.User>();
+            }
+
+            return user;
+        }
+
         public User getUserById(int userId)
         {
             DAL.User user = null;
@@ -81,8 +95,81 @@ namespace Services.People
             DAL.Utils.GenericCrud.Update<DAL.User>(user);
         }
 
-        public List<DAL.User> getAllUsers(int pageIndex, int pageSize)
+        public void logFailure(string username, string failureType, double passwordAttemptWindow, int maxInvalidPasswordAttempts)
         {
+            DAL.User user = getUserByUsername(username);
+
+            if (user == null)
+            {
+                throw new ApplicationException("User " + username + " doesn't exist.");
+            }
+
+            DateTime windowStart = new DateTime();
+            int failureCount = 0;
+
+            if (failureType == "password")
+            {
+                failureCount = Convert.ToInt32(user.FailedPasswordAttemptCount);
+                windowStart = Convert.ToDateTime(user.FailedPasswordAttemptWindowStart);
+            }
+
+            if (failureType == "passwordAnswer")
+            {
+                failureCount = Convert.ToInt32(user.FailedPasswordAnswerAttemptCount);
+                windowStart = Convert.ToDateTime(user.FailedPasswordAnswerAttemptWindowStart);
+            }
+
+            DateTime windowEnd = windowStart.AddMinutes(passwordAttemptWindow);
+
+            if (failureCount == 0 || DateTime.Now > windowEnd)
+            {
+                // First password failure or outside of PasswordAttemptWindow. 
+                // Start a new password failure count from 1 and a new window starting now.
+                if (failureType == "password")
+                {
+                    user.FailedPasswordAttemptCount = 1;
+                    user.FailedPasswordAttemptWindowStart = DateTime.Now;
+                }
+                if (failureType == "passwordAnswer")
+                {
+                    user.FailedPasswordAnswerAttemptCount = 1;
+                    user.FailedPasswordAnswerAttemptWindowStart = DateTime.Now;
+                }
+
+                updateUser(user);
+            }
+            else
+            {
+                if (failureCount++ >= maxInvalidPasswordAttempts)
+                {
+                    // Max password attempts have exceeded the failure threshold. Lock out the user.
+                    user.IsLockedOut = true;
+                    user.LastLockedOutDate = DateTime.Now;
+
+                    updateUser(user);
+                }
+                else
+                {
+                    // Max password attempts have not exceeded the failure threshold. Update
+                    // the failure counts. Leave the window the same.
+                    if (failureType == "password")
+                    {
+                        user.FailedPasswordAttemptCount = failureCount;
+                    }
+                    if (failureType == "passwordAnswer")
+                    {
+                        user.FailedPasswordAnswerAttemptCount = failureCount;
+                    }
+
+                    updateUser(user);
+                }
+            }
+        }
+
+        public List<User> getAllUsers(int pageIndex, int pageSize, out int totalCount)
+        {
+            totalCount = 0;
+
             List<DAL.User> users;
 
             using (GDPEntities db = new GDPEntities())
@@ -189,6 +276,5 @@ namespace Services.People
                             select r.ShortName).ToArray();
             }
         }
-
     }
 }

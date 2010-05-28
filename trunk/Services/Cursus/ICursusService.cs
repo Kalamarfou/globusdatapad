@@ -7,14 +7,48 @@ namespace Services.Cursus
 {
     public interface ICursusService
     {
-        void Create(DAL.Cursus c);
+        #region "Cursus"
 
-        DAL.Cursus GetById(int id);
+        void CreateCursus(DAL.Cursus c, string authorId);
 
-        List<DAL.Cursus> GetAll();
+        DAL.Cursus GetCursusById(int id);
 
-        void Update(int id, DAL.Cursus c);
+        List<DAL.Cursus> GetAllCursuses(int pageNum, int pageSize, out int totalRecords);
 
-        void Delete(int id);
+        /// <summary>
+        /// Get cursuses that are not over (having currently a study period or in the future.
+        /// </summary>
+        /// <param name="pageNum"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalRecords"></param>
+        /// <returns></returns>
+        List<DAL.Cursus> GetAllActiveCursuses(int pageNum, int pageSize, out int totalRecords);
+
+        void UpdateCursus(DAL.Cursus c, string authorId);
+
+        void DeleteCursus(DAL.Cursus c, string authorId);
+
+        #endregion
+
+        #region "StudyPeriods"
+
+        void CreateStudyPeriod(DAL.StudyPeriod sp, string authorId);
+
+        DAL.StudyPeriod GetStudyPeriodById(int id);
+
+        List<DAL.StudyPeriod> GetAllStudyPeriodsForCursus(int cursusId, int pageNum, int pageSize, out int totalRecords);
+
+        void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId);
+
+        void DeleteStudyPeriod(DAL.StudyPeriod sp, string authorId);
+        
+        #endregion
+
+        #region "Disciplines"
+
+
+
+        #endregion
+
     }
 }

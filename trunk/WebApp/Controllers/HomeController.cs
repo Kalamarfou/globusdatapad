@@ -9,6 +9,7 @@ namespace WebApp.Controllers
     [HandleError]
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
@@ -16,7 +17,7 @@ namespace WebApp.Controllers
             return View();
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize]
         public ActionResult About()
         {
             return View();

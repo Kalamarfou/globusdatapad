@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Services;
+using Services.People;
 
 namespace Services.Event
 {
@@ -95,7 +96,17 @@ namespace Services.Event
 
         public List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize)
         {
-            throw new NotImplementedException();
+            ISecurityService secService = new SecurityService();
+            DAL.User user = secService.getUserById(userId);
+
+            if(user != null) 
+            {
+                return (from e in user.Person.CurrentClass.Campus.Events
+                 where e.StartDate >= startDate && e.EndDate >= endDate
+                 select e).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            } else {
+                throw new ApplicationException("User " + userId + " does not exist.");
+            }
         }
 
         public List<DAL.Event> GetEventsForCampus(int userId, int pageNum, int pageSize)
@@ -149,5 +160,105 @@ namespace Services.Event
             ev.Common.IsDeleted = true;
             DAL.Utils.GenericCrud.Update(ev);
         }
+
+        #region IEventService Members
+
+
+        public void CreateUserEvent(DAL.Event ev, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateClassEvent(DAL.BaseCourse bc, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.WorldWideEvent> GetWorldWideEvents(int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetCampusEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetEventsForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetEventsForCampus(int campusId, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        DAL.BaseCourse IEventService.GetClassEventById(int eventId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetClassEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Event> GetEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(DAL.Event e, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateUserEvent(DAL.Event e, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateClassEvent(DAL.BaseCourse bc, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateCampusEvent(DAL.Event e, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int eventId, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(DAL.Event e, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

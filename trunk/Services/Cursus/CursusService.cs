@@ -77,5 +77,64 @@ namespace Services.Cursus
         {
             db.Cursuses.DeleteObject(db.Cursuses.First(c => c.Id == id));
         }
+
+        #region ICursusService Members
+
+        public void CreateCursus(DAL.Cursus c, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DAL.Cursus GetCursusById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Cursus> GetAllCursuses(int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Cursus> GetAllActiveCursuses(int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateCursus(DAL.Cursus c, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCursus(DAL.Cursus c, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateStudyPeriod(DAL.StudyPeriod sp, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DAL.StudyPeriod GetStudyPeriodById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.StudyPeriod> GetAllStudyPeriodsForCursus(int cursusId, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStudyPeriod(DAL.StudyPeriod sp, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

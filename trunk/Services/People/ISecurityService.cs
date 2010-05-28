@@ -19,13 +19,22 @@ namespace Services.People
         /// <returns></returns>
         DAL.User getUserByUsername(string username);
 
+        /// <summary>
+        /// Get DAL.User by the email address of the associated DAL.Person
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        DAL.User getUserByEmailAddress(string email);
+
         DAL.User getUserById(int userId);
 
         void updateUser(DAL.User user);
 
         void deleteUser(DAL.User user);
 
-        List<DAL.User> getAllUsers(int pageIndex, int pageSize);
+        void logFailure(string username, string failureType, double passwordAttemptWindow, int maxInvalidPasswordAttempts);
+
+        List<DAL.User> getAllUsers(int pageIndex, int pageSize, out int totalCount);
 
         /// <summary>
         /// Get the number of users online in the given time window
