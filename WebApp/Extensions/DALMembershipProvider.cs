@@ -265,7 +265,11 @@ namespace WebApp.Extensions
 
                 DAL.User user = new DAL.User();
 
+                user.FirstName = "";
+                user.LastName = "";
+                user.Title = "";
                 user.Username = username;
+                user.Email = email;
                 user.Password = EncodePassword(password);
                 user.PasswordQuestion = passwordQuestion;
                 user.PasswordAnswer = passwordAnswer;
@@ -711,23 +715,12 @@ namespace WebApp.Extensions
         /// <returns>membership user object</returns>
         private MembershipUser GetMembershipUserFromPersitentObject(DAL.User user)
         {
-            string emailAddress = "";
-            string comment = "";
-
-            DAL.Person person = user.Person;
-
-            if (person != null)
-            {
-                emailAddress = person.Email;
-                comment = person.Title;
-            }
-
             return new MembershipUser(Name,
                                       user.Username,
                                       user.Id,
-                                      emailAddress,
+                                      user.Email,
                                       user.PasswordQuestion,
-                                      comment,
+                                      user.Title,
                                       user.IsApproved,
                                       Convert.ToBoolean(user.IsLockedOut),
                                       Convert.ToDateTime(user.Common.Audit.CreatedAt),

@@ -73,7 +73,7 @@ namespace Services.Event
             
             if (user != null)
             {
-                var result = (from e in user.Person.CurrentClass.Campus.Events
+                var result = (from e in user.CurrentClass.Campus.Events
                               where e.StartDate >= startDate && e.EndDate >= endDate
                               select e);
                 totalRecords = result.Count();
@@ -90,10 +90,10 @@ namespace Services.Event
         {
             ISecurityService secService = new SecurityService();
             DAL.User user = secService.getUserById(userId);
-            totalRecords = user.Person.CurrentClass.Campus.Events.Count();
+            totalRecords = user.CurrentClass.Campus.Events.Count();
             if (user != null)
             {
-                var result = (from e in user.Person.CurrentClass.Campus.Events
+                var result = (from e in user.CurrentClass.Campus.Events
                               where e.EndDate >= DateTime.Now
                               select e);
                 totalRecords = result.Count();

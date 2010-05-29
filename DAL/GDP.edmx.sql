@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/28/2010 14:03:21
+-- Date Created: 05/29/2010 20:33:50
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -32,38 +32,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ClassStudyPeriod]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[StudyPeriods] DROP CONSTRAINT [FK_ClassStudyPeriod];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PersonUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_PersonUser];
-GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourseDiscipline]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourseDiscipline];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ClassPerson]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_ClassPerson];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonClass_Person]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PersonClass] DROP CONSTRAINT [FK_PersonClass_Person];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonClass_Class]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PersonClass] DROP CONSTRAINT [FK_PersonClass_Class];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonAvailability]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Availabilities] DROP CONSTRAINT [FK_PersonAvailability];
 GO
 IF OBJECT_ID(N'[dbo].[FK_EvaluationEvaluationType]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_Evaluation] DROP CONSTRAINT [FK_EvaluationEvaluationType];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CourseCourseType]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_Course] DROP CONSTRAINT [FK_CourseCourseType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CampusPerson_Campus]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CampusPerson] DROP CONSTRAINT [FK_CampusPerson_Campus];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CampusPerson_Person]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CampusPerson] DROP CONSTRAINT [FK_CampusPerson_Person];
-GO
-IF OBJECT_ID(N'[dbo].[FK_BaseCoursePerson]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCoursePerson];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ClassBaseCourse]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_ClassBaseCourse];
@@ -77,9 +53,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DisciplineEvaluationType]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[BaseTypes_EvaluationType] DROP CONSTRAINT [FK_DisciplineEvaluationType];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PersonEvent]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_PersonEvent];
-GO
 IF OBJECT_ID(N'[dbo].[FK_UserRole_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_User];
 GO
@@ -91,6 +64,9 @@ IF OBJECT_ID(N'[dbo].[FK_VenueCampus]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CampusEvent]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_CampusEvent];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClassCampus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Classes] DROP CONSTRAINT [FK_ClassCampus];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourse_inherits_Event]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourse_inherits_Event];
@@ -139,9 +115,6 @@ GO
 IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Users];
 GO
-IF OBJECT_ID(N'[dbo].[People]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[People];
-GO
 IF OBJECT_ID(N'[dbo].[Availabilities]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Availabilities];
 GO
@@ -171,12 +144,6 @@ IF OBJECT_ID(N'[dbo].[BaseTypes_CourseType]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Events_WorldWideEvent]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Events_WorldWideEvent];
-GO
-IF OBJECT_ID(N'[dbo].[PersonClass]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PersonClass];
-GO
-IF OBJECT_ID(N'[dbo].[CampusPerson]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CampusPerson];
 GO
 IF OBJECT_ID(N'[dbo].[UserRole]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserRole];
@@ -291,8 +258,8 @@ CREATE TABLE [dbo].[Events] (
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [IsMandatory] bit  NOT NULL,
-    [PersonEvent_Event_Id] int  NOT NULL,
-    [Campus_Id] int  NULL
+    [Campus_Id] int  NULL,
+    [User_Id] int  NULL
 );
 GO
 
@@ -320,23 +287,10 @@ CREATE TABLE [dbo].[Users] (
     [FailedPasswordAttemptWindowStart] datetime  NOT NULL,
     [FailedPasswordAnswerAttemptCount] int  NOT NULL,
     [FailedPasswordAnswerAttemptWindowStart] datetime  NOT NULL,
-    [Person_Id] int  NULL
-);
-GO
-
--- Creating table 'People'
-CREATE TABLE [dbo].[People] (
-    [Id] int IDENTITY(1,1) NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Title] nvarchar(max)  NOT NULL,
-    [Common_ConcurrencyToken] binary(8)  NULL,
-    [Common_IsDeleted] bit  NOT NULL,
-    [Common_Audit_CreatedAt] datetime  NOT NULL,
-    [Common_Audit_LastModifiedAt] datetime  NOT NULL,
-    [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
-    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [CurrentClass_Id] int  NULL
 );
 GO
@@ -346,7 +300,8 @@ CREATE TABLE [dbo].[Availabilities] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [StartDate] datetime  NOT NULL,
     [EndDate] datetime  NOT NULL,
-    [PersonId] int  NOT NULL
+    [PersonId] int  NOT NULL,
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -383,9 +338,9 @@ GO
 -- Creating table 'Events_BaseCourse'
 CREATE TABLE [dbo].[Events_BaseCourse] (
     [ClassId1] int  NOT NULL,
+    [UserId] int  NOT NULL,
     [Id] int  NOT NULL,
-    [Discipline_Id] int  NOT NULL,
-    [Person_Id] int  NOT NULL
+    [Discipline_Id] int  NOT NULL
 );
 GO
 
@@ -425,24 +380,24 @@ CREATE TABLE [dbo].[Events_WorldWideEvent] (
 );
 GO
 
--- Creating table 'PersonClass'
-CREATE TABLE [dbo].[PersonClass] (
-    [PersonClass_Class_Id] int  NOT NULL,
-    [PreviousClasses_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'CampusPerson'
-CREATE TABLE [dbo].[CampusPerson] (
-    [ManagedCampuses_Id] int  NOT NULL,
-    [Managers_Id] int  NOT NULL
-);
-GO
-
 -- Creating table 'UserRole'
 CREATE TABLE [dbo].[UserRole] (
     [Users_Id] int  NOT NULL,
     [Roles_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserClassPast'
+CREATE TABLE [dbo].[UserClassPast] (
+    [PreviousUsers_Id] int  NOT NULL,
+    [PreviousClasses_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserCampus'
+CREATE TABLE [dbo].[UserCampus] (
+    [Managers_Id] int  NOT NULL,
+    [ManagedCampuses_Id] int  NOT NULL
 );
 GO
 
@@ -495,12 +450,6 @@ GO
 -- Creating primary key on [Id] in table 'Users'
 ALTER TABLE [dbo].[Users]
 ADD CONSTRAINT [PK_Users]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'People'
-ALTER TABLE [dbo].[People]
-ADD CONSTRAINT [PK_People]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -564,22 +513,22 @@ ADD CONSTRAINT [PK_Events_WorldWideEvent]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [PersonClass_Class_Id], [PreviousClasses_Id] in table 'PersonClass'
-ALTER TABLE [dbo].[PersonClass]
-ADD CONSTRAINT [PK_PersonClass]
-    PRIMARY KEY NONCLUSTERED ([PersonClass_Class_Id], [PreviousClasses_Id] ASC);
-GO
-
--- Creating primary key on [ManagedCampuses_Id], [Managers_Id] in table 'CampusPerson'
-ALTER TABLE [dbo].[CampusPerson]
-ADD CONSTRAINT [PK_CampusPerson]
-    PRIMARY KEY NONCLUSTERED ([ManagedCampuses_Id], [Managers_Id] ASC);
-GO
-
 -- Creating primary key on [Users_Id], [Roles_Id] in table 'UserRole'
 ALTER TABLE [dbo].[UserRole]
 ADD CONSTRAINT [PK_UserRole]
     PRIMARY KEY NONCLUSTERED ([Users_Id], [Roles_Id] ASC);
+GO
+
+-- Creating primary key on [PreviousUsers_Id], [PreviousClasses_Id] in table 'UserClassPast'
+ALTER TABLE [dbo].[UserClassPast]
+ADD CONSTRAINT [PK_UserClassPast]
+    PRIMARY KEY NONCLUSTERED ([PreviousUsers_Id], [PreviousClasses_Id] ASC);
+GO
+
+-- Creating primary key on [Managers_Id], [ManagedCampuses_Id] in table 'UserCampus'
+ALTER TABLE [dbo].[UserCampus]
+ADD CONSTRAINT [PK_UserCampus]
+    PRIMARY KEY NONCLUSTERED ([Managers_Id], [ManagedCampuses_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -656,20 +605,6 @@ ON [dbo].[StudyPeriods]
     ([ClassId]);
 GO
 
--- Creating foreign key on [Person_Id] in table 'Users'
-ALTER TABLE [dbo].[Users]
-ADD CONSTRAINT [FK_PersonUser]
-    FOREIGN KEY ([Person_Id])
-    REFERENCES [dbo].[People]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonUser'
-CREATE INDEX [IX_FK_PersonUser]
-ON [dbo].[Users]
-    ([Person_Id]);
-GO
-
 -- Creating foreign key on [Discipline_Id] in table 'Events_BaseCourse'
 ALTER TABLE [dbo].[Events_BaseCourse]
 ADD CONSTRAINT [FK_BaseCourseDiscipline]
@@ -682,57 +617,6 @@ ADD CONSTRAINT [FK_BaseCourseDiscipline]
 CREATE INDEX [IX_FK_BaseCourseDiscipline]
 ON [dbo].[Events_BaseCourse]
     ([Discipline_Id]);
-GO
-
--- Creating foreign key on [CurrentClass_Id] in table 'People'
-ALTER TABLE [dbo].[People]
-ADD CONSTRAINT [FK_ClassPerson]
-    FOREIGN KEY ([CurrentClass_Id])
-    REFERENCES [dbo].[Classes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ClassPerson'
-CREATE INDEX [IX_FK_ClassPerson]
-ON [dbo].[People]
-    ([CurrentClass_Id]);
-GO
-
--- Creating foreign key on [PersonClass_Class_Id] in table 'PersonClass'
-ALTER TABLE [dbo].[PersonClass]
-ADD CONSTRAINT [FK_PersonClass_Person]
-    FOREIGN KEY ([PersonClass_Class_Id])
-    REFERENCES [dbo].[People]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [PreviousClasses_Id] in table 'PersonClass'
-ALTER TABLE [dbo].[PersonClass]
-ADD CONSTRAINT [FK_PersonClass_Class]
-    FOREIGN KEY ([PreviousClasses_Id])
-    REFERENCES [dbo].[Classes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonClass_Class'
-CREATE INDEX [IX_FK_PersonClass_Class]
-ON [dbo].[PersonClass]
-    ([PreviousClasses_Id]);
-GO
-
--- Creating foreign key on [PersonId] in table 'Availabilities'
-ALTER TABLE [dbo].[Availabilities]
-ADD CONSTRAINT [FK_PersonAvailability]
-    FOREIGN KEY ([PersonId])
-    REFERENCES [dbo].[People]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonAvailability'
-CREATE INDEX [IX_FK_PersonAvailability]
-ON [dbo].[Availabilities]
-    ([PersonId]);
 GO
 
 -- Creating foreign key on [EvaluationType_Id] in table 'Events_Evaluation'
@@ -761,43 +645,6 @@ ADD CONSTRAINT [FK_CourseCourseType]
 CREATE INDEX [IX_FK_CourseCourseType]
 ON [dbo].[Events_Course]
     ([CourseType_Id]);
-GO
-
--- Creating foreign key on [ManagedCampuses_Id] in table 'CampusPerson'
-ALTER TABLE [dbo].[CampusPerson]
-ADD CONSTRAINT [FK_CampusPerson_Campus]
-    FOREIGN KEY ([ManagedCampuses_Id])
-    REFERENCES [dbo].[Campuses]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Managers_Id] in table 'CampusPerson'
-ALTER TABLE [dbo].[CampusPerson]
-ADD CONSTRAINT [FK_CampusPerson_Person]
-    FOREIGN KEY ([Managers_Id])
-    REFERENCES [dbo].[People]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CampusPerson_Person'
-CREATE INDEX [IX_FK_CampusPerson_Person]
-ON [dbo].[CampusPerson]
-    ([Managers_Id]);
-GO
-
--- Creating foreign key on [Person_Id] in table 'Events_BaseCourse'
-ALTER TABLE [dbo].[Events_BaseCourse]
-ADD CONSTRAINT [FK_BaseCoursePerson]
-    FOREIGN KEY ([Person_Id])
-    REFERENCES [dbo].[People]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_BaseCoursePerson'
-CREATE INDEX [IX_FK_BaseCoursePerson]
-ON [dbo].[Events_BaseCourse]
-    ([Person_Id]);
 GO
 
 -- Creating foreign key on [ClassId1] in table 'Events_BaseCourse'
@@ -854,20 +701,6 @@ ADD CONSTRAINT [FK_DisciplineEvaluationType]
 CREATE INDEX [IX_FK_DisciplineEvaluationType]
 ON [dbo].[BaseTypes_EvaluationType]
     ([DisciplineId]);
-GO
-
--- Creating foreign key on [PersonEvent_Event_Id] in table 'Events'
-ALTER TABLE [dbo].[Events]
-ADD CONSTRAINT [FK_PersonEvent]
-    FOREIGN KEY ([PersonEvent_Event_Id])
-    REFERENCES [dbo].[People]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonEvent'
-CREATE INDEX [IX_FK_PersonEvent]
-ON [dbo].[Events]
-    ([PersonEvent_Event_Id]);
 GO
 
 -- Creating foreign key on [Users_Id] in table 'UserRole'
@@ -933,6 +766,108 @@ ADD CONSTRAINT [FK_ClassCampus]
 CREATE INDEX [IX_FK_ClassCampus]
 ON [dbo].[Classes]
     ([Campus_Id]);
+GO
+
+-- Creating foreign key on [CurrentClass_Id] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [FK_UserClass]
+    FOREIGN KEY ([CurrentClass_Id])
+    REFERENCES [dbo].[Classes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserClass'
+CREATE INDEX [IX_FK_UserClass]
+ON [dbo].[Users]
+    ([CurrentClass_Id]);
+GO
+
+-- Creating foreign key on [PreviousUsers_Id] in table 'UserClassPast'
+ALTER TABLE [dbo].[UserClassPast]
+ADD CONSTRAINT [FK_UserClassPast_User]
+    FOREIGN KEY ([PreviousUsers_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [PreviousClasses_Id] in table 'UserClassPast'
+ALTER TABLE [dbo].[UserClassPast]
+ADD CONSTRAINT [FK_UserClassPast_Class]
+    FOREIGN KEY ([PreviousClasses_Id])
+    REFERENCES [dbo].[Classes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserClassPast_Class'
+CREATE INDEX [IX_FK_UserClassPast_Class]
+ON [dbo].[UserClassPast]
+    ([PreviousClasses_Id]);
+GO
+
+-- Creating foreign key on [UserId] in table 'Availabilities'
+ALTER TABLE [dbo].[Availabilities]
+ADD CONSTRAINT [FK_UserAvailability]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserAvailability'
+CREATE INDEX [IX_FK_UserAvailability]
+ON [dbo].[Availabilities]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [Managers_Id] in table 'UserCampus'
+ALTER TABLE [dbo].[UserCampus]
+ADD CONSTRAINT [FK_UserCampus_User]
+    FOREIGN KEY ([Managers_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [ManagedCampuses_Id] in table 'UserCampus'
+ALTER TABLE [dbo].[UserCampus]
+ADD CONSTRAINT [FK_UserCampus_Campus]
+    FOREIGN KEY ([ManagedCampuses_Id])
+    REFERENCES [dbo].[Campuses]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserCampus_Campus'
+CREATE INDEX [IX_FK_UserCampus_Campus]
+ON [dbo].[UserCampus]
+    ([ManagedCampuses_Id]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'Events'
+ALTER TABLE [dbo].[Events]
+ADD CONSTRAINT [FK_UserEvent]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserEvent'
+CREATE INDEX [IX_FK_UserEvent]
+ON [dbo].[Events]
+    ([User_Id]);
+GO
+
+-- Creating foreign key on [UserId] in table 'Events_BaseCourse'
+ALTER TABLE [dbo].[Events_BaseCourse]
+ADD CONSTRAINT [FK_UserBaseCourse]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserBaseCourse'
+CREATE INDEX [IX_FK_UserBaseCourse]
+ON [dbo].[Events_BaseCourse]
+    ([UserId]);
 GO
 
 -- Creating foreign key on [Id] in table 'Events_BaseCourse'
