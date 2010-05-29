@@ -57,7 +57,7 @@ namespace Services.People
             using (GDPEntities db = new GDPEntities())
             {
                 user = (from u in db.Users
-                        where u.Person.Email == email
+                        where u.Email == email
                         select u).SingleOrDefault<DAL.User>();
             }
 

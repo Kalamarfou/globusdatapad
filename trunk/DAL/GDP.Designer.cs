@@ -23,24 +23,23 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "VenueAddress", "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Address))]
 [assembly: EdmRelationshipAttribute("GDP", "EventVenue", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Event), "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue))]
 [assembly: EdmRelationshipAttribute("GDP", "ClassStudyPeriod", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Class), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod), true)]
-[assembly: EdmRelationshipAttribute("GDP", "PersonUser", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Person), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.User))]
 [assembly: EdmRelationshipAttribute("GDP", "BaseCourseDiscipline", "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.BaseCourse), "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline))]
-[assembly: EdmRelationshipAttribute("GDP", "ClassPerson", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Class), "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Person))]
-[assembly: EdmRelationshipAttribute("GDP", "PersonClass", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Person), "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Class))]
-[assembly: EdmRelationshipAttribute("GDP", "PersonAvailability", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person), "Availability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Availability), true)]
 [assembly: EdmRelationshipAttribute("GDP", "EvaluationEvaluationType", "Evaluation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Evaluation), "EvaluationType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.EvaluationType))]
 [assembly: EdmRelationshipAttribute("GDP", "CourseCourseType", "Course", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Course), "CourseType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.CourseType))]
-[assembly: EdmRelationshipAttribute("GDP", "CampusPerson", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Campus), "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Person))]
-[assembly: EdmRelationshipAttribute("GDP", "BaseCoursePerson", "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.BaseCourse), "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person))]
 [assembly: EdmRelationshipAttribute("GDP", "ClassBaseCourse", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Class), "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.BaseCourse), true)]
 [assembly: EdmRelationshipAttribute("GDP", "DisciplineStudyPeriod", "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Discipline), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.StudyPeriod))]
 [assembly: EdmRelationshipAttribute("GDP", "DisciplineCourseType", "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline), "CourseType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.CourseType), true)]
 [assembly: EdmRelationshipAttribute("GDP", "DisciplineEvaluationType", "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline), "EvaluationType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.EvaluationType), true)]
-[assembly: EdmRelationshipAttribute("GDP", "PersonEvent", "Person", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Person), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 [assembly: EdmRelationshipAttribute("GDP", "UserRole", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Role))]
 [assembly: EdmRelationshipAttribute("GDP", "VenueCampus", "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Venue), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Campus))]
 [assembly: EdmRelationshipAttribute("GDP", "CampusEvent", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Campus), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 [assembly: EdmRelationshipAttribute("GDP", "ClassCampus", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Class), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus))]
+[assembly: EdmRelationshipAttribute("GDP", "UserClass", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Class))]
+[assembly: EdmRelationshipAttribute("GDP", "UserClassPast", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Class))]
+[assembly: EdmRelationshipAttribute("GDP", "UserAvailability", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "Availability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Availability), true)]
+[assembly: EdmRelationshipAttribute("GDP", "UserCampus", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Campus))]
+[assembly: EdmRelationshipAttribute("GDP", "UserEvent", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.User), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
+[assembly: EdmRelationshipAttribute("GDP", "UserBaseCourse", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.BaseCourse), true)]
 
 #endregion
 
@@ -223,22 +222,6 @@ namespace DAL
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Person> People
-        {
-            get
-            {
-                if ((_People == null))
-                {
-                    _People = base.CreateObjectSet<Person>("People");
-                }
-                return _People;
-            }
-        }
-        private ObjectSet<Person> _People;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Availability> Availabilities
         {
             get
@@ -365,14 +348,6 @@ namespace DAL
         public void AddToUsers(User user)
         {
             base.AddObject("Users", user);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the People EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPeople(Person person)
-        {
-            base.AddObject("People", person);
         }
     
         /// <summary>
@@ -627,13 +602,15 @@ namespace DAL
         /// <param name="startDate">Initial value of the StartDate property.</param>
         /// <param name="endDate">Initial value of the EndDate property.</param>
         /// <param name="personId">Initial value of the PersonId property.</param>
-        public static Availability CreateAvailability(global::System.Int32 id, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Int32 personId)
+        /// <param name="userId">Initial value of the UserId property.</param>
+        public static Availability CreateAvailability(global::System.Int32 id, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Int32 personId, global::System.Int32 userId)
         {
             Availability availability = new Availability();
             availability.Id = id;
             availability.StartDate = startDate;
             availability.EndDate = endDate;
             availability.PersonId = personId;
+            availability.UserId = userId;
             return availability;
         }
 
@@ -738,6 +715,30 @@ namespace DAL
         private global::System.Int32 _PersonId;
         partial void OnPersonIdChanging(global::System.Int32 value);
         partial void OnPersonIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
 
         #endregion
     
@@ -749,16 +750,16 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonAvailability", "Person")]
-        public Person Person
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserAvailability", "User")]
+        public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.PersonAvailability", "Person").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserAvailability", "User").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.PersonAvailability", "Person").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserAvailability", "User").Value = value;
             }
         }
         /// <summary>
@@ -766,17 +767,17 @@ namespace DAL
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Person> PersonReference
+        public EntityReference<User> UserReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.PersonAvailability", "Person");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserAvailability", "User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("GDP.PersonAvailability", "Person", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("GDP.UserAvailability", "User", value);
                 }
             }
         }
@@ -819,6 +820,30 @@ namespace DAL
         private global::System.Int32 _ClassId1;
         partial void OnClassId1Changing(global::System.Int32 value);
         partial void OnClassId1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.Int32 _UserId;
+        partial void OnUserIdChanging(global::System.Int32 value);
+        partial void OnUserIdChanged();
 
         #endregion
     
@@ -868,44 +893,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "BaseCoursePerson", "Person")]
-        public Person Person
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.BaseCoursePerson", "Person").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.BaseCoursePerson", "Person").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Person> PersonReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.BaseCoursePerson", "Person");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("GDP.BaseCoursePerson", "Person", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassBaseCourse", "Class")]
         public Class Class
         {
@@ -934,6 +921,44 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Class>("GDP.ClassBaseCourse", "Class", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserBaseCourse", "User")]
+        public User Stakeholder
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserBaseCourse", "User").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserBaseCourse", "User").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<User> StakeholderReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserBaseCourse", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("GDP.UserBaseCourse", "User", value);
                 }
             }
         }
@@ -1193,28 +1218,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "CampusPerson", "Person")]
-        public EntityCollection<Person> Managers
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Person>("GDP.CampusPerson", "Person");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Person>("GDP.CampusPerson", "Person", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "VenueCampus", "Venue")]
         public EntityCollection<Venue> Venues
         {
@@ -1271,6 +1274,28 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Class>("GDP.ClassCampus", "Class", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserCampus", "User")]
+        public EntityCollection<User> Managers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("GDP.UserCampus", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("GDP.UserCampus", "User", value);
                 }
             }
         }
@@ -1423,28 +1448,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassPerson", "Person")]
-        public EntityCollection<Person> People
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Person>("GDP.ClassPerson", "Person");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Person>("GDP.ClassPerson", "Person", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassBaseCourse", "BaseCourse")]
         public EntityCollection<BaseCourse> Courses
         {
@@ -1498,6 +1501,50 @@ namespace DAL
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserClass", "User")]
+        public EntityCollection<User> Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("GDP.UserClass", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("GDP.UserClass", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserClassPast", "User")]
+        public EntityCollection<User> PreviousUsers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("GDP.UserClassPast", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("GDP.UserClassPast", "User", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -1523,8 +1570,9 @@ namespace DAL
         /// <param name="common">Initial value of the Common property.</param>
         /// <param name="isMandatory">Initial value of the IsMandatory property.</param>
         /// <param name="classId1">Initial value of the ClassId1 property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
         /// <param name="classId">Initial value of the ClassId property.</param>
-        public static Course CreateCourse(global::System.Int32 id, global::System.String name, global::System.String description, global::System.DateTime startDate, global::System.DateTime endDate, Common common, global::System.Boolean isMandatory, global::System.Int32 classId1, global::System.Int32 classId)
+        public static Course CreateCourse(global::System.Int32 id, global::System.String name, global::System.String description, global::System.DateTime startDate, global::System.DateTime endDate, Common common, global::System.Boolean isMandatory, global::System.Int32 classId1, global::System.Int32 userId, global::System.Int32 classId)
         {
             Course course = new Course();
             course.Id = id;
@@ -1535,6 +1583,7 @@ namespace DAL
             course.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             course.IsMandatory = isMandatory;
             course.ClassId1 = classId1;
+            course.UserId = userId;
             course.ClassId = classId;
             return course;
         }
@@ -2061,8 +2110,9 @@ namespace DAL
         /// <param name="common">Initial value of the Common property.</param>
         /// <param name="isMandatory">Initial value of the IsMandatory property.</param>
         /// <param name="classId1">Initial value of the ClassId1 property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
         /// <param name="classId">Initial value of the ClassId property.</param>
-        public static Evaluation CreateEvaluation(global::System.Int32 id, global::System.String name, global::System.String description, global::System.DateTime startDate, global::System.DateTime endDate, Common common, global::System.Boolean isMandatory, global::System.Int32 classId1, global::System.Int32 classId)
+        public static Evaluation CreateEvaluation(global::System.Int32 id, global::System.String name, global::System.String description, global::System.DateTime startDate, global::System.DateTime endDate, Common common, global::System.Boolean isMandatory, global::System.Int32 classId1, global::System.Int32 userId, global::System.Int32 classId)
         {
             Evaluation evaluation = new Evaluation();
             evaluation.Id = id;
@@ -2073,6 +2123,7 @@ namespace DAL
             evaluation.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             evaluation.IsMandatory = isMandatory;
             evaluation.ClassId1 = classId1;
+            evaluation.UserId = userId;
             evaluation.ClassId = classId;
             return evaluation;
         }
@@ -2568,204 +2619,6 @@ namespace DAL
                 }
             }
         }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="GDP", Name="Person")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Person : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Person object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="firstName">Initial value of the FirstName property.</param>
-        /// <param name="lastName">Initial value of the LastName property.</param>
-        /// <param name="email">Initial value of the Email property.</param>
-        /// <param name="title">Initial value of the Title property.</param>
-        /// <param name="common">Initial value of the Common property.</param>
-        public static Person CreatePerson(global::System.Int32 id, global::System.String firstName, global::System.String lastName, global::System.String email, global::System.String title, Common common)
-        {
-            Person person = new Person();
-            person.Id = id;
-            person.FirstName = firstName;
-            person.LastName = lastName;
-            person.Email = email;
-            person.Title = title;
-            person.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
-            return person;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String FirstName
-        {
-            get
-            {
-                return _FirstName;
-            }
-            set
-            {
-                OnFirstNameChanging(value);
-                ReportPropertyChanging("FirstName");
-                _FirstName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("FirstName");
-                OnFirstNameChanged();
-            }
-        }
-        private global::System.String _FirstName;
-        partial void OnFirstNameChanging(global::System.String value);
-        partial void OnFirstNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String LastName
-        {
-            get
-            {
-                return _LastName;
-            }
-            set
-            {
-                OnLastNameChanging(value);
-                ReportPropertyChanging("LastName");
-                _LastName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("LastName");
-                OnLastNameChanged();
-            }
-        }
-        private global::System.String _LastName;
-        partial void OnLastNameChanging(global::System.String value);
-        partial void OnLastNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Email
-        {
-            get
-            {
-                return _Email;
-            }
-            set
-            {
-                OnEmailChanging(value);
-                ReportPropertyChanging("Email");
-                _Email = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Email");
-                OnEmailChanged();
-            }
-        }
-        private global::System.String _Email;
-        partial void OnEmailChanging(global::System.String value);
-        partial void OnEmailChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Title
-        {
-            get
-            {
-                return _Title;
-            }
-            set
-            {
-                OnTitleChanging(value);
-                ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Title");
-                OnTitleChanged();
-            }
-        }
-        private global::System.String _Title;
-        partial void OnTitleChanging(global::System.String value);
-        partial void OnTitleChanged();
-
-        #endregion
-        #region Complex Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmComplexPropertyAttribute()]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        [XmlElement(IsNullable=true)]
-        [SoapElement(IsNullable=true)]
-        [DataMemberAttribute()]
-        public Common Common
-        {
-            get
-            {
-                _Common = GetValidValue(_Common, "Common", false, _CommonInitialized);
-                _CommonInitialized = true;
-                return _Common;
-            }
-            set
-            {
-                OnCommonChanging(value);
-                ReportPropertyChanging("Common");
-                _Common = SetValidValue(_Common, value, "Common");
-                _CommonInitialized = true;
-                ReportPropertyChanged("Common");
-                OnCommonChanged();
-            }
-        }
-        private Common _Common;
-        private bool _CommonInitialized;
-        partial void OnCommonChanging(Common value);
-        partial void OnCommonChanged();
-
-        #endregion
-    
-        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2773,16 +2626,16 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonUser", "User")]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserEvent", "User")]
         public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.PersonUser", "User").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserEvent", "User").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.PersonUser", "User").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserEvent", "User").Value = value;
             }
         }
         /// <summary>
@@ -2794,161 +2647,13 @@ namespace DAL
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.PersonUser", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("GDP.UserEvent", "User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("GDP.PersonUser", "User", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassPerson", "Class")]
-        public Class CurrentClass
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.ClassPerson", "Class").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.ClassPerson", "Class").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Class> CurrentClassReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.ClassPerson", "Class");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Class>("GDP.ClassPerson", "Class", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonClass", "Class")]
-        public EntityCollection<Class> PreviousClasses
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Class>("GDP.PersonClass", "Class");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Class>("GDP.PersonClass", "Class", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonAvailability", "Availability")]
-        public EntityCollection<Availability> Availabilities
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Availability>("GDP.PersonAvailability", "Availability");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Availability>("GDP.PersonAvailability", "Availability", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "CampusPerson", "Campus")]
-        public EntityCollection<Campus> ManagedCampuses
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Campus>("GDP.CampusPerson", "Campus");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Campus>("GDP.CampusPerson", "Campus", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "BaseCoursePerson", "BaseCourse")]
-        public EntityCollection<BaseCourse> BaseCourses
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BaseCourse>("GDP.BaseCoursePerson", "BaseCourse");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BaseCourse>("GDP.BaseCoursePerson", "BaseCourse", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonEvent", "Event")]
-        public EntityCollection<Event> Events
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("GDP.PersonEvent", "Event");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("GDP.PersonEvent", "Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("GDP.UserEvent", "User", value);
                 }
             }
         }
@@ -3476,7 +3181,11 @@ namespace DAL
         /// <param name="failedPasswordAttemptWindowStart">Initial value of the FailedPasswordAttemptWindowStart property.</param>
         /// <param name="failedPasswordAnswerAttemptCount">Initial value of the FailedPasswordAnswerAttemptCount property.</param>
         /// <param name="failedPasswordAnswerAttemptWindowStart">Initial value of the FailedPasswordAnswerAttemptWindowStart property.</param>
-        public static User CreateUser(global::System.Int32 id, global::System.String password, global::System.Boolean isApproved, Common common, global::System.String username, global::System.String passwordQuestion, global::System.String passwordAnswer, global::System.DateTime lastActivityDate, global::System.DateTime lastLoginDate, global::System.DateTime lastPasswordChangedDate, global::System.Boolean isOnline, global::System.Boolean isLockedOut, global::System.DateTime lastLockedOutDate, global::System.Int32 failedPasswordAttemptCount, global::System.DateTime failedPasswordAttemptWindowStart, global::System.Int32 failedPasswordAnswerAttemptCount, global::System.DateTime failedPasswordAnswerAttemptWindowStart)
+        /// <param name="firstName">Initial value of the FirstName property.</param>
+        /// <param name="lastName">Initial value of the LastName property.</param>
+        /// <param name="email">Initial value of the Email property.</param>
+        /// <param name="title">Initial value of the Title property.</param>
+        public static User CreateUser(global::System.Int32 id, global::System.String password, global::System.Boolean isApproved, Common common, global::System.String username, global::System.String passwordQuestion, global::System.String passwordAnswer, global::System.DateTime lastActivityDate, global::System.DateTime lastLoginDate, global::System.DateTime lastPasswordChangedDate, global::System.Boolean isOnline, global::System.Boolean isLockedOut, global::System.DateTime lastLockedOutDate, global::System.Int32 failedPasswordAttemptCount, global::System.DateTime failedPasswordAttemptWindowStart, global::System.Int32 failedPasswordAnswerAttemptCount, global::System.DateTime failedPasswordAnswerAttemptWindowStart, global::System.String firstName, global::System.String lastName, global::System.String email, global::System.String title)
         {
             User user = new User();
             user.Id = id;
@@ -3496,6 +3205,10 @@ namespace DAL
             user.FailedPasswordAttemptWindowStart = failedPasswordAttemptWindowStart;
             user.FailedPasswordAnswerAttemptCount = failedPasswordAnswerAttemptCount;
             user.FailedPasswordAnswerAttemptWindowStart = failedPasswordAnswerAttemptWindowStart;
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Email = email;
+            user.Title = title;
             return user;
         }
 
@@ -3888,6 +3601,102 @@ namespace DAL
         private global::System.DateTime _FailedPasswordAnswerAttemptWindowStart;
         partial void OnFailedPasswordAnswerAttemptWindowStartChanging(global::System.DateTime value);
         partial void OnFailedPasswordAnswerAttemptWindowStartChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FirstName
+        {
+            get
+            {
+                return _FirstName;
+            }
+            set
+            {
+                OnFirstNameChanging(value);
+                ReportPropertyChanging("FirstName");
+                _FirstName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FirstName");
+                OnFirstNameChanged();
+            }
+        }
+        private global::System.String _FirstName;
+        partial void OnFirstNameChanging(global::System.String value);
+        partial void OnFirstNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LastName
+        {
+            get
+            {
+                return _LastName;
+            }
+            set
+            {
+                OnLastNameChanging(value);
+                ReportPropertyChanging("LastName");
+                _LastName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LastName");
+                OnLastNameChanged();
+            }
+        }
+        private global::System.String _LastName;
+        partial void OnLastNameChanging(global::System.String value);
+        partial void OnLastNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
+            }
+        }
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
 
         #endregion
         #region Complex Properties
@@ -3933,44 +3742,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "PersonUser", "Person")]
-        public Person Person
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.PersonUser", "Person").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.PersonUser", "Person").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Person> PersonReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Person>("GDP.PersonUser", "Person");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Person>("GDP.PersonUser", "Person", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "UserRole", "Role")]
         public EntityCollection<Role> Roles
         {
@@ -3983,6 +3754,154 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("GDP.UserRole", "Role", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserClass", "Class")]
+        public Class CurrentClass
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.UserClass", "Class").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.UserClass", "Class").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Class> CurrentClassReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.UserClass", "Class");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Class>("GDP.UserClass", "Class", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserClassPast", "Class")]
+        public EntityCollection<Class> PreviousClasses
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Class>("GDP.UserClassPast", "Class");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Class>("GDP.UserClassPast", "Class", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserAvailability", "Availability")]
+        public EntityCollection<Availability> Availabilities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Availability>("GDP.UserAvailability", "Availability");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Availability>("GDP.UserAvailability", "Availability", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserCampus", "Campus")]
+        public EntityCollection<Campus> ManagedCampuses
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Campus>("GDP.UserCampus", "Campus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Campus>("GDP.UserCampus", "Campus", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserEvent", "Event")]
+        public EntityCollection<Event> Events
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("GDP.UserEvent", "Event");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("GDP.UserEvent", "Event", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserBaseCourse", "BaseCourse")]
+        public EntityCollection<BaseCourse> BaseCourses
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BaseCourse>("GDP.UserBaseCourse", "BaseCourse");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BaseCourse>("GDP.UserBaseCourse", "BaseCourse", value);
                 }
             }
         }
