@@ -1,0 +1,180 @@
+﻿html {
+	font-size: 100%; 
+}
+body {
+	margin: 0;
+	padding: 20px 5px; 
+	font-family: Verdana, sans-serif; 
+	font-size: .9em; 
+	color: #AC1741;
+	background:  #FFFFFF;
+}
+
+h1, h2, h3 {
+	font-family:  serif;
+}
+h1 {
+	font-size: 3em; 
+	font-style: italic;
+}
+h2 {
+font-size: 1.6em;
+}
+h3 {
+font-size: 1.2em;
+}
+
+ul, ol {
+	margin: .75em 0 .75em 24px;
+	padding: 0; 
+}
+
+li {
+	margin: 0;
+	padding: 0;
+}
+
+table{
+    background-color:#FFFFFF;
+    border: solid #000 3px;
+    width: 400px;
+	}
+	
+table td {
+    padding: 5px;
+    border: solid #000 1px;
+	}
+	
+#data {
+    color: #000000;
+    text-align: right;
+    background-color: #FCA80A;
+
+}
+
+#logout{
+text-align:right;
+margin-top:-70px;
+}
+
+#box {
+margin-left:650px;
+width: 400px;
+margin-top:-170px;
+
+}
+
+#principal h2{
+
+visibility:hidden;
+}
+
+
+
+#img
+{
+background: url(fond.gif) no-repeat;
+height:37px;
+}
+a {
+	color: #FF6533;
+}
+a:hover, a:focus {
+	color: #FF4C00;
+}
+
+#center {
+	
+}
+
+#menu {
+	background: #FCA80A url(bg_linkList.gif) repeat-y;
+	}
+#menu a {
+	color: #AC1741;
+}
+#menu a:hover, #menu a:focus {
+	background: #000000;
+}
+
+#principal {
+	color: #fff;
+	background: #636361;
+	width: 100%;
+}
+
+#global {
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#head {
+	padding: 50px 0;
+	background: #ffffff url(logo.gif) no-repeat;
+height:180px;
+}
+#head h1 {
+	margin: 0;
+	visibility:hidden;
+	}
+#head h1 img {
+	
+	margin: 7px 20px 10px 0;
+}
+#head .under-head {
+	margin: 4px 0 15px 0;
+	visibility:hidden;
+}
+
+#center {
+	width: 100%;
+	overflow: hidden;
+}
+
+#menu {
+	float: left;
+	width: 19%;
+}
+#menu ul {
+	margin: 0;
+	padding: 20px 10px 20px 10px;
+	list-style: none;
+}
+#menu a {
+	display: block;
+	height: 1%;
+	padding: 6px 10px 6px 10px;
+	line-height: 1.5;
+	font-size: .9em;
+	text-decoration: none;
+}
+
+#principal {
+	float: left;
+	width: 76%;
+	padding: 10px 20px;
+}
+#principal > :first-child {
+	margin-top: 10px;
+}
+#principal p, #principal li {
+	line-height: 1.5;
+}
+
+#foot {
+	margin: 0;
+	padding: 15px 20px 10px 0;
+	font-size: .85em;
+	background:#FCA80A url(foot.gif) repeat;
+	height: 20px;
+	width:100%;
+}
+
+#copyright {
+		text-align: right;
+}
+
+
+
+
