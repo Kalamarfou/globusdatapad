@@ -4,9 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <!--
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
-    -->
     <link href="/Content/gdp.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -23,6 +20,23 @@
             </div> 
             
         </div>
+
+        		<div id="box">
+		
+		<table> 
+           <tr>       
+               <td id="data" >anonnce 1</td>      
+           </tr>
+           <tr>
+               <td id="data" >anonnce 2</td>
+
+           </tr>
+           <tr>
+               <td id="data" >Anonnce 3</td>
+           </tr>   
+        </table>
+
+		</div>
 
         <div id="center">
 
@@ -45,6 +59,8 @@
             </div>
 
             <div id="foot">
+            	<p>Le foot de la page</p>
+		        <p id="copyright">Mise en page by Master's of the world</p>
             </div>
         </div>
     </div>
