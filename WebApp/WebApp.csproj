@@ -117,6 +117,10 @@
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Details.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Index.aspx" />
+    <Content Include="Content\bg_linkList.gif" />
+    <Content Include="Content\fond.gif" />
+    <Content Include="Content\foot.gif" />
+    <Content Include="Content\gdp.css" />
     <Content Include="Content\iPhone.css" />
     <Content Include="Content\iui-default\back-img.png" />
     <Content Include="Content\iui-default\backButton.png" />
@@ -142,6 +146,7 @@
     <Content Include="Content\iui-default\whiteButton.png" />
     <Content Include="Content\iui-moz.css" />
     <Content Include="Content\iui.css" />
+    <Content Include="Content\logo.gif" />
     <Content Include="Content\mobile.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
