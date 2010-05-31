@@ -38,31 +38,28 @@ namespace Services.Event
 
         public DAL.Event GetById(int id)
         {
-            return db.Events.First(e => e.Id == id);
+            return db.Events.First(e => e.Id == id && e.Common.IsDeleted == false);
         }
 
         public DAL.WorldWideEvent GetWorldWideEventById(int wweId)
         {
-            return db.Events.OfType<DAL.WorldWideEvent>().First(e => e.Id == wweId);
+            return db.Events.OfType<DAL.WorldWideEvent>().First(e => e.Id == wweId && e.Common.IsDeleted == false);
         }
 
         public List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
             var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
-                        where wwe.StartDate == startDate && wwe.EndDate >= endDate
+                        where wwe.StartDate == startDate && wwe.EndDate >= endDate && wwe.Common.IsDeleted == false
                         select wwe);
             totalRecords = result.Count();
             return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
         }
 
-        //GUILLAUME all ou que les pas finis?
+
         public List<DAL.WorldWideEvent> GetWorldWideEvents(int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
-                          where wwe.EndDate >= DateTime.Now
-                          select wwe);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
+            //GUILLAUME @Martin: Je croyais que tu aimais le code propre ...
+            return GetWorldWideEvents(new DateTime(1980, 1, 1), new DateTime(2050, 1, 1), pageNum, pageSize, out totalRecords);
         }
 
         public List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
@@ -74,7 +71,7 @@ namespace Services.Event
             if (user != null)
             {
                 var result = (from e in user.CurrentClass.Campus.Events
-                              where e.StartDate >= startDate && e.EndDate >= endDate
+                              where e.StartDate >= startDate && e.EndDate >= endDate && e.Common.IsDeleted == false
                               select e);
                 totalRecords = result.Count();
                 return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
@@ -85,24 +82,9 @@ namespace Services.Event
             }
         }
 
-        //GUILLAUME All ou que les pas fini?
         public List<DAL.Event> GetCampusEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
         {
-            ISecurityService secService = new SecurityService();
-            DAL.User user = secService.getUserById(userId);
-            totalRecords = user.CurrentClass.Campus.Events.Count();
-            if (user != null)
-            {
-                var result = (from e in user.CurrentClass.Campus.Events
-                              where e.EndDate >= DateTime.Now
-                              select e);
-                totalRecords = result.Count();
-                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
-            }
-            else
-            {
-                throw new ApplicationException("User " + userId + " does not exist.");
-            }
+            return GetCampusEventsForUser(userId, new DateTime(1980, 1, 1), new DateTime(2050, 1, 1), pageNum, pageSize, out totalRecords);
         }
 
         public List<DAL.Event> GetEventsForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
@@ -113,7 +95,7 @@ namespace Services.Event
             if (campus != null)
             {
                 var result = (from e in campus.Events
-                              where e.StartDate >= startDate && e.EndDate >= endDate
+                              where e.StartDate >= startDate && e.EndDate >= endDate && e.Common.IsDeleted == false
                               select e);
                 totalRecords = result.Count();
                 return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
@@ -124,30 +106,20 @@ namespace Services.Event
             }
         }
 
-        //GUILLAUME All ou que les pas finis?
+
         public List<DAL.Event> GetEventsForCampus(int campusId, int pageNum, int pageSize, out int totalRecords)
         {
-            ICampusService campusService = new CampusService();
-            DAL.Campus campus = campusService.GetById(campusId);
-            totalRecords = campus.Events.Count();
-            if (campus != null)
-            {
-                var result = (from e in campus.Events
-                              where e.EndDate >= DateTime.Now
-                              select e);
-                totalRecords = result.Count();
-                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
-            }
-            else
-            {
-                throw new ApplicationException("Campus " + campus + " does not exist.");
-            }
+            return GetEventsForCampus(campusId, new DateTime(1980, 1, 1), new DateTime(2050, 1, 1), pageNum, pageSize, out totalRecords);
         }
 
         public DAL.BaseCourse GetClassEventById(int eventId)
         {
             return db.Events.OfType<DAL.BaseCourse>().First(e => e.Id == eventId);
         }
+
+
+
+
 
         public List<DAL.Event> GetClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {

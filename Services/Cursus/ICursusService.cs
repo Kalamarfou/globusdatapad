@@ -36,8 +36,6 @@ namespace Services.Cursus
 
         DAL.StudyPeriod GetStudyPeriodById(int id);
 
-        List<DAL.StudyPeriod> GetAllStudyPeriodsForCursus(int cursusId, int pageNum, int pageSize, out int totalRecords);
-
         void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId);
 
         void DeleteStudyPeriod(DAL.StudyPeriod sp, string authorId);
