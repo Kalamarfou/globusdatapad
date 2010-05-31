@@ -28,22 +28,24 @@ namespace Services.Cursus
         
         public DAL.Cursus GetCursusById(int id)
         {
-            return db.Cursuses.First(c => c.Id == id);
+            return db.Cursuses.First(c => c.Id == id && c.Common.IsDeleted == false);
         }
 
         public List<DAL.Cursus> GetAllCursuses(int pageNum, int pageSize, out int totalRecords)
         {
-            totalRecords = db.Cursuses.Count();
-            return (from c in db.Cursuses
-                    orderby c.Name
-                    select c).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
+            var result = (from c in db.Cursuses
+                          where c.Common.IsDeleted == false
+                          orderby c.Name
+                          select c);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
         }
 
         public List<DAL.Cursus> GetAllActiveCursuses(int pageNum, int pageSize, out int totalRecords)
         {
             var result = (from s in db.StudyPeriods
-                          where s.EndDate >= DateTime.Now
-                          select s.Cursus);
+                          where s.EndDate >= DateTime.Now && s.Common.IsDeleted == false
+                          select s.Cursus).Distinct();
             totalRecords = result.Count();
             return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
         }
@@ -72,15 +74,6 @@ namespace Services.Cursus
             return db.StudyPeriods.First(s => s.Id == id);
         }
 
-        //GUILLAUME all vraiement tous ou all mais que les pas terminés?
-        public List<DAL.StudyPeriod> GetAllStudyPeriodsForCursus(int cursusId, int pageNum, int pageSize, out int totalRecords)
-        {
-            var result = (from s in db.StudyPeriods
-                          where s.CursusId == cursusId && s.EndDate >= DateTime.Now
-                          select s);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.StudyPeriod>();
-        }
 
         public void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId)
         {

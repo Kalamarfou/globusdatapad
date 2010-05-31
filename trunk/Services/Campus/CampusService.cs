@@ -38,20 +38,23 @@ namespace Services.Campus
         /// <returns>DAL.Campus</returns>
         public DAL.Campus GetById(int id)
         {
-            return db.Campuses.First(c => c.Id == id);
+            return db.Campuses.First(c => c.Id == id && c.Common.IsDeleted == false);
         }
 
         public List<DAL.Campus> GetAll(int pageNum, int pageSize, out int totalRecords)
         {
-            totalRecords = db.Campuses.Count();
-            return (from c in db.Campuses
-                    orderby c.Name
-                    select c).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Campus>();
+            var result = (from c in db.Campuses
+                          where c.Common.IsDeleted == false
+                          orderby c.Name
+                          select c);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Campus>();
         }
 
         public void Update(DAL.Campus c, string authorId)
         {
-            //GUILLAUME si on a modifié le campus mais pas son adresse, il ne faudrais pas changer les set audit sur l'adresse
+            //GUILLAUME si on a modifié le campus mais pas son adresse, il ne faudrais pas changer les set audit sur l'adresse.
+            //ouais Martin, ça risque d'étre dur, je laisse le commentaire, on vera plus tard, quand j'aurais un cerveau
             DAL.Utils.GenericCrud.SetAudit(c.Address.Common.Audit, authorId);
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
            
@@ -74,15 +77,17 @@ namespace Services.Campus
 
         public Venue GetVenueById(int id)
         {
-            return db.Venues.First(v => v.Id == id);
+            return db.Venues.First(v => v.Id == id && v.Common.IsDeleted == false);
         }
 
         public List<Venue> GetAllVenues(int pageNum, int pageSize, out int totalRecords)
         {
-            totalRecords = db.Venues.Count();
-            return (from v in db.Venues
-                    orderby v.Name
-                    select v).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
+            var result = (from v in db.Venues
+                          where v.Common.IsDeleted == false
+                          orderby v.Name
+                          select v);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
         }
 
         public void UpdateVenue(Venue v, string authorId)
