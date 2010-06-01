@@ -48,16 +48,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Create(DAL.Campus campus)
         {
-            /*
-            campus.CreatedAt = DateTime.Now;
-            campus.CreatedBy = "wam";
-            campus.ModifiedAt = DateTime.Now;
-            campus.ModifiedBy = "wam";
-            campus.Address.CreatedAt = DateTime.Now;
-            campus.Address.CreatedBy = "wam";
-            campus.Address.ModifiedAt = DateTime.Now;
-            campus.Address.ModifiedBy = "wam";
-            */
+
             if (!ModelState.IsValid)
             {
                 return View(campus);

@@ -48,11 +48,17 @@ namespace Services.Event
 
         public List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
-                        where wwe.StartDate == startDate && wwe.EndDate >= endDate && wwe.Common.IsDeleted == false
-                        select wwe);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
+            totalRecords = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
+                            where wwe.StartDate >= startDate && wwe.EndDate <= endDate && wwe.Common.IsDeleted == false
+                            orderby wwe.StartDate
+                            select wwe).Count<DAL.WorldWideEvent>();
+
+            List<DAL.WorldWideEvent> result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
+                        where wwe.StartDate >= startDate && wwe.EndDate <= endDate && wwe.Common.IsDeleted == false
+                        orderby wwe.StartDate
+                        select wwe).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
+
+            return result;
         }
 
 
@@ -143,12 +149,15 @@ namespace Services.Event
 
         public void Update(DAL.Event e, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(e.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update<DAL.Event>(e);
         }
 
         public void UpdateWorldWideEvent(DAL.WorldWideEvent wwe, string authorId)
         {
-            throw new NotImplementedException();
+            wwe.Common.Audit = GetWorldWideEventById(wwe.Id).Common.Audit;
+            DAL.Utils.GenericCrud.SetAudit(wwe.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update<DAL.WorldWideEvent>(wwe);
         }
 
         public void UpdateUserEvent(DAL.Event e, string authorId)

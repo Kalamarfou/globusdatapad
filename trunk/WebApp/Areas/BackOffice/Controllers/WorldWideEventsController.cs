@@ -114,9 +114,8 @@ namespace WebApp.Areas.BackOffice.Controllers
             try
             {
                 IEventService service = new EventService();
-
-                throw new NotImplementedException("TODO");
-
+                service.Delete(id, User.Identity.Name);
+                
                 return RedirectToAction("Index");
             }
             catch

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Services.Event;
 
 namespace WebApp.Controllers
 {
@@ -12,7 +13,12 @@ namespace WebApp.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            
+            IEventService service = new EventService();
+
+            int i;
+
+            ViewData["WorldWideEvents"] = service.GetWorldWideEvents(DateTime.Today, DateTime.Today.AddDays(10), 0, 10, out i);
 
             return View();
         }

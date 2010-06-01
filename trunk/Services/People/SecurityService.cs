@@ -174,7 +174,12 @@ namespace Services.People
 
             using (GDPEntities db = new GDPEntities())
             {
+                totalCount = (from u in db.Users
+                              where u.Common.IsDeleted == false
+                              select u).Count<DAL.User>();
+
                 users = (from u in db.Users
+                         where u.Common.IsDeleted == false
                          orderby u.Id
                          select u).Skip(pageIndex * pageSize).Take(pageSize).ToList<DAL.User>();
             }
