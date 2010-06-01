@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using WebApp.Extensions;
 using Services.People;
+using System.Web.Security;
 
 namespace WebApp
 {
