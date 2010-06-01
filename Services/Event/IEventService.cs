@@ -31,6 +31,15 @@ namespace Services.Event
 
         DAL.WorldWideEvent GetWorldWideEventById(int wweId);
 
+        /// <summary>
+        /// Get WorldWide events
+        /// </summary>
+        /// <param name="startDate">Date to begin filter</param>
+        /// <param name="endDate">Date to end filter</param>
+        /// <param name="pageNum">Page number</param>
+        /// <param name="pageSize">Page size</param>
+        /// <param name="totalRecords">Output total records (without paging)</param>
+        /// <returns>List of worldwide events</returns>
         List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
         List<DAL.WorldWideEvent> GetWorldWideEvents(int pageNum, int pageSize, out int totalRecords);

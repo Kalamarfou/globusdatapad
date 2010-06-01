@@ -28,9 +28,9 @@ namespace WebApp
 
         protected void Application_Start()
         {
-            #region "Roles verification and creation"
-
             ISecurityService securityService = new SecurityService();
+
+            #region "Roles verification and creation"
 
             if (!securityService.roleExists("Admin"))
             {
@@ -50,6 +50,21 @@ namespace WebApp
             if (!securityService.roleExists("Stakeholder"))
             {
                 securityService.createRole("Stakeholder", "Stakeholder", "System");
+            }
+
+            #endregion
+
+            #region "Admin account creation"
+
+            if (securityService.getUserByUsername("admin") == null)
+            {
+                DAL.User user = new DAL.User();
+                user.Email = "admin@localhost";
+                user.Username = "admin";
+
+               
+                // TODO, manque le hashed password
+                
             }
 
             #endregion

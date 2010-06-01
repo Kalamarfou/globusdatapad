@@ -39,35 +39,6 @@ namespace DAL.Utils
             }
         }
 
-        public static IQueryable<T> Page<T, TResult>(this IQueryable<T> query,
-                        int pageNum, int pageSize,
-                        Expression<Func<T, TResult>> orderByProperty,
-                        bool isAscendingOrder, out int rowsCount)
-        {
-            if (pageSize <= 0) pageSize = 20;
-            rowsCount = query.Count();
-            if (rowsCount <= pageSize || pageNum <= 0) pageNum = 1;
-
-            int excludedRows = (pageNum - 1) * pageSize;
-
-            if (isAscendingOrder)
-                query = query.OrderBy(orderByProperty);
-            else
-                query = query.OrderByDescending(orderByProperty);
-
-            return query.Skip(excludedRows).Take(pageSize);
-        }
-
-
-        public static List<T> GetPagedEntities<T>(T e) where T : EntityObject
-        {
-            using (GDPEntities db = new GDPEntities())
-            {
-               return db.CreateQuery<T>(GetEntitySetName(e), null).Skip<T>(20).Take(50).ToList<T>();
-            }
-            return null;
-        }
-
         /// <summary>
         /// Get EntitySetName from the class name
         /// </summary>
@@ -119,18 +90,21 @@ namespace DAL.Utils
 
 
         /// <summary>
-        /// Met a jour les champs d'audit
+        /// Update audit fields
         /// </summary>
-        /// <param name="audit">les champs d'audit</param>
-        /// <param name="authorId">l'id de l'user</param>
+        /// <param name="audit">Audit fields</param>
+        /// <param name="authorId">Username of the user that has made the modification.</param>
         public static void SetAudit(Audit audit, string authorId)
         {
-            if (audit.CreatedBy == null && audit.CreatedAt == null)
+            DateTime now = DateTime.Now;    // in order to have the exact same date for creation and modification, 
+                                            // allowing us to find entities that have never been modified
+
+            if (string.IsNullOrEmpty(audit.CreatedBy) && audit.CreatedAt == new DateTime())     // CreatedAt will never be null, but it may be 0001/01/01...
             {
-                audit.CreatedAt = DateTime.Now;
+                audit.CreatedAt = now;
                 audit.CreatedBy = authorId;
             }
-            audit.LastModifiedAt = DateTime.Now;
+            audit.LastModifiedAt = now;
             audit.LastModifiedBy = authorId;
         }
     }
