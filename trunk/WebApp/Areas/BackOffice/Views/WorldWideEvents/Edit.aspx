@@ -54,8 +54,7 @@
                 <%: Html.LabelFor(model => model.IsMandatory) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.IsMandatory) %>
-                <%: Html.ValidationMessageFor(model => model.IsMandatory) %>
+                <%: Html.CheckBoxFor(model => model.IsMandatory) %>
             </div>
             
             <p>

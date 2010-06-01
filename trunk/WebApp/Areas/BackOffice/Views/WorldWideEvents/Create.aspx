@@ -6,6 +6,25 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<script src="/Scripts/jquery_ui_datepicker/jquery_ui_datepicker.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	/* <![CDATA[ */
+		$(function() {
+				  $('.dateTimePicker').datetime({
+									userLang	: 'en',
+									americanMode: true,
+								});
+			});
+	/* ]]> */
+</script>
+
+<script src="/Scripts/jquery_ui_datepicker/i18n/ui.datepicker-de.js" type="text/javascript"></script>
+<script src="/Scripts/jquery_ui_datepicker/timepicker_plug/timepicker.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/Scripts/jquery_ui_datepicker/timepicker_plug/css/style.css">
+<link rel="stylesheet" type="text/css" href="/Scripts/jquery_ui_datepicker/smothness/jquery_ui_datepicker.css">
+
+
     <h2>Create</h2>
 
     <% using (Html.BeginForm()) {%>
@@ -34,8 +53,7 @@
                 <%: Html.LabelFor(model => model.StartDate) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.StartDate) %>
-                
+                <%: Html.EditorFor(model => model.StartDate) %>
                 <%: Html.ValidationMessageFor(model => model.StartDate) %>
             </div>
             
@@ -43,7 +61,7 @@
                 <%: Html.LabelFor(model => model.EndDate) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.EndDate) %>
+                <%: Html.EditorFor(model => model.EndDate) %>
                 <%: Html.ValidationMessageFor(model => model.EndDate) %>
             </div>
             
