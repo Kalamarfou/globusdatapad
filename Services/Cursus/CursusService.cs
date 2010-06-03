@@ -74,6 +74,19 @@ namespace Services.Cursus
             return db.StudyPeriods.First(s => s.Id == id);
         }
 
+        public DAL.Cursus GetStudyPeriodCursus(int id)
+        {
+            DAL.StudyPeriod studyPeriod = GetStudyPeriodById(id);
+            if (studyPeriod != null)
+            {
+                return studyPeriod.Cursus;
+            }
+            else
+            {
+                throw new ApplicationException("Study period " + id + " does not exist");
+            }
+        }
+
         public List<DAL.Discipline> getStudyPeriodDisciplines(int id, int pageNum, int pageSize, out int totalRecords)
         {
             DAL.StudyPeriod studyPeriod = GetStudyPeriodById(id);
