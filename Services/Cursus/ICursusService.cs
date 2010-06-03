@@ -44,6 +44,21 @@ namespace Services.Cursus
 
         #region "Disciplines"
 
+        void Create(DAL.Discipline disc, string authorId);
+
+        DAL.Discipline GetById(int discId);
+
+        List<DAL.Discipline> GetAll(int pageNum, int pageSize, out int totalRecords);
+
+        void Update(DAL.Discipline disc, string authorId);
+
+        void Delete(DAL.Discipline disc, string authorId);
+
+        List<DAL.EvaluationType> GetDisciplineEvaluationTypes(int discId, int pageNum, int pageSize, out int totalRecords);
+
+        List<DAL.CourseType> GetDisciplineCourseTypes(int discId, int pageNum, int pageSize, out int totalRecors);
+
+        List<DAL.StudyPeriod> GetDisciplineStudyPeriods(int discId, int pageNum, int pageSize, DateTime startDate, DateTime endDate, out int totalRecords);
 
 
         #endregion

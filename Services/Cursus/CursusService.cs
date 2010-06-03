@@ -89,5 +89,50 @@ namespace Services.Cursus
         }
 
         #endregion
+
+        #region ICursusService Members
+
+
+        public void Create(DAL.Discipline disc, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DAL.Discipline GetById(int discId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.Discipline> GetAll(int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(DAL.Discipline disc, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(DAL.Discipline disc, string authorId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.EvaluationType> GetDisciplineEvaluationTypes(int discId, int pageNum, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.CourseType> GetDisciplineCourseTypes(int discId, int pageNum, int pageSize, out int totalRecors)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<DAL.StudyPeriod> GetDisciplineStudyPeriods(int discId, int pageNum, int pageSize, DateTime startDate, DateTime endDate, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
