@@ -28,9 +28,9 @@ namespace Services.People
 
         DAL.User getUserById(int userId);
 
-        void updateUser(DAL.User user);
+        void updateUser(DAL.User user, string authorId);
 
-        void deleteUser(DAL.User user);
+        void deleteUser(DAL.User user, string authorId);
 
         void logFailure(string username, string failureType, double passwordAttemptWindow, int maxInvalidPasswordAttempts);
 

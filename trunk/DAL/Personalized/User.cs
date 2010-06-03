@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using DAL.Utils;
 
-namespace DAL.Personalized
+namespace DAL
 {
     [MetadataType(typeof(UserPersonalization))]
     public partial class User

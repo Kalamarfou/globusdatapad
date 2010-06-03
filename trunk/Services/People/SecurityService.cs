@@ -14,26 +14,10 @@ namespace Services.People
             user.Common.IsDeleted = false;
             user.Common.Audit.CreatedAt = DateTime.Now;
             user.Common.Audit.LastModifiedAt = DateTime.Now;
-            user.Common.Audit.CreatedBy = "";
-            user.Common.Audit.LastModifiedBy = "";
+            user.Common.Audit.CreatedBy = "System";
+            user.Common.Audit.LastModifiedBy = "System";
 
-            byte[] test = new byte[8];
-            test[0] = 1;
-            test[1] = 1;
-            test[2] = 1;
-            test[3] = 1;
-            test[4] = 1;
-            test[5] = 1;
-            test[6] = 1;
-            test[7] = 1;
-            
-            user.Common.ConcurrencyToken = test;
-
-            using (GDPEntities db = new GDPEntities())
-            {
-                db.AddToUsers(user);
-                db.SaveChanges();
-            }
+            DAL.Utils.GenericCrud.Create<DAL.User>(user);
         }
 
         public DAL.User getUserByUsername(string username)
@@ -78,18 +62,18 @@ namespace Services.People
             return user;
         }
 
-        public void updateUser(DAL.User user)
+        public void updateUser(DAL.User user, string authorId)
         {
             user.Common.Audit.LastModifiedAt = DateTime.Now;
-            user.Common.Audit.LastModifiedBy = "";
+            user.Common.Audit.LastModifiedBy = authorId;
 
             DAL.Utils.GenericCrud.Update<DAL.User>(user);
         }
 
-        public void deleteUser(DAL.User user)
+        public void deleteUser(DAL.User user, string authorId)
         {
             user.Common.Audit.LastModifiedAt = DateTime.Now;
-            user.Common.Audit.LastModifiedBy = "";
+            user.Common.Audit.LastModifiedBy = authorId;
             user.Common.IsDeleted = true;
 
             DAL.Utils.GenericCrud.Update<DAL.User>(user);
@@ -136,7 +120,7 @@ namespace Services.People
                     user.FailedPasswordAnswerAttemptWindowStart = DateTime.Now;
                 }
 
-                updateUser(user);
+                updateUser(user, "System");
             }
             else
             {
@@ -146,7 +130,7 @@ namespace Services.People
                     user.IsLockedOut = true;
                     user.LastLockedOutDate = DateTime.Now;
 
-                    updateUser(user);
+                    updateUser(user, "System");
                 }
                 else
                 {
@@ -161,7 +145,7 @@ namespace Services.People
                         user.FailedPasswordAnswerAttemptCount = failureCount;
                     }
 
-                    updateUser(user);
+                    updateUser(user, "System");
                 }
             }
         }

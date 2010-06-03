@@ -332,7 +332,7 @@ namespace WebApp.Extensions
 
             try
             {
-                service.updateUser(user);
+                service.updateUser(user, "System");
                 return true;
             }
             catch
@@ -388,7 +388,7 @@ namespace WebApp.Extensions
 
             try
             {
-                service.updateUser(user);
+                service.updateUser(user, "System");
                 return true;
             }
             catch
@@ -448,7 +448,7 @@ namespace WebApp.Extensions
                 user.Password = EncodePassword(newPassword);
                 user.LastPasswordChangedDate = DateTime.Now;
 
-                service.updateUser(user);
+                service.updateUser(user, "System");
 
                 return newPassword;
             }
@@ -472,7 +472,7 @@ namespace WebApp.Extensions
 
             // TODO que mettre à jour ??
 
-            service.updateUser(user);
+            service.updateUser(user, "System");
         }
 
         /// <summary>
@@ -498,7 +498,7 @@ namespace WebApp.Extensions
                     isValid = true;
 
                     user.LastLoginDate = DateTime.Now;
-                    service.updateUser(user);
+                    service.updateUser(user, "System");
                 }
             }
             else
@@ -526,7 +526,7 @@ namespace WebApp.Extensions
 
                 user.LastLockedOutDate = DateTime.Now;
 
-                service.updateUser(user);
+                service.updateUser(user, "System");
 
                 return true;
             }
@@ -557,7 +557,7 @@ namespace WebApp.Extensions
                 if (userIsOnline)
                 {
                     user.LastActivityDate = DateTime.Now;
-                    service.updateUser(user);
+                    service.updateUser(user, "System");
                 }
             }
 
@@ -585,7 +585,7 @@ namespace WebApp.Extensions
                 if (userIsOnline)
                 {
                     user.LastActivityDate = DateTime.Now;
-                    service.updateUser(user);
+                    service.updateUser(user, "System");
                 }
             }
 
