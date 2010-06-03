@@ -45,6 +45,7 @@
     <Compile Include="Cursus\CursusService.cs" />
     <Compile Include="Campus\ICampusService.cs" />
     <Compile Include="Cursus\ICursusService.cs" />
+    <Compile Include="Discipline\IDisciplineService.cs" />
     <Compile Include="Event\EventService.cs" />
     <Compile Include="Event\IEventService.cs" />
     <Compile Include="People\IPeopleService.cs" />
