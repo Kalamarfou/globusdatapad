@@ -40,21 +40,19 @@
 
 		</div>
 
-        <div id="center">
-
             <div id="menu">
-                <ul>              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                <p><%= Html.ActionLink("Home", "Index", "Home")%></p>
+                    <p><%= Html.ActionLink("About", "About", "Home")%></p>
                     <% if (Roles.IsUserInRole("Admin") | Roles.IsUserInRole("Stakeholder") | Roles.IsUserInRole("CampusManager"))
                        { %>
-                    <li><%= Html.ActionLink("BackOffice", "Index", "Campuses", new { Area = "BackOffice"}, null)%></li>
-                    <li><%= Html.ActionLink("Calendar", "Index", "Calendar", new { Area = "FrontOffice" }, null)%></li>
+                    <p><%= Html.ActionLink("BackOffice", "Index", "Campuses", new { Area = "BackOffice"}, null)%></p>
+                    <p><%= Html.ActionLink("Calendar", "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
                     <% } else if (Roles.IsUserInRole("Student")) { %>
-                    <li><%= Html.ActionLink("Calendar", "Index", "Calendar", new { Area = "FrontOffice" }, null)%></li>
+                    <p><%= Html.ActionLink("Calendar", "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
                     <% } %>
-                </ul>
             </div>
+
+        <div id="center">
 
             <div id="principal">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />

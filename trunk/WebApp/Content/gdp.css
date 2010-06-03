@@ -36,7 +36,7 @@ li {
 
 table{
     background-color:#FFFFFF;
-    border: solid #000 3px;
+
     width: 400px;
 	}
 	
@@ -54,11 +54,11 @@ table td {
 
 #logout{
 text-align:right;
-margin-top:-70px;
+margin-top:-125px;
 }
 
 #box {
-margin-left:650px;
+margin-left:626px;
 width: 400px;
 margin-top:-170px;
 
@@ -66,7 +66,7 @@ margin-top:-170px;
 
 #principal h2{
 
-visibility:hidden;
+
 }
 
 
@@ -112,7 +112,7 @@ a:hover, a:focus {
 #head {
 	padding: 50px 0;
 	background: #ffffff url(logo.gif) no-repeat;
-height:180px;
+height:110px;
 }
 #head h1 {
 	margin: 0;
@@ -133,26 +133,33 @@ height:180px;
 }
 
 #menu {
-	float: left;
-	width: 19%;
-}
-#menu ul {
-	margin: 0;
+	
+	width: 98.1%;
+	 margin: 0;
 	padding: 20px 10px 20px 10px;
-	list-style: none;
+	list-style: none; 
 }
+
+
+#menu p {
+	display: inline;
+
+}
+
+
 #menu a {
-	display: block;
-	height: 1%;
-	padding: 6px 10px 6px 10px;
-	line-height: 1.5;
-	font-size: .9em;
-	text-decoration: none;
+	
+	height: 32%;
+	 padding: 6px 10px 6px 10px;
+	line-height: 1;
+	font-size: 1em;
+	text-decoration: none; 
+
 }
 
 #principal {
 	float: left;
-	width: 76%;
+	width: 100%;
 	padding: 10px 20px;
 }
 #principal > :first-child {
@@ -168,7 +175,7 @@ height:180px;
 	font-size: .85em;
 	background:#FCA80A url(foot.gif) repeat;
 	height: 20px;
-	width:100%;
+	width:98,5%;
 }
 
 #copyright {
