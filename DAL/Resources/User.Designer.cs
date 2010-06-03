@@ -106,6 +106,24 @@ namespace DAL.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is approved?.
+        /// </summary>
+        public static string IsApproved {
+            get {
+                return ResourceManager.GetString("IsApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is locked out?.
+        /// </summary>
+        public static string IsLockedOut {
+            get {
+                return ResourceManager.GetString("IsLockedOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string LastName {

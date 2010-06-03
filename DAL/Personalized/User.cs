@@ -38,6 +38,12 @@ namespace DAL
 
         [LocalizedDisplayName("Title", NameResourceType = typeof(DAL.Resources.User))]
         public string Title { get; set; }
+
+        [LocalizedDisplayName("IsApproved", NameResourceType = typeof(DAL.Resources.User))]
+        public string IsApproved { get; set; }
+
+        [LocalizedDisplayName("IsLockedOut", NameResourceType = typeof(DAL.Resources.User))]
+        public string IsLockedOut { get; set; }
     }
 
 }

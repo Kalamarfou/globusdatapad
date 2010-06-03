@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using DAL.Utils;
 
-namespace DAL.Personalized
+namespace DAL
 {
     [MetadataType(typeof(VenuePersonalization))]
     public partial class Venue

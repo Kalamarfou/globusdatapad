@@ -49,6 +49,7 @@
     <Compile Include="Event\IEventService.cs" />
     <Compile Include="People\IPeopleService.cs" />
     <Compile Include="People\ISecurityService.cs" />
+    <Compile Include="People\PeopleService.cs" />
     <Compile Include="People\SecurityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
