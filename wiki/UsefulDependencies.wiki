@@ -13,6 +13,12 @@ Permet d'afficher une vue de calendrier jour / semaine.
 
 [http://razum.si/jQuery-calendar/TimeCalendar.html Doc]
 
+= le méme en mieux = 
+[http://www.projectcodegen.com/JQueryDateTimePicker.aspx Doc]
+
+= Un mové mais pas trop =
+http://www.ama3.com/anytime/
+
 = Full Calendar =
 
 [http://arshaw.com/fullcalendar/ Doc]
