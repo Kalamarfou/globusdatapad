@@ -8,6 +8,7 @@
 
     <h2>Index</h2>
 
+    <div id="calendarContainer">
     
 
 <link href="<%= Url.Content("~/Content/ui-lightness/jquery-ui-1.8.1.custom.css") %>" rel="stylesheet" type="text/css" />
@@ -40,5 +41,7 @@
 
     }); 
 </script>
+
+</div>
 
 </asp:Content>

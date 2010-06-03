@@ -88,7 +88,7 @@ a:hover, a:focus {
 }
 
 #menu {
-	background: #FCA80A url(bg_linkList.gif) repeat-y;
+	background: #FCA80A url(bg_linkList.gif) repeat;
 	}
 #menu a {
 	color: #AC1741;
@@ -182,6 +182,9 @@ height:110px;
 		text-align: right;
 }
 
-
+#calendarContainer 
+{
+    width: 96%;   
+}
 
 
