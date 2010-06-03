@@ -98,7 +98,6 @@ namespace DAL.Utils
         {
             DateTime now = DateTime.Now;    // in order to have the exact same date for creation and modification, 
                                             // allowing us to find entities that have never been modified
-
             audit.CreatedAt = now;
             audit.CreatedBy = authorId;
            

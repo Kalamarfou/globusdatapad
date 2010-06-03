@@ -20,9 +20,21 @@ namespace WebApp.Areas.BackOffice.Controllers
             ISecurityService service = new SecurityService();
 
             int totalRecords;       // total records
-            int pageCount = 12;
+            int pageCount;
+
+            if (!page.HasValue)
+            {
+                pageCount = 1;
+            }
+            else
+            {
+                pageCount = page.Value;
+            }
 
             ViewData.Model = service.getAllUsers(pageCount, pageSize, out totalRecords);
+
+            ViewData["numpages"] = totalRecords / pageSize;
+            ViewData["curpage"] = pageCount;
 
             return View();
         }
