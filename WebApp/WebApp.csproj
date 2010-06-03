@@ -120,6 +120,7 @@
     <Content Include="Areas\BackOffice\Views\Users\Details.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\Index.aspx" />
+    <Content Include="Areas\BackOffice\Views\Users\Roles.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Create.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Details.aspx" />

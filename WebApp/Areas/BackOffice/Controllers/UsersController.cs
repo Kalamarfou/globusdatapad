@@ -10,16 +10,19 @@ namespace WebApp.Areas.BackOffice.Controllers
     [Authorize(Roles="Admin,CampusManager")]
     public class UsersController : Controller
     {
+        private const int pageSize = 20;
+
         //
         // GET: /BackOffice/Users/
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ISecurityService service = new SecurityService();
 
-            int i;
+            int totalRecords;       // total records
+            int pageCount = 12;
 
-            ViewData.Model = service.getAllUsers(0, 100, out i);
+            ViewData.Model = service.getAllUsers(pageCount, pageSize, out totalRecords);
 
             return View();
         }
@@ -108,6 +111,25 @@ namespace WebApp.Areas.BackOffice.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /BackOffice/Users/Roles/5
+ 
+        public ActionResult Roles(int id)
+        {
+            ISecurityService service = new SecurityService();
+
+            return null;
+        }
+
+        //
+        // POST: /BackOffice/Users/Roles/5
+
+        [HttpPost]
+        public ActionResult Roles(int id, FormCollection collection)
+        {
+            return null;
         }
     }
 }
