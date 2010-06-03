@@ -22,6 +22,22 @@ namespace DAL.Personalized
         [LocalizedDisplayName("Password", NameResourceType = typeof(DAL.Resources.User))]
         [Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(DAL.Resources.User))]
         public string Password { get; set; }
+
+        [LocalizedDisplayName("FirstName", NameResourceType = typeof(DAL.Resources.User))]
+        [Required(ErrorMessageResourceName = "FirstNameRequired", ErrorMessageResourceType = typeof(DAL.Resources.User))]
+        public string FirstName { get; set; }
+
+        [LocalizedDisplayName("LastName", NameResourceType = typeof(DAL.Resources.User))]
+        [Required(ErrorMessageResourceName = "LastNameRequired", ErrorMessageResourceType = typeof(DAL.Resources.User))]
+        public string LastName { get; set; }
+
+        [LocalizedDisplayName("Email", NameResourceType = typeof(DAL.Resources.User))]
+        [Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(DAL.Resources.User))]
+        [EmailAddressAttribute(ErrorMessageResourceName = "InvalidEmailAddress", ErrorMessageResourceType = typeof(DAL.Resources.User))]
+        public string Email { get; set; }
+
+        [LocalizedDisplayName("Title", NameResourceType = typeof(DAL.Resources.User))]
+        public string Title { get; set; }
     }
 
 }

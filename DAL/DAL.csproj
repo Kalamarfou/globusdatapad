@@ -56,7 +56,6 @@
     <Compile Include="Personalized\Availability.cs" />
     <Compile Include="Personalized\Role.cs" />
     <Compile Include="Personalized\User.cs" />
-    <Compile Include="Personalized\Person.cs" />
     <Compile Include="Personalized\Discipline.cs" />
     <Compile Include="Personalized\Event.cs" />
     <Compile Include="Personalized\StudyPeriod.cs" />
@@ -95,11 +94,6 @@
     </Compile>
     <Compile Include="Resources\User.Designer.cs">
       <DependentUpon>User.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\Person.Designer.cs">
-      <DependentUpon>Person.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -165,12 +159,8 @@
       <LastGenOutput>Role.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\User.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>User.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Person.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Person.Designer.cs</LastGenOutput>
+      <LastGenOutput>User.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Discipline.resx">
       <Generator>ResXFileCodeGenerator</Generator>
