@@ -11,28 +11,25 @@
     <table>
         <tr>
             <th>
-                FirstName
+                <%: DAL.Resources.User.FirstName %>
             </th>
             <th>
-                LastName
+                <%: DAL.Resources.User.LastName %>
             </th>
             <th>
-                Username
+                <%: DAL.Resources.User.Username %>
             </th>
             <th>
-                Email
+                <%: DAL.Resources.User.Email %>
             </th>
             <th>
-                Title
+                <%: DAL.Resources.User.Title %>
             </th>
             <th>
-                IsApproved
+                <%: DAL.Resources.User.IsApproved %>
             </th>
             <th>
-                IsOnline
-            </th>
-            <th>
-                IsLockedOut
+                <%: DAL.Resources.User.IsLockedOut %>
             </th>
         </tr>
 
@@ -56,9 +53,6 @@
             </td>
             <td>
                 <%: item.IsApproved %>
-            </td>
-            <td>
-                <%: item.IsOnline %>
             </td>
             <td>
                 <%: item.IsLockedOut %>
