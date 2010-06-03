@@ -24,7 +24,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
             if (!page.HasValue)
             {
-                pageCount = 1;
+                pageCount = 0;
             }
             else
             {
@@ -34,7 +34,7 @@ namespace WebApp.Areas.BackOffice.Controllers
             ViewData.Model = service.getAllUsers(pageCount, pageSize, out totalRecords);
 
             ViewData["numpages"] = totalRecords / pageSize;
-            ViewData["curpage"] = pageCount;
+            ViewData["curpage"] = pageCount + 1;
 
             return View();
         }

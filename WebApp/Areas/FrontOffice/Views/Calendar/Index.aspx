@@ -38,6 +38,9 @@
         });
 
         $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/WorldWideEvents/");
+        $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/UserEvents/");
+        $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/CampusEvents/");
+        $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/ClassEvents/");
 
     }); 
 </script>

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Services.Event;
 
 namespace WebApp.Areas.FrontOffice.Controllers
 {
+    [Authorize]
     public class CalendarController : Controller
     {
         //
@@ -16,21 +18,24 @@ namespace WebApp.Areas.FrontOffice.Controllers
             return View();
         }
 
-        public ActionResult Today()
+        //
+        // GET: /FrontOffice/Calendar/WorldWideEvent/5
+
+        public ActionResult WorldWideEvent(int id)
         {
+            IEventService service = new EventService();
+
+            DAL.WorldWideEvent e = service.GetWorldWideEventById(id);
+
+            if (e == null)
+            {
+                throw new ApplicationException("WorldWide Event #" + id + " is not found.");
+            }
+
+            ViewData.Model = e;
+
             return View();
         }
-
-        public ActionResult Month()
-        {
-            return View();
-        }
-
-        public ActionResult Week()
-        {
-            return View();
-        }
-
 
         //
         // GET: /FrontOffice/Calendar/Details/5

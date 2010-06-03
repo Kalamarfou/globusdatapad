@@ -66,10 +66,7 @@ margin-top:-170px;
 
 #principal h2{
 
-
 }
-
-
 
 #img
 {
@@ -175,7 +172,7 @@ height:110px;
 	font-size: .85em;
 	background:#FCA80A url(foot.gif) repeat;
 	height: 20px;
-	width:98,5%;
+	width: 98%;
 }
 
 #copyright {
@@ -187,4 +184,10 @@ height:110px;
     width: 96%;   
 }
 
-
+.WorldWideEvent,
+.fc-agenda .WorldWideEvent .fc-event-time,
+.WorldWideEvent a {
+    background-color: -060d5e; /* background color */
+    border-color: -3640ad;     /* border color */
+    color: red;           /* text color */
+}

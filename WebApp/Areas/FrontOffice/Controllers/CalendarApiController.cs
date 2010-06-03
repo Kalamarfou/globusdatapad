@@ -12,14 +12,13 @@ namespace WebApp.Areas.FrontOffice.Controllers
 {
     public class CalendarApiController : Controller
     {
+        /// <summary>
+        /// As we do NOT paginate in web service, defines the MAX events to retrieve.
+        /// </summary>
+        private const int maxEventsToRetrieve = 100;
+
         //
-        // GET: /FrontOffice/CalendarApi/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        // GET: /FrontOffice/CalendarApi/WorldWideEvents/
 
         [Authorize]
         public JsonResult WorldWideEvents(double start, double end)
@@ -28,15 +27,18 @@ namespace WebApp.Areas.FrontOffice.Controllers
             ArrayList eventList = new ArrayList();
             int totalRecords;
 
-            List<DAL.WorldWideEvent> wwe = service.GetWorldWideEvents(GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, 100, out totalRecords);
+            List<DAL.WorldWideEvent> wwe = service.GetWorldWideEvents(GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
 
             foreach (DAL.WorldWideEvent e in wwe)
             {
-                eventList.Add(new CalendarEvent(e,"WorldWideEvent", ""));
+                eventList.Add(new CalendarEvent(e, "WorldWideEvent", "/FrontOffice/Calendar/WorldWideEvent/"));
             }
 
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
+
+        //
+        // GET: /FrontOffice/CalendarApi/UserEvents/
 
         [Authorize]
         public JsonResult UserEvents(double start, double end)
@@ -45,15 +47,18 @@ namespace WebApp.Areas.FrontOffice.Controllers
             ArrayList eventList = new ArrayList();
             int totalRecords;
 
-            List<DAL.Event> events = service.GetEventsForUser(User.Identity.Name, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, 100, out totalRecords);
+            List<DAL.Event> events = service.GetEventsForUser(User.Identity.Name, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
 
             foreach (DAL.Event e in events)
             {
-                eventList.Add(new CalendarEvent(e, "UserEvent", ""));
+                eventList.Add(new CalendarEvent(e, "UserEvent", "/FrontOffice/Calendar/MyEvent/"));
             }
 
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
+
+        //
+        // GET: /FrontOffice/CalendarApi/CampusEvents/
 
         [Authorize]
         public JsonResult CampusEvents(double start, double end)
@@ -63,17 +68,27 @@ namespace WebApp.Areas.FrontOffice.Controllers
             ArrayList eventList = new ArrayList();
             int totalRecords;
 
-            int campusId = securityService.getUserByUsername(User.Identity.Name).CurrentClass.Campus.Id;
+            DAL.User user = securityService.getUserByUsername(User.Identity.Name);          // TODO : devrait pas y avoir toute cette logique ici ! méthode dans Services... (MF)
+            
+            if (user.CurrentClass == null)      // if user doesn't have a class
+            {
+                return null;
+            }
 
-            List<DAL.Event> events = eventService.GetEventsForCampus(campusId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, 100, out totalRecords);
+            int campusId = user.CurrentClass.Campus.Id;
+
+            List<DAL.Event> events = eventService.GetEventsForCampus(campusId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
 
             foreach (DAL.Event e in events)
             {
-                eventList.Add(new CalendarEvent(e, "CampusEvent", ""));
+                eventList.Add(new CalendarEvent(e, "CampusEvent", "/FrontOffice/Calendar/CampusEvent/"));
             }
 
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
+
+        //
+        // GET: /FrontOffice/CalendarApi/ClassEvents/
 
         [Authorize]
         public JsonResult ClassEvents(double start, double end)
@@ -85,19 +100,20 @@ namespace WebApp.Areas.FrontOffice.Controllers
 
             int userId = securityService.getUserByUsername(User.Identity.Name).Id;
 
-            List<DAL.Event> events = eventService.GetClassEventsForUser(userId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, 100, out totalRecords);
+            List<DAL.Event> events = eventService.GetClassEventsForUser(userId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
 
             foreach (DAL.Event e in events)
             {
-                eventList.Add(new CalendarEvent(e, "ClassEvent", ""));
+                eventList.Add(new CalendarEvent(e, "ClassEvent", "/FrontOffice/Calendar/ClassEvent/"));
             }
 
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
-
     }
 
-
+    /// <summary>
+    /// This represent an event object for FullCalendar
+    /// </summary>
     public class CalendarEvent
     {
         public int id { get; set; }
@@ -109,11 +125,11 @@ namespace WebApp.Areas.FrontOffice.Controllers
         public string url { get; set; }
 
         /// <summary>
-        /// Crée un event compatible avec fullcalendar a partir d'un DAL.Event
+        /// Create a CalendarEvent from a DAL.Event
         /// </summary>
-        /// <param name="e"></param>
-        /// <param name="className"></param>
-        /// <param name="baseUrl">Il faut rajouter le slash final de baseUrl</param>
+        /// <param name="e">DAL.Event</param>
+        /// <param name="className">CSS class name</param>
+        /// <param name="baseUrl">URL to find details about the event. Put the final slash s'il vous plait.</param>
         public CalendarEvent(DAL.Event e, string className, string baseUrl)
         {
             id = e.Id;
