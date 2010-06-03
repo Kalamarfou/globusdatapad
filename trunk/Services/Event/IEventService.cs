@@ -58,9 +58,9 @@ namespace Services.Event
 
         List<DAL.Event> GetClassEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords);
 
-        List<DAL.Event> GetEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
+        List<DAL.Event> GetEventsForUser(string userName, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
-        List<DAL.Event> GetEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords);
+        List<DAL.Event> GetEventsForUser(string userName, int pageNum, int pageSize, out int totalRecords);
 
         #endregion
 
