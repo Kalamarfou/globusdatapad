@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Services.Campus;
 
 namespace Services.People
 {
@@ -9,22 +10,21 @@ namespace Services.People
     {
         private DAL.GDPEntities db;
 
-        //GUILLAUME //TODO remettre les SetFirstAudit et les Audit
         public void createAvailability(DAL.Availability a, string authorId)
         {
-            //DAL.Utils.GenericCrud.SetFirstAudit(a.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetFirstAudit(a.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(a);
         }
 
         public void updateAvailability(DAL.Availability a, string authorId)
         {
-            //DAL.Utils.GenericCrud.SetAudit(a.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetAudit(a.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update(a);
         }
 
         public DAL.Availability getAvailabilityById(int id)
         {
-            return db.Availabilities.First(a => a.Id == id); //&& a.Common.IsDeleted == false);
+            return db.Availabilities.First(a => a.Id == id && a.Common.IsDeleted == false);
         }
 
         public List<DAL.Availability> getAvailabilitiesForUser(int id, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
@@ -35,7 +35,7 @@ namespace Services.People
             if (user != null)
             {
                 var result = (from a in user.Availabilities
-                              where a.StartDate >= startDate && a.EndDate >= endDate //&& a.Common.IsDeleted == false
+                              where a.StartDate >= startDate && a.EndDate >= endDate && a.Common.IsDeleted == false
                               select a);
                 totalRecords = result.Count();
                 return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Availability>();
@@ -53,8 +53,16 @@ namespace Services.People
 
         public List<DAL.Availability> getAvailablePeopleForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            //DUR
-            throw new NotImplementedException();
+            //GUILLAUME //TODO //DUR C'es ttrop dur ... La ça devrais marcher, mais ça dois envoyer un nombre de requetes impressionant.
+            ICampusService campusService = new CampusService();
+
+            var result = (from a in db.Availabilities
+                          where a.StartDate >= startDate && a.EndDate >= endDate  
+                          && a.User.StakeholderCampuses.Contains(campusService.GetById(campusId)) 
+                          && a.Common.IsDeleted == false
+                          select a);
+            totalRecords = result.Count();
+            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Availability>();
         }
 
         public List<DAL.Availability> getAvailablePeopleForCampus(int id, int pageNum, int pageSize, out int totalRecords)
@@ -64,8 +72,8 @@ namespace Services.People
 
         public void deleteAvailability(DAL.Availability a, string authorId)
         {
-            //DAL.Utils.GenericCrud.SetAudit(a.Common.Audit, authorId);
-            //a.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.SetAudit(a.Common.Audit, authorId);
+            a.Common.IsDeleted = true;
 
             DAL.Utils.GenericCrud.Update(a);
         }
