@@ -36,7 +36,7 @@
             editable: false
         });
 
-        $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/GetWorldWideEvents/");
+        $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/WorldWideEvents/");
 
     }); 
 </script>

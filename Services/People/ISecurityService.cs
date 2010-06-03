@@ -60,5 +60,7 @@ namespace Services.People
         string[] getUsersInRole(string roleName);
 
         string[] getAllRoles();
+
+        DAL.User getUserByName(string userName);
     }
 }

@@ -167,10 +167,10 @@ namespace Services.Event
             }
         }
 
-        public List<DAL.Event> GetEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        public List<DAL.Event> GetEventsForUser(string userName, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
             ISecurityService peopleService = new SecurityService();
-            DAL.User user = peopleService.getUserById(userId);
+            DAL.User user = peopleService.getUserByName(userName);
             totalRecords = user.Events.Count();
             if (user != null)
             {
@@ -187,10 +187,10 @@ namespace Services.Event
             }
         }
 
-        public List<DAL.Event> GetEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
+        public List<DAL.Event> GetEventsForUser(string userName, int pageNum, int pageSize, out int totalRecords)
         {
             ISecurityService peopleService = new SecurityService();
-            DAL.User user = peopleService.getUserById(userId);
+            DAL.User user = peopleService.getUserByName(userName);
             totalRecords = user.Events.Count();
             if (user != null)
             {
