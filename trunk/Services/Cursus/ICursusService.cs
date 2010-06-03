@@ -36,6 +36,8 @@ namespace Services.Cursus
 
         DAL.StudyPeriod GetStudyPeriodById(int id);
 
+        List<DAL.Discipline> getStudyPeriodDisciplines(int id, int pageNum, int pageSize, out int totalRecords);
+
         void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId);
 
         void DeleteStudyPeriod(DAL.StudyPeriod sp, string authorId);
@@ -57,9 +59,6 @@ namespace Services.Cursus
         List<DAL.EvaluationType> GetDisciplineEvaluationTypes(int discId, int pageNum, int pageSize, out int totalRecords);
 
         List<DAL.CourseType> GetDisciplineCourseTypes(int discId, int pageNum, int pageSize, out int totalRecors);
-
-        List<DAL.StudyPeriod> GetDisciplineStudyPeriods(int discId, int pageNum, int pageSize, DateTime startDate, DateTime endDate, out int totalRecords);
-
 
         #endregion
 

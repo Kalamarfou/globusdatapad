@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 05/29/2010 20:33:50
--- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
+-- Date Created: 06/03/2010 15:46:12
+-- Generated from EDMX file: C:\Users\V\Desktop\M1GroupProject\DAL\GDP.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -67,6 +67,36 @@ IF OBJECT_ID(N'[dbo].[FK_CampusEvent]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ClassCampus]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Classes] DROP CONSTRAINT [FK_ClassCampus];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserClass]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users] DROP CONSTRAINT [FK_UserClass];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserClassPast_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserClassPast] DROP CONSTRAINT [FK_UserClassPast_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserClassPast_Class]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserClassPast] DROP CONSTRAINT [FK_UserClassPast_Class];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserAvailability]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Availabilities] DROP CONSTRAINT [FK_UserAvailability];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCampus_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCampus] DROP CONSTRAINT [FK_UserCampus_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCampus_Campus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCampus] DROP CONSTRAINT [FK_UserCampus_Campus];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserEvent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_UserEvent];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserBaseCourse]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_UserBaseCourse];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCampus1_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCampus1] DROP CONSTRAINT [FK_UserCampus1_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCampus1_Campus]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserCampus1] DROP CONSTRAINT [FK_UserCampus1_Campus];
 GO
 IF OBJECT_ID(N'[dbo].[FK_BaseCourse_inherits_Event]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Events_BaseCourse] DROP CONSTRAINT [FK_BaseCourse_inherits_Event];
@@ -147,6 +177,15 @@ IF OBJECT_ID(N'[dbo].[Events_WorldWideEvent]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[UserRole]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserRole];
+GO
+IF OBJECT_ID(N'[dbo].[UserClassPast]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserClassPast];
+GO
+IF OBJECT_ID(N'[dbo].[UserCampus]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserCampus];
+GO
+IF OBJECT_ID(N'[dbo].[UserCampus1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserCampus1];
 GO
 
 -- --------------------------------------------------
@@ -301,7 +340,13 @@ CREATE TABLE [dbo].[Availabilities] (
     [StartDate] datetime2  NOT NULL,
     [EndDate] datetime2  NOT NULL,
     [PersonId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
+    [Common_IsDeleted] bit  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
+    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -309,6 +354,12 @@ GO
 CREATE TABLE [dbo].[Disciplines] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
+    [Common_IsDeleted] bit  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
+    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [StudyPeriod_Id] int  NOT NULL
 );
 GO
@@ -331,7 +382,13 @@ GO
 CREATE TABLE [dbo].[BaseTypes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Volume] int  NOT NULL
+    [Volume] int  NOT NULL,
+    [Common_ConcurrencyToken] binary(8)  NULL,
+    [Common_IsDeleted] bit  NOT NULL,
+    [Common_Audit_CreatedAt] datetime2  NOT NULL,
+    [Common_Audit_LastModifiedAt] datetime2  NOT NULL,
+    [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
+    [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -398,6 +455,13 @@ GO
 CREATE TABLE [dbo].[UserCampus] (
     [Managers_Id] int  NOT NULL,
     [ManagedCampuses_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'UserCampus1'
+CREATE TABLE [dbo].[UserCampus1] (
+    [Stakeholders_Id] int  NOT NULL,
+    [StakeholderCampuses_Id] int  NOT NULL
 );
 GO
 
@@ -529,6 +593,12 @@ GO
 ALTER TABLE [dbo].[UserCampus]
 ADD CONSTRAINT [PK_UserCampus]
     PRIMARY KEY NONCLUSTERED ([Managers_Id], [ManagedCampuses_Id] ASC);
+GO
+
+-- Creating primary key on [Stakeholders_Id], [StakeholderCampuses_Id] in table 'UserCampus1'
+ALTER TABLE [dbo].[UserCampus1]
+ADD CONSTRAINT [PK_UserCampus1]
+    PRIMARY KEY NONCLUSTERED ([Stakeholders_Id], [StakeholderCampuses_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -868,6 +938,29 @@ ADD CONSTRAINT [FK_UserBaseCourse]
 CREATE INDEX [IX_FK_UserBaseCourse]
 ON [dbo].[Events_BaseCourse]
     ([UserId]);
+GO
+
+-- Creating foreign key on [Stakeholders_Id] in table 'UserCampus1'
+ALTER TABLE [dbo].[UserCampus1]
+ADD CONSTRAINT [FK_UserCampus1_User]
+    FOREIGN KEY ([Stakeholders_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [StakeholderCampuses_Id] in table 'UserCampus1'
+ALTER TABLE [dbo].[UserCampus1]
+ADD CONSTRAINT [FK_UserCampus1_Campus]
+    FOREIGN KEY ([StakeholderCampuses_Id])
+    REFERENCES [dbo].[Campuses]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserCampus1_Campus'
+CREATE INDEX [IX_FK_UserCampus1_Campus]
+ON [dbo].[UserCampus1]
+    ([StakeholderCampuses_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Events_BaseCourse'
