@@ -281,11 +281,5 @@ namespace Services.People
                             select r.ShortName).ToArray();
             }
         }
-
-
-        public User getUserByName(string userName)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
