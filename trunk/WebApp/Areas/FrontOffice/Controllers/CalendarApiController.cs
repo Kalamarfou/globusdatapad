@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Services.Event;
 using WebApp.Extensions;
 using System.Collections;
+using Services.People;
 
 namespace WebApp.Areas.FrontOffice.Controllers
 {
@@ -46,9 +47,49 @@ namespace WebApp.Areas.FrontOffice.Controllers
 
             List<DAL.Event> events = service.GetEventsForUser(User.Identity.Name, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, 100, out totalRecords);
 
-            foreach (DAL.WorldWideEvent e in events)
+            foreach (DAL.Event e in events)
             {
-                eventList.Add(new CalendarEvent(e, "WorldWideEvent", ""));
+                eventList.Add(new CalendarEvent(e, "UserEvent", ""));
+            }
+
+            return Json(eventList, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public JsonResult CampusEvents(double start, double end)
+        {
+            IEventService eventService = new EventService();
+            SecurityService securityService = new SecurityService();
+            ArrayList eventList = new ArrayList();
+            int totalRecords;
+
+            int campusId = securityService.getUserByUsername(User.Identity.Name).CurrentClass.Campus.Id;
+
+            List<DAL.Event> events = eventService.GetEventsForCampus(campusId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, 100, out totalRecords);
+
+            foreach (DAL.Event e in events)
+            {
+                eventList.Add(new CalendarEvent(e, "CampusEvent", ""));
+            }
+
+            return Json(eventList, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public JsonResult ClassEvents(double start, double end)
+        {
+            IEventService eventService = new EventService();
+            SecurityService securityService = new SecurityService();
+            ArrayList eventList = new ArrayList();
+            int totalRecords;
+
+            int userId = securityService.getUserByUsername(User.Identity.Name).Id;
+
+            List<DAL.Event> events = eventService.GetClassEventsForUser(userId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, 100, out totalRecords);
+
+            foreach (DAL.Event e in events)
+            {
+                eventList.Add(new CalendarEvent(e, "ClassEvent", ""));
             }
 
             return Json(eventList, JsonRequestBehavior.AllowGet);

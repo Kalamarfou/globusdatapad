@@ -94,16 +94,23 @@ namespace DAL.Utils
         /// </summary>
         /// <param name="audit">Audit fields</param>
         /// <param name="authorId">Username of the user that has made the modification.</param>
-        public static void SetAudit(Audit audit, string authorId)
+        public static void SetFirstAudit(Audit audit, string authorId)
         {
             DateTime now = DateTime.Now;    // in order to have the exact same date for creation and modification, 
                                             // allowing us to find entities that have never been modified
 
-            if (string.IsNullOrEmpty(audit.CreatedBy) && audit.CreatedAt == new DateTime())     // CreatedAt will never be null, but it may be 0001/01/01...
-            {
-                audit.CreatedAt = now;
-                audit.CreatedBy = authorId;
-            }
+           
+            audit.CreatedAt = now;
+            audit.CreatedBy = authorId;
+           
+            audit.LastModifiedAt = now;
+            audit.LastModifiedBy = authorId;
+        }
+
+        public static void SetAudit(Audit audit, string authorId)
+        {
+            DateTime now = DateTime.Now;    // in order to have the exact same date for creation and modification
+
             audit.LastModifiedAt = now;
             audit.LastModifiedBy = authorId;
         }

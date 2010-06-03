@@ -161,44 +161,6 @@ namespace WebApp.Extensions
         public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
             throw new NotImplementedException("OSEF");
-
-            // Validate role
-            if (!RoleExists(roleName))
-            {
-                throw new ProviderException("Role does not exist.");
-            }
-
-            if (throwOnPopulatedRole && GetUsersInRole(roleName).Length > 0)
-            {
-                throw new ProviderException("Cannot delete a populated role.");
-            }
-
-            //using (EFDataModelEntities context = new EFDataModelEntities(connectionString))
-            //{
-            //    Role role = GetRole(r => r.Name == roleName, context);
-            //    if (role == null)
-            //    {
-            //        return false;
-            //    }
-
-            //    try
-            //    {
-            //        context.DeleteObject(role);
-            //        context.SaveChanges();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        if (WriteExceptionsToEventLog)
-            //        {
-            //            WriteToEventLog(ex, "DeleteRole");
-            //            return false;
-            //        }
-
-            //        throw;
-            //    }
-
-            //    return true;
-            //}
         }
 
         /// <summary>

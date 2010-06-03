@@ -24,8 +24,8 @@ namespace Services.Campus
         /// <param name="c">The campus entity to persist</param>
         public void Create(DAL.Campus c, string authorId)
         {
-            DAL.Utils.GenericCrud.SetAudit(c.Address.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetFirstAudit(c.Address.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetFirstAudit(c.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(c.Address);
             DAL.Utils.GenericCrud.Create(c);
 
@@ -71,7 +71,7 @@ namespace Services.Campus
 
         public void CreateVenue(Venue v, string authorId)
         {
-            DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetFirstAudit(v.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(v);
         }
 
