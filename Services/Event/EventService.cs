@@ -10,7 +10,6 @@ namespace Services.Event
 {
     public class EventService : IEventService
     {
-
         private DAL.GDPEntities db;
 
         public EventService()
@@ -129,65 +128,150 @@ namespace Services.Event
 
         public List<DAL.Event> GetClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            ISecurityService peopleService = new SecurityService();
+            DAL.User user = peopleService.getUserById(userId);
+            totalRecords = user.CurrentClass.Campus.Events.Count();
+            if (user != null)
+            {
+                var result = (from e in user.CurrentClass.Campus.Events
+                              where e.StartDate >= startDate && e.EndDate >= endDate && e.Common.IsDeleted == false
+                              orderby e.Id
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + user + " does not exist.");
+            }
         }
 
         public List<DAL.Event> GetClassEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
         {
             throw new NotImplementedException();
+            ISecurityService peopleService = new SecurityService();
+            DAL.User user = peopleService.getUserById(userId);
+            totalRecords = user.CurrentClass.Campus.Events.Count();
+            if (user != null)
+            {
+                var result = (from e in user.CurrentClass.Campus.Events
+                              where e.EndDate >= DateTime.Now && e.Common.IsDeleted == false
+                              orderby e.Id
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + user + " does not exist.");
+            }
         }
 
         public List<DAL.Event> GetEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            ISecurityService peopleService = new SecurityService();
+            DAL.User user = peopleService.getUserById(userId);
+            totalRecords = user.Events.Count();
+            if (user != null)
+            {
+                var result = (from e in user.Events
+                              where e.StartDate >= startDate && e.EndDate >= endDate && e.Common.IsDeleted == false
+                              orderby e.Id
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + user + " does not exist.");
+            }
         }
 
         public List<DAL.Event> GetEventsForUser(int userId, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            ISecurityService peopleService = new SecurityService();
+            DAL.User user = peopleService.getUserById(userId);
+            totalRecords = user.Events.Count();
+            if (user != null)
+            {
+                var result = (from e in user.Events
+                              where e.EndDate >= DateTime.Now && e.Common.IsDeleted == false
+                              orderby e.Id
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + user + " does not exist.");
+            }
         }
 
         public void Update(DAL.Event e, string authorId)
         {
             DAL.Utils.GenericCrud.SetAudit(e.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.Update<DAL.Event>(e);
+
+            DAL.Utils.GenericCrud.Update(e.Venue);
+            DAL.Utils.GenericCrud.Update(e);
         }
 
         public void UpdateWorldWideEvent(DAL.WorldWideEvent wwe, string authorId)
         {
-            wwe.Common.Audit = GetWorldWideEventById(wwe.Id).Common.Audit;
             DAL.Utils.GenericCrud.SetAudit(wwe.Common.Audit, authorId);
+
             DAL.Utils.GenericCrud.Update<DAL.WorldWideEvent>(wwe);
         }
 
         public void UpdateUserEvent(DAL.Event e, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(e.Common.Audit, authorId);
+
+            DAL.Utils.GenericCrud.Update(e.User);
+            DAL.Utils.GenericCrud.Update(e);
         }
 
         public void UpdateClassEvent(DAL.BaseCourse bc, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(bc.Common.Audit, authorId);
+          
+            DAL.Utils.GenericCrud.Update(bc.Class);
+            DAL.Utils.GenericCrud.Update(bc.Stakeholder);
+            DAL.Utils.GenericCrud.Update(bc.Discipline);
+            DAL.Utils.GenericCrud.Update(bc);
         }
-
+      
         public void UpdateCampusEvent(DAL.Event e, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(e.Common.Audit, authorId);
+
+            DAL.Utils.GenericCrud.Update(e.Campus);
+            DAL.Utils.GenericCrud.Update(e);
         }
 
         public void Delete(int eventId, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Event ev = GetById(eventId);
+            
+            ev.Common.Audit.LastModifiedAt = DateTime.Now;
+            ev.Common.Audit.LastModifiedBy = authorId;
+            ev.Common.IsDeleted = true;
+
+            DAL.Utils.GenericCrud.Update(ev);
         }
 
         public void Delete(DAL.Event e, string authorId)
         {
-            throw new NotImplementedException();
+            e.Common.Audit.LastModifiedAt = DateTime.Now;
+            e.Common.Audit.LastModifiedBy = authorId;
+            e.Common.IsDeleted = true;
+
+            DAL.Utils.GenericCrud.Update(e);
         }
 
         public void CreateCampusEvent(DAL.Event ev, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(ev.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(ev);
         }
     }
 }
