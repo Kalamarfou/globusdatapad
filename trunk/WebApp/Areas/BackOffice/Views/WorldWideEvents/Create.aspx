@@ -5,25 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-<script src="/Scripts/jquery_ui_datepicker/jquery_ui_datepicker.js" type="text/javascript"></script>
+<script src="/Scripts/anytime/anytimec.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/Scripts/anytime/anytimec.css" />
 
 <script type="text/javascript">
-	/* <![CDATA[ */
-		$(function() {
-				  $('.dateTimePicker').datetime({
-									userLang	: 'en',
-									americanMode: true,
-								});
-			});
-	/* ]]> */
+    $(".dateTimePicker").AnyTime_picker({
+        placement: "inline"
+    });
 </script>
-
-<script src="/Scripts/jquery_ui_datepicker/i18n/ui.datepicker-de.js" type="text/javascript"></script>
-<script src="/Scripts/jquery_ui_datepicker/timepicker_plug/timepicker.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="/Scripts/jquery_ui_datepicker/timepicker_plug/css/style.css">
-<link rel="stylesheet" type="text/css" href="/Scripts/jquery_ui_datepicker/smothness/jquery_ui_datepicker.css">
-
 
     <h2>Create</h2>
 

@@ -12,7 +12,7 @@ namespace Services.People
 
         public void createAvailability(DAL.Availability a, string authorId)
         {
-            DAL.Utils.GenericCrud.SetFirstAudit(a.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetAudit(a.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(a);
         }
 

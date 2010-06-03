@@ -88,26 +88,23 @@ namespace DAL.Utils
             }
         }
 
-
         /// <summary>
         /// Update audit fields
         /// </summary>
         /// <param name="audit">Audit fields</param>
         /// <param name="authorId">Username of the user that has made the modification.</param>
-        public static void SetFirstAudit(Audit audit, string authorId)
-        {
-            DateTime now = DateTime.Now;    // in order to have the exact same date for creation and modification, 
-                                            // allowing us to find entities that have never been modified
-            audit.CreatedAt = now;
-            audit.CreatedBy = authorId;
-           
-            audit.LastModifiedAt = now;
-            audit.LastModifiedBy = authorId;
-        }
-
         public static void SetAudit(Audit audit, string authorId)
         {
-            audit.LastModifiedAt = DateTime.Now;
+            DateTime now = DateTime.Now;    // in order to have the exact same date for creation and modification, 
+                                            // allowing us to find entities that have never been modified etc
+
+            if (string.IsNullOrEmpty(audit.CreatedBy) && audit.CreatedAt == new DateTime())
+            {
+                audit.CreatedAt = now;
+                audit.CreatedBy = authorId;
+            }
+
+            audit.LastModifiedAt = now;
             audit.LastModifiedBy = authorId;
         }
     }

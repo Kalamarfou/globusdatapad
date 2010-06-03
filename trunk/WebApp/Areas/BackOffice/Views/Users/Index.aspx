@@ -80,7 +80,7 @@ Page <%=Convert.ToInt32(ViewData["curpage"]) + 1 %> of <%=ViewData["numpages"] %
    }
 %>
 
-    <p>User must create himself his account on the front office. It must then be approved in the back office.</p>
+    <p><strong>User must create himself his account on the front office.</strong> It must then be approved in the back office.</p>
 
 </asp:Content>
 

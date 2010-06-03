@@ -19,7 +19,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
             int i;
 
-            ViewData.Model = service.GetWorldWideEvents(0, 100, out i);
+            ViewData.Model = service.GetWorldWideEvents(DateTime.Today, DateTime.Today.AddYears(1), 0, 100, out i);
 
             return View();
         }

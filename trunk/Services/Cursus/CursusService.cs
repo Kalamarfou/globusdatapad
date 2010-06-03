@@ -21,7 +21,7 @@ namespace Services.Cursus
 
         public void CreateCursus(DAL.Cursus c, string authorId)
         {
-            DAL.Utils.GenericCrud.SetFirstAudit(c.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(c);
 
         }
@@ -65,7 +65,7 @@ namespace Services.Cursus
 
         public void CreateStudyPeriod(DAL.StudyPeriod sp, string authorId)
         {
-            DAL.Utils.GenericCrud.SetFirstAudit(sp.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(sp);
         }
 
@@ -125,7 +125,7 @@ namespace Services.Cursus
 
         public void Create(DAL.Discipline disc, string authorId)
         {
-            DAL.Utils.GenericCrud.SetFirstAudit(disc.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.SetAudit(disc.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(disc);
         }
 

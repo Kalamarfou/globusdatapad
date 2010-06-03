@@ -127,6 +127,7 @@
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Index.aspx" />
     <Content Include="Areas\FrontOffice\Views\Calendar\Index.aspx" />
+    <Content Include="Areas\FrontOffice\Views\Calendar\WorldWideEvent.aspx" />
     <Content Include="Content\bg_linkList.gif" />
     <Content Include="Content\fond.gif" />
     <Content Include="Content\foot.gif" />
@@ -159,6 +160,8 @@
     <Content Include="Content\logo.gif" />
     <Content Include="Content\mobile.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\anytime\anytimec.css" />
+    <Content Include="Scripts\anytime\anytimec.js" />
     <Content Include="Scripts\jquery-ui-1.8.1.custom.min.js" />
     <Content Include="Scripts\jquery_ui_datepicker\i18n\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery_ui_datepicker\i18n\ui.datepicker-ar.js" />
