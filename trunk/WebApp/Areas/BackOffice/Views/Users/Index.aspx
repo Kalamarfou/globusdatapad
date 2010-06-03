@@ -68,6 +68,18 @@
 
     </table>
 
+Page <%=Convert.ToInt32(ViewData["curpage"]) + 1 %> of <%=ViewData["numpages"] %><br />
+<%
+   for (int i = 1; i <= Convert.ToInt32(ViewData["numpages"]); i++)
+   {
+      %> 
+
+      <span><b><%= Html.ActionLink(i.ToString(),"Index","Users",new{page=i},null) %></b></span>
+
+      <% 
+   }
+%>
+
     <p>User must create himself his account on the front office. It must then be approved in the back office.</p>
 
 </asp:Content>
