@@ -61,6 +61,7 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CampusesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CursusesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\WorldWideEventsController.cs" />
     <Compile Include="Areas\FrontOffice\Controllers\CalendarApiController.cs" />
     <Compile Include="Areas\FrontOffice\Controllers\CalendarController.cs" />
@@ -115,6 +116,10 @@
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\VenueVisualization.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressEdition.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressCreation.ascx" />
+    <Content Include="Areas\BackOffice\Views\Users\Delete.aspx" />
+    <Content Include="Areas\BackOffice\Views\Users\Details.aspx" />
+    <Content Include="Areas\BackOffice\Views\Users\Edit.aspx" />
+    <Content Include="Areas\BackOffice\Views\Users\Index.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Create.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Details.aspx" />
