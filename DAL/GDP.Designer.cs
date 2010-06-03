@@ -40,6 +40,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "UserCampus", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Campus))]
 [assembly: EdmRelationshipAttribute("GDP", "UserEvent", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.User), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 [assembly: EdmRelationshipAttribute("GDP", "UserBaseCourse", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.BaseCourse), true)]
+[assembly: EdmRelationshipAttribute("GDP", "UserCampus1", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Campus))]
 
 #endregion
 
@@ -603,7 +604,8 @@ namespace DAL
         /// <param name="endDate">Initial value of the EndDate property.</param>
         /// <param name="personId">Initial value of the PersonId property.</param>
         /// <param name="userId">Initial value of the UserId property.</param>
-        public static Availability CreateAvailability(global::System.Int32 id, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Int32 personId, global::System.Int32 userId)
+        /// <param name="common">Initial value of the Common property.</param>
+        public static Availability CreateAvailability(global::System.Int32 id, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Int32 personId, global::System.Int32 userId, Common common)
         {
             Availability availability = new Availability();
             availability.Id = id;
@@ -611,6 +613,7 @@ namespace DAL
             availability.EndDate = endDate;
             availability.PersonId = personId;
             availability.UserId = userId;
+            availability.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             return availability;
         }
 
@@ -739,6 +742,40 @@ namespace DAL
         private global::System.Int32 _UserId;
         partial void OnUserIdChanging(global::System.Int32 value);
         partial void OnUserIdChanged();
+
+        #endregion
+        #region Complex Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmComplexPropertyAttribute()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [XmlElement(IsNullable=true)]
+        [SoapElement(IsNullable=true)]
+        [DataMemberAttribute()]
+        public Common Common
+        {
+            get
+            {
+                _Common = GetValidValue(_Common, "Common", false, _CommonInitialized);
+                _CommonInitialized = true;
+                return _Common;
+            }
+            set
+            {
+                OnCommonChanging(value);
+                ReportPropertyChanging("Common");
+                _Common = SetValidValue(_Common, value, "Common");
+                _CommonInitialized = true;
+                ReportPropertyChanged("Common");
+                OnCommonChanged();
+            }
+        }
+        private Common _Common;
+        private bool _CommonInitialized;
+        partial void OnCommonChanging(Common value);
+        partial void OnCommonChanged();
 
         #endregion
     
@@ -1054,6 +1091,40 @@ namespace DAL
         partial void OnVolumeChanged();
 
         #endregion
+        #region Complex Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmComplexPropertyAttribute()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [XmlElement(IsNullable=true)]
+        [SoapElement(IsNullable=true)]
+        [DataMemberAttribute()]
+        public Common Common
+        {
+            get
+            {
+                _Common = GetValidValue(_Common, "Common", false, _CommonInitialized);
+                _CommonInitialized = true;
+                return _Common;
+            }
+            set
+            {
+                OnCommonChanging(value);
+                ReportPropertyChanging("Common");
+                _Common = SetValidValue(_Common, value, "Common");
+                _CommonInitialized = true;
+                ReportPropertyChanged("Common");
+                OnCommonChanged();
+            }
+        }
+        private Common _Common;
+        private bool _CommonInitialized;
+        partial void OnCommonChanging(Common value);
+        partial void OnCommonChanged();
+
+        #endregion
     
     }
     
@@ -1296,6 +1367,28 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("GDP.UserCampus", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserCampus1", "User")]
+        public EntityCollection<User> Stakeholders
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("GDP.UserCampus1", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("GDP.UserCampus1", "User", value);
                 }
             }
         }
@@ -1676,13 +1769,15 @@ namespace DAL
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="volume">Initial value of the Volume property.</param>
+        /// <param name="common">Initial value of the Common property.</param>
         /// <param name="disciplineId">Initial value of the DisciplineId property.</param>
-        public static CourseType CreateCourseType(global::System.Int32 id, global::System.String name, global::System.Int32 volume, global::System.Int32 disciplineId)
+        public static CourseType CreateCourseType(global::System.Int32 id, global::System.String name, global::System.Int32 volume, Common common, global::System.Int32 disciplineId)
         {
             CourseType courseType = new CourseType();
             courseType.Id = id;
             courseType.Name = name;
             courseType.Volume = volume;
+            courseType.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             courseType.DisciplineId = disciplineId;
             return courseType;
         }
@@ -1938,11 +2033,13 @@ namespace DAL
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Discipline CreateDiscipline(global::System.Int32 id, global::System.String name)
+        /// <param name="common">Initial value of the Common property.</param>
+        public static Discipline CreateDiscipline(global::System.Int32 id, global::System.String name, Common common)
         {
             Discipline discipline = new Discipline();
             discipline.Id = id;
             discipline.Name = name;
+            discipline.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             return discipline;
         }
 
@@ -1999,6 +2096,40 @@ namespace DAL
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+
+        #endregion
+        #region Complex Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmComplexPropertyAttribute()]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [XmlElement(IsNullable=true)]
+        [SoapElement(IsNullable=true)]
+        [DataMemberAttribute()]
+        public Common Common
+        {
+            get
+            {
+                _Common = GetValidValue(_Common, "Common", false, _CommonInitialized);
+                _CommonInitialized = true;
+                return _Common;
+            }
+            set
+            {
+                OnCommonChanging(value);
+                ReportPropertyChanging("Common");
+                _Common = SetValidValue(_Common, value, "Common");
+                _CommonInitialized = true;
+                ReportPropertyChanged("Common");
+                OnCommonChanged();
+            }
+        }
+        private Common _Common;
+        private bool _CommonInitialized;
+        partial void OnCommonChanging(Common value);
+        partial void OnCommonChanged();
 
         #endregion
     
@@ -2216,13 +2347,15 @@ namespace DAL
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="volume">Initial value of the Volume property.</param>
+        /// <param name="common">Initial value of the Common property.</param>
         /// <param name="disciplineId">Initial value of the DisciplineId property.</param>
-        public static EvaluationType CreateEvaluationType(global::System.Int32 id, global::System.String name, global::System.Int32 volume, global::System.Int32 disciplineId)
+        public static EvaluationType CreateEvaluationType(global::System.Int32 id, global::System.String name, global::System.Int32 volume, Common common, global::System.Int32 disciplineId)
         {
             EvaluationType evaluationType = new EvaluationType();
             evaluationType.Id = id;
             evaluationType.Name = name;
             evaluationType.Volume = volume;
+            evaluationType.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             evaluationType.DisciplineId = disciplineId;
             return evaluationType;
         }
@@ -3902,6 +4035,28 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BaseCourse>("GDP.UserBaseCourse", "BaseCourse", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserCampus1", "Campus")]
+        public EntityCollection<Campus> StakeholderCampuses
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Campus>("GDP.UserCampus1", "Campus");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Campus>("GDP.UserCampus1", "Campus", value);
                 }
             }
         }

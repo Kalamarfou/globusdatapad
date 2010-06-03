@@ -74,6 +74,23 @@ namespace Services.Cursus
             return db.StudyPeriods.First(s => s.Id == id);
         }
 
+        public List<DAL.Discipline> getStudyPeriodDisciplines(int id, int pageNum, int pageSize, out int totalRecords)
+        {
+            DAL.StudyPeriod studyPeriod = GetStudyPeriodById(id);
+
+            if (studyPeriod != null)
+            {
+                var result = (from d in studyPeriod.Disciplines
+                              where d.Common.IsDeleted == false
+                              select d);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Discipline>();
+            }
+            else
+            {
+                throw new ApplicationException("Study period " + id + " does not exist");
+            }
+        }
 
         public void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId)
         {
@@ -95,42 +112,83 @@ namespace Services.Cursus
 
         public void Create(DAL.Discipline disc, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetFirstAudit(disc.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Create(disc);
         }
 
         public DAL.Discipline GetById(int discId)
         {
-            throw new NotImplementedException();
+            return db.Disciplines.First(e => e.Id == discId && e.Common.IsDeleted == false);
         }
 
         public List<DAL.Discipline> GetAll(int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            totalRecords = 0;
+            List<DAL.Discipline> disciplines;
+
+            using (DAL.GDPEntities db = new DAL.GDPEntities())
+            {
+                totalRecords = (from u in db.Disciplines
+                                where u.Common.IsDeleted == false
+                                select u).Count<DAL.Discipline>();
+
+                disciplines = (from u in db.Disciplines
+                               where u.Common.IsDeleted == false
+                               select u).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Discipline>();
+            }
+
+            return disciplines;
         }
 
         public void Update(DAL.Discipline disc, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(disc.Common.Audit, authorId);
+            DAL.Utils.GenericCrud.Update(disc);
         }
 
         public void Delete(DAL.Discipline disc, string authorId)
         {
-            throw new NotImplementedException();
+            DAL.Utils.GenericCrud.SetAudit(disc.Common.Audit, authorId);
+            disc.Common.IsDeleted = true;
+            DAL.Utils.GenericCrud.Update(disc);
         }
 
         public List<DAL.EvaluationType> GetDisciplineEvaluationTypes(int discId, int pageNum, int pageSize, out int totalRecords)
         {
-            throw new NotImplementedException();
+            DAL.Discipline disc = GetById(discId);
+            totalRecords = disc.EvaluationTypes.Count;
+
+            if (disc != null)
+            {
+                var result = (from u in disc.EvaluationTypes
+                              where u.Common.IsDeleted == false
+                              select u);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.EvaluationType>();
+            }
+            else
+            {
+                throw new ApplicationException("Discipline " + discId + " does not exist");
+            }
         }
 
         public List<DAL.CourseType> GetDisciplineCourseTypes(int discId, int pageNum, int pageSize, out int totalRecors)
         {
-            throw new NotImplementedException();
-        }
+            DAL.Discipline disc = GetById(discId);
+            totalRecors = disc.CourseTypes.Count;
 
-        public List<DAL.StudyPeriod> GetDisciplineStudyPeriods(int discId, int pageNum, int pageSize, DateTime startDate, DateTime endDate, out int totalRecords)
-        {
-            throw new NotImplementedException();
+            if (disc != null)
+            {
+                var result = (from u in disc.CourseTypes
+                              where u.Common.IsDeleted == false
+                              select u);
+                totalRecors = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.CourseType>();
+            }
+            else
+            {
+                throw new ApplicationException("Discipline " + discId + " does not exist");
+            }
         }
 
         #endregion
