@@ -68,7 +68,7 @@
 
     </table>
 
-Page <%=Convert.ToInt32(ViewData["curpage"]) + 1 %> of <%=ViewData["numpages"] %><br />
+Page <%=Convert.ToInt32(ViewData["curpage"])%> of <%=ViewData["numpages"] %><br />
 <%
    for (int i = 1; i <= Convert.ToInt32(ViewData["numpages"]); i++)
    {
