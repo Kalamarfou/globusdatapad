@@ -54,7 +54,7 @@ namespace WebApp.Areas.FrontOffice.Controllers
             {
                 foreach (DAL.Event e in events)
                 {
-                    eventList.Add(new CalendarEvent(e, "UserEvent", "/FrontOffice/Calendar/MyEvent/"));
+                    eventList.Add(new CalendarEvent(e, "UserEvent", "/FrontOffice/MyEvents/Details/"));
                 }
             }
             return Json(eventList, JsonRequestBehavior.AllowGet);
