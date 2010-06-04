@@ -28,10 +28,12 @@ namespace WebApp.Areas.FrontOffice.Controllers
             int totalRecords;
 
             List<DAL.WorldWideEvent> wwe = service.GetWorldWideEvents(GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
-
-            foreach (DAL.WorldWideEvent e in wwe)
+            if (wwe != null)
             {
-                eventList.Add(new CalendarEvent(e, "WorldWideEvent", "/FrontOffice/Calendar/WorldWideEvent/"));
+                foreach (DAL.WorldWideEvent e in wwe)
+                {
+                    eventList.Add(new CalendarEvent(e, "WorldWideEvent", "/FrontOffice/Calendar/WorldWideEvent/"));
+                }
             }
 
             return Json(eventList, JsonRequestBehavior.AllowGet);
@@ -48,12 +50,13 @@ namespace WebApp.Areas.FrontOffice.Controllers
             int totalRecords;
 
             List<DAL.Event> events = service.GetEventsForUser(User.Identity.Name, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
-
-            foreach (DAL.Event e in events)
+            if (events != null)
             {
-                eventList.Add(new CalendarEvent(e, "UserEvent", "/FrontOffice/Calendar/MyEvent/"));
+                foreach (DAL.Event e in events)
+                {
+                    eventList.Add(new CalendarEvent(e, "UserEvent", "/FrontOffice/Calendar/MyEvent/"));
+                }
             }
-
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
 
@@ -78,10 +81,12 @@ namespace WebApp.Areas.FrontOffice.Controllers
             int campusId = user.CurrentClass.Campus.Id;
 
             List<DAL.Event> events = eventService.GetEventsForCampus(campusId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
-
-            foreach (DAL.Event e in events)
+            if (events != null)
             {
-                eventList.Add(new CalendarEvent(e, "CampusEvent", "/FrontOffice/Calendar/CampusEvent/"));
+                foreach (DAL.Event e in events)
+                {
+                    eventList.Add(new CalendarEvent(e, "CampusEvent", "/FrontOffice/Calendar/CampusEvent/"));
+                }
             }
 
             return Json(eventList, JsonRequestBehavior.AllowGet);
@@ -101,12 +106,13 @@ namespace WebApp.Areas.FrontOffice.Controllers
             int userId = securityService.getUserByUsername(User.Identity.Name).Id;
 
             List<DAL.Event> events = eventService.GetClassEventsForUser(userId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
-
-            foreach (DAL.Event e in events)
+            if (events != null)
             {
-                eventList.Add(new CalendarEvent(e, "ClassEvent", "/FrontOffice/Calendar/ClassEvent/"));
-            }
-
+                foreach (DAL.Event e in events)
+                {
+                    eventList.Add(new CalendarEvent(e, "ClassEvent", "/FrontOffice/Calendar/ClassEvent/"));
+                }
+            } 
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
     }

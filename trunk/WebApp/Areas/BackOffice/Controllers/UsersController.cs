@@ -10,7 +10,7 @@ namespace WebApp.Areas.BackOffice.Controllers
     [Authorize(Roles="Admin,CampusManager")]
     public class UsersController : Controller
     {
-        private const int pageSize = 20;
+        private const int pageSize = 2;
 
         //
         // GET: /BackOffice/Users/
@@ -24,17 +24,18 @@ namespace WebApp.Areas.BackOffice.Controllers
 
             if (!page.HasValue)
             {
-                pageCount = 0;
+                pageCount = 1;
             }
             else
             {
                 pageCount = page.Value;
             }
 
-            ViewData.Model = service.getAllUsers(pageCount, pageSize, out totalRecords);
+            ViewData.Model = service.getAllUsers(pageCount -1, pageSize, out totalRecords);
 
-            ViewData["numpages"] = totalRecords / pageSize;
-            ViewData["curpage"] = pageCount + 1;
+            ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
+
+            ViewData["curpage"] = pageCount;
 
             return View();
         }
