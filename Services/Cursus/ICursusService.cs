@@ -36,6 +36,8 @@ namespace Services.Cursus
 
         DAL.StudyPeriod GetStudyPeriodById(int id);
 
+        DAL.Cursus GetStudyPeriodCursus(int id);
+
         List<DAL.Discipline> getStudyPeriodDisciplines(int id, int pageNum, int pageSize, out int totalRecords);
 
         void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId);
