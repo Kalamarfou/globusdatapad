@@ -163,6 +163,7 @@
     <Content Include="Scripts\anytime\anytimec.css" />
     <Content Include="Scripts\anytime\anytimec.js" />
     <Content Include="Scripts\jquery-ui-1.8.1.custom.min.js" />
+    <Content Include="Scripts\jquery.ui.datetimepicker.min.js" />
     <Content Include="Scripts\jquery_ui_datepicker\i18n\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery_ui_datepicker\i18n\ui.datepicker-ar.js" />
     <Content Include="Scripts\jquery_ui_datepicker\i18n\ui.datepicker-bg.js" />

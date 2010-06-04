@@ -5,14 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<script src="/Scripts/anytime/anytimec.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="/Scripts/anytime/anytimec.css" />
-
-<script type="text/javascript">
-    $(".dateTimePicker").AnyTime_picker({
-        placement: "inline"
-    });
-</script>
 
     <h2>Create</h2>
 
