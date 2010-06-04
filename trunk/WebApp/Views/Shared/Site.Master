@@ -46,8 +46,8 @@
 		</div>
 
             <div id="menu">
-                <p><%= Html.ActionLink("Home", "Index", "Home")%></p>
-                    <p><%= Html.ActionLink("About", "About", "Home")%></p>
+                <p><%= Html.ActionLink("Home", "Index", "Home", new { Area = "" }, null)%></p>
+                    <p><%= Html.ActionLink("About", "About", "Home", new { Area = "" }, null)%></p>
                     <% if (Roles.IsUserInRole("Admin") | Roles.IsUserInRole("Stakeholder") | Roles.IsUserInRole("CampusManager"))
                        { %>
                     <p><%= Html.ActionLink("BackOffice", "Index", "Campuses", new { Area = "BackOffice"}, null)%></p>
@@ -55,6 +55,7 @@
                     <% } else if (Roles.IsUserInRole("Student")) { %>
                     <p><%= Html.ActionLink("Calendar", "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
                     <% } %>
+                <p><%= Html.ActionLink("Create an event", "Create", "MyEvents", new { Area = "FrontOffice"}, null) %></p>
             </div>
 
         <div id="center">
@@ -64,8 +65,8 @@
             </div>
 
             <div id="foot">
-            	<p>Le foot de la page</p>
-		        <p id="copyright">Mise en page by Master's of the world</p>
+            	<p>GlobusDataPad</p>
+		        <p id="copyright">Projet de groupe M1 Montpellier 2010 - DARUTY DE GRANDPRE, RAKOTOMALALA, BERNARD, FILLIAU.</p>
             </div>
         </div>
     </div>

@@ -61,7 +61,7 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create lol.
+        ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string ButtonCreate {
             get {

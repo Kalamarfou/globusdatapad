@@ -21,7 +21,8 @@ namespace WebApp.Areas.BackOffice.Controllers
 
         public ActionResult Index()
         {
-            //ViewData.Model = service.GetAll();    TODO
+            int i;
+            ViewData.Model = service.GetAll(0, 100, out i);
             return View();
         }
 
