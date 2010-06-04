@@ -5,6 +5,7 @@ using System.Text;
 using Services;
 using Services.People;
 using Services.Campus;
+using System.Data.Objects.DataClasses;
 
 namespace Services.Event
 {
@@ -20,6 +21,8 @@ namespace Services.Event
         public void CreateUserEvent(DAL.Event ev, string authorId)
         {
             DAL.Utils.GenericCrud.SetAudit(ev.Common.Audit, authorId);
+            SecurityService service = new SecurityService();
+            ev.User = service.getUserByUsername(authorId);
             DAL.Utils.GenericCrud.Create(ev);
         }
 
@@ -159,8 +162,9 @@ namespace Services.Event
         public void UpdateUserEvent(DAL.Event e, string authorId)
         {
             DAL.Utils.GenericCrud.SetAudit(e.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.SetAudit(e.Venue.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.Update(e.Venue);
+            //TODO, il faudrais deja avoir une venue
+            //DAL.Utils.GenericCrud.SetAudit(e.Venue.Common.Audit, authorId);
+            //DAL.Utils.GenericCrud.Update(e.Venue);
             DAL.Utils.GenericCrud.Update(e);
         }
 

@@ -65,7 +65,13 @@
     <Compile Include="Areas\BackOffice\Controllers\WorldWideEventsController.cs" />
     <Compile Include="Areas\FrontOffice\Controllers\CalendarApiController.cs" />
     <Compile Include="Areas\FrontOffice\Controllers\CalendarController.cs" />
+    <Compile Include="Areas\FrontOffice\Controllers\MyEventsController.cs" />
     <Compile Include="Areas\FrontOffice\FrontOfficeAreaRegistration.cs" />
+    <Compile Include="Content\i18n\FrontOffice\MyEvents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyEvents.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\DALMembershipProvider.cs" />
@@ -128,6 +134,11 @@
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Index.aspx" />
     <Content Include="Areas\FrontOffice\Views\Calendar\Index.aspx" />
     <Content Include="Areas\FrontOffice\Views\Calendar\WorldWideEvent.aspx" />
+    <Content Include="Areas\FrontOffice\Views\MyEvents\Create.aspx" />
+    <Content Include="Areas\FrontOffice\Views\MyEvents\Delete.aspx" />
+    <Content Include="Areas\FrontOffice\Views\MyEvents\Details.aspx" />
+    <Content Include="Areas\FrontOffice\Views\MyEvents\Edit.aspx" />
+    <Content Include="Areas\FrontOffice\Views\MyEvents\Error.aspx" />
     <Content Include="Content\bg_linkList.gif" />
     <Content Include="Content\fond.gif" />
     <Content Include="Content\foot.gif" />
@@ -290,6 +301,10 @@
     <Content Include="Views\Shared\iPhone.Master" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Content\i18n\FrontOffice\MyEvents.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyEvents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Models\Address\Address.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Address.Designer.cs</LastGenOutput>
