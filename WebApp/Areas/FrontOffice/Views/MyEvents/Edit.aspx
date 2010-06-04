@@ -35,7 +35,7 @@
                 <%: Html.LabelFor(model => model.StartDate) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.StartDate, String.Format("{0:g}", Model.StartDate)) %>
+                <%: Html.EditorFor(model => model.StartDate) %>
                 <%: Html.ValidationMessageFor(model => model.StartDate) %>
             </div>
             
@@ -43,7 +43,7 @@
                 <%: Html.LabelFor(model => model.EndDate) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.EndDate, String.Format("{0:g}", Model.EndDate)) %>
+                <%: Html.EditorFor(model => model.EndDate) %>
                 <%: Html.ValidationMessageFor(model => model.EndDate) %>
             </div>
             
