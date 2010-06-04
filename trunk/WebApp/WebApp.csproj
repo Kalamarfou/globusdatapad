@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Extensions\DALMembershipProvider.cs" />
     <Compile Include="Extensions\DALRolesProvider.cs" />
     <Compile Include="Extensions\GlobalUtils.cs" />
@@ -234,6 +235,8 @@
     <Content Include="Scripts\jquery_ui_datepicker\smothness\jquery_ui_datepicker.css" />
     <Content Include="Scripts\jquery_ui_datepicker\timepicker_plug\css\style.css" />
     <Content Include="Scripts\jquery_ui_datepicker\timepicker_plug\timepicker.js" />
+    <Content Include="Views\Account\Mobile\LogOn.aspx" />
+    <Content Include="Views\Home\Mobile\Index.aspx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

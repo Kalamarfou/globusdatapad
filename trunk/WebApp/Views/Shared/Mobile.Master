@@ -1,11 +1,11 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<!DOCTYPE xhtml MP PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta name="viewport" content="width=<%= Request.Browser["ScreenPixelsWidth"] %>, height=<%=Request.Browser["ScreenPixelsHeight"]%>"/>
-    <title><%= Html.Encode(ViewData["Title"]) %></title>
+    <title><%= Html.Encode(ViewData["Title"]) %> <asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link href="<%= Url.Content("~/Content/mobile.css") %>" rel="stylesheet" type="text/css" />
 </head>
 
@@ -13,10 +13,9 @@
 <!-- TODO !!!! -->
     <div class="header">
         <ul class="menu">
-            <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-            <li><%= Html.ActionLink("Computers", "Category", "Products", new { id = "Computers" })%></li>
-            <li><%= Html.ActionLink("Electronics", "Category", "Products", new { id = "Electronics"})%></li>
-            <li><%= Html.ActionLink("My Cart", "Index", "Cart")%></li>
+            <li><%= Html.ActionLink("Next 5 days", "Index", "Home")%></li>
+            <li><%= Html.ActionLink("Next 10 days", "Category", "Products", new { id = "Computers" })%></li>
+            <li><%= Html.ActionLink("Next 20 days", "Category", "Products", new { id = "Electronics"})%></li>
         </ul>
     </div>
 
@@ -25,9 +24,8 @@
     </div>
 
     <div id="footer" class="menu">
-        <%= Html.ActionLink("Sitemap", "Index", "Sitemap")%>
-        <%= Html.ActionLink("Search", "Index", "Search")%>
-        <%= Html.ActionLink("Login", "LogOn", "Account")%>
+        <%= Html.ActionLink("Home", "Index", "Home")%>
+        <%= Html.ActionLink("LogOut", "Index", "Home")%>
     </div>
     
 </body>
