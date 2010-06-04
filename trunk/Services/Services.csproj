@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Campus\CampusService.cs" />
+    <Compile Include="Class\ClassService.cs" />
+    <Compile Include="Class\IClassService.cs" />
     <Compile Include="Cursus\CursusService.cs" />
     <Compile Include="Campus\ICampusService.cs" />
     <Compile Include="Cursus\ICursusService.cs" />
