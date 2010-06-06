@@ -181,54 +181,14 @@ namespace WebApp.Extensions
         /// <param name="roleNames">A string array of the role names to add the specified user names to.</param>
         public override void AddUsersToRoles(string[] userNames, string[] roleNames)
         {
-            throw new NotImplementedException("TODO");
-
-            //using (EFDataModelEntities context = new EFDataModelEntities(connectionString))
-            //{
-            //    IQueryable<Role> roles = context.Role.Where(MatchRoleApplication()).Where(ProviderUtils.BuildContainsExpression<Role, string>(r => r.Name, roleNames));
-            //    if (roles.Count() != roleNames.Length)
-            //    {
-            //        throw new ProviderException("Role not found.");
-            //    }
-
-            //    IQueryable<User> users = context.User.Where(MatchUserApplication()).Where(ProviderUtils.BuildContainsExpression<User, string>(u => u.Username, userNames));
-            //    if (users.Count() != userNames.Length)
-            //    {
-            //        throw new ProviderException("User not found.");
-            //    }
-
-            //    try
-            //    {
-            //        foreach (User user in users)
-            //        {
-            //            foreach (Role role in roles)
-            //            {
-            //                // Check whether user is already in role
-            //                if (IsUserInRole(user.Username, role.Name))
-            //                {
-            //                    throw new ProviderException(string.Format("User is already in role '{0}'.", role.Name));
-            //                }
-            //                user.Role.Add(role);
-            //            }
-            //        }
-            //        context.SaveChanges(false);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        if (WriteExceptionsToEventLog)
-            //        {
-            //            WriteToEventLog(ex, "AddUsersToRoles");
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //    finally
-            //    {
-            //        context.Connection.Close();
-            //    }
-            //}
+            ISecurityService service = new SecurityService();
+            foreach (string user in userNames)
+            {
+                foreach (string role in roleNames)
+                {
+                    service.addUserToRole(user, role);
+                }
+            }
         }
 
         /// <summary>

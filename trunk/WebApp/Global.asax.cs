@@ -57,17 +57,18 @@ namespace WebApp
 
             #region "Admin account creation"
 
-            if (securityService.getUserByUsername("admin") == null)
+            try
             {
-                DAL.User user = new DAL.User();
-                user.Email = "admin@localhost";
-                user.Username = "admin";
+                MembershipCreateStatus status;
 
-               
-                // TODO, manque le hashed password
-                
+                Membership.CreateUser("admin", "adminadmin", "admin@admin.org", "Admin?", "Yes?", true, null, out status);
+
+                Roles.AddUserToRole("admin", "Admin");
+
             }
-
+            catch (Exception)
+            {
+            }
             #endregion
 
             AreaRegistration.RegisterAllAreas();
