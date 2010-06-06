@@ -265,5 +265,38 @@ namespace Services.People
                             select r.ShortName).ToArray();
             }
         }
+
+        public void addUserToRole(string username, string roleName)
+        {
+            using (GDPEntities db = new GDPEntities())
+            {
+                DAL.Role role = db.Roles.Where(r => r.ShortName == roleName).FirstOrDefault<DAL.Role>();
+
+                if (role == null)
+                {
+                    throw new ApplicationException("Role " + roleName + " not found.");
+                }
+
+                DAL.User user = db.Users.Where(u => u.Username == username).FirstOrDefault<DAL.User>();
+
+                if (user == null)
+                {
+                    throw new ApplicationException("User " + username + " not found.");
+                }
+
+                if (user.Roles.Where(r => r.ShortName == roleName).Count() != 0)
+                {
+                    throw new ApplicationException("User " + username + " already in role " + roleName + ".");
+                }
+                else
+                {
+                    user.Roles.Add(role);
+                }
+
+                db.SaveChanges();
+                db.Connection.Close();
+            }
+        }
+
     }
 }
