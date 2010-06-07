@@ -39,6 +39,19 @@
 
     </table>
 
+    Page <%=Convert.ToInt32(ViewData["curpage"])%> of <%=ViewData["numpages"] %><br />
+<%
+   for (int i = 1; i <= Convert.ToInt32(ViewData["numpages"]); i++)
+   {
+      %> 
+
+      <span><b><%= Html.ActionLink(i.ToString(),"Index","Cursuses",new{page=i},null) %></b></span>
+
+      <% 
+   }
+%>
+
+
     <p>
         <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonCreate, "Create")%>
     </p>
