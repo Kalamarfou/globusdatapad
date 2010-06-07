@@ -1,18 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.Campus>>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Campuses.Index" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.Campus>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%= WebApp.Resources.Views.BackOffice.Campuses.Index %>
+	<%:WebApp.Content.i18n.BackOffice.Campuses.Index %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%= WebApp.Resources.Views.BackOffice.Campuses.Index %></h2>
+    <h2><%= WebApp.Content.i18n.BackOffice.Campuses.Index%></h2>
 
     <table>
         <tr>
-            <th><%= WebApp.Resources.Models.Campus.Campus.Name %></th>
-            <th><%= WebApp.Resources.Models.Address.Address.City %></th>
-            <th><%= WebApp.Resources.Models.Address.Address.Country %></th>
+            <th><%= DAL.Resources.Campus.Name %></th>
+            <th><%= DAL.Resources.Address.City%></th>
+            <th><%= DAL.Resources.Address.Country%></th>
             <th></th>
         </tr>
 
@@ -29,9 +29,9 @@
                 <%: item.Address.Country %>
             </td>
             <td>
-                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Edit, "Edit", new { id=item.Id }) %> |
-                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Details, "Details", new { id = item.Id })%> |
-                <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Delete, "Delete", new { id = item.Id })%>
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id=item.Id }) %> |
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDetails, "Details", new { id = item.Id })%> |
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDelete, "Delete", new { id = item.Id })%>
             </td>
         </tr>
     
@@ -40,7 +40,7 @@
     </table>
 
     <p>
-        <%: Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Create, "Create")%>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonCreate, "Create")%>
     </p>
 
 </asp:Content>

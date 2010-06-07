@@ -126,26 +126,6 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Models\Address\Address.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Address.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Models\Campus\Campus.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Campus.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Views\BackOffice\Campuses.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Campuses.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Views\BackOffice\Shared.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Shared.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\BackOffice\Views\Campuses\Create.aspx" />
@@ -316,7 +296,6 @@
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\FrontOffice\Models\" />
     <Folder Include="Areas\FrontOffice\Views\Shared\" />
-    <Folder Include="Resources\Views\FrontOffice\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\BackOffice\Views\Web.config" />
@@ -379,22 +358,6 @@
     <EmbeddedResource Include="Content\i18n\SiteMaster.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SiteMaster.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Models\Address\Address.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Address.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Models\Campus\Campus.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Campus.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Views\BackOffice\Campuses.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Campuses.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Views\BackOffice\Shared.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Shared.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

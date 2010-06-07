@@ -15,7 +15,7 @@
         <div class="display-label"><%:WebApp.Content.i18n.BackOffice.Campuses.CampusId %></div>
         <div class="display-field"><%: Model.Id %></div>
         
-        <div class="display-label"><%:WebApp.Content.i18n.Common.Name %></div>
+        <div class="display-label"><%:DAL.Resources.Campus.Name %></div>
         <div class="display-field"><%: Model.Name %></div>
         
         <div class="display-label"><%:WebApp.Content.i18n.Common.CreatedAt %></div>

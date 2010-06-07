@@ -22,7 +22,7 @@ namespace DAL.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Availability {
+    public class Availability {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DAL.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DAL.Resources.Availability", typeof(Availability).Assembly);
@@ -51,7 +51,7 @@ namespace DAL.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to End date.
         /// </summary>
-        internal static string EndDate {
+        public static string EndDate {
             get {
                 return ResourceManager.GetString("EndDate", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The end date of the availability  is required.
         /// </summary>
-        internal static string EndDateRequired {
+        public static string EndDateRequired {
             get {
                 return ResourceManager.GetString("EndDateRequired", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Start Date.
         /// </summary>
-        internal static string StartDate {
+        public static string StartDate {
             get {
                 return ResourceManager.GetString("StartDate", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace DAL.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The start date of the availability is required.
         /// </summary>
-        internal static string StartDateRequired {
+        public static string StartDateRequired {
             get {
                 return ResourceManager.GetString("StartDateRequired", resourceCulture);
             }

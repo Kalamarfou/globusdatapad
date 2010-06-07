@@ -126,6 +126,12 @@
   <data name="ButtonDelete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ButtonEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="CreatedAt" xml:space="preserve">
     <value>Created at:</value>
   </data>
@@ -134,9 +140,6 @@
   </data>
   <data name="DeleteAreYouSure" xml:space="preserve">
     <value>Are you sure you want to delete this?</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
   </data>
   <data name="Fields" xml:space="preserve">
     <value>Fields</value>
@@ -152,9 +155,6 @@
   </data>
   <data name="ModifiedBy" xml:space="preserve">
     <value>Modified by:</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name:</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
