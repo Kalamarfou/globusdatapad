@@ -13,7 +13,7 @@
 <!-- TODO !!!! -->
     <div class="header">
         <ul class="menu">
-            <li><%= Html.ActionLink("Next 5 days", "Index", "Home")%></li>
+            <li><%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Next5Days, "Index", "Home")%></li>
             <li><%= Html.ActionLink("Next 10 days", "Category", "Products", new { id = "Computers" })%></li>
             <li><%= Html.ActionLink("Next 20 days", "Category", "Products", new { id = "Electronics"})%></li>
         </ul>

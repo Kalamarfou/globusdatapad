@@ -117,31 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CampusId" xml:space="preserve">
+    <value>Campus id:</value>
+  </data>
+  <data name="CampusName" xml:space="preserve">
+    <value>Campus</value>
+  </data>
   <data name="CreateTitle" xml:space="preserve">
-    <value>Create personal event </value>
+    <value>Create campus</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete personal event</value>
+    <value>Delete campus</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description :</value>
+  <data name="DetailsMessage" xml:space="preserve">
+    <value>Details about Campus #</value>
   </data>
   <data name="DetailsTitle" xml:space="preserve">
-    <value>Personal event details</value>
+    <value>Details for campus</value>
   </data>
   <data name="EditTitle" xml:space="preserve">
-    <value>Edit personal event</value>
+    <value>Edit campus</value>
   </data>
-  <data name="EndDate" xml:space="preserve">
-    <value>End Date :</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
+  <data name="Index" xml:space="preserve">
+    <value>Campuses List</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name :</value>
-  </data>
-  <data name="StartDate" xml:space="preserve">
-    <value>Start date :</value>
+    <value>Name</value>
   </data>
 </root>

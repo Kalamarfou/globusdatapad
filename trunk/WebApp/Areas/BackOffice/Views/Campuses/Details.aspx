@@ -1,38 +1,38 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Campuses.DetailsTitle" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Details
+	<%:WebApp.Content.i18n.BackOffice.Campuses.DetailsTitle %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Details about Campus #<%:Model.CampusID %></h2>
+    <h2><%:WebApp.Content.i18n.BackOffice.Campuses.DetailsMessage %><%:Model.Id %></h2>
 
     <fieldset>
-        <legend>Fields</legend>
+        <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
         
-        <div class="display-label">Name</div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.Name %></div>
         <div class="display-field"><%: Model.Name %></div>
 
         <%= Html.DisplayFor(m => m.Address, "AddressVisualization") %>
         
-        <div class="display-label">CreatedAt</div>
-        <div class="display-field"><%: String.Format("{0:g}", Model.CreatedAt) %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.CreatedAt %></div>
+        <div class="display-field"><%: String.Format("{0:g}", Model.Common.Audit.CreatedAt)%></div>
         
-        <div class="display-label">CreatedBy</div>
-        <div class="display-field"><%: Model.CreatedBy %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.CreatedBy %></div>
+        <div class="display-field"><%: Model.Common.Audit.CreatedBy%></div>
         
-        <div class="display-label">ModifiedAt</div>
-        <div class="display-field"><%: String.Format("{0:g}", Model.ModifiedAt) %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.ModifiedAt %></div>
+        <div class="display-field"><%: String.Format("{0:g}", Model.Common.Audit.LastModifiedAt)%></div>
         
-        <div class="display-label">ModifiedBy</div>
-        <div class="display-field"><%: Model.ModifiedBy %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.ModifiedBy %></div>
+        <div class="display-field"><%: Model.Common.Audit.LastModifiedBy%></div>
         
     </fieldset>
     <p>
 
-        <%: Html.ActionLink("Edit", "Edit", new { id=Model.CampusID }) %> |
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.Edit, "Edit", new { id=Model.Id }) %> |
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index") %>
     </p>
 
 </asp:Content>

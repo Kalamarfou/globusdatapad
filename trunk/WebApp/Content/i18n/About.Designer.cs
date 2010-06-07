@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.Content.i18n.FrontOffice {
+namespace WebApp.Content.i18n {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace WebApp.Content.i18n.FrontOffice {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MyEvents {
+    public class About {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MyEvents() {
+        internal About() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace WebApp.Content.i18n.FrontOffice {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.FrontOffice.MyEvents", typeof(MyEvents).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.About", typeof(About).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,20 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create personal event .
+        ///   Looks up a localized string similar to Application réalisée par M1 Montpellier, etc etc.
         /// </summary>
-        public static string CreateTitle {
+        public static string AboutText {
             get {
-                return ResourceManager.GetString("CreateTitle", resourceCulture);
+                return ResourceManager.GetString("AboutText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete personal event.
+        ///   Looks up a localized string similar to About us.
         /// </summary>
-        public static string DeleteTitle {
+        public static string AboutUs {
             get {
-                return ResourceManager.GetString("DeleteTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description :.
-        /// </summary>
-        public static string Description {
-            get {
-                return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Personal event details.
-        /// </summary>
-        public static string DetailsTitle {
-            get {
-                return ResourceManager.GetString("DetailsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit personal event.
-        /// </summary>
-        public static string EditTitle {
-            get {
-                return ResourceManager.GetString("EditTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to End Date :.
-        /// </summary>
-        public static string EndDate {
-            get {
-                return ResourceManager.GetString("EndDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        public static string Error {
-            get {
-                return ResourceManager.GetString("Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name :.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start date :.
-        /// </summary>
-        public static string StartDate {
-            get {
-                return ResourceManager.GetString("StartDate", resourceCulture);
+                return ResourceManager.GetString("AboutUs", resourceCulture);
             }
         }
     }

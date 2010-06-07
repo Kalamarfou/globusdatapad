@@ -1,12 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="aboutTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    About Us
+    <%:WebApp.Content.i18n.About.AboutUs %>
 </asp:Content>
 
 <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>About</h2>
+    <h2><%:WebApp.Content.i18n.About.AboutUs %></h2>
     <p>
-        Application réalisée par M1 Montpellier, etc etc
+    <%:WebApp.Content.i18n.About.AboutText %>
     </p>
 </asp:Content>

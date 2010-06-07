@@ -1,40 +1,40 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Campuses.DeleteTitle" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Delete
+	<%:WebApp.Content.i18n.BackOffice.Campuses.DeleteTitle %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Delete</h2>
+    <h2><%:WebApp.Content.i18n.BackOffice.Campuses.DeleteTitle %></h2>
 
-    <h3>Are you sure you want to delete this?</h3>
+    <h3><%:WebApp.Content.i18n.Common.DeleteAreYouSure %></h3>
     <fieldset>
-        <legend>Fields</legend>
+        <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
         
-        <div class="display-label">CampusID</div>
-        <div class="display-field"><%: Model.CampusID %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.BackOffice.Campuses.CampusId %></div>
+        <div class="display-field"><%: Model.Id %></div>
         
-        <div class="display-label">Name</div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.Name %></div>
         <div class="display-field"><%: Model.Name %></div>
         
-        <div class="display-label">CreatedAt</div>
-        <div class="display-field"><%: String.Format("{0:g}", Model.CreatedAt) %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.CreatedAt %></div>
+        <div class="display-field"><%: String.Format("{0:g}", Model.Common.Audit.CreatedAt) %></div>
         
-        <div class="display-label">CreatedBy</div>
-        <div class="display-field"><%: Model.CreatedBy %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.CreatedBy %></div>
+        <div class="display-field"><%: Model.Common.Audit.CreatedBy%></div>
         
-        <div class="display-label">ModifiedAt</div>
-        <div class="display-field"><%: String.Format("{0:g}", Model.ModifiedAt) %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.ModifiedAt %></div>
+        <div class="display-field"><%: String.Format("{0:g}", Model.Common.Audit.LastModifiedAt)%></div>
         
-        <div class="display-label">ModifiedBy</div>
-        <div class="display-field"><%: Model.ModifiedBy %></div>
+        <div class="display-label"><%:WebApp.Content.i18n.Common.ModifiedBy %></div>
+        <div class="display-field"><%: Model.Common.Audit.LastModifiedBy%></div>
         
     </fieldset>
     <% using (Html.BeginForm()) { %>
         <p>
-		    <input type="submit" value="Delete" /> |
-		    <%: Html.ActionLink("Back to List", "Index") %>
+		    <input type="submit" value="<%: Model.Common.Audit.ButtonDelete%>" /> |
+		    <%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index")%>
         </p>
     <% } %>
 

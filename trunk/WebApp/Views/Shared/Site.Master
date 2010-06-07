@@ -19,7 +19,7 @@
 
         <div id="head">
             <div id="title">
-                <h1>GlobusDataPad</h1>
+                <h1><%:WebApp.Content.i18n.SiteMaster.GlobusDataPad%></h1>
             </div>
               
             <div id="logout">
@@ -28,35 +28,18 @@
             
         </div>
 
-        		<div id="box">
-		
-		<table> 
-           <tr>       
-               <td id="data" >anonnce 1</td>      
-           </tr>
-           <tr>
-               <td id="data" >anonnce 2</td>
-
-           </tr>
-           <tr>
-               <td id="data" >Anonnce 3</td>
-           </tr>   
-        </table>
-
-		</div>
-
-            <div id="menu">
-                <p><%= Html.ActionLink("Home", "Index", "Home", new { Area = "" }, null)%></p>
-                    <p><%= Html.ActionLink("About", "About", "Home", new { Area = "" }, null)%></p>
-                    <% if (Roles.IsUserInRole("Admin") | Roles.IsUserInRole("Stakeholder") | Roles.IsUserInRole("CampusManager"))
-                       { %>
-                    <p><%= Html.ActionLink("BackOffice", "Index", "Campuses", new { Area = "BackOffice"}, null)%></p>
-                    <p><%= Html.ActionLink("Calendar", "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
-                    <% } else if (Roles.IsUserInRole("Student")) { %>
-                    <p><%= Html.ActionLink("Calendar", "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
-                    <% } %>
-                <p><%= Html.ActionLink("Create an event", "Create", "MyEvents", new { Area = "FrontOffice"}, null) %></p>
-            </div>
+        <div id="menu">
+            <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Home, "Index", "Home", new { Area = "" }, null)%></p>
+                <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.About, "About", "Home", new { Area = "" }, null)%></p>
+                <% if (Roles.IsUserInRole("Admin") | Roles.IsUserInRole("Stakeholder") | Roles.IsUserInRole("CampusManager"))
+                    { %>
+                <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.BackOffice, "Index", "Campuses", new { Area = "BackOffice" }, null)%></p>
+                <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Calendar, "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
+                <% } else if (Roles.IsUserInRole("Student")) { %>
+                <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Calendar, "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
+                <% } %>
+            <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.CreateEvent, "Create", "MyEvents", new { Area = "FrontOffice" }, null)%></p>
+        </div>
 
         <div id="center">
 
@@ -65,8 +48,8 @@
             </div>
 
             <div id="foot">
-            	<p>GlobusDataPad</p>
-		        <p id="copyright">Projet de groupe M1 Montpellier 2010 - DARUTY DE GRANDPRE, RAKOTOMALALA, BERNARD, FILLIAU.</p>
+            	<p><%:WebApp.Content.i18n.SiteMaster.GlobusDataPad%></p>
+		        <p id="copyright"><%:WebApp.Content.i18n.SiteMaster.Copyright%></p>
             </div>
         </div>
     </div>

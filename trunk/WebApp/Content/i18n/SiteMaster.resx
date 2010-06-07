@@ -117,31 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateTitle" xml:space="preserve">
-    <value>Create personal event </value>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
   </data>
-  <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete personal event</value>
+  <data name="BackOffice" xml:space="preserve">
+    <value>Back Office</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description :</value>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Personal event details</value>
+  <data name="Copyright" xml:space="preserve">
+    <value>Projet de groupe M1 Montpellier 2010 - DARUTY DE GRANDPRE, RAKOTOMALALA, BERNARD, FILLIAU.</value>
   </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Edit personal event</value>
+  <data name="CreateEvent" xml:space="preserve">
+    <value>Create an event</value>
   </data>
-  <data name="EndDate" xml:space="preserve">
-    <value>End Date :</value>
+  <data name="GlobusDataPad" xml:space="preserve">
+    <value>GlobusDataPad</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name :</value>
-  </data>
-  <data name="StartDate" xml:space="preserve">
-    <value>Start date :</value>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
   </data>
 </root>

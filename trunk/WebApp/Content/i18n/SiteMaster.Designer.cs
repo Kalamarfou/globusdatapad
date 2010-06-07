@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.Content.i18n.FrontOffice {
+namespace WebApp.Content.i18n {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace WebApp.Content.i18n.FrontOffice {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MyEvents {
+    public class SiteMaster {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MyEvents() {
+        internal SiteMaster() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace WebApp.Content.i18n.FrontOffice {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.FrontOffice.MyEvents", typeof(MyEvents).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.SiteMaster", typeof(SiteMaster).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,65 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create personal event .
+        ///   Looks up a localized string similar to About.
         /// </summary>
-        public static string CreateTitle {
+        public static string About {
             get {
-                return ResourceManager.GetString("CreateTitle", resourceCulture);
+                return ResourceManager.GetString("About", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete personal event.
+        ///   Looks up a localized string similar to Back Office.
         /// </summary>
-        public static string DeleteTitle {
+        public static string BackOffice {
             get {
-                return ResourceManager.GetString("DeleteTitle", resourceCulture);
+                return ResourceManager.GetString("BackOffice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description :.
+        ///   Looks up a localized string similar to Calendar.
         /// </summary>
-        public static string Description {
+        public static string Calendar {
             get {
-                return ResourceManager.GetString("Description", resourceCulture);
+                return ResourceManager.GetString("Calendar", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Personal event details.
+        ///   Looks up a localized string similar to Projet de groupe M1 Montpellier 2010 - DARUTY DE GRANDPRE, RAKOTOMALALA, BERNARD, FILLIAU..
         /// </summary>
-        public static string DetailsTitle {
+        public static string Copyright {
             get {
-                return ResourceManager.GetString("DetailsTitle", resourceCulture);
+                return ResourceManager.GetString("Copyright", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit personal event.
+        ///   Looks up a localized string similar to Create an event.
         /// </summary>
-        public static string EditTitle {
+        public static string CreateEvent {
             get {
-                return ResourceManager.GetString("EditTitle", resourceCulture);
+                return ResourceManager.GetString("CreateEvent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End Date :.
+        ///   Looks up a localized string similar to GlobusDataPad.
         /// </summary>
-        public static string EndDate {
+        public static string GlobusDataPad {
             get {
-                return ResourceManager.GetString("EndDate", resourceCulture);
+                return ResourceManager.GetString("GlobusDataPad", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
+        ///   Looks up a localized string similar to Home.
         /// </summary>
-        public static string Error {
+        public static string Home {
             get {
-                return ResourceManager.GetString("Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name :.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start date :.
-        /// </summary>
-        public static string StartDate {
-            get {
-                return ResourceManager.GetString("StartDate", resourceCulture);
+                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
     }
