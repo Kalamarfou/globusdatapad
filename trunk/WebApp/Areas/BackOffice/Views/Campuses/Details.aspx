@@ -11,7 +11,7 @@
     <fieldset>
         <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
         
-        <div class="display-label"><%:WebApp.Content.i18n.Common.Name %></div>
+        <div class="display-label"><%:DAL.Resources.Campus.Name %></div>
         <div class="display-field"><%: Model.Name %></div>
 
         <%= Html.DisplayFor(m => m.Address, "AddressVisualization") %>

@@ -88,6 +88,24 @@ namespace WebApp.Content.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string ButtonDetails {
+            get {
+                return ResourceManager.GetString("ButtonDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string ButtonEdit {
+            get {
+                return ResourceManager.GetString("ButtonEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created at:.
         /// </summary>
         public static string CreatedAt {
@@ -111,15 +129,6 @@ namespace WebApp.Content.i18n {
         public static string DeleteAreYouSure {
             get {
                 return ResourceManager.GetString("DeleteAreYouSure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit.
-        /// </summary>
-        public static string Edit {
-            get {
-                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -165,15 +174,6 @@ namespace WebApp.Content.i18n {
         public static string ModifiedBy {
             get {
                 return ResourceManager.GetString("ModifiedBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name:.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

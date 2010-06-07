@@ -79,15 +79,6 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description :.
-        /// </summary>
-        public static string Description {
-            get {
-                return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Personal event details.
         /// </summary>
         public static string DetailsTitle {
@@ -106,38 +97,11 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End Date :.
-        /// </summary>
-        public static string EndDate {
-            get {
-                return ResourceManager.GetString("EndDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name :.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start date :.
-        /// </summary>
-        public static string StartDate {
-            get {
-                return ResourceManager.GetString("StartDate", resourceCulture);
             }
         }
     }
