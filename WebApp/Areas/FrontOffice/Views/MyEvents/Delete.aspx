@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Event>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.FrontOffice.MyEvents.DeleteTitle" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Event>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Delete
+	<%:WebApp.Content.i18n.FrontOffice.MyEvents.DeleteTitle %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Delete</h2>
+    <h2><%:WebApp.Content.i18n.FrontOffice.MyEvents.DeleteTitle %></h2>
 
-    <h3>Are you sure you want to delete this?</h3>
+    <h3><%: WebApp.Content.i18n.Common.DeleteAreYouSure %></h3>
     <fieldset>
-        <legend>Fields</legend>
+        <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
         
         
         <div class="display-label">Name</div>
@@ -29,8 +29,7 @@
     </fieldset>
     <% using (Html.BeginForm()) { %>
         <p>
-		    <input type="submit" value="Delete" /> |
-		    <%: Html.ActionLink("Back to List", "Index") %>
+		    <input type="submit" value="<%: WebApp.Content.i18n.Common.ButtonDelete %>" /> 
         </p>
     <% } %>
 

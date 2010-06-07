@@ -1,24 +1,24 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Campuses.EditTitle" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Campus>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
+	<%:WebApp.Content.i18n.BackOffice.Campuses.EditTitle %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit</h2>
+    <h2><%:WebApp.Content.i18n.BackOffice.Campuses.EditTitle %></h2>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Fields</legend>
+            <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
             
-            <%: Html.HiddenFor(model => model.CampusID) %>
+            <%: Html.HiddenFor(model => model.Id) %>
 
-            <%: Html.HiddenFor(model => model.ConcurrencyToken) %>
+            <%: Html.HiddenFor(model => model.Common.ConcurrencyToken) %>
 
-            <%: Html.HiddenFor(model => model.AddressID) %>
+            <%: Html.HiddenFor(model => model.Address.Id) %>
 
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>
@@ -31,14 +31,14 @@
             <%= Html.EditorFor(model => model.Address, "AddressEdition") %>
 
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="<%:WebApp.Content.i18n.Common.Save %>" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index") %>
     </div>
 
 </asp:Content>

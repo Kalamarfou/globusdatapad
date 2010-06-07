@@ -1,18 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Event>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.FrontOffice.MyEvents.CreateTitle" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Event>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	<%:WebApp.Content.i18n.FrontOffice.MyEvents.CreateTitle %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
+    <h2><%:WebApp.Content.i18n.FrontOffice.MyEvents.CreateTitle %></h2>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
           
             
             <div class="editor-label">
@@ -48,15 +48,12 @@
             </div>
           
             <p>
-                <input type="submit" value="<%: WebApp.Content.i18n.FrontOffice.MyEvents.ButtonCreate %>"/>
+                <input type="submit" value="<%: WebApp.Content.i18n.Common.ButtonCreate %>"/>
             </p>
         </fieldset>
 
     <% } %>
 
-    <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
-    </div>
 
 </asp:Content>
 

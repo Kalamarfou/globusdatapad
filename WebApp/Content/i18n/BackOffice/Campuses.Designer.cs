@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp.Content.i18n.FrontOffice {
+namespace WebApp.Content.i18n.BackOffice {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace WebApp.Content.i18n.FrontOffice {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MyEvents {
+    public class Campuses {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MyEvents() {
+        internal Campuses() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace WebApp.Content.i18n.FrontOffice {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.FrontOffice.MyEvents", typeof(MyEvents).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.BackOffice.Campuses", typeof(Campuses).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,25 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create personal event .
+        ///   Looks up a localized string similar to Campus id:.
+        /// </summary>
+        public static string CampusId {
+            get {
+                return ResourceManager.GetString("CampusId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campus.
+        /// </summary>
+        public static string CampusName {
+            get {
+                return ResourceManager.GetString("CampusName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create campus.
         /// </summary>
         public static string CreateTitle {
             get {
@@ -70,7 +88,7 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete personal event.
+        ///   Looks up a localized string similar to Delete campus.
         /// </summary>
         public static string DeleteTitle {
             get {
@@ -79,16 +97,16 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description :.
+        ///   Looks up a localized string similar to Details about Campus #.
         /// </summary>
-        public static string Description {
+        public static string DetailsMessage {
             get {
-                return ResourceManager.GetString("Description", resourceCulture);
+                return ResourceManager.GetString("DetailsMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Personal event details.
+        ///   Looks up a localized string similar to Details for campus.
         /// </summary>
         public static string DetailsTitle {
             get {
@@ -97,7 +115,7 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit personal event.
+        ///   Looks up a localized string similar to Edit campus.
         /// </summary>
         public static string EditTitle {
             get {
@@ -106,38 +124,20 @@ namespace WebApp.Content.i18n.FrontOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End Date :.
+        ///   Looks up a localized string similar to Campuses List.
         /// </summary>
-        public static string EndDate {
+        public static string Index {
             get {
-                return ResourceManager.GetString("EndDate", resourceCulture);
+                return ResourceManager.GetString("Index", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        public static string Error {
-            get {
-                return ResourceManager.GetString("Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name :.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start date :.
-        /// </summary>
-        public static string StartDate {
-            get {
-                return ResourceManager.GetString("StartDate", resourceCulture);
             }
         }
     }

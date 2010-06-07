@@ -117,31 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateTitle" xml:space="preserve">
-    <value>Create personal event </value>
+  <data name="CorrectlyLogged" xml:space="preserve">
+    <value>You are correcty logged.</value>
   </data>
-  <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete personal event</value>
+  <data name="EventsForTheDay" xml:space="preserve">
+    <value>Events for the day.</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description :</value>
+  <data name="Title" xml:space="preserve">
+    <value>Globus University calendar home page</value>
   </data>
-  <data name="DetailsTitle" xml:space="preserve">
-    <value>Personal event details</value>
-  </data>
-  <data name="EditTitle" xml:space="preserve">
-    <value>Edit personal event</value>
-  </data>
-  <data name="EndDate" xml:space="preserve">
-    <value>End Date :</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name :</value>
-  </data>
-  <data name="StartDate" xml:space="preserve">
-    <value>Start date :</value>
+  <data name="WorldwideEvents" xml:space="preserve">
+    <value>WorldWide Events in the next 10 days.</value>
   </data>
 </root>
