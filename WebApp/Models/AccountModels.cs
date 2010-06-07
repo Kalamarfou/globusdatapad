@@ -140,8 +140,8 @@ namespace WebApp.Models
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
             if (String.IsNullOrEmpty(email)) throw new ArgumentException("Value cannot be null or empty.", "email");
 
-            MembershipCreateStatus status;
-            _provider.CreateUser(userName, password, email, securityQuestion, securityAnswer, true, null, out status);
+            MembershipCreateStatus status;                              // user will be disabled by default
+            _provider.CreateUser(userName, password, email, securityQuestion, securityAnswer, false, null, out status);
             return status;
         }
 

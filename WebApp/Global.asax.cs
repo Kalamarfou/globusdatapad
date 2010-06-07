@@ -63,12 +63,12 @@ namespace WebApp
 
                 Membership.CreateUser("admin", "adminadmin", "admin@admin.org", "Admin?", "Yes?", true, null, out status);
 
-                Roles.AddUserToRole("admin", "Admin");
-
+                Roles.AddUserToRole("admin", "Admin");                  // will throw an exception if user already exists
             }
             catch (Exception)
             {
             }
+
             #endregion
 
             AreaRegistration.RegisterAllAreas();
