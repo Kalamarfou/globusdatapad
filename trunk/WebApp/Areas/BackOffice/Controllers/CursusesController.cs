@@ -11,6 +11,8 @@ namespace WebApp.Areas.BackOffice.Controllers
     {
         private Services.Cursus.ICursusService service;
 
+        private const int pageSize = 2;
+
         public CursusesController()
         {
             service = new Services.Cursus.CursusService();
@@ -19,9 +21,25 @@ namespace WebApp.Areas.BackOffice.Controllers
         //
         // GET: /BackOffice/Cursuses/
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            //ViewData.Model = service.GetAll();    TODO
+            int totalRecords;       // total records
+            int pageCount;
+
+            if (!page.HasValue)
+            {
+                pageCount = 1;
+            }
+            else
+            {
+                pageCount = page.Value;
+            }
+
+            ViewData.Model = service.GetAllActiveCursuses(pageCount - 1, pageSize, out totalRecords);
+
+            ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
+
+            ViewData["curpage"] = pageCount;  //TODO
             return View();
         }
 

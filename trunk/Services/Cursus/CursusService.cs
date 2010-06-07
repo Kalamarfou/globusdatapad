@@ -46,6 +46,7 @@ namespace Services.Cursus
             var result = (from s in db.StudyPeriods
                           where s.EndDate >= DateTime.Now && s.Common.IsDeleted == false
                           select s.Cursus).Distinct();
+            result = result.OrderBy(c => c.Name);
             totalRecords = result.Count();
             return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
         }
@@ -95,6 +96,7 @@ namespace Services.Cursus
             {
                 var result = (from d in studyPeriod.Disciplines
                               where d.Common.IsDeleted == false
+                              orderby d.Name
                               select d);
                 totalRecords = result.Count();
                 return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Discipline>();
@@ -147,6 +149,7 @@ namespace Services.Cursus
 
                 disciplines = (from u in db.Disciplines
                                where u.Common.IsDeleted == false
+                               orderby u.Name
                                select u).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Discipline>();
             }
 
@@ -175,6 +178,7 @@ namespace Services.Cursus
             {
                 var result = (from u in disc.EvaluationTypes
                               where u.Common.IsDeleted == false
+                              orderby u.Name
                               select u);
                 totalRecords = result.Count();
                 return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.EvaluationType>();
@@ -194,6 +198,7 @@ namespace Services.Cursus
             {
                 var result = (from u in disc.CourseTypes
                               where u.Common.IsDeleted == false
+                              orderby u.Name
                               select u);
                 totalRecors = result.Count();
                 return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.CourseType>();
