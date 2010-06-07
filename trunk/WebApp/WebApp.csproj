@@ -72,6 +72,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>About.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\i18n\BackOffice\BackOfficeMaster.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BackOfficeMaster.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\i18n\BackOffice\Campuses.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,6 +86,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Cursuses.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\i18n\BackOffice\EditorTemplates\AddressEdition.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddressEdition.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\i18n\BackOffice\Users.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Users.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\i18n\BackOffice\WorldWideEvents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorldWideEvents.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\i18n\Common.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -332,6 +352,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>About.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Content\i18n\BackOffice\BackOfficeMaster.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BackOfficeMaster.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Content\i18n\BackOffice\Campuses.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Campuses.Designer.cs</LastGenOutput>
@@ -339,6 +363,18 @@
     <EmbeddedResource Include="Content\i18n\BackOffice\Cursuses.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Cursuses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\i18n\BackOffice\EditorTemplates\AddressEdition.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddressEdition.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\i18n\BackOffice\Users.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Users.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\i18n\BackOffice\WorldWideEvents.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorldWideEvents.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\i18n\Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

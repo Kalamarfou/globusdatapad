@@ -61,6 +61,15 @@ namespace WebApp.Content.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Globus DataPad.
+        /// </summary>
+        public static string ApplicationName {
+            get {
+                return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to list.
         /// </summary>
         public static string BackToList {
@@ -70,7 +79,7 @@ namespace WebApp.Content.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create.
+        ///   Looks up a localized string similar to Create new .
         /// </summary>
         public static string ButtonCreate {
             get {

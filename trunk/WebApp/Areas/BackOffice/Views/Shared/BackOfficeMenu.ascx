@@ -1,17 +1,17 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 
 <% if(Roles.IsUserInRole("Admin") || Roles.IsUserInRole("CampusManager")) {  %>
-<li><%= Html.ActionLink("Users management", "Index", "Users") %></li>
+<li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.UsersManagement, "Index", "Users")%></li>
 <% } %>
 
 <% if(Roles.IsUserInRole("Admin")) {  %>
-<li><%= Html.ActionLink("WorldWide Events", "Index", "WorldWideEvents") %></li>
+<li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.WorldWideEvents, "Index", "WorldWideEvents")%></li>
 <% } %>
 
 <% if(Roles.IsUserInRole("Admin")) {  %>
-<li><%= Html.ActionLink(WebApp.Resources.Views.BackOffice.Shared.Campuses, "Index", "Campuses") %></li>
+<li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.Campuses, "Index", "Campuses")%></li>
 <% } %>
 
 <% if(Roles.IsUserInRole("Admin")) {  %>
-<li><%= Html.ActionLink("Cursuses", "Index", "Cursuses") %></li>
+<li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.Cursuses, "Index", "Cursuses")%></li>
 <% } %>
