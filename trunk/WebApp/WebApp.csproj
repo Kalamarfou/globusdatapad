@@ -77,6 +77,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Campuses.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\i18n\BackOffice\Cursuses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cursuses.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\i18n\Common.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -330,6 +335,10 @@
     <EmbeddedResource Include="Content\i18n\BackOffice\Campuses.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Campuses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\i18n\BackOffice\Cursuses.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Cursuses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\i18n\Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

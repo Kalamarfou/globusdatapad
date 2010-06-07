@@ -1,21 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.Cursus>>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Cursuses.Index" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.Cursus>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	<%:WebApp.Content.i18n.BackOffice.Cursuses.Index %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2><%:WebApp.Content.i18n.BackOffice.Cursuses.Index %></h2>
 
     <table>
         <tr>
             <th></th>
             <th>
-                CursusID
+                <%:WebApp.Content.i18n.BackOffice.Cursuses.CursusId %>
             </th>
             <th>
-                Name
+                <%:DAL.Resources.Cursus.Name %>
             </th>
         </tr>
 
@@ -23,9 +23,9 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%: Html.ActionLink("Details", "Details", new { id=item.Id })%> |
-                <%: Html.ActionLink("Delete", "Delete", new { id=item.Id })%>
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id = item.Id })%> |
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDetails, "Details", new { id = item.Id })%> |
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDelete, "Delete", new { id = item.Id })%>
             </td>
             <td>
                 <%: item.Id %>
@@ -40,7 +40,7 @@
     </table>
 
     <p>
-        <%: Html.ActionLink("Create New", "Create") %>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonCreate, "Create")%>
     </p>
 
 </asp:Content>
