@@ -19,7 +19,7 @@
 
         <div id="header">
             <div id="title">
-                <h1><%= WebApp.Resources.Views.BackOffice.Shared.ApplicationName %></h1>
+                <h1><%= WebApp.Content.i18n.Common.ApplicationName%></h1>
             </div>
               
             <div id="logindisplay">

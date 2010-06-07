@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<DAL.Address>" %>
 
         <fieldset>
-            <legend><%= WebApp.Resources.Models.Address.Address.AddressName %></legend>
+            <legend><%= WebApp.Content.i18n.BackOffice.EditorTemplates.AddressEdition.AddressName %></legend>
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Street) %>

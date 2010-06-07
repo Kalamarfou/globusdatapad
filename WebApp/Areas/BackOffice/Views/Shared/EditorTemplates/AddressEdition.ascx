@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<DAL.Address>" %>
 
         <fieldset>
-            <legend><%= WebApp.Resources.Models.Address.Address.AddressName %></legend>
+            <legend><%= WebApp.Content.i18n.BackOffice.EditorTemplates.AddressEdition.AddressName %></legend>
             
-            <%: Html.HiddenFor(model => model.AddressID) %>
+            <%: Html.HiddenFor(model => model.Id) %>
 
-            <%: Html.HiddenFor(model => model.ConcurrencyToken) %>
+            <%: Html.HiddenFor(model => model.Common.ConcurrencyToken) %>
 
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Street) %>
