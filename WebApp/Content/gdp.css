@@ -54,11 +54,11 @@ li {
 
 #logout{
 text-align:right;
- margin-top: -100px;
+ margin-top: -120px;
 }
 
 #box {
-margin-left:626px;
+margin-left:auto;
 width: 400px;
 margin-top:-170px;
 
@@ -78,6 +78,7 @@ a {
 }
 a:hover, a:focus {
 	color: #FF4C00;
+	background:#000000;
 }
 
 #center {
@@ -86,6 +87,16 @@ a:hover, a:focus {
 
 #menu {
 	background: #FCA80A url(bg_linkList.gif) repeat;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fca70a), to(#fca70a));
+  
+   padding: 10.5px 21px;
+   -webkit-border-radius: 13px;
+   -moz-border-radius: 13px;
+   border-radius: 13px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
 	}
 #menu a {
 	color: #AC1741;
@@ -94,14 +105,19 @@ a:hover, a:focus {
 	background: #000000;
 }
 
+
 #principal {
 	color: #fff;
 	background: #636361;
 	width: 100%;
-}
+	
+	
+	
+	}
+
 
 #global {
-	width: 1024px;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -109,7 +125,7 @@ a:hover, a:focus {
 #head {
 	padding: 50px 0;
 	background: #ffffff url(logo.png) no-repeat;
-height:110px;
+height:130px;
 }
 #head h1 {
 	margin: 0;
@@ -172,7 +188,19 @@ height:110px;
 	font-size: .85em;
 	background:#FCA80A url(foot.gif) repeat;
 	height: 20px;
-	width: 98%;
+	width: auto;
+		
+	background: -webkit-gradient(linear, left top, left bottom, from(#fca70a), to(#fca70a));
+  
+   padding: 10.5px 21px;
+   -webkit-border-radius: 13px;
+   -moz-border-radius: 13px;
+   border-radius: 13px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+
 }
 
 #copyright {
