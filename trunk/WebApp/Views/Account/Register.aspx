@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebApp.Models.RegisterModel>" %>
 
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    <%:WebApp.Content.i18n.Account.Register.Register %>
+    <%:WebApp.Content.i18n.Account.Register.Register1 %>
 </asp:Content>
 
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -84,7 +84,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="<%:WebApp.Content.i18n.Account.Register.Register %>" />
+                    <input type="submit" value="<%:WebApp.Content.i18n.Account.Register.Register1 %>" />
                 </p>
             </fieldset>
 

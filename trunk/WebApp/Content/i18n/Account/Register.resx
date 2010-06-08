@@ -127,12 +127,12 @@
     <value>Account creation was unsuccessful. Please correct the errors and try again.</value>
   </data>
   <data name="Password1" xml:space="preserve">
-    <value>Passwords are required to be a minimum of</value>
+    <value>Passwords are required to be a minimum of </value>
   </data>
   <data name="Password2" xml:space="preserve">
     <value>characters in length.</value>
   </data>
-  <data name="Register" xml:space="preserve">
+  <data name="Register1" xml:space="preserve">
     <value>Register</value>
   </data>
   <data name="Title" xml:space="preserve">

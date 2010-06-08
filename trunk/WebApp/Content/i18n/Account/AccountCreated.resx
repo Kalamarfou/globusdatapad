@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccountCreated" xml:space="preserve">
+  <data name="AccountCreated1" xml:space="preserve">
     <value>Account created</value>
   </data>
   <data name="Success" xml:space="preserve">

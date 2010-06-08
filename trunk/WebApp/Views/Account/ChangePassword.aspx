@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebApp.Models.ChangePasswordModel>" %>
 
 <asp:Content ID="changePasswordTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    <%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword %>
+    <%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword1 %>
 </asp:Content>
 
 <asp:Content ID="changePasswordContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword %></h2>
+    <h2><%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword1 %></h2>
     <p>
         <%:WebApp.Content.i18n.Account.ChangePassword.ChangeBelow %>
     </p>
@@ -44,7 +44,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="<%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword %>" />
+                    <input type="submit" value="<%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword1 %>" />
                 </p>
             </fieldset>
         </div>

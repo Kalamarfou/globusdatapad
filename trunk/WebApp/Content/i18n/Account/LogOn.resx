@@ -123,7 +123,7 @@
   <data name="Fail" xml:space="preserve">
     <value>Login was unsuccessful. Please correct the errors and try again.</value>
   </data>
-  <data name="LogOn" xml:space="preserve">
+  <data name="LogOn1" xml:space="preserve">
     <value>Log on</value>
   </data>
   <data name="Password1" xml:space="preserve">

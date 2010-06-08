@@ -81,9 +81,9 @@ namespace WebApp.Content.i18n.Account {
         /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
-        public static string ChangePassword {
+        public static string ChangePassword1 {
             get {
-                return ResourceManager.GetString("ChangePassword", resourceCulture);
+                return ResourceManager.GetString("ChangePassword1", resourceCulture);
             }
         }
         
