@@ -20,10 +20,25 @@ namespace Services.Event
 
         public void CreateUserEvent(DAL.Event ev, string authorId)
         {
-            DAL.Utils.GenericCrud.SetAudit(ev.Common.Audit, authorId);
-            SecurityService service = new SecurityService();
-            ev.User = service.getUserByUsername(authorId);
-            DAL.Utils.GenericCrud.Create(ev);
+            using (DAL.GDPEntities gdp = new DAL.GDPEntities())
+            {
+                DAL.User user = (from u in gdp.Users
+                                 where u.Username == authorId && u.Common.IsDeleted == false
+                                 select u).FirstOrDefault<DAL.User>();
+
+                if (user == null)
+                {
+                    throw new ApplicationException("User " + authorId + " not found.");
+                }
+                else
+                {
+                    DAL.Utils.GenericCrud.SetAudit(ev.Common.Audit, authorId);
+
+                    user.Events.Add(ev);
+
+                    gdp.SaveChanges();
+                }
+            }
         }
 
         public void CreateClassEvent(DAL.BaseCourse bc, string authorId)
