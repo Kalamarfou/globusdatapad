@@ -1,20 +1,20 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebApp.Models.ChangePasswordModel>" %>
 
 <asp:Content ID="changePasswordTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Change Password
+    <%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword %>
 </asp:Content>
 
 <asp:Content ID="changePasswordContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Change Password</h2>
+    <h2><%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword %></h2>
     <p>
-        Use the form below to change your password. 
+        <%:WebApp.Content.i18n.Account.ChangePassword.ChangeBelow %>
     </p>
     <p>
-        New passwords are required to be a minimum of <%= Html.Encode(ViewData["PasswordLength"]) %> characters in length.
+        <%:WebApp.Content.i18n.Account.ChangePassword.Password1 %> <%= Html.Encode(ViewData["PasswordLength"]) %> <%:WebApp.Content.i18n.Account.ChangePassword.Password2 %>
     </p>
 
     <% using (Html.BeginForm()) { %>
-        <%= Html.ValidationSummary(true, "Password change was unsuccessful. Please correct the errors and try again.") %>
+        <%= Html.ValidationSummary(true, WebApp.Content.i18n.Account.ChangePassword.Fail)%>
         <div>
             <fieldset>
                 <legend>Account Information</legend>
@@ -44,7 +44,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="Change Password" />
+                    <input type="submit" value="<%:WebApp.Content.i18n.Account.ChangePassword.ChangePassword %>" />
                 </p>
             </fieldset>
         </div>
