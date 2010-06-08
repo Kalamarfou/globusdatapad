@@ -94,7 +94,7 @@ namespace WebApp.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    return View("AccountCreated");
+                    return RedirectToAction("AccountCreated");
                 }
                 else
                 {
@@ -105,6 +105,15 @@ namespace WebApp.Controllers
             // If we got this far, something failed, redisplay form
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View(model);
+        }
+
+        // **************************************
+        // URL: /Account/AccountCreated
+        // **************************************
+
+        public ActionResult AccountCreated()
+        {
+            return View();
         }
 
         // **************************************
