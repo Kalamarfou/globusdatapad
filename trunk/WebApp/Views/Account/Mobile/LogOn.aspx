@@ -1,20 +1,20 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Mobile.Master" Inherits="System.Web.Mvc.ViewPage<WebApp.Models.LogOnModel>" %>
 
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Log On
+    <%: WebApp.Content.i18n.Account.LogOn.LogOn %>
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Log On</h2>
+    <h2><%: WebApp.Content.i18n.Account.LogOn.LogOn %></h2>
     <p>
-        Please enter your username and password.
+        <%: WebApp.Content.i18n.Account.LogOn.Password1 %>
     </p>
 
     <% using (Html.BeginForm()) { %>
-        <%= Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.") %>
+        <%= Html.ValidationSummary(true, WebApp.Content.i18n.Account.LogOn.Fail)%>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
+                <legend><%: WebApp.Content.i18n.Account.LogOn.AccountInfo %></legend>
                 
                 <div class="editor-label">
                     <%= Html.LabelFor(m => m.UserName) %>
@@ -38,7 +38,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="Log On" />
+                    <input type="submit" value="<%: WebApp.Content.i18n.Account.LogOn.LogOn %>" />
                 </p>
             </fieldset>
         </div>
