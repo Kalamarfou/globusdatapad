@@ -27,7 +27,7 @@
     </fieldset>
     <p>
 
-        <%: Html.ActionLink(WebApp.Content.i18n.Common.Edit, "Edit", new { id = Model.Id })%>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id = Model.Id })%>
     </p>
 
 </asp:Content>

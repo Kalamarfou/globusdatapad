@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebApp.Models.LogOnModel>" %>
 
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    <%:WebApp.Content.i18n.Account.LogOn.LogOn1 %>
+    <%:WebApp.Content.i18n.Account.LogOn.LogOn1%>
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%:WebApp.Content.i18n.Account.LogOn.LogOn1 %></h2>
+    <h2><%:WebApp.Content.i18n.Account.LogOn.LogOn1%></h2>
     <p>
        <%:WebApp.Content.i18n.Account.LogOn.Password1 %><%= Html.ActionLink("Register", "Register") %> <%:WebApp.Content.i18n.Account.LogOn.Password2 %>
     </p>
