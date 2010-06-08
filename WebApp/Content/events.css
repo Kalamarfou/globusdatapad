@@ -1,0 +1,37 @@
+﻿
+/* //TODO  Les couleurs sont pas belles (propositions de laurent) */
+        /*Personalized styles */
+        .fc-event .WorldWideEvent,
+        .fc-agenda .WorldWideEvent .fc-event-time,
+        .WorldWideEvent a {
+            background-color: #a32929; /* background color */
+            border-color: #d96666;     /* border color */
+            color: #D3DAED;           /* text color */
+        }
+
+
+        .CampusEvent,
+        .fc-agenda .CampusEvent .fc-event-time,
+        .CampusEvent a {
+            background-color: #5c1158; /* background color */
+            border-color: #c244ab;     /* border color */
+            color: #D3DAED;           /* text color */
+        }
+
+
+        .ClassEvent,
+        .fc-agenda .ClassEvent .fc-event-time,
+        .ClassEvent a {
+            background-color: #060d5e; /* background color */
+            border-color: #3640ad;     /* border color */
+            color: #D3DAED;           /* text color */
+        }
+
+        .fc-event .UserEvent,
+        .fc-agenda .UserEvent .fc-event-time,
+        .UserEvent a {
+            background-color: #2f6309; /* background color */
+            border-color: #7ec225;     /* border color */
+            color: #D3DAED;           /* text color */
+        }
+        /*End of Personalized styles */
