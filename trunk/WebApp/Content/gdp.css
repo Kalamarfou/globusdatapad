@@ -208,10 +208,5 @@ min-width:640px;
 
 
 
-.WorldWideEvent,
-.fc-agenda .WorldWideEvent .fc-event-time,
-.WorldWideEvent a {
-    background-color: -060d5e; /* background color */
-    border-color: -3640ad;     /* border color */
-    color: red;           /* text color */
-}
+
+ 

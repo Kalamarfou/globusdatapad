@@ -61,5 +61,7 @@
         $(".dateTimePicker").AnyTime_picker();
     });
 </script>
+<!-- Les styles persos des events doivent etre aprés le style général. Donc soit on modifie met events.css tout en bas -->
+<link href="/Content/events.css" rel="stylesheet" type="text/css" />
 </body>
 </html>

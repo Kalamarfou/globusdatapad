@@ -227,6 +227,7 @@
     <Content Include="Areas\FrontOffice\Views\MyEvents\Edit.aspx" />
     <Content Include="Areas\FrontOffice\Views\MyEvents\Error.aspx" />
     <Content Include="Content\bg_linkList.gif" />
+    <Content Include="Content\events.css" />
     <Content Include="Content\fond.gif" />
     <Content Include="Content\foot.gif" />
     <Content Include="Content\gdp.css" />
