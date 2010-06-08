@@ -22,14 +22,14 @@ namespace WebApp.Content.i18n.BackOffice {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class BackOfficeMaster {
+    public class Availabilities {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal BackOfficeMaster() {
+        internal Availabilities() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace WebApp.Content.i18n.BackOffice {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.BackOffice.BackOfficeMaster", typeof(BackOfficeMaster).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebApp.Content.i18n.BackOffice.Availabilities", typeof(Availabilities).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,74 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availabilities management.
+        ///   Looks up a localized string similar to Create availability.
         /// </summary>
-        public static string Availabilities {
+        public static string CreateTitle {
             get {
-                return ResourceManager.GetString("Availabilities", resourceCulture);
+                return ResourceManager.GetString("CreateTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Campuses.
+        ///   Looks up a localized string similar to Delete availability.
         /// </summary>
-        public static string Campuses {
+        public static string DeleteTitle {
             get {
-                return ResourceManager.GetString("Campuses", resourceCulture);
+                return ResourceManager.GetString("DeleteTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cursuses.
+        ///   Looks up a localized string similar to Details about availability #.
         /// </summary>
-        public static string Cursuses {
+        public static string DetailsMessage {
             get {
-                return ResourceManager.GetString("Cursuses", resourceCulture);
+                return ResourceManager.GetString("DetailsMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Users Management.
+        ///   Looks up a localized string similar to Details for availability.
         /// </summary>
-        public static string UsersManagement {
+        public static string DetailsTitle {
             get {
-                return ResourceManager.GetString("UsersManagement", resourceCulture);
+                return ResourceManager.GetString("DetailsTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Worldwide events.
+        ///   Looks up a localized string similar to Edit availability.
         /// </summary>
-        public static string WorldWideEvents {
+        public static string EditTitle {
             get {
-                return ResourceManager.GetString("WorldWideEvents", resourceCulture);
+                return ResourceManager.GetString("EditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to availabilities List.
+        /// </summary>
+        public static string Index {
+            get {
+                return ResourceManager.GetString("Index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User id.
+        /// </summary>
+        public static string UserId {
+            get {
+                return ResourceManager.GetString("UserId", resourceCulture);
             }
         }
     }
