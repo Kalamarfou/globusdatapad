@@ -209,6 +209,7 @@
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\VenueVisualization.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressEdition.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressCreation.ascx" />
+    <Content Include="Areas\BackOffice\Views\Users\NonApproved.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\Details.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\Edit.aspx" />

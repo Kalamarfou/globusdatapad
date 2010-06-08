@@ -160,7 +160,7 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UsersList.
+        ///   Looks up a localized string similar to Users List.
         /// </summary>
         public static string Index {
             get {
@@ -228,6 +228,24 @@ namespace WebApp.Content.i18n.BackOffice {
         public static string RolesTitle {
             get {
                 return ResourceManager.GetString("RolesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all users.
+        /// </summary>
+        public static string ViewAll {
+            get {
+                return ResourceManager.GetString("ViewAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display only non approved users.
+        /// </summary>
+        public static string ViewNonApproved {
+            get {
+                return ResourceManager.GetString("ViewNonApproved", resourceCulture);
             }
         }
     }
