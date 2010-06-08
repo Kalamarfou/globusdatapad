@@ -81,9 +81,9 @@ namespace WebApp.Content.i18n.Account {
         /// <summary>
         ///   Looks up a localized string similar to Log on.
         /// </summary>
-        public static string LogOn {
+        public static string LogOn1 {
             get {
-                return ResourceManager.GetString("LogOn", resourceCulture);
+                return ResourceManager.GetString("LogOn1", resourceCulture);
             }
         }
         

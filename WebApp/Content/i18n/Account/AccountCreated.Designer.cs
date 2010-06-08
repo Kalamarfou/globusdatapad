@@ -63,9 +63,9 @@ namespace WebApp.Content.i18n.Account {
         /// <summary>
         ///   Looks up a localized string similar to Account created.
         /// </summary>
-        public static string AccountCreated {
+        public static string AccountCreated1 {
             get {
-                return ResourceManager.GetString("AccountCreated", resourceCulture);
+                return ResourceManager.GetString("AccountCreated1", resourceCulture);
             }
         }
         

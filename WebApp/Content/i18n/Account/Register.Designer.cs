@@ -88,7 +88,7 @@ namespace WebApp.Content.i18n.Account {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwords are required to be a minimum of.
+        ///   Looks up a localized string similar to Passwords are required to be a minimum of .
         /// </summary>
         public static string Password1 {
             get {
@@ -108,9 +108,9 @@ namespace WebApp.Content.i18n.Account {
         /// <summary>
         ///   Looks up a localized string similar to Register.
         /// </summary>
-        public static string Register {
+        public static string Register1 {
             get {
-                return ResourceManager.GetString("Register", resourceCulture);
+                return ResourceManager.GetString("Register1", resourceCulture);
             }
         }
         
