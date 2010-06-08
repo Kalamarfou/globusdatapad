@@ -15,7 +15,7 @@
         <ul class="menu">
             <li><%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Calendar, "Index")%></li>
         </ul>
-    </div>
+    </div> 
 
     <div class="main-content">
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
@@ -23,7 +23,7 @@
 
     <div id="footer" class="menu">
         <%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.MainPage, "MainPage", "Home")%>
-        <%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.LogOn, "LogOn", "Account")%>
+        <% Html.RenderPartial("LogOnUserControl"); %>
     </div>
     
 </body>
