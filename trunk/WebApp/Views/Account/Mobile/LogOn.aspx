@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Mobile.Master" Inherits="System.Web.Mvc.ViewPage<WebApp.Models.LogOnModel>" %>
 
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    <%: WebApp.Content.i18n.Account.LogOn.LogOn %>
+    <%: WebApp.Content.i18n.Account.LogOn.LogOn1%>
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: WebApp.Content.i18n.Account.LogOn.LogOn %></h2>
+    <h2><%: WebApp.Content.i18n.Account.LogOn.LogOn1%></h2>
     <p>
         <%: WebApp.Content.i18n.Account.LogOn.Password1 %>
     </p>
@@ -38,7 +38,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="<%: WebApp.Content.i18n.Account.LogOn.LogOn %>" />
+                    <input type="submit" value="<%: WebApp.Content.i18n.Account.LogOn.LogOn1 %>" />
                 </p>
             </fieldset>
         </div>
