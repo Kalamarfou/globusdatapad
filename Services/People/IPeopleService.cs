@@ -21,7 +21,9 @@ namespace Services.People
 
         List<DAL.Availability> getAvailablePeopleForCampus(int id, int pageNum, int pageSize, out int totalRecords);
 
-        void deleteAvailability(DAL.Availability a, string authorId);
-    
+        void deleteAvailability(int id, string authorId);
+
+
+        List<DAL.Availability> getAvailabilitiesForUser(string p, int p_2, int pageSize, out int totalRecords);
     }
 }

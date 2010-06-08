@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2><%:WebApp.Content.i18n.BackOffice.Users.DetailsTitle%></h2>
+    <h2><%:WebApp.Content.i18n.BackOffice.Users.Index%></h2>
 
     <table>
         <tr>

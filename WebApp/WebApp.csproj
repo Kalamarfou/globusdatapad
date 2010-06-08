@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\AvailabilitiesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CampusesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CursusesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\UsersController.cs" />
@@ -71,6 +72,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>About.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\i18n\BackOffice\Availabilities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Availabilities.resx</DependentUpon>
     </Compile>
     <Compile Include="Content\i18n\BackOffice\BackOfficeMaster.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -153,6 +159,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BackOffice\Views\Availabilities\Create.aspx" />
+    <Content Include="Areas\BackOffice\Views\Availabilities\Delete.aspx" />
+    <Content Include="Areas\BackOffice\Views\Availabilities\Details.aspx" />
+    <Content Include="Areas\BackOffice\Views\Availabilities\Edit.aspx" />
+    <Content Include="Areas\BackOffice\Views\Availabilities\Index.aspx" />
     <Content Include="Areas\BackOffice\Views\Campuses\Create.aspx" />
     <Content Include="Areas\BackOffice\Views\Campuses\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\Campuses\Details.aspx" />
@@ -352,6 +363,10 @@
     <EmbeddedResource Include="Content\i18n\About.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>About.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\i18n\BackOffice\Availabilities.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Availabilities.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\i18n\BackOffice\BackOfficeMaster.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

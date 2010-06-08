@@ -15,3 +15,7 @@
 <% if(Roles.IsUserInRole("Admin")) {  %>
 <li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.Cursuses, "Index", "Cursuses")%></li>
 <% } %>
+
+<% if (Roles.IsUserInRole("Stakeholder")){  %>
+<li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.Availabilities, "Index", "Availabilities")%></li>
+<% } %>
