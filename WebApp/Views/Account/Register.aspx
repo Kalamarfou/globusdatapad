@@ -1,24 +1,24 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebApp.Models.RegisterModel>" %>
 
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Register
+    <%:WebApp.Content.i18n.Account.Register.Register %>
 </asp:Content>
 
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Create a New Account</h2>
+    <h2><%:WebApp.Content.i18n.Account.Register.Title %></h2>
     <p>
-        Use the form below to create a new account. 
+        <%:WebApp.Content.i18n.Account.Register.CreateBelow %> 
     </p>
     <p>
-        Passwords are required to be a minimum of <%= Html.Encode(ViewData["PasswordLength"]) %> characters in length.
+        <%:WebApp.Content.i18n.Account.Register.Password1 %><%= Html.Encode(ViewData["PasswordLength"]) %> <%:WebApp.Content.i18n.Account.Register.Password2 %>
     </p>
 
     <% using (Html.BeginForm()) { %>
-        <%= Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.") %>
+        <%= Html.ValidationSummary(true, WebApp.Content.i18n.Account.Register.Fail) %>
         <div>
 
             <fieldset>
-                <legend>Account Information</legend>
+                <legend><%:WebApp.Content.i18n.Account.Register.AccountInfo %></legend>
                 
                 <div class="editor-label">
                     <%= Html.LabelFor(m => m.FirstName) %>
@@ -84,7 +84,7 @@
                 </div>
                 
                 <p>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value="<%:WebApp.Content.i18n.Account.Register.Register %>" />
                 </p>
             </fieldset>
 
