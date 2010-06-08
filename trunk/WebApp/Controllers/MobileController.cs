@@ -14,16 +14,26 @@ namespace WebApp.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ViewData["Title"] = "Index";
+            Services.Event.IEventService service = new Services.Event.EventService();
+
+            int i;
+
+            ViewData["WorldWideEvents"] = service.GetWorldWideEvents(DateTime.Today, DateTime.Today.AddDays(10), 0, 10, out i);
             return View();
         }
 
         [Authorize]
-        public ActionResult LogOut()
+        public ActionResult MainPage()
         {
-            ViewData["Title"] = "LogOut";
+            ViewData["Title"] = "MainPage";
             return View();
         }
 
+        [Authorize]
+        public ActionResult LogOn()
+        {
+            ViewData["Title"] = "LogOn";
+            return View();
+        }
     }
 }

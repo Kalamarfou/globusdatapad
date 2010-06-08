@@ -28,7 +28,8 @@
 		float: right;
 		padding: 10px 10px 0 0;
 	}
-		.menu li
+	    /*default*/
+		/*.menu li
 		{
 			display: inline;
 			list-style-type: none;
@@ -40,7 +41,28 @@
 		.menu a:link, .menu a:visited
 		{
 			color: #efefef;
+		}*/
+		
+		.menu li
+        {
+			width: 9em;
+            display: block;
+            border: 0.1em solid #dcdce9;	
 		}
+		.menu a
+		{
+			padding: 100px 10px 10px 15px;
+		}
+		.menu a:link, .menu a:visited
+		{
+			color: #efefef;
+		}
+		
+		.menu li a:hover, .menu li a:focus, .menu li a:active {  
+            border-bottom: 8px ; 
+            border-bottom-style: solid ; 
+            border-bottom-color: #DCE4E7 ; 
+    } 
 
 
 h2
@@ -76,3 +98,4 @@ h2
 	margin: 0;
 	padding: 5px;
 }
+

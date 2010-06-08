@@ -13,9 +13,7 @@
 <!-- TODO !!!! -->
     <div class="header">
         <ul class="menu">
-            <li><%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Next5Days, "Index", "Home")%></li>
-            <li><%= Html.ActionLink("Next 10 days", "Category", "Products", new { id = "Computers" })%></li>
-            <li><%= Html.ActionLink("Next 20 days", "Category", "Products", new { id = "Electronics"})%></li>
+            <li><%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Calendar, "Index")%></li>
         </ul>
     </div>
 
@@ -24,8 +22,8 @@
     </div>
 
     <div id="footer" class="menu">
-        <%= Html.ActionLink("Home", "Index", "Home")%>
-        <%= Html.ActionLink("LogOut", "Index", "Home")%>
+        <%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.MainPage, "MainPage", "Home")%>
+        <%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.LogOn, "LogOn", "Account")%>
     </div>
     
 </body>
