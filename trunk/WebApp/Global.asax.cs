@@ -27,7 +27,7 @@ namespace WebApp
 
         }
 
-        protected void Application_Start()
+        protected void Application_Start(object sender, EventArgs e)
         {
             ISecurityService securityService = new SecurityService();
 

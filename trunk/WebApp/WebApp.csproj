@@ -145,7 +145,6 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Extensions\DALMembershipProvider.cs" />
     <Compile Include="Extensions\DALRolesProvider.cs" />
     <Compile Include="Extensions\GlobalUtils.cs" />
@@ -294,6 +293,8 @@
     <Content Include="Views\Account\AccountCreated.aspx" />
     <Content Include="Views\Account\Mobile\LogOn.aspx" />
     <Content Include="Views\Home\Mobile\Index.aspx" />
+    <Content Include="Views\Home\Mobile\MainPage.aspx" />
+    <Content Include="Views\Home\Mobile\WorldWideEvent.aspx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
