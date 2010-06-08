@@ -171,6 +171,27 @@ namespace Services.People
             return users;
         }
 
+        public List<User> getAllNonApprovedUsers(int pageIndex, int pageSize, out int totalCount)
+        {
+            totalCount = 0;
+
+            List<DAL.User> users;
+
+            using (GDPEntities db = new GDPEntities())
+            {
+                totalCount = (from u in db.Users
+                              where u.Common.IsDeleted == false && u.IsApproved == false
+                              select u).Count<DAL.User>();
+
+                users = (from u in db.Users
+                         where u.Common.IsDeleted == false && u.IsApproved == false
+                         orderby u.Id
+                         select u).Skip(pageIndex * pageSize).Take(pageSize).ToList<DAL.User>();
+            }
+
+            return users;
+        }
+
         public int getNumberOfUsersOnline(int userIsOnlineTimeWindow)
         {
             TimeSpan onlineSpan = new TimeSpan(0, userIsOnlineTimeWindow, 0);

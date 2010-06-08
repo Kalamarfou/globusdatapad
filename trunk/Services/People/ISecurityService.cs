@@ -35,6 +35,7 @@ namespace Services.People
         void logFailure(string username, string failureType, double passwordAttemptWindow, int maxInvalidPasswordAttempts);
 
         List<DAL.User> getAllUsers(int pageIndex, int pageSize, out int totalCount);
+        List<DAL.User> getAllNonApprovedUsers(int pageIndex, int pageSize, out int totalCount);
 
         /// <summary>
         /// Get the number of users online in the given time window

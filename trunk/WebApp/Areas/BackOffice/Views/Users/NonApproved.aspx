@@ -80,7 +80,7 @@ Page <%=Convert.ToInt32(ViewData["curpage"])%> of <%=ViewData["numpages"] %><br 
    }
 %>
     <p>
-       <h2> <%: Html.ActionLink(WebApp.Content.i18n.BackOffice.Users.ViewNonApproved, "NonApproved")%></h2>
+       <h2> <%: Html.ActionLink(WebApp.Content.i18n.BackOffice.Users.ViewAll, "Index")%></h2>
     </p>
 
     <p><strong><%:WebApp.Content.i18n.BackOffice.Users.AccountCreation%></strong><%:WebApp.Content.i18n.BackOffice.Users.AccountApprobation%> </p>

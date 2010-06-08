@@ -41,6 +41,35 @@ namespace WebApp.Areas.BackOffice.Controllers
         }
 
         //
+        // GET: /BackOffice/Users/NonAproved
+
+        public ActionResult NonApproved(int? page)
+        {
+            ISecurityService service = new SecurityService();
+
+            int totalRecords;       // total records
+            int pageCount;
+
+            if (!page.HasValue)
+            {
+                pageCount = 1;
+            }
+            else
+            {
+                pageCount = page.Value;
+            }
+
+            ViewData.Model = service.getAllNonApprovedUsers(pageCount - 1, pageSize, out totalRecords);
+
+            ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
+
+            ViewData["curpage"] = pageCount;
+
+            return View();
+        }
+        
+
+        //
         // GET: /BackOffice/Users/Details/5
 
         public ActionResult Details(int id)
