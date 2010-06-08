@@ -121,7 +121,7 @@
     <value>It must then be approved in the back office.</value>
   </data>
   <data name="AccountCreation" xml:space="preserve">
-    <value>User must create himself his account on the front office.</value>
+    <value>PLEASE NOTE: User must create himself his account on the front office. </value>
   </data>
   <data name="CreateTitle" xml:space="preserve">
     <value>Create user</value>

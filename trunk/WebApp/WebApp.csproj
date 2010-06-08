@@ -191,7 +191,6 @@
   <ItemGroup>
     <Content Include="Areas\BackOffice\Views\Availabilities\Create.aspx" />
     <Content Include="Areas\BackOffice\Views\Availabilities\Delete.aspx" />
-    <Content Include="Areas\BackOffice\Views\Availabilities\Details.aspx" />
     <Content Include="Areas\BackOffice\Views\Availabilities\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\Availabilities\Index.aspx" />
     <Content Include="Areas\BackOffice\Views\Campuses\Create.aspx" />

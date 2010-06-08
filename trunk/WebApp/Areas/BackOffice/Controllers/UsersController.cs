@@ -10,7 +10,7 @@ namespace WebApp.Areas.BackOffice.Controllers
     [Authorize(Roles="Admin,CampusManager")]
     public class UsersController : Controller
     {
-        private const int pageSize = 2;
+        private const int pageSize = 20;
 
         //
         // GET: /BackOffice/Users/

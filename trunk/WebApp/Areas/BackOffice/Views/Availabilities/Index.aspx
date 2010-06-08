@@ -8,33 +8,32 @@
 
     <h2><%:WebApp.Content.i18n.BackOffice.Availabilities.Index %></h2>
 
+    <p><%:WebApp.Content.i18n.BackOffice.Availabilities.AvailabilitiesInfo %></p>
+
     <table>
         <tr>
-            <th></th>
             <th>
                 <%:DAL.Resources.Availability.StartDate %>
             </th>
             <th>
                 <%:DAL.Resources.Availability.EndDate %>
             </th>
-
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id = item.Id })%> |
-                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDetails, "Details", new { id = item.Id })%> |
-                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDelete, "Delete", new { id = item.Id })%>
-            </td>
-            <td>
                 <%: String.Format("{0:g}", item.StartDate) %>
             </td>
             <td>
                 <%: String.Format("{0:g}", item.EndDate) %>
             </td>
-            
+            <td>
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id = item.Id })%> |
+                <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDelete, "Delete", new { id = item.Id })%>
+            </td>
         </tr>
     
     <% } %>

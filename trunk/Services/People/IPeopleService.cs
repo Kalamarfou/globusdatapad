@@ -13,17 +13,12 @@ namespace Services.People
 
         DAL.Availability getAvailabilityById(int id);
 
-        List<DAL.Availability> getAvailabilitiesForUser(int id, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
-
-        List<DAL.Availability> getAvailabilitiesForUser(int id, int pageNum, int pageSize, out int totalRecords);
+        List<DAL.Availability> getAvailabilitiesForUser(string username, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
         List<DAL.Availability> getAvailablePeopleForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
         List<DAL.Availability> getAvailablePeopleForCampus(int id, int pageNum, int pageSize, out int totalRecords);
 
         void deleteAvailability(int id, string authorId);
-
-
-        List<DAL.Availability> getAvailabilitiesForUser(string p, int p_2, int pageSize, out int totalRecords);
     }
 }
