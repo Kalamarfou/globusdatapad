@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Next5Days" xml:space="preserve">
-    <value>Next 5 days</value>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="LogOn" xml:space="preserve">
+    <value>LogOut</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Home</value>
   </data>
 </root>

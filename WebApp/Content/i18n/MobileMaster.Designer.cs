@@ -61,11 +61,29 @@ namespace WebApp.Content.i18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Next 5 days.
+        ///   Looks up a localized string similar to Calendar.
         /// </summary>
-        public static string Next5Days {
+        public static string Calendar {
             get {
-                return ResourceManager.GetString("Next5Days", resourceCulture);
+                return ResourceManager.GetString("Calendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LogOut.
+        /// </summary>
+        public static string LogOn {
+            get {
+                return ResourceManager.GetString("LogOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string MainPage {
+            get {
+                return ResourceManager.GetString("MainPage", resourceCulture);
             }
         }
     }
