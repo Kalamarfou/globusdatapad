@@ -70,7 +70,7 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User must create himself his account on the front office..
+        ///   Looks up a localized string similar to PLEASE NOTE: User must create himself his account on the front office. .
         /// </summary>
         public static string AccountCreation {
             get {

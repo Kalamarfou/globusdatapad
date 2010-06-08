@@ -61,7 +61,7 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Availabilities management.
+        ///   Looks up a localized string similar to My availabilities.
         /// </summary>
         public static string Availabilities {
             get {

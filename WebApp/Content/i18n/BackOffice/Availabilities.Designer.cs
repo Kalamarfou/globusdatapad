@@ -61,6 +61,15 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to These are the availabilities you have entered for the six next months..
+        /// </summary>
+        public static string AvailabilitiesInfo {
+            get {
+                return ResourceManager.GetString("AvailabilitiesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create availability.
         /// </summary>
         public static string CreateTitle {
@@ -115,7 +124,7 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to availabilities List.
+        ///   Looks up a localized string similar to My availabilities.
         /// </summary>
         public static string Index {
             get {

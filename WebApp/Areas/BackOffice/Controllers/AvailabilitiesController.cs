@@ -10,14 +10,12 @@ namespace WebApp.Areas.BackOffice.Controllers
     public class AvailabilitiesController : Controller
     {
         private IPeopleService service;
-        private const int pageSize = 2;
+        private const int pageSize = 20;
 
         public AvailabilitiesController()
         {
             service = new PeopleService();
         }
-
-        
 
         //
         // GET: /BackOffice/Availabilities/
@@ -37,22 +35,11 @@ namespace WebApp.Areas.BackOffice.Controllers
                 pageCount = page.Value;
             }
 
-            ViewData.Model = service.getAvailabilitiesForUser(User.Identity.Name, pageCount - 1, pageSize, out totalRecords);
+            ViewData.Model = service.getAvailabilitiesForUser(User.Identity.Name, DateTime.Today.AddMonths(-1), DateTime.Today.AddMonths(6), pageCount - 1, pageSize, out totalRecords);
 
             ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
 
             ViewData["curpage"] = pageCount;
-
-            return View();
-        }
-
-        //
-        // GET: /BackOffice/Availabilities/Details/5
-
-        public ActionResult Details(int id)
-        {
-
-            ViewData.Model = service.getAvailabilityById(id);
 
             return View();
         }
@@ -75,7 +62,7 @@ namespace WebApp.Areas.BackOffice.Controllers
             {
                 return View(a);
             }
-            service.createAvailability(a,User.Identity.Name);
+            service.createAvailability(a, User.Identity.Name);
             return RedirectToAction("Index");
         }
         

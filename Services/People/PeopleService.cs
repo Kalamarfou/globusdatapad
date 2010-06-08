@@ -36,18 +36,17 @@ namespace Services.People
             }
         }
 
-        public List<DAL.Availability> getAvailabilitiesForUser(int id, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        public List<DAL.Availability> getAvailabilitiesForUser(string username, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            //TODO degacher en utilisant user.availabilities
             ISecurityService secService = new SecurityService();
-            DAL.User user = secService.getUserById(id);
+            DAL.User user = secService.getUserByUsername(username);
 
             using (GDPEntities db = new GDPEntities())
             {
                 if (user != null)
                 {
                     var result = (from a in db.Availabilities
-                                  where a.EndDate >= startDate && a.EndDate <= endDate && a.Common.IsDeleted == false && a.UserId == id
+                                  where a.StartDate >= startDate && a.StartDate <= endDate && a.Common.IsDeleted == false && a.User.Username == username
                                   orderby a.StartDate
                                   select a);
                     totalRecords = result.Count();
@@ -55,14 +54,9 @@ namespace Services.People
                 }
                 else
                 {
-                    throw new ApplicationException("User " + id + " does not exist.");
+                    throw new ApplicationException("User " + username + " does not exist.");
                 }
             }
-        }
-
-        public List<DAL.Availability> getAvailabilitiesForUser(int id, int pageNum, int pageSize, out int totalRecords)
-        {
-            return getAvailabilitiesForUser(id, new DateTime(1980, 1, 1), new DateTime(2050, 1, 1), pageNum, pageSize, out totalRecords);
         }
 
         public List<DAL.Availability> getAvailablePeopleForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
@@ -94,14 +88,6 @@ namespace Services.People
             a.Common.IsDeleted = true;
 
             DAL.Utils.GenericCrud.Update(a);
-        }
-
-
-        public List<DAL.Availability> getAvailabilitiesForUser(string name, int pageNum, int pageSize, out int totalRecords)
-        {
-            ISecurityService secService = new SecurityService();
-            DAL.User user = secService.getUserByUsername(name);
-            return getAvailabilitiesForUser(user.Id, pageNum, pageSize, out totalRecords);
         }
     }
 }
