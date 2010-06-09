@@ -153,11 +153,16 @@ namespace WebApp.Areas.BackOffice.Controllers
                 throw new ApplicationException("User #" + id + " doesn't exist.");
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("UserDeleted");
         }
 
         //
         // GET: /BackOffice/Users/Roles/5
+
+        public ActionResult UserDeleted()
+        {
+            return View();
+        }
  
         public ActionResult Roles(int id)
         {

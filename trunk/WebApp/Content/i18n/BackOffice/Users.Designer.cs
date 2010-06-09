@@ -232,6 +232,24 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User has been successfully deleted.
+        /// </summary>
+        public static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Deleted.
+        /// </summary>
+        public static string UserDeleted {
+            get {
+                return ResourceManager.GetString("UserDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View all users.
         /// </summary>
         public static string ViewAll {
