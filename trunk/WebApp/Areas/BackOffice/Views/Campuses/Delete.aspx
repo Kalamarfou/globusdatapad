@@ -33,7 +33,7 @@
     </fieldset>
     <% using (Html.BeginForm()) { %>
         <p>
-		    <input type="submit" value="<%: Model.Common.Audit.ButtonDelete%>" /> |
+		    <input type="submit" value="<%: WebApp.Content.i18n.Common.ButtonDelete%>" /> |
 		    <%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index")%>
         </p>
     <% } %>
