@@ -183,6 +183,9 @@
   <data name="RolesTitle" xml:space="preserve">
     <value>Roles</value>
   </data>
+  <data name="RoleStudent" xml:space="preserve">
+    <value>Role Student</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>User has been successfully deleted</value>
   </data>
