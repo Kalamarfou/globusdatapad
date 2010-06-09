@@ -39,12 +39,17 @@ namespace WebApp.Areas.FrontOffice.Controllers
             {
                 IEventService service = new EventService();
                 service.CreateUserEvent(e, User.Identity.Name);
-                return RedirectToAction("Index", "Calendar");
+                return RedirectToAction("EventConfirmed");
             }
             catch( Exception ex)
             {
                 return View();
             }
+        }
+
+        public ActionResult EventConfirmed()
+        {
+            return View();
         }
         
         //
