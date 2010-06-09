@@ -132,4 +132,10 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="EventConfirmed" xml:space="preserve">
+    <value>Event Confirmed</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>You event has been created successfully</value>
+  </data>
 </root>

@@ -104,5 +104,23 @@ namespace WebApp.Content.i18n.FrontOffice {
                 return ResourceManager.GetString("Error", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Confirmed.
+        /// </summary>
+        public static string EventConfirmed {
+            get {
+                return ResourceManager.GetString("EventConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You event has been created successfully.
+        /// </summary>
+        public static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
     }
 }
