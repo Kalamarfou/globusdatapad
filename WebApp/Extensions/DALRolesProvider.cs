@@ -198,53 +198,14 @@ namespace WebApp.Extensions
         /// <param name="roleNames">A string array of role names to remove the specified user names from.</param>
         public override void RemoveUsersFromRoles(string[] userNames, string[] roleNames)
         {
-            throw new NotImplementedException("TODO");
-            //using (EFDataModelEntities context = new EFDataModelEntities(connectionString))
-            //{
-            //    IQueryable<Role> roles = context.Role.Where(MatchRoleApplication()).Where(ProviderUtils.BuildContainsExpression<Role, string>(r => r.Name, roleNames));
-            //    if (roles.Count() != roleNames.Length)
-            //    {
-            //        throw new ProviderException("Role not found.");
-            //    }
-
-            //    IQueryable<User> users = context.User.Include("Role").Where(MatchUserApplication()).Where(ProviderUtils.BuildContainsExpression<User, string>(u => u.Username, userNames));
-            //    if (users.Count() != userNames.Length)
-            //    {
-            //        throw new ProviderException("User not found.");
-            //    }
-
-            //    try
-            //    {
-            //        foreach (User user in users)
-            //        {
-            //            foreach (Role role in roles)
-            //            {
-            //                /*if (!user.Role.IsLoaded)
-            //                {
-            //                    user.Role.Load();
-            //                }*/
-
-            //                if (user.Role.Contains(role))
-            //                {
-            //                    user.Role.Remove(role);
-            //                }
-            //            }
-            //        }
-
-            //        context.SaveChanges();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        if (WriteExceptionsToEventLog)
-            //        {
-            //            WriteToEventLog(ex, "RemoveUsersFromRoles");
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //}
+            ISecurityService service = new SecurityService();
+            foreach (string user in userNames)
+            {
+                foreach (string role in roleNames)
+                {
+                    service.removeUserInRole(user, role);
+                }
+            }
         }
 
         /// <summary>

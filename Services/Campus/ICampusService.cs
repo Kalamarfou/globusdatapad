@@ -23,11 +23,13 @@ namespace Services.Campus
 
         #region "Venues"
 
-        void CreateVenue(DAL.Venue v, string authorId);
+        void CreateVenueForCampus(int campusId, DAL.Venue v, string authorId);
 
         DAL.Venue GetVenueById(int id);
 
         List<DAL.Venue> GetAllVenues(int pageNum, int pageSize, out int totalRecords);
+
+        List<DAL.Venue> GetAllVenuesForCampus(int campusId, int pageNum, int pageSize, out int totalRecords);
 
         void UpdateVenue(DAL.Venue v, string authorId);
 
