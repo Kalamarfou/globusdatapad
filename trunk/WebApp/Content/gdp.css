@@ -207,6 +207,10 @@ min-width:640px;
 }
 
 
-
+#title
+        {
+            height: 108px;
+            margin-top: 0px;
+        }
 
  

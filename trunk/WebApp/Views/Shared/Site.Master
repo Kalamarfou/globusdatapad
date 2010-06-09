@@ -12,13 +12,7 @@
     <link href="/Content/ui-lightness/jquery-ui-1.8.1.custom.css" rel="stylesheet" type="text/css" />
     <script src="/Scripts/anytime/anytimec.js" type="text/javascript"></script>
     <link href="/Scripts/anytime/anytimec.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        #title
-        {
-            height: 108px;
-            margin-top: 0px;
-        }
-    </style>
+
 </head>
 
 <body>
