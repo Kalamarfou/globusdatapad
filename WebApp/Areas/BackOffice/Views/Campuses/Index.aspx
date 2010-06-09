@@ -7,7 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%= WebApp.Content.i18n.BackOffice.Campuses.Index%></h2>
-
+    <% if (Convert.ToInt32(ViewData["numpages"]) != 0)
+       {%>
     <table>
         <tr>
             <th><%= DAL.Resources.Campus.Name %></th>
@@ -38,7 +39,12 @@
     <% } %>
 
     </table>
-
+     <%}
+    else
+	    {%>
+          <%:  WebApp.Content.i18n.BackOffice.Campuses.NoItems%>
+	    <%}        
+         %>
     <p>
         <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonCreate, "Create")%>
     </p>
