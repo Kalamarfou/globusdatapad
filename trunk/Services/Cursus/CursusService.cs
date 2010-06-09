@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using DAL.Utils;
+using DAL;
 
 namespace Services.Cursus
 {
     public class CursusService : ICursusService
     {
 
-        private DAL.GDPEntities db;
+
         
-        public CursusService()
-        {
-            db = new DAL.GDPEntities();
-        }
+
 
         #region ICursusService Members
 
@@ -28,27 +26,36 @@ namespace Services.Cursus
         
         public DAL.Cursus GetCursusById(int id)
         {
-            return db.Cursuses.First(c => c.Id == id && c.Common.IsDeleted == false);
+            using (GDPEntities db = new GDPEntities())
+            {
+                return db.Cursuses.First(c => c.Id == id && c.Common.IsDeleted == false);
+            }
         }
 
         public List<DAL.Cursus> GetAllCursuses(int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from c in db.Cursuses
-                          where c.Common.IsDeleted == false
-                          orderby c.Name
-                          select c);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from c in db.Cursuses
+                              where c.Common.IsDeleted == false
+                              orderby c.Name
+                              select c);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
+            }
         }
 
         public List<DAL.Cursus> GetAllActiveCursuses(int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from s in db.StudyPeriods
-                          where s.EndDate >= DateTime.Now && s.Common.IsDeleted == false
-                          select s.Cursus).Distinct();
-            result = result.OrderBy(c => c.Name);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from s in db.StudyPeriods
+                              where s.EndDate >= DateTime.Now && s.Common.IsDeleted == false
+                              select s.Cursus).Distinct();
+                result = result.OrderBy(c => c.Name);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Cursus>();
+            }
         }
 
         public void UpdateCursus(DAL.Cursus c, string authorId)
@@ -57,8 +64,9 @@ namespace Services.Cursus
             DAL.Utils.GenericCrud.Update(c);
         }
 
-        public void DeleteCursus(DAL.Cursus c, string authorId)
+        public void DeleteCursus(int id, string authorId)
         {
+            DAL.Cursus c = GetCursusById(id);
             c.Common.IsDeleted = true;
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update(c);
@@ -72,7 +80,10 @@ namespace Services.Cursus
 
         public DAL.StudyPeriod GetStudyPeriodById(int id)
         {
-            return db.StudyPeriods.First(s => s.Id == id);
+            using (GDPEntities db = new GDPEntities())
+            {
+                return db.StudyPeriods.First(s => s.Id == id && s.Common.IsDeleted == false);
+            }
         }
 
         public DAL.Cursus GetStudyPeriodCursus(int id)
@@ -113,8 +124,9 @@ namespace Services.Cursus
             DAL.Utils.GenericCrud.Update(sp);
         }
 
-        public void DeleteStudyPeriod(DAL.StudyPeriod sp, string authorId)
+        public void DeleteStudyPeriod(int id, string authorId)
         {
+            DAL.StudyPeriod sp = GetStudyPeriodById(id);
             sp.Common.IsDeleted = true;
             DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update(sp);
@@ -133,7 +145,10 @@ namespace Services.Cursus
 
         public DAL.Discipline GetById(int discId)
         {
-            return db.Disciplines.First(e => e.Id == discId && e.Common.IsDeleted == false);
+            using (GDPEntities db = new GDPEntities())
+            {
+                return db.Disciplines.First(e => e.Id == discId && e.Common.IsDeleted == false);
+            }
         }
 
         public List<DAL.Discipline> GetAll(int pageNum, int pageSize, out int totalRecords)
@@ -162,8 +177,9 @@ namespace Services.Cursus
             DAL.Utils.GenericCrud.Update(disc);
         }
 
-        public void Delete(DAL.Discipline disc, string authorId)
+        public void Delete(int id, string authorId)
         {
+            DAL.Discipline disc = GetById(id);
             DAL.Utils.GenericCrud.SetAudit(disc.Common.Audit, authorId);
             disc.Common.IsDeleted = true;
             DAL.Utils.GenericCrud.Update(disc);

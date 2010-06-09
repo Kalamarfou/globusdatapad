@@ -6,17 +6,13 @@ using Services;
 using Services.People;
 using Services.Campus;
 using System.Data.Objects.DataClasses;
+using DAL;
 
 namespace Services.Event
 {
     public class EventService : IEventService
     {
-        private DAL.GDPEntities db;
 
-        public EventService()
-        {
-            db = new DAL.GDPEntities();
-        }
 
         public void CreateUserEvent(DAL.Event ev, string authorId)
         {
@@ -55,24 +51,33 @@ namespace Services.Event
 
         public DAL.Event GetById(int id)
         {
-            return db.Events.First(e => e.Id == id && e.Common.IsDeleted == false);
+            using (GDPEntities db = new GDPEntities())
+            {
+                return db.Events.First(e => e.Id == id && e.Common.IsDeleted == false);
+            }
         }
 
         public DAL.WorldWideEvent GetWorldWideEventById(int wweId)
         {
-            return db.Events.OfType<DAL.WorldWideEvent>().First(e => e.Id == wweId && e.Common.IsDeleted == false);
+            using (GDPEntities db = new GDPEntities())
+            {
+                return db.Events.OfType<DAL.WorldWideEvent>().First(e => e.Id == wweId && e.Common.IsDeleted == false);
+            }
         }
 
         public List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
-                                   where wwe.StartDate >= startDate && wwe.StartDate <= endDate && wwe.Common.IsDeleted == false
-                                   orderby wwe.StartDate
-                                   select wwe);
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
+                              where wwe.StartDate >= startDate && wwe.StartDate <= endDate && wwe.Common.IsDeleted == false
+                              orderby wwe.StartDate
+                              select wwe);
 
-            totalRecords = result.Count<DAL.WorldWideEvent>();
+                totalRecords = result.Count<DAL.WorldWideEvent>();
 
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
+            }
         }
 
         public List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
@@ -121,7 +126,10 @@ namespace Services.Event
 
         public DAL.BaseCourse GetClassEventById(int eventId)
         {
-            return db.Events.OfType<DAL.BaseCourse>().First(e => e.Id == eventId && e.Common.IsDeleted == false);
+            using (GDPEntities db = new GDPEntities())
+            {
+                return db.Events.OfType<DAL.BaseCourse>().First(e => e.Id == eventId && e.Common.IsDeleted == false);
+            }
         }
 
         public List<DAL.Event> GetClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
@@ -150,12 +158,15 @@ namespace Services.Event
 
         public List<DAL.Event> GetEventsForUser(string userName, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from e in db.Events
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from e in db.Events
                               where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false && e.User.Username == userName
                               orderby e.StartDate
                               select e);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
         }
 
         public void Update(DAL.Event e, string authorId)

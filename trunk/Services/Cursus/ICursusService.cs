@@ -26,7 +26,7 @@ namespace Services.Cursus
 
         void UpdateCursus(DAL.Cursus c, string authorId);
 
-        void DeleteCursus(DAL.Cursus c, string authorId);
+        void DeleteCursus(int id, string authorId);
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace Services.Cursus
 
         void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId);
 
-        void DeleteStudyPeriod(DAL.StudyPeriod sp, string authorId);
+        void DeleteStudyPeriod(int id, string authorId);
         
         #endregion
 
@@ -56,7 +56,7 @@ namespace Services.Cursus
 
         void Update(DAL.Discipline disc, string authorId);
 
-        void Delete(DAL.Discipline disc, string authorId);
+        void Delete(int id, string authorId);
 
         List<DAL.EvaluationType> GetDisciplineEvaluationTypes(int discId, int pageNum, int pageSize, out int totalRecords);
 
