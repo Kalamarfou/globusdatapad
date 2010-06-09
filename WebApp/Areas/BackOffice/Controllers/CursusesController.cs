@@ -58,7 +58,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /BackOffice/Cursuses/Create
@@ -73,10 +73,10 @@ namespace WebApp.Areas.BackOffice.Controllers
             service.CreateCursus(c, User.Identity.Name);
             return RedirectToAction("Index");
         }
-        
+
         //
         // GET: /BackOffice/Cursuses/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             ViewData.Model = service.GetCursusById(id);
@@ -89,13 +89,26 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Cursus c)
         {
-            service.UpdateCursus(c, User.Identity.Name);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                DAL.Cursus dbCursus = service.GetCursusById(id);
+
+                dbCursus.Name = c.Name;
+                dbCursus.Common.ConcurrencyToken = c.Common.ConcurrencyToken;
+
+                service.UpdateCursus(dbCursus, User.Identity.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(c);
+            }
+
         }
 
         //
         // GET: /BackOffice/Cursuses/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             ViewData.Model = service.GetCursusById(id);
