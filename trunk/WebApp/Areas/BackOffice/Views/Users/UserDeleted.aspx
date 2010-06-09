@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%:WebApp.Content.i18n.BackOffice.Users.UserDeleted %>
@@ -10,6 +10,6 @@
 
     <p><%:WebApp.Content.i18n.BackOffice.Users.Success %></p>
 
-    <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Home, "Index", "Home", new { Area = "" }, null)%></p>
+    <p><%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index")%></p>
 
 </asp:Content>
