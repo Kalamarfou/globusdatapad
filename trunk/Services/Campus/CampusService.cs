@@ -26,9 +26,8 @@ namespace Services.Campus
         {
             DAL.Utils.GenericCrud.SetAudit(c.Address.Common.Audit, authorId);
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.Create(c.Address);
-            DAL.Utils.GenericCrud.Create(c);
 
+            DAL.Utils.GenericCrud.Create<DAL.Campus>(c);
         }
 
         /// <summary>
@@ -53,8 +52,6 @@ namespace Services.Campus
 
         public void Update(DAL.Campus c, string authorId)
         {
-            //GUILLAUME si on a modifié le campus mais pas son adresse, il ne faudrais pas changer les set audit sur l'adresse.
-            //ouais Martin, ça risque d'étre dur, je laisse le commentaire, on vera plus tard, quand j'aurais un cerveau
             DAL.Utils.GenericCrud.SetAudit(c.Address.Common.Audit, authorId);
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
            
@@ -102,6 +99,54 @@ namespace Services.Campus
             v.Common.IsDeleted = true;
             DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update(v);
+        }
+
+        #endregion
+
+        #region ICampusService Members
+
+
+        public void CreateVenueForCampus(int campusId, Venue v, string authorId)
+        {
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                DAL.Campus campus = (from c in gdp.Campuses
+                                     where c.Id == campusId && c.Common.IsDeleted == false
+                                     select c).FirstOrDefault<DAL.Campus>();
+
+                if (campus == null)
+                {
+                    throw new ApplicationException("Campus #" + campusId + " doesn't exist or has been deleted.");
+                }
+                else
+                {
+                    DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
+
+                    campus.Venues.Add(v);
+
+                    gdp.SaveChanges();
+                }
+            }
+        }
+
+        public List<Venue> GetAllVenuesForCampus(int campusId, int pageNum, int pageSize, out int totalRecords)
+        {
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                DAL.Campus campus = (from c in gdp.Campuses
+                                     where c.Id == campusId && c.Common.IsDeleted == false
+                                     select c).FirstOrDefault<DAL.Campus>();
+
+                if (campus == null)
+                {
+                    throw new ApplicationException("Campus #" + campusId + " doesn't exist or has been deleted.");
+                }
+                else
+                {
+                    totalRecords = campus.Venues.Where(v => v.Common.IsDeleted == false).Count();
+                    return campus.Venues.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
+                }
+            }
         }
 
         #endregion

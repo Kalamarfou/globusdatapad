@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Services.People;
+using System.Web.Security;
 
 namespace WebApp.Areas.BackOffice.Controllers
 {
@@ -161,8 +162,47 @@ namespace WebApp.Areas.BackOffice.Controllers
         public ActionResult Roles(int id)
         {
             ISecurityService service = new SecurityService();
+            DAL.User user = service.getUserById(id);
+            string[] roles = service.getUserRoles(user.Username);
 
-            return null;
+            foreach (string role in roles)              // TODO clean that ugly code...
+            {
+                if (role == "Admin")
+                {
+                    ViewData["isAdmin"] = true;
+                }
+                else if (role == "CampusManager")
+                {
+                    ViewData["isCampusManager"] = true;
+                }
+                else if (role == "Stakeholder")
+                {
+                    ViewData["isStakeholder"] = true;
+                }
+                else if (role == "Student")
+                {
+                    ViewData["isStudent"] = true;
+                }
+            }
+
+            if (ViewData["isAdmin"] == null)
+            {
+                ViewData["isAdmin"] = false;
+            }
+            if (ViewData["isCampusManager"] == null)
+            {
+                ViewData["isCampusManager"] = false;
+            }
+            if (ViewData["isStakeholder"] == null)
+            {
+                ViewData["isStakeholder"] = false;
+            }
+            if (ViewData["isStudent"] == null)
+            {
+                ViewData["isStudent"] = false;
+            }
+
+            return View();
         }
 
         //
@@ -171,7 +211,58 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Roles(int id, FormCollection collection)
         {
-            return null;
+            ISecurityService service = new SecurityService();
+            DAL.User user = service.getUserById(id);
+
+            try
+            {
+                if (Boolean.Parse(Request.Form.GetValues("Admin")[0]))
+                {
+                    System.Web.Security.Roles.AddUserToRole(user.Username, "Admin");
+                }
+                else
+                {
+                    System.Web.Security.Roles.RemoveUserFromRole(user.Username, "Admin");
+                }
+            } catch(Exception) {}
+
+            try
+            {
+                if (Boolean.Parse(Request.Form.GetValues("Student")[0]))
+                {
+                    System.Web.Security.Roles.AddUserToRole(user.Username, "Student");
+                }
+                else
+                {
+                    System.Web.Security.Roles.RemoveUserFromRole(user.Username, "Student");
+                }
+            } catch (Exception) { }
+
+            try
+            {
+                if (Boolean.Parse(Request.Form.GetValues("Stakeholder")[0]))
+                {
+                    System.Web.Security.Roles.AddUserToRole(user.Username, "Stakeholder");
+                }
+                else
+                {
+                    System.Web.Security.Roles.RemoveUserFromRole(user.Username, "Stakeholder");
+                }
+            } catch (Exception) { }
+
+            try
+            {
+                if (Boolean.Parse(Request.Form.GetValues("CampusManager")[0]))
+                {
+                    System.Web.Security.Roles.AddUserToRole(user.Username, "CampusManager");
+                }
+                else
+                {
+                    System.Web.Security.Roles.RemoveUserFromRole(user.Username, "CampusManager");
+                }
+            } catch (Exception) { }
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -64,5 +64,7 @@ namespace Services.People
 
         void addUserToRole(string username, string roleName);
 
+        void removeUserInRole(string username, string roleName);
+
     }
 }
