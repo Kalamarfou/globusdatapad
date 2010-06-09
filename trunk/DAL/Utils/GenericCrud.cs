@@ -25,10 +25,7 @@ namespace DAL.Utils
         {
             using (GDPEntities db = new GDPEntities())
             {
-                //if (e.EntityKey == null)
-                //{
-                    db.AttachTo(GetEntitySetName(e), e);
-                //}
+                db.AttachTo(GetEntitySetName(e), e);
                 db.ObjectStateManager.ChangeObjectState(e, System.Data.EntityState.Modified);
                 try
                 {

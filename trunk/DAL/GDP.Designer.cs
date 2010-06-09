@@ -21,7 +21,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "CursusStudyPeriod", "Cursus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Cursus), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod), true)]
 [assembly: EdmRelationshipAttribute("GDP", "CampusAddress", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Address))]
 [assembly: EdmRelationshipAttribute("GDP", "VenueAddress", "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Address))]
-[assembly: EdmRelationshipAttribute("GDP", "EventVenue", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Event), "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue))]
+[assembly: EdmRelationshipAttribute("GDP", "EventVenue", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Event), "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue))]
 [assembly: EdmRelationshipAttribute("GDP", "ClassStudyPeriod", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Class), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod), true)]
 [assembly: EdmRelationshipAttribute("GDP", "BaseCourseDiscipline", "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.BaseCourse), "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline))]
 [assembly: EdmRelationshipAttribute("GDP", "EvaluationEvaluationType", "Evaluation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Evaluation), "EvaluationType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.EvaluationType))]
@@ -4028,14 +4028,12 @@ namespace DAL
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="common">Initial value of the Common property.</param>
-        /// <param name="campusId">Initial value of the CampusId property.</param>
-        public static Venue CreateVenue(global::System.Int32 id, global::System.String name, Common common, global::System.Int32 campusId)
+        public static Venue CreateVenue(global::System.Int32 id, global::System.String name, Common common)
         {
             Venue venue = new Venue();
             venue.Id = id;
             venue.Name = name;
             venue.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
-            venue.CampusId = campusId;
             return venue;
         }
 
@@ -4092,30 +4090,6 @@ namespace DAL
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CampusId
-        {
-            get
-            {
-                return _CampusId;
-            }
-            set
-            {
-                OnCampusIdChanging(value);
-                ReportPropertyChanging("CampusId");
-                _CampusId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CampusId");
-                OnCampusIdChanged();
-            }
-        }
-        private global::System.Int32 _CampusId;
-        partial void OnCampusIdChanging(global::System.Int32 value);
-        partial void OnCampusIdChanged();
 
         #endregion
         #region Complex Properties

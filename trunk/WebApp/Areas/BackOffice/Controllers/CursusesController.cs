@@ -34,9 +34,9 @@ namespace WebApp.Areas.BackOffice.Controllers
             {
                 pageCount = page.Value;
             }
-            //TODO
-            //ViewData.Model = service.GetAllActiveCursuses(pageCount - 1, pageSize, out totalRecords);
+
             ViewData.Model = service.GetAllCursuses(pageCount - 1, pageSize, out totalRecords);
+
             ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
 
             ViewData["curpage"] = pageCount;  //TODO

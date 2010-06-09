@@ -248,8 +248,7 @@
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
-    <Property Name="CampusId" Type="int" Nullable="false" />
-    <Property Name="EventVenue_Venue_Id" Type="int" Nullable="false" />
+    <Property Name="EventVenue_Venue_Id" Type="int" Nullable="true" />
     <Property Name="Campus_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Events">
@@ -474,7 +473,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="EventVenue">
-    <End Role="Event" Type="GDP.Store.Events" Multiplicity="1" />
+    <End Role="Event" Type="GDP.Store.Events" Multiplicity="0..1" />
     <End Role="Venue" Type="GDP.Store.Venues" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Event">
@@ -1027,7 +1026,6 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
-          <Property Type="Int32" Name="CampusId" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="GDP.VenueAddress" FromRole="Venue" ToRole="Address" />
           <NavigationProperty Name="Campus" Relationship="GDP.VenueCampus" FromRole="Venue" ToRole="Campus" />
         </EntityType>
@@ -1109,7 +1107,7 @@
           <NavigationProperty Name="Availabilities" Relationship="GDP.UserAvailability" FromRole="User" ToRole="Availability" />
         </EntityType>
         <Association Name="EventVenue">
-          <End Type="GDP.Event" Role="Event" Multiplicity="1" />
+          <End Type="GDP.Event" Role="Event" Multiplicity="0..1" />
           <End Type="GDP.Venue" Role="Venue" Multiplicity="0..1" />
         </Association>
         <Association Name="ClassStudyPeriod">
@@ -1404,7 +1402,6 @@
             </ComplexProperty>
             <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
-          <ScalarProperty Name="CampusId" ColumnName="CampusId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1601,6 +1598,7 @@
       <EndProperty Name="Venue">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="EventVenue_Venue_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="BaseCourseDiscipline" TypeName="GDP.BaseCourseDiscipline" StoreEntitySet="Events_BaseCourse">
       <EndProperty Name="Discipline">
@@ -1742,21 +1740,21 @@
         <EntityTypeShape EntityType="GDP.Campus" Width="1.5" PointX="5.25" PointY="18.125" Height="2.364889322916671" />
         <EntityTypeShape EntityType="GDP.Address" Width="1.5" PointX="10.5" PointY="18.125" Height="2.1725878906250031" />
         <EntityTypeShape EntityType="GDP.Class" Width="1.5" PointX="4" PointY="24.125" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="GDP.Venue" Width="1.5" PointX="7.875" PointY="16" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="GDP.Venue" Width="1.5" PointX="7.875" PointY="16" Height="1.9802864583333353" />
         <EntityTypeShape EntityType="GDP.Event" Width="1.5" PointX="7.75" PointY="20.875" Height="2.5571907552083388" />
         <AssociationConnector Association="GDP.CursusStudyPeriod">
           <ConnectorPoint PointX="13.375" PointY="19.662985026041667" />
           <ConnectorPoint PointX="13.375" PointY="22.25" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.CampusAddress">
-          <ConnectorPoint PointX="6.75" PointY="18.974606743164067" />
-          <ConnectorPoint PointX="8.4791666666666661" PointY="18.974606743164067" />
-          <ConnectorPoint PointX="8.6458333333333339" PointY="18.974606743164067" />
-          <ConnectorPoint PointX="10.5" PointY="18.974606743164067" />
+          <ConnectorPoint PointX="6.75" PointY="18.936794211832684" />
+          <ConnectorPoint PointX="8.4791666666666661" PointY="18.936794211832684" />
+          <ConnectorPoint PointX="8.6458333333333339" PointY="18.936794211832684" />
+          <ConnectorPoint PointX="10.5" PointY="18.936794211832684" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.VenueAddress">
-          <ConnectorPoint PointX="9.375" PointY="17.0624995" />
-          <ConnectorPoint PointX="11.25" PointY="17.0624995" />
+          <ConnectorPoint PointX="9.375" PointY="16.990143229166669" />
+          <ConnectorPoint PointX="11.25" PointY="16.990143229166669" />
           <ConnectorPoint PointX="11.25" PointY="18.125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="GDP.Course" Width="1.5" PointX="4.25" PointY="27.375" Height="1.4033821614583388" />
@@ -1764,7 +1762,7 @@
         <EntityTypeShape EntityType="GDP.User" Width="2.25" PointX="0.75" PointY="18.375" Height="6.5955208333333353" />
         <AssociationConnector Association="GDP.EventVenue">
           <ConnectorPoint PointX="8.5625" PointY="20.875" />
-          <ConnectorPoint PointX="8.5625" PointY="18.172587890625003" />
+          <ConnectorPoint PointX="8.5625" PointY="17.980286458333335" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.ClassStudyPeriod">
           <ConnectorPoint PointX="5.5" PointY="24.25" />
@@ -1852,8 +1850,8 @@
           <ConnectorPoint PointX="2.5" PointY="25.375" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.VenueCampus">
-          <ConnectorPoint PointX="7.875" PointY="17.0624995" />
-          <ConnectorPoint PointX="6" PointY="17.0624995" />
+          <ConnectorPoint PointX="7.875" PointY="16.990143229166669" />
+          <ConnectorPoint PointX="6" PointY="16.990143229166669" />
           <ConnectorPoint PointX="6" PointY="18.125" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.CampusEvent">
