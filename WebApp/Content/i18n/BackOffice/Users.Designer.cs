@@ -259,6 +259,15 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Student.
+        /// </summary>
+        public static string RoleStudent {
+            get {
+                return ResourceManager.GetString("RoleStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User has been successfully deleted.
         /// </summary>
         public static string Success {
