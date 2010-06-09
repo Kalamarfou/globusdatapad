@@ -70,6 +70,15 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return to front office.
+        /// </summary>
+        public static string BackToFrontOffice {
+            get {
+                return ResourceManager.GetString("BackToFrontOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Campuses.
         /// </summary>
         public static string Campuses {

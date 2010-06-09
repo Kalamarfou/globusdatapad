@@ -120,6 +120,9 @@
   <data name="Availabilities" xml:space="preserve">
     <value>My availabilities</value>
   </data>
+  <data name="BackToFrontOffice" xml:space="preserve">
+    <value>Return to front office</value>
+  </data>
   <data name="Campuses" xml:space="preserve">
     <value>Campuses</value>
   </data>

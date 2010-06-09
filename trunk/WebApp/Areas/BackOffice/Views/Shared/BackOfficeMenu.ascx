@@ -19,3 +19,5 @@
 <% if (Roles.IsUserInRole("Stakeholder")){  %>
 <li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.Availabilities, "Index", "Availabilities")%></li>
 <% } %>
+
+<li><%= Html.ActionLink(WebApp.Content.i18n.BackOffice.BackOfficeMaster.BackToFrontOffice, "Index", "Home", new { Area = "" }, null)%></li>
