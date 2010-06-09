@@ -141,4 +141,7 @@
   <data name="Index" xml:space="preserve">
     <value>Campuses List</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>No campuses available. You can create one below.</value>
+  </data>
 </root>

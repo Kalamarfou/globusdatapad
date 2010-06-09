@@ -61,6 +61,15 @@ namespace WebApp.Content.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Globus DataPad Back Office.
+        /// </summary>
+        public static string ApplicationBackOffice {
+            get {
+                return ResourceManager.GetString("ApplicationBackOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Globus DataPad.
         /// </summary>
         public static string ApplicationName {
