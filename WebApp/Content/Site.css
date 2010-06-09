@@ -1,11 +1,11 @@
 ﻿/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
+The base color for this template is #D3DAED. If you'd like
 to use a different color start by replacing all instances of
-#5c87b2 with your new color.
+#D3DAED with your new color.
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
+    background-color: #D3DAED;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -15,26 +15,26 @@ body
 
 a:link
 {
-    color: #034af3;
+    color: #E88200;
     text-decoration: underline;
 }
 a:visited
 {
-    color: #505abc;
+    color: #E88200;
 }
 a:hover
 {
-    color: #1d60ff;
+    color: #1d60ff;  
     text-decoration: none;
 }
 a:active
 {
-    color: #12eb87;
+    color: #636361;
 }
 
 p, ul
 {
-    margin-bottom: 20px;
+    margin-bottom: 20px;  
     line-height: 1.6em;
 }
 
@@ -43,7 +43,7 @@ p, ul
 h1, h2, h3, h4, h5, h6
 {
     font-size: 1.5em;
-    color: #000;
+    color: #E88200;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -52,6 +52,7 @@ h1
     font-size: 2em;
     padding-bottom: 0;
     margin-bottom: 0;
+    
 }
 h2
 {
@@ -102,7 +103,7 @@ page width. Or, you can specify an exact pixel width. */
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    color: #fff;
+    color: #E88200;
     border: none;
     line-height: 2em;
     font-family: Arial, Helvetica, sans-serif;
@@ -131,7 +132,7 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    border-bottom: 1px #5C87B2 solid;
+    border-bottom: 1px #D3DAED solid;
     padding: 0 0 2px;
     position: relative;
     margin: 0;
@@ -160,7 +161,7 @@ ul#menu li a
     text-decoration: none;
     line-height: 2.8em;
     background-color: #e8eef4;
-    color: #034af3;
+    color: #E88200;
 }
 
 ul#menu li a:hover
@@ -171,13 +172,13 @@ ul#menu li a:hover
 
 ul#menu li a:active
 {
-    background-color: #a6e2a6;
+    background-color: #636361;
     text-decoration: none;
 }
 
 ul#menu li.selected a
 {
-    background-color: #fff;
+    background-color: #636361;
     color: #000;
 }
 
@@ -268,24 +269,24 @@ div#title
     display:block;
     text-align:right;
     margin:10px;
-    color:White;
+    color:black;
 }
 
 #logindisplay a:link
 {
-    color: white;
+    color: #E88200;
     text-decoration: underline;
 }
 
 #logindisplay a:visited
 {
-    color: white;
+    color: #E88200;
     text-decoration: underline;
 }
 
 #logindisplay a:hover
 {
-    color: white;
+    color: blue;
     text-decoration: none;
 }
 
