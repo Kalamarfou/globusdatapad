@@ -70,20 +70,20 @@ namespace WebApp.Content.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LogOut.
         /// </summary>
         public static string LogOn {
             get {
                 return ResourceManager.GetString("LogOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Home.
-        /// </summary>
-        public static string MainPage {
-            get {
-                return ResourceManager.GetString("MainPage", resourceCulture);
             }
         }
     }

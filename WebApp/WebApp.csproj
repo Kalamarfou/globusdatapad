@@ -220,6 +220,8 @@
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\WorldWideEvents\Index.aspx" />
     <Content Include="Areas\FrontOffice\Views\Calendar\Index.aspx" />
+    <Content Include="Areas\FrontOffice\Views\Calendar\Mobile\Index.aspx" />
+    <Content Include="Areas\FrontOffice\Views\Calendar\Mobile\WorldWideEvent.aspx" />
     <Content Include="Areas\FrontOffice\Views\Calendar\WorldWideEvent.aspx" />
     <Content Include="Areas\FrontOffice\Views\MyEvents\Create.aspx" />
     <Content Include="Areas\FrontOffice\Views\MyEvents\Delete.aspx" />
@@ -343,8 +345,6 @@
     <Content Include="Views\Account\AccountCreated.aspx" />
     <Content Include="Views\Account\Mobile\LogOn.aspx" />
     <Content Include="Views\Home\Mobile\Index.aspx" />
-    <Content Include="Views\Home\Mobile\MainPage.aspx" />
-    <Content Include="Views\Home\Mobile\WorldWideEvent.aspx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

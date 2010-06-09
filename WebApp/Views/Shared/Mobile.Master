@@ -13,7 +13,7 @@
 <!-- TODO !!!! -->
     <div class="header">
         <ul class="menu">
-            <li><%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Calendar, "Index")%></li>
+            <li><%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Calendar, "Index", "Calendar", new { Area = "FrontOffice" }, null)%></li>
         </ul>
     </div> 
 
@@ -22,7 +22,7 @@
     </div>
 
     <div id="footer" class="menu">
-        <%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.MainPage, "MainPage", "Home")%>
+        <%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Home, "Index", "Home", new { Area = "" }, null)%>
         <% Html.RenderPartial("LogOnUserControl"); %>
     </div>
     
