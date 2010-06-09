@@ -120,10 +120,10 @@
   <data name="Calendar" xml:space="preserve">
     <value>Calendar</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="LogOn" xml:space="preserve">
     <value>LogOut</value>
-  </data>
-  <data name="MainPage" xml:space="preserve">
-    <value>Home</value>
   </data>
 </root>
