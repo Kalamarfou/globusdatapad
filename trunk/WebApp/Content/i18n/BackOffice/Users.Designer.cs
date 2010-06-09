@@ -223,6 +223,33 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Administration.
+        /// </summary>
+        public static string RoleAdmin {
+            get {
+                return ResourceManager.GetString("RoleAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Campus manager.
+        /// </summary>
+        public static string RoleCampusManager {
+            get {
+                return ResourceManager.GetString("RoleCampusManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Stakeholder.
+        /// </summary>
+        public static string RoleStakeHolder {
+            get {
+                return ResourceManager.GetString("RoleStakeHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Roles.
         /// </summary>
         public static string RolesTitle {
