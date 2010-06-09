@@ -99,7 +99,17 @@ namespace WebApp.Areas.BackOffice.Controllers
             if (ModelState.IsValid)
             {
                 IEventService service = new EventService();
-                service.UpdateWorldWideEvent(wwe, User.Identity.Name);
+
+                DAL.WorldWideEvent dbWwe = service.GetWorldWideEventById(id);
+
+                dbWwe.StartDate = wwe.StartDate;
+                dbWwe.EndDate = wwe.EndDate;
+                dbWwe.Name = wwe.Name;
+                dbWwe.Description = wwe.Description;
+                dbWwe.IsMandatory = wwe.IsMandatory;
+                dbWwe.Common.ConcurrencyToken = wwe.Common.ConcurrencyToken;
+
+                service.UpdateWorldWideEvent(dbWwe, User.Identity.Name);
 
                 return RedirectToAction("Index");
             }

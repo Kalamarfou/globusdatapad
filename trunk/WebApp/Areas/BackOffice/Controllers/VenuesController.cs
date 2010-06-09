@@ -90,6 +90,7 @@ namespace WebApp.Areas.BackOffice.Controllers
                 DAL.Venue dbVenue = service.GetVenueById(id);
 
                 dbVenue.Name = venue.Name;
+                dbVenue.Common.ConcurrencyToken = venue.Common.ConcurrencyToken;
 
                 service.UpdateVenue(dbVenue, User.Identity.Name);
                 return RedirectToAction("Index", new { id = dbVenue.Campus.Id });

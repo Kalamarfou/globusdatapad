@@ -15,6 +15,7 @@
             <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
             
                 <%: Html.HiddenFor(model => model.Id) %>
+                <%: Html.HiddenFor(model => model.Common.ConcurrencyToken) %>
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.StartDate) %>
