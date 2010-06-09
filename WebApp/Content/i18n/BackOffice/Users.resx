@@ -171,6 +171,15 @@
   <data name="LastPasswordChangedDate" xml:space="preserve">
     <value>Last password change</value>
   </data>
+  <data name="RoleAdmin" xml:space="preserve">
+    <value>Role Administration</value>
+  </data>
+  <data name="RoleCampusManager" xml:space="preserve">
+    <value>Role Campus manager</value>
+  </data>
+  <data name="RoleStakeHolder" xml:space="preserve">
+    <value>Role Stakeholder</value>
+  </data>
   <data name="RolesTitle" xml:space="preserve">
     <value>Roles</value>
   </data>

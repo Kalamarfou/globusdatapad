@@ -20,7 +20,8 @@
        { %>
         <%= Html.CheckBox("Admin", false)%>
     <% } %>
-
+    <%:WebApp.Content.i18n.BackOffice.Users.RoleAdmin%>
+    <br />
     <% if ((bool)ViewData["isStudent"])
        { %>
         <%= Html.CheckBox("Student", true)%>
@@ -29,7 +30,8 @@
        { %>
         <%= Html.CheckBox("Student", false)%>
     <% } %>
-
+    <%:WebApp.Content.i18n.BackOffice.Users.RoleStudent%>
+    <br />
     <% if ((bool)ViewData["isStakeholder"])
        { %>
         <%= Html.CheckBox("Stakeholder", true)%>
@@ -38,7 +40,8 @@
        { %>
         <%= Html.CheckBox("Stakeholder", false)%>
     <% } %>
-
+    <%:WebApp.Content.i18n.BackOffice.Users.RoleStakeHolder%>
+    <br />
     <% if ((bool)ViewData["isCampusManager"])
        { %>
         <%= Html.CheckBox("CampusManager", true)%>
@@ -47,11 +50,15 @@
        { %>
         <%= Html.CheckBox("CampusManager", false)%>
     <% } %>
-
+    <%:WebApp.Content.i18n.BackOffice.Users.RoleCampusManager%>
+    <br />
             <p>
                 <input type="submit" value="<%:WebApp.Content.i18n.Common.Save %>" />
             </p>
         
+        <div>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index") %>
+        </div>
     <% } %>
 
 
