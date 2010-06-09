@@ -223,6 +223,24 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No users available..
+        /// </summary>
+        public static string NoItems {
+            get {
+                return ResourceManager.GetString("NoItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No non approved users available..
+        /// </summary>
+        public static string NoItemsNonApproved {
+            get {
+                return ResourceManager.GetString("NoItemsNonApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role Administration.
         /// </summary>
         public static string RoleAdmin {

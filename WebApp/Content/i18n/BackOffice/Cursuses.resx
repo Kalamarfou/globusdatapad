@@ -135,4 +135,7 @@
   <data name="Index" xml:space="preserve">
     <value>Cursuses list</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>No cursuses available. You can create one below.</value>
+  </data>
 </root>

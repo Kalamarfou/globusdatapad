@@ -12,9 +12,6 @@
     <fieldset>
         <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
         
-        <div class="display-label"><%:WebApp.Content.i18n.BackOffice.WorldWideEvents.Id%></div>
-        <div class="display-field"><%: Model.Id %></div>
-        
         <div class="display-label"><%:DAL.Resources.Event.Name%></div>
         <div class="display-field"><%: Model.Name %></div>
         

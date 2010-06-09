@@ -198,4 +198,10 @@
   <data name="ViewNonApproved" xml:space="preserve">
     <value>Display only non approved users</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>No users available.</value>
+  </data>
+  <data name="NoItemsNonApproved" xml:space="preserve">
+    <value>No non approved users available.</value>
+  </data>
 </root>

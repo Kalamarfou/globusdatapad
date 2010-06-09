@@ -113,5 +113,14 @@ namespace WebApp.Content.i18n.BackOffice {
                 return ResourceManager.GetString("Index", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No cursuses available. You can create one below..
+        /// </summary>
+        public static string NoItems {
+            get {
+                return ResourceManager.GetString("NoItems", resourceCulture);
+            }
+        }
     }
 }
