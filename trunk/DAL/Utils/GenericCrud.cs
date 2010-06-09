@@ -17,15 +17,18 @@ namespace DAL.Utils
                 db.AddObject(GetEntitySetName(e), e);
                 db.SaveChanges();
             }
-        
-            return  e;
+
+            return e;
         }
 
         public static void Update<T>(T e) where T : EntityObject
         {
             using (GDPEntities db = new GDPEntities())
             {
-                db.AttachTo(GetEntitySetName(e), e);
+                //if (e.EntityKey == null)
+                //{
+                    db.AttachTo(GetEntitySetName(e), e);
+                //}
                 db.ObjectStateManager.ChangeObjectState(e, System.Data.EntityState.Modified);
                 try
                 {
@@ -96,7 +99,7 @@ namespace DAL.Utils
         public static void SetAudit(Audit audit, string authorId)
         {
             DateTime now = DateTime.Now;    // in order to have the exact same date for creation and modification, 
-                                            // allowing us to find entities that have never been modified etc
+            // allowing us to find entities that have never been modified etc
 
             if (string.IsNullOrEmpty(audit.CreatedBy) && audit.CreatedAt == new DateTime())
             {

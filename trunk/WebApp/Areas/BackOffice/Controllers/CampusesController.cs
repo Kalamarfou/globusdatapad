@@ -9,6 +9,7 @@ namespace WebApp.Areas.BackOffice.Controllers
     public class CampusesController : Controller
     {
         private Services.Campus.ICampusService service;
+        private const int pageSize = 20;
 
         public CampusesController()
         {
@@ -18,11 +19,27 @@ namespace WebApp.Areas.BackOffice.Controllers
 
         //
         // GET: /BackOffice/Campuses/
-
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            int i;
-            ViewData.Model = service.GetAll(0, 100, out i);
+
+            int totalRecords;       // total records
+            int pageCount;
+
+            if (!page.HasValue)
+            {
+                pageCount = 1;
+            }
+            else
+            {
+                pageCount = page.Value;
+            }
+
+            ViewData.Model = service.GetAll(pageCount - 1, pageSize, out totalRecords);
+
+            ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
+
+            ViewData["curpage"] = pageCount;
+
             return View();
         }
 
@@ -76,16 +93,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Edit(int id, DAL.Campus campus)
         {
-            /*
-            campus.CreatedAt = DateTime.Now;
-            campus.CreatedBy = "wam";
-            campus.ModifiedAt = DateTime.Now;
-            campus.ModifiedBy = "wam";
-            campus.Address.CreatedAt = DateTime.Now;
-            campus.Address.CreatedBy = "wam";
-            campus.Address.ModifiedAt = DateTime.Now;
-            campus.Address.ModifiedBy = "wam";
-            */
+
             service.Update(campus, User.Identity.Name);
             return RedirectToAction("Index");
         }
@@ -105,7 +113,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Delete(int id, DAL.Campus c)
         {
-            service.Delete(c, User.Identity.Name);
+            service.Delete(id, User.Identity.Name);
             return RedirectToAction("Index");
         }
     }

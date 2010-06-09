@@ -17,7 +17,7 @@ namespace Services.Campus
 
         void Update(DAL.Campus c, string authorId);
 
-        void Delete(DAL.Campus c, string authorId);
+        void Delete(int id, string authorId);
 
         #endregion
 

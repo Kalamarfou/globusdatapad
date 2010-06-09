@@ -9,12 +9,6 @@ namespace Services.Campus
 {
     public class CampusService : ICampusService
     {
-        private DAL.GDPEntities db;
-        
-        public CampusService()
-        {
-            db = new DAL.GDPEntities();
-        }
 
         #region ICampusService Members
 
@@ -37,30 +31,42 @@ namespace Services.Campus
         /// <returns>DAL.Campus</returns>
         public DAL.Campus GetById(int id)
         {
-            return db.Campuses.First(c => c.Id == id && c.Common.IsDeleted == false);
+            using (GDPEntities db = new GDPEntities())
+            {
+                DAL.Campus campus = db.Campuses.Include("Address").First(c => c.Id == id && c.Common.IsDeleted == false);
+                return campus;
+            }
         }
 
         public List<DAL.Campus> GetAll(int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from c in db.Campuses
-                          where c.Common.IsDeleted == false
-                          orderby c.Name
-                          select c);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Campus>();
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from c in db.Campuses.Include("Address")
+                              where c.Common.IsDeleted == false
+                              orderby c.Name
+                              select c);
+                totalRecords = result.Count();
+
+                List<DAL.Campus> campuses = result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Campus>();
+
+                return campuses;
+            }
         }
 
         public void Update(DAL.Campus c, string authorId)
         {
             DAL.Utils.GenericCrud.SetAudit(c.Address.Common.Audit, authorId);
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
-           
+
             DAL.Utils.GenericCrud.Update(c.Address);
             DAL.Utils.GenericCrud.Update(c);
         }
 
-        public void Delete(DAL.Campus c, string authorId)
+        public void Delete(int id, string authorId)
         {
+            DAL.Campus c = GetById(id);
+            
             c.Common.IsDeleted = true;
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update(c);
@@ -74,23 +80,29 @@ namespace Services.Campus
 
         public Venue GetVenueById(int id)
         {
-            return db.Venues.First(v => v.Id == id && v.Common.IsDeleted == false);
+            using (GDPEntities db = new GDPEntities())
+            {
+                return db.Venues.First(v => v.Id == id && v.Common.IsDeleted == false);
+            }
         }
 
         public List<Venue> GetAllVenues(int pageNum, int pageSize, out int totalRecords)
         {
-            var result = (from v in db.Venues
-                          where v.Common.IsDeleted == false
-                          orderby v.Name
-                          select v);
-            totalRecords = result.Count();
-            return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from v in db.Venues
+                              where v.Common.IsDeleted == false
+                              orderby v.Name
+                              select v);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
+            }
         }
 
         public void UpdateVenue(Venue v, string authorId)
         {
             DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.Update(v.Address);
+            //DAL.Utils.GenericCrud.Update(v.Address);
             DAL.Utils.GenericCrud.Update(v);
         }
 
