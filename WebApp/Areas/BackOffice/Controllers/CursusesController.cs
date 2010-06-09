@@ -108,7 +108,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            // TODO
+            service.DeleteCursus(id, User.Identity.Name);
             return RedirectToAction("Index");
         }
     }
