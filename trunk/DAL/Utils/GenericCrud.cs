@@ -30,11 +30,11 @@ namespace DAL.Utils
                 try
                 {
                     db.SaveChanges();
-                }
-                catch (OptimisticConcurrencyException oce)
-                {
-                    db.Refresh(System.Data.Objects.RefreshMode.ClientWins, e);
-                    db.SaveChanges();
+                }                                                   // TODO : remove this catch and let throws
+                catch (OptimisticConcurrencyException oce)          // exception if WebApp is ready to support that
+                {                                                   // NOTE : anyway, this is NOT a bug
+                    db.Refresh(System.Data.Objects.RefreshMode.ClientWins, e);      // we decide that new version will replace
+                    db.SaveChanges();                                               // the old one
                 }
             }
         }

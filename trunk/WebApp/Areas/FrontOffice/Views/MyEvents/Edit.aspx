@@ -14,6 +14,7 @@
         <fieldset>
             <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
             
+            <%= Html.HiddenFor(model => model.Common.ConcurrencyToken) %>
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>
