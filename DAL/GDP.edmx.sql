@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/09/2010 10:25:07
+-- Date Created: 06/09/2010 19:48:21
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -277,8 +277,7 @@ CREATE TABLE [dbo].[Venues] (
     [Common_Audit_CreatedBy] nvarchar(max)  NOT NULL,
     [Common_Audit_LastModifiedBy] nvarchar(max)  NOT NULL,
     [Common_ConcurrencyToken] timestamp  NOT NULL,
-    [CampusId] int  NOT NULL,
-    [EventVenue_Venue_Id] int  NOT NULL,
+    [EventVenue_Venue_Id] int  NULL,
     [Campus_Id] int  NULL
 );
 GO

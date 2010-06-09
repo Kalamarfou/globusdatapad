@@ -10,8 +10,6 @@ namespace Services.Campus
     public class CampusService : ICampusService
     {
 
-        #region ICampusService Members
-
         /// <summary>
         /// Persist a campus
         /// </summary>
@@ -82,7 +80,7 @@ namespace Services.Campus
         {
             using (GDPEntities db = new GDPEntities())
             {
-                return db.Venues.First(v => v.Id == id && v.Common.IsDeleted == false);
+                return db.Venues.Include("Campus").First(v => v.Id == id && v.Common.IsDeleted == false);
             }
         }
 
@@ -112,11 +110,6 @@ namespace Services.Campus
             DAL.Utils.GenericCrud.SetAudit(v.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update(v);
         }
-
-        #endregion
-
-        #region ICampusService Members
-
 
         public void CreateVenueForCampus(int campusId, Venue v, string authorId)
         {
@@ -161,6 +154,5 @@ namespace Services.Campus
             }
         }
 
-        #endregion
     }
 }

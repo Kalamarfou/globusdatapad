@@ -13,28 +13,22 @@
        
     <table>
         <tr>
-            <th></th>
-            <th>
-                <%:WebApp.Content.i18n.BackOffice.Cursuses.CursusId %>
-            </th>
             <th>
                 <%:DAL.Resources.Cursus.Name %>
             </th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
+                <%: item.Name %>
+            </td>
+            <td>
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id = item.Id })%> |
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDetails, "Details", new { id = item.Id })%> |
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDelete, "Delete", new { id = item.Id })%>
-            </td>
-            <td>
-                <%: item.Id %>
-            </td>
-            <td>
-                <%: item.Name %>
             </td>
         </tr>
     
@@ -59,7 +53,6 @@
           <%:  WebApp.Content.i18n.BackOffice.Cursuses.NoItems%>
 	    <%}        
          %>
-
 
     <p>
         <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonCreate, "Create")%>

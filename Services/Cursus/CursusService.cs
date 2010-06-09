@@ -21,7 +21,6 @@ namespace Services.Cursus
         {
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(c);
-
         }
         
         public DAL.Cursus GetCursusById(int id)
