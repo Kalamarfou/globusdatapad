@@ -20,8 +20,8 @@ namespace WebApp.Extensions
 
             if (browser.IsMobileDevice)
             {
-                if (browser.MobileDeviceModel.Contains("iPhone"))
-                    result = base.FindView(controllerContext, "iPhone/" + viewName, masterName, useCache);
+                // if (browser.MobileDeviceModel.Contains("iPhone"))
+                //     result = base.FindView(controllerContext, "iPhone/" + viewName, masterName, useCache);
 
                 // Add any other specific devices you'd like to support here...
 
