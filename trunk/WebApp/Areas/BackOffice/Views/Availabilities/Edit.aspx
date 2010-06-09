@@ -15,8 +15,6 @@
             <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
             
                 <%: Html.HiddenFor(model => model.Id) %>
-                <%: Html.HiddenFor(model => model.PersonId)%>
-                <%: Html.HiddenFor(model => model.UserId)%>
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.StartDate) %>
