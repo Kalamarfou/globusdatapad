@@ -142,6 +142,6 @@
     <value>Is mandatory</value>
   </data>
   <data name="NoItems" xml:space="preserve">
-    <value>No availabilities available. You can create one below.</value>
+    <value>No worldwide events available. You can create one below.</value>
   </data>
 </root>

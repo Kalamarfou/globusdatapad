@@ -10,16 +10,32 @@ namespace WebApp.Areas.BackOffice.Controllers
     [Authorize(Roles = "Admin")]
     public class WorldWideEventsController : Controller
     {
+
+        private const int pageSize = 20;
+
         //
         // GET: /BackOffice/WorldWideEvents/
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             IEventService service = new EventService();
+            int totalRecords;       // total records
+            int pageCount;
 
-            int i;
+            if (!page.HasValue)
+            {
+                pageCount = 1;
+            }
+            else
+            {
+                pageCount = page.Value;
+            }
 
-            ViewData.Model = service.GetWorldWideEvents(DateTime.Today, DateTime.Today.AddYears(1), 0, 100, out i);
+            ViewData.Model = service.GetWorldWideEvents(DateTime.Today, DateTime.Today.AddYears(1), pageCount - 1, pageSize, out totalRecords);
+
+            ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
+
+            ViewData["curpage"] = pageCount;
 
             return View();
         }
@@ -109,19 +125,13 @@ namespace WebApp.Areas.BackOffice.Controllers
         // POST: /BackOffice/WorldWideEvents/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, DAL.WorldWideEvent wwe)
         {
-            try
-            {
-                IEventService service = new EventService();
-                service.Delete(id, User.Identity.Name);
-                
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            IEventService service = new EventService();
+            service.Delete(id, User.Identity.Name);
+
+            return RedirectToAction("Index");
+
         }
     }
 }

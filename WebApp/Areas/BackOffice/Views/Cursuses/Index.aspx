@@ -7,7 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2><%:WebApp.Content.i18n.BackOffice.Cursuses.Index %></h2>
-
+    
+    <% if (Convert.ToInt32(ViewData["numpages"]) != 0)
+       {%>
+       
     <table>
         <tr>
             <th></th>
@@ -39,17 +42,23 @@
 
     </table>
 
-    Page <%=Convert.ToInt32(ViewData["curpage"])%> of <%=ViewData["numpages"] %><br />
-<%
-   for (int i = 1; i <= Convert.ToInt32(ViewData["numpages"]); i++)
-   {
-      %> 
+        Page <%=Convert.ToInt32(ViewData["curpage"])%> of <%=ViewData["numpages"] %><br />
+    <%
+       for (int i = 1; i <= Convert.ToInt32(ViewData["numpages"]); i++)
+       {
+          %> 
 
-      <span><b><%= Html.ActionLink(i.ToString(),"Index","Cursuses",new{page=i},null) %></b></span>
+          <span><b><%= Html.ActionLink(i.ToString(),"Index","Cursuses",new{page=i},null) %></b></span>
 
-      <% 
-   }
-%>
+          <% 
+       }
+    %>
+    <%}
+    else
+	    {%>
+          <%:  WebApp.Content.i18n.BackOffice.Cursuses.NoItems%>
+	    <%}        
+         %>
 
 
     <p>

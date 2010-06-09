@@ -133,7 +133,7 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No availabilities available. You can create one below..
+        ///   Looks up a localized string similar to No worldwide events available. You can create one below..
         /// </summary>
         public static string NoItems {
             get {
