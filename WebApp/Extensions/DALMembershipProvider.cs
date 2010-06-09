@@ -493,7 +493,7 @@ namespace WebApp.Extensions
 
             if (CheckPassword(password, user.Password))
             {
-                if (user.IsApproved)
+                if (user.IsApproved && !user.Common.IsDeleted)
                 {
                     isValid = true;
 

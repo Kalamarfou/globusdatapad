@@ -36,12 +36,51 @@ li {
 }
 
 a {
-	color: #FF6533;
+	color: #E88200;
 }
 a:hover, a:focus {
 	color: #FF4C00;
 	background:#a6a29a;
 }
+
+fieldset {
+ padding:10px;
+ }
+legend {
+ color:#E88200;
+ font-weight:bold
+ }
+
+textarea {
+ border:1px solid black;
+ background-color:#FDE0AA;
+ width: 200px;
+ height:100px;
+ margin-bottom: 7px;
+ }
+ input {
+ border:1px solid black;
+ background-color:#FDE0AA;
+ width: 200px;
+ margin-bottom: 7px;
+ }
+ 
+ input[type=checkbox]
+ {
+     width: auto;
+ }
+ 
+ input[type=submit]
+ {
+    background-color:#E88200;
+    width: auto;
+ }
+ 
+form {
+ padding:10px;
+ width:350px;
+ }
+
 
 #global {
 min-width:640px;
@@ -139,7 +178,7 @@ min-width:640px;
 }
 
 #menu a:hover, #menu a:focus {
-	background:#636361;
+	background:#D3DAED;
 	-webkit-border-radius: 13px;
 	-moz-border-radius: 13px;
 	border-radius: 13px;
