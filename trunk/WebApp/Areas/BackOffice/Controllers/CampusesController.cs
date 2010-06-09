@@ -93,9 +93,28 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Edit(int id, DAL.Campus campus)
         {
+            if (ModelState.IsValid)
+            {
+                service.Update(campus, User.Identity.Name);
 
-            service.Update(campus, User.Identity.Name);
-            return RedirectToAction("Index");
+                DAL.Campus dbCampus = service.GetById(id);
+
+                dbCampus.Name = campus.Name;
+                dbCampus.Address.City = campus.Address.City;
+                dbCampus.Address.Country = campus.Address.Country;
+                dbCampus.Address.PostalCode = campus.Address.PostalCode;
+                dbCampus.Address.Street = campus.Address.Street;
+                dbCampus.Address.Common.ConcurrencyToken = campus.Address.Common.ConcurrencyToken ;
+                dbCampus.Common.ConcurrencyToken = campus.Common.ConcurrencyToken;
+
+                service.Update(dbCampus, User.Identity.Name);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(campus);
+            }
         }
 
         //

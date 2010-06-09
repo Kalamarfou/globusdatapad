@@ -39,7 +39,7 @@
                 <% } else if (Roles.IsUserInRole("Student")) { %>
                 <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Calendar, "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
                 <% } %>
-                <% if (Page.User.Identity.IsAuthenticated)
+                <% if (Roles.IsUserInRole("Admin") | Roles.IsUserInRole("Stakeholder") | Roles.IsUserInRole("CampusManager") | Roles.IsUserInRole("Student"))
                    { %>
                 <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.CreateEvent, "Create", "MyEvents", new { Area = "FrontOffice" }, null)%></p>
                 <% } %>

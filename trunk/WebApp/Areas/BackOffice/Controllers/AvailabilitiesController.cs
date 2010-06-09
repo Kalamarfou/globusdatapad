@@ -81,8 +81,14 @@ namespace WebApp.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult Edit(int id, DAL.Availability a)
         {
-            service.updateAvailability(a, User.Identity.Name);
 
+            DAL.Availability dbAvailability = service.getAvailabilityById(id);
+
+            dbAvailability.EndDate = a.EndDate;
+            dbAvailability.StartDate = a.StartDate;
+            dbAvailability.Common.ConcurrencyToken = a.Common.ConcurrencyToken;
+
+            service.updateAvailability(dbAvailability, User.Identity.Name);
             return RedirectToAction("Index");
         }
 
