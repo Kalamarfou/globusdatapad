@@ -36,11 +36,11 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "ClassCampus", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Class), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus))]
 [assembly: EdmRelationshipAttribute("GDP", "UserClass", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Class))]
 [assembly: EdmRelationshipAttribute("GDP", "UserClassPast", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Class))]
-[assembly: EdmRelationshipAttribute("GDP", "UserAvailability", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "Availability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Availability), true)]
 [assembly: EdmRelationshipAttribute("GDP", "UserCampus", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Campus))]
 [assembly: EdmRelationshipAttribute("GDP", "UserEvent", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.User), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Event))]
 [assembly: EdmRelationshipAttribute("GDP", "UserBaseCourse", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.BaseCourse), true)]
 [assembly: EdmRelationshipAttribute("GDP", "UserCampus1", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Campus))]
+[assembly: EdmRelationshipAttribute("GDP", "UserAvailability", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "Availability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Availability))]
 
 #endregion
 
@@ -602,17 +602,13 @@ namespace DAL
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="startDate">Initial value of the StartDate property.</param>
         /// <param name="endDate">Initial value of the EndDate property.</param>
-        /// <param name="personId">Initial value of the PersonId property.</param>
-        /// <param name="userId">Initial value of the UserId property.</param>
         /// <param name="common">Initial value of the Common property.</param>
-        public static Availability CreateAvailability(global::System.Int32 id, global::System.DateTime startDate, global::System.DateTime endDate, global::System.Int32 personId, global::System.Int32 userId, Common common)
+        public static Availability CreateAvailability(global::System.Int32 id, global::System.DateTime startDate, global::System.DateTime endDate, Common common)
         {
             Availability availability = new Availability();
             availability.Id = id;
             availability.StartDate = startDate;
             availability.EndDate = endDate;
-            availability.PersonId = personId;
-            availability.UserId = userId;
             availability.Common = StructuralObject.VerifyComplexObjectIsNotNull(common, "Common");
             return availability;
         }
@@ -694,54 +690,6 @@ namespace DAL
         private global::System.DateTime _EndDate;
         partial void OnEndDateChanging(global::System.DateTime value);
         partial void OnEndDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 PersonId
-        {
-            get
-            {
-                return _PersonId;
-            }
-            set
-            {
-                OnPersonIdChanging(value);
-                ReportPropertyChanging("PersonId");
-                _PersonId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PersonId");
-                OnPersonIdChanged();
-            }
-        }
-        private global::System.Int32 _PersonId;
-        partial void OnPersonIdChanging(global::System.Int32 value);
-        partial void OnPersonIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 UserId
-        {
-            get
-            {
-                return _UserId;
-            }
-            set
-            {
-                OnUserIdChanging(value);
-                ReportPropertyChanging("UserId");
-                _UserId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UserId");
-                OnUserIdChanged();
-            }
-        }
-        private global::System.Int32 _UserId;
-        partial void OnUserIdChanging(global::System.Int32 value);
-        partial void OnUserIdChanged();
 
         #endregion
         #region Complex Properties
@@ -3957,28 +3905,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserAvailability", "Availability")]
-        public EntityCollection<Availability> Availabilities
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Availability>("GDP.UserAvailability", "Availability");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Availability>("GDP.UserAvailability", "Availability", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "UserCampus", "Campus")]
         public EntityCollection<Campus> ManagedCampuses
         {
@@ -4057,6 +3983,28 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Campus>("GDP.UserCampus1", "Campus", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "UserAvailability", "Availability")]
+        public EntityCollection<Availability> Availabilities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Availability>("GDP.UserAvailability", "Availability");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Availability>("GDP.UserAvailability", "Availability", value);
                 }
             }
         }
@@ -4469,39 +4417,17 @@ namespace DAL
         /// Create a new Common object.
         /// </summary>
         /// <param name="audit">Initial value of the Audit property.</param>
-        public static Common CreateCommon(Audit audit)
+        /// <param name="concurrencyToken">Initial value of the ConcurrencyToken property.</param>
+        public static Common CreateCommon(Audit audit, global::System.Byte[] concurrencyToken)
         {
             Common common = new Common();
             common.Audit = StructuralObject.VerifyComplexObjectIsNotNull(audit, "Audit");
+            common.ConcurrencyToken = concurrencyToken;
             return common;
         }
 
         #endregion
         #region Primitive Properties
-    
-        /// <summary>
-        /// Timestamp in order to manage concurrency
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] ConcurrencyToken
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_ConcurrencyToken);
-            }
-            set
-            {
-                OnConcurrencyTokenChanging(value);
-                ReportPropertyChanging("ConcurrencyToken");
-                _ConcurrencyToken = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ConcurrencyToken");
-                OnConcurrencyTokenChanged();
-            }
-        }
-        private global::System.Byte[] _ConcurrencyToken;
-        partial void OnConcurrencyTokenChanging(global::System.Byte[] value);
-        partial void OnConcurrencyTokenChanged();
     
         /// <summary>
         /// Object has been deleted by user
@@ -4526,6 +4452,30 @@ namespace DAL
         private global::System.Boolean _IsDeleted = false;
         partial void OnIsDeletedChanging(global::System.Boolean value);
         partial void OnIsDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] ConcurrencyToken
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_ConcurrencyToken);
+            }
+            set
+            {
+                OnConcurrencyTokenChanging(value);
+                ReportPropertyChanging("ConcurrencyToken");
+                _ConcurrencyToken = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConcurrencyToken");
+                OnConcurrencyTokenChanged();
+            }
+        }
+        private global::System.Byte[] _ConcurrencyToken;
+        partial void OnConcurrencyTokenChanging(global::System.Byte[] value);
+        partial void OnConcurrencyTokenChanged();
 
         #endregion
         #region Complex Properties

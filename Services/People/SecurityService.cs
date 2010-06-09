@@ -64,9 +64,7 @@ namespace Services.People
 
         public void updateUser(DAL.User user, string authorId)
         {
-            user.Common.Audit.LastModifiedAt = DateTime.Now;
-            user.Common.Audit.LastModifiedBy = authorId;
-
+            DAL.Utils.GenericCrud.SetAudit(user.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update<DAL.User>(user);
         }
 

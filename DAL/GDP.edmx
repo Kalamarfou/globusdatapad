@@ -108,10 +108,6 @@
       <End Role="Class" EntitySet="Classes" />
       <End Role="UserClassPast" EntitySet="UserClassPast" />
     </AssociationSet>
-    <AssociationSet Name="UserAvailability" Association="GDP.Store.UserAvailability">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Availability" EntitySet="Availabilities" />
-    </AssociationSet>
     <AssociationSet Name="FK_UserCampus_User" Association="GDP.Store.FK_UserCampus_User">
       <End Role="User" EntitySet="Users" />
       <End Role="UserCampus" EntitySet="UserCampus" />
@@ -135,6 +131,10 @@
     <AssociationSet Name="FK_UserCampus1_Campus" Association="GDP.Store.FK_UserCampus1_Campus">
       <End Role="Campus" EntitySet="Campuses" />
       <End Role="UserCampus1" EntitySet="UserCampus1" />
+    </AssociationSet>
+    <AssociationSet Name="UserAvailability" Association="GDP.Store.UserAvailability">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Availability" EntitySet="Availabilities" />
     </AssociationSet>
     <AssociationSet Name="FK_BaseCourse_inherits_Event" Association="GDP.Store.FK_BaseCourse_inherits_Event">
       <End Role="Event" EntitySet="Events" />
@@ -167,12 +167,12 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
   </EntityType>
   <EntityType Name="StudyPeriods">
     <Key>
@@ -182,12 +182,12 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="CursusId" Type="int" Nullable="false" />
     <Property Name="ClassId" Type="int" Nullable="false" />
   </EntityType>
@@ -197,12 +197,12 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="Address_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Addresses">
@@ -214,12 +214,12 @@
     <Property Name="PostalCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="City" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="VenueAddress_Address_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Classes">
@@ -228,12 +228,12 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="Campus_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Venues">
@@ -242,12 +242,12 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="CampusId" Type="int" Nullable="false" />
     <Property Name="EventVenue_Venue_Id" Type="int" Nullable="false" />
     <Property Name="Campus_Id" Type="int" Nullable="true" />
@@ -261,12 +261,12 @@
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="IsMandatory" Type="bit" Nullable="false" />
     <Property Name="Campus_Id" Type="int" Nullable="true" />
     <Property Name="User_Id" Type="int" Nullable="true" />
@@ -278,12 +278,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsApproved" Type="bit" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PasswordQuestion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PasswordAnswer" Type="nvarchar(max)" Nullable="false" />
@@ -310,14 +310,13 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="PersonId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Disciplines">
     <Key>
@@ -325,12 +324,12 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
     <Property Name="StudyPeriod_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Roles">
@@ -340,12 +339,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ShortName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
   </EntityType>
   <EntityType Name="BaseTypes">
     <Key>
@@ -354,12 +353,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Volume" Type="int" Nullable="false" />
-    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="true" MaxLength="8" />
     <Property Name="Common_IsDeleted" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="Common_Audit_CreatedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedAt" Type="datetime" Nullable="false" />
     <Property Name="Common_Audit_CreatedBy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Common_Audit_LastModifiedBy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Common_ConcurrencyToken" Type="binary" StoreGeneratedPattern="Computed" Nullable="false" MaxLength="8" />
   </EntityType>
   <EntityType Name="Events_BaseCourse">
     <Key>
@@ -630,18 +629,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UserAvailability">
-    <End Role="User" Type="GDP.Store.Users" Multiplicity="1" />
-    <End Role="Availability" Type="GDP.Store.Availabilities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Availability">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="UserEvent">
     <End Role="User" Type="GDP.Store.Users" Multiplicity="0..1" />
     <End Role="Event" Type="GDP.Store.Events" Multiplicity="*" />
@@ -663,6 +650,18 @@
       </Principal>
       <Dependent Role="BaseCourse">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserAvailability">
+    <End Role="User" Type="GDP.Store.Users" Multiplicity="1" />
+    <End Role="Availability" Type="GDP.Store.Availabilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Availability">
+        <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -923,10 +922,6 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Class" EntitySet="Classes" />
           </AssociationSet>
-          <AssociationSet Name="UserAvailability" Association="GDP.UserAvailability">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Availability" EntitySet="Availabilities" />
-          </AssociationSet>
           <AssociationSet Name="UserCampus" Association="GDP.UserCampus">
             <End Role="User" EntitySet="Users" />
             <End Role="Campus" EntitySet="Campuses" />
@@ -942,6 +937,10 @@
           <AssociationSet Name="UserCampus1" Association="GDP.UserCampus1">
             <End Role="User" EntitySet="Users" />
             <End Role="Campus" EntitySet="Campuses" />
+          </AssociationSet>
+          <AssociationSet Name="UserAvailability" Association="GDP.UserAvailability">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Availability" EntitySet="Availabilities" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="Audit" >
@@ -960,17 +959,13 @@
           <NavigationProperty Name="StudyPeriods" Relationship="GDP.CursusStudyPeriod" FromRole="Cursus" ToRole="StudyPeriod" />
         </EntityType>
         <ComplexType Name="Common" >
-          <Property Type="Binary" Name="ConcurrencyToken" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" FixedLength="true" MaxLength="8" Nullable="true" >
-            <Documentation>
-              <Summary>Timestamp in order to manage concurrency</Summary>
-            </Documentation>
-          </Property>
           <Property Type="Boolean" Name="IsDeleted" Nullable="false" DefaultValue="false" >
             <Documentation>
               <Summary>Object has been deleted by user</Summary>
             </Documentation>
           </Property>
           <Property Type="GDP.Audit" Name="Audit" Nullable="false" />
+          <Property Type="Binary" Name="ConcurrencyToken" Nullable="false" annotation:StoreGeneratedPattern="Computed" FixedLength="true" MaxLength="8" ConcurrencyMode="Fixed" />
         </ComplexType>
         <EntityType Name="StudyPeriod">
           <Key>
@@ -1107,11 +1102,11 @@
           <Property Type="String" Name="Title" Nullable="false" />
           <NavigationProperty Name="CurrentClass" Relationship="GDP.UserClass" FromRole="User" ToRole="Class" />
           <NavigationProperty Name="PreviousClasses" Relationship="GDP.UserClassPast" FromRole="User" ToRole="Class" />
-          <NavigationProperty Name="Availabilities" Relationship="GDP.UserAvailability" FromRole="User" ToRole="Availability" />
           <NavigationProperty Name="ManagedCampuses" Relationship="GDP.UserCampus" FromRole="User" ToRole="Campus" />
           <NavigationProperty Name="Events" Relationship="GDP.UserEvent" FromRole="User" ToRole="Event" />
           <NavigationProperty Name="BaseCourses" Relationship="GDP.UserBaseCourse" FromRole="User" ToRole="BaseCourse" />
           <NavigationProperty Name="StakeholderCampuses" Relationship="GDP.UserCampus1" FromRole="User" ToRole="Campus" />
+          <NavigationProperty Name="Availabilities" Relationship="GDP.UserAvailability" FromRole="User" ToRole="Availability" />
         </EntityType>
         <Association Name="EventVenue">
           <End Type="GDP.Event" Role="Event" Multiplicity="1" />
@@ -1137,10 +1132,8 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="StartDate" Nullable="false" />
           <Property Type="DateTime" Name="EndDate" Nullable="false" />
-          <Property Type="Int32" Name="PersonId" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="GDP.UserAvailability" FromRole="Availability" ToRole="User" />
-          <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="GDP.UserAvailability" FromRole="Availability" ToRole="User" />
         </EntityType>
         <EntityType Name="Discipline">
           <Key>
@@ -1265,18 +1258,6 @@
           <End Type="GDP.User" Role="User" Multiplicity="*" />
           <End Type="GDP.Class" Role="Class" Multiplicity="*" />
         </Association>
-        <Association Name="UserAvailability">
-          <End Type="GDP.User" Role="User" Multiplicity="1" />
-          <End Type="GDP.Availability" Role="Availability" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Availability">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="UserCampus">
           <End Type="GDP.User" Role="User" Multiplicity="*" />
           <End Type="GDP.Campus" Role="Campus" Multiplicity="*" />
@@ -1301,6 +1282,10 @@
           <End Type="GDP.User" Role="User" Multiplicity="*" />
           <End Type="GDP.Campus" Role="Campus" Multiplicity="*" />
         </Association>
+        <Association Name="UserAvailability">
+          <End Type="GDP.User" Role="User" Multiplicity="1" />
+          <End Type="GDP.Availability" Role="Availability" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1313,7 +1298,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1321,6 +1305,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1333,7 +1318,6 @@
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1341,6 +1325,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
           <ScalarProperty Name="CursusId" ColumnName="CursusId" />
           <ScalarProperty Name="ClassId" ColumnName="ClassId" />
@@ -1353,7 +1338,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1361,6 +1345,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1374,7 +1359,6 @@
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="Country" ColumnName="Country" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1382,6 +1366,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1392,7 +1377,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1400,6 +1384,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1410,7 +1395,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1418,6 +1402,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
           <ScalarProperty Name="CampusId" ColumnName="CampusId" />
         </MappingFragment>
@@ -1432,7 +1417,6 @@
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1440,6 +1424,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
           <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
         </MappingFragment>
@@ -1476,7 +1461,6 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1484,6 +1468,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
@@ -1511,10 +1496,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1522,6 +1504,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1532,7 +1515,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1540,6 +1522,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1551,7 +1534,6 @@
           <ScalarProperty Name="ShortName" ColumnName="ShortName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1559,6 +1541,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1570,7 +1553,6 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Volume" ColumnName="Volume" />
           <ComplexProperty Name="Common" TypeName="GDP.Common">
-            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
             <ScalarProperty Name="IsDeleted" ColumnName="Common_IsDeleted" />
             <ComplexProperty Name="Audit" TypeName="GDP.Audit">
               <ScalarProperty Name="CreatedAt" ColumnName="Common_Audit_CreatedAt" />
@@ -1578,6 +1560,7 @@
               <ScalarProperty Name="CreatedBy" ColumnName="Common_Audit_CreatedBy" />
               <ScalarProperty Name="LastModifiedBy" ColumnName="Common_Audit_LastModifiedBy" />
             </ComplexProperty>
+            <ScalarProperty Name="ConcurrencyToken" ColumnName="Common_ConcurrencyToken" />
           </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
@@ -1727,6 +1710,14 @@
         <ScalarProperty Name="Id" ColumnName="StakeholderCampuses_Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="UserAvailability" TypeName="GDP.UserAvailability" StoreEntitySet="Availabilities">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Availability">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1770,7 +1761,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="GDP.Course" Width="1.5" PointX="4.25" PointY="27.375" Height="1.4033821614583388" />
         <EntityTypeShape EntityType="GDP.Evaluation" Width="1.5" PointX="7.625" PointY="27.5" Height="1.4033821614583388" />
-        <EntityTypeShape EntityType="GDP.User" Width="2.25" PointX="0.75" PointY="18.375" Height="6.4032194010416674" />
+        <EntityTypeShape EntityType="GDP.User" Width="2.25" PointX="0.75" PointY="18.375" Height="6.5955208333333353" />
         <AssociationConnector Association="GDP.EventVenue">
           <ConnectorPoint PointX="8.5625" PointY="20.875" />
           <ConnectorPoint PointX="8.5625" PointY="18.172587890625003" />
@@ -1788,7 +1779,7 @@
           <ConnectorPoint PointX="9.25" PointY="22.1343896484375" />
           <ConnectorPoint PointX="10.5" PointY="22.1343896484375" />
         </InheritanceConnector>
-        <EntityTypeShape EntityType="GDP.Availability" Width="1.5" PointX="2.75" PointY="15.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="GDP.Availability" Width="1.5" PointX="2.75" PointY="15.75" Height="1.9802864583333353" />
         <EntityTypeShape EntityType="GDP.Discipline" Width="1.5" PointX="12.625" PointY="26.875" Height="1.9802864583333353" />
         <EntityTypeShape EntityType="GDP.BaseCourse" Width="1.5" PointX="7.375" PointY="24.875" Height="1.9802864583333353" />
         <InheritanceConnector EntityType="GDP.BaseCourse" ManuallyRouted="false" >
@@ -1818,7 +1809,7 @@
           <ConnectorPoint PointX="8.375" PointY="27.125" />
           <ConnectorPoint PointX="8.375" PointY="27.5" />
         </InheritanceConnector>
-        <EntityTypeShape EntityType="GDP.Role" Width="1.5" PointX="2" PointY="25.375" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="GDP.Role" Width="1.5" PointX="2" PointY="25.375" Height="1.9802864583333353" />
         <EntityTypeShape EntityType="GDP.BaseType" Width="1.5" PointX="5.875" PointY="29.125" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="GDP.CourseType" Width="1.5" PointX="3.75" PointY="30" Height="1.595683593749996" />
         <InheritanceConnector EntityType="GDP.CourseType" ManuallyRouted="false" >
@@ -1857,7 +1848,7 @@
           <ConnectorPoint PointX="9.75" PointY="30.672841796874998" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserRole">
-          <ConnectorPoint PointX="2.5" PointY="24.778219401041667" />
+          <ConnectorPoint PointX="2.5" PointY="24.970520833333335" />
           <ConnectorPoint PointX="2.5" PointY="25.375" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.VenueCampus">
@@ -1871,45 +1862,45 @@
           <ConnectorPoint PointX="7.78125" PointY="20.875" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.ClassCampus">
-          <ConnectorPoint PointX="4.625" PointY="24.125" />
-          <ConnectorPoint PointX="4.625" PointY="19.115196533203125" />
-          <ConnectorPoint PointX="5.25" PointY="19.115196533203125" />
+          <ConnectorPoint PointX="4.5937475" PointY="24.125" />
+          <ConnectorPoint PointX="4.5937475" PointY="19.499158452351892" />
+          <ConnectorPoint PointX="5.25" PointY="19.499158452351892" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserClass">
-          <ConnectorPoint PointX="3" PointY="24.623831812540693" />
-          <ConnectorPoint PointX="4" PointY="24.623831812540693" />
+          <ConnectorPoint PointX="3" PointY="24.735955953654294" />
+          <ConnectorPoint PointX="4" PointY="24.735955953654294" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserClassPast">
-          <ConnectorPoint PointX="3" PointY="24.311915906270347" />
-          <ConnectorPoint PointX="4" PointY="24.311915906270347" />
-        </AssociationConnector>
-        <AssociationConnector Association="GDP.UserAvailability">
-          <ConnectorPoint PointX="1.7499995" PointY="18.375" />
-          <ConnectorPoint PointX="1.7499995" PointY="16.8362939453125" />
-          <ConnectorPoint PointX="2.75" PointY="16.8362939453125" />
+          <ConnectorPoint PointX="3" PointY="24.376391073975249" />
+          <ConnectorPoint PointX="4" PointY="24.376391073975249" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserCampus">
-          <ConnectorPoint PointX="3" PointY="19.961193644205732" />
-          <ConnectorPoint PointX="4.541666666666667" PointY="19.961193644205732" />
-          <ConnectorPoint PointX="4.708333333333333" PointY="19.961193644205732" />
-          <ConnectorPoint PointX="5.25" PointY="19.961193644205732" />
+          <ConnectorPoint PointX="3" PointY="20.249325319925948" />
+          <ConnectorPoint PointX="4.5104141666666671" PointY="20.249325319925948" />
+          <ConnectorPoint PointX="4.6770808333333331" PointY="20.249325319925948" />
+          <ConnectorPoint PointX="5.25" PointY="20.249325319925948" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserEvent">
           <ConnectorPoint PointX="3" PointY="22.345896809895834" />
-          <ConnectorPoint PointX="4.541666666666667" PointY="22.345896809895834" />
-          <ConnectorPoint PointX="4.708333333333333" PointY="22.345896809895834" />
+          <ConnectorPoint PointX="4.5104141666666671" PointY="22.345896809895834" />
+          <ConnectorPoint PointX="4.6770808333333331" PointY="22.345896809895834" />
           <ConnectorPoint PointX="7.75" PointY="22.345896809895834" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserBaseCourse">
           <ConnectorPoint PointX="3" PointY="23.970896809895834" />
-          <ConnectorPoint PointX="4.541666666666667" PointY="23.970896809895834" />
-          <ConnectorPoint PointX="4.708333333333333" PointY="23.970896809895834" />
+          <ConnectorPoint PointX="4.5104141666666671" PointY="23.970896809895834" />
+          <ConnectorPoint PointX="4.6770808333333331" PointY="23.970896809895834" />
           <ConnectorPoint PointX="7.53125" PointY="23.970896809895834" />
           <ConnectorPoint PointX="7.53125" PointY="24.875" />
         </AssociationConnector>
         <AssociationConnector Association="GDP.UserCampus1">
-          <ConnectorPoint PointX="3" PointY="18.785947977701824" />
-          <ConnectorPoint PointX="5.25" PointY="18.785947977701824" />
+          <ConnectorPoint PointX="3" PointY="18.874579226175946" />
+          <ConnectorPoint PointX="5.25" PointY="18.874579226175946" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.UserAvailability">
+          <ConnectorPoint PointX="1.7499995" PointY="18.375" />
+          <ConnectorPoint PointX="1.7499995" PointY="16.740143229166669" />
+          <ConnectorPoint PointX="2.75" PointY="16.740143229166669" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

@@ -22,6 +22,8 @@
                 <%: Html.ValidationMessageFor(model => model.FirstName) %>
             </div>
             
+            <%= Html.HiddenFor(model => model.Common.ConcurrencyToken) %>
+
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.LastName) %>
             </div>

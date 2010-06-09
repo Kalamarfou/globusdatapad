@@ -12,14 +12,18 @@ namespace Services.People
 
         public void createAvailability(DAL.Availability a, string authorId)
         {
-            ISecurityService service = new SecurityService();
-            DAL.User user = service.getUserByUsername(authorId);
-            a.UserId = user.Id;
-            a.PersonId = a.UserId;
-            //TODO
-            //a.User = user;
-            DAL.Utils.GenericCrud.SetAudit(a.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.Create(a);
+            using (GDPEntities db = new GDPEntities())
+            {
+                DAL.User user = (from u in db.Users
+                                 where u.Username == authorId && u.Common.IsDeleted == false
+                                 select u).FirstOrDefault<DAL.User>();
+
+                DAL.Utils.GenericCrud.SetAudit(a.Common.Audit, authorId);
+
+                user.Availabilities.Add(a);
+
+                db.SaveChanges();
+            }
         }
 
         public void updateAvailability(DAL.Availability a, string authorId)
