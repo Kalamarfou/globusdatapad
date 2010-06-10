@@ -228,5 +228,53 @@ namespace Services.Cursus
             }
         }
 
+        public List<DAL.StudyPeriod> getAllStudyPeriods(int pageNum, int pageSize, out int totalRecords)
+        {
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                totalRecords = 0;
+
+                List<DAL.StudyPeriod> studyPeriods = (from sp in gdp.StudyPeriods.Include("Cursus")
+                                                      where sp.Common.IsDeleted == false
+                                                      orderby sp.Name
+                                                      select sp).ToList<DAL.StudyPeriod>();
+
+                // TODO pagin
+
+                return studyPeriods;
+            }
+
+
+        }
+
+        public void AddStudyPeriodToClass(int studyPeriodId, int classId, string authorId)
+        {
+            using (GDPEntities db = new GDPEntities())
+            {
+                DAL.Class c = (from cl in db.Classes
+                               where cl.Id == classId && cl.Common.IsDeleted == false
+                               select cl).FirstOrDefault<DAL.Class>();
+
+                DAL.StudyPeriod s = (from sp in db.StudyPeriods
+                                      where sp.Id == studyPeriodId && sp.Common.IsDeleted == false
+                                      select sp).FirstOrDefault<DAL.StudyPeriod>();
+
+                c.StudyPeriods.Add(s);
+
+                db.SaveChanges();
+            }
+        }
+
+        public List<DAL.StudyPeriod> getAllStudyPeriodsForClass(int classId)
+        {
+            using (GDPEntities db = new GDPEntities())
+            {
+                DAL.Class c = (from cl in db.Classes.Include("StudyPeriods")
+                               where cl.Id == classId && cl.Common.IsDeleted == false
+                               select cl).FirstOrDefault<DAL.Class>();
+
+                return c.StudyPeriods.ToList<DAL.StudyPeriod>();
+            }
+        }
     }
 }

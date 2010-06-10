@@ -43,7 +43,13 @@ namespace Services.Cursus
         void UpdateStudyPeriod(DAL.StudyPeriod sp, string authorId);
 
         void DeleteStudyPeriod(int id, string authorId);
-        
+
+        List<DAL.StudyPeriod> getAllStudyPeriods(int pageNum, int pageSize, out int totalRecords);
+
+        void AddStudyPeriodToClass(int studyPeriodId, int classId, string authorId);
+
+        List<DAL.StudyPeriod> getAllStudyPeriodsForClass(int classId);
+
         #endregion
 
         #region "Disciplines"
