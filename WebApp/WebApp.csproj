@@ -258,6 +258,7 @@
     <Content Include="Areas\FrontOffice\Views\MyEvents\Edit.aspx" />
     <Content Include="Areas\FrontOffice\Views\MyEvents\Error.aspx" />
     <Content Include="Areas\FrontOffice\Views\MyEvents\EventConfirmed.aspx" />
+    <Content Include="Areas\FrontOffice\Views\MyEvents\Mobile\Details.aspx" />
     <Content Include="Content\bg_linkList.gif" />
     <Content Include="Content\events.css" />
     <Content Include="Content\fond.gif" />
