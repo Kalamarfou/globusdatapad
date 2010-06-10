@@ -27,6 +27,7 @@
             </td>
             <td>
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id = item.Id })%> |
+                <%: Html.ActionLink("Study Periods", "Index", "StudyPeriods", new { id = item.Id }, null)%> |
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDetails, "Details", new { id = item.Id })%> |
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDelete, "Delete", new { id = item.Id })%>
             </td>

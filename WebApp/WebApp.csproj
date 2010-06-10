@@ -63,6 +63,7 @@
     <Compile Include="Areas\BackOffice\Controllers\CampusesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ClassesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CursusesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\StudyPeriodsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\VenuesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\WorldWideEventsController.cs" />
@@ -220,6 +221,10 @@
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\VenueVisualization.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressEdition.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\EditorTemplates\AddressCreation.ascx" />
+    <Content Include="Areas\BackOffice\Views\StudyPeriods\Create.aspx" />
+    <Content Include="Areas\BackOffice\Views\StudyPeriods\Delete.aspx" />
+    <Content Include="Areas\BackOffice\Views\StudyPeriods\Edit.aspx" />
+    <Content Include="Areas\BackOffice\Views\StudyPeriods\Index.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\NonApproved.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\Users\Details.aspx" />

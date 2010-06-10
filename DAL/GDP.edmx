@@ -28,6 +28,7 @@
     <EntitySet Name="UserClassPast" EntityType="GDP.Store.UserClassPast" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserCampus" EntityType="GDP.Store.UserCampus" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserCampus1" EntityType="GDP.Store.UserCampus1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClassStudyPeriod" EntityType="GDP.Store.ClassStudyPeriod" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="CursusStudyPeriod" Association="GDP.Store.CursusStudyPeriod">
       <End Role="Cursus" EntitySet="Cursuses" />
       <End Role="StudyPeriod" EntitySet="StudyPeriods" />
@@ -43,10 +44,6 @@
     <AssociationSet Name="EventVenue" Association="GDP.Store.EventVenue">
       <End Role="Event" EntitySet="Events" />
       <End Role="Venue" EntitySet="Venues" />
-    </AssociationSet>
-    <AssociationSet Name="ClassStudyPeriod" Association="GDP.Store.ClassStudyPeriod">
-      <End Role="Class" EntitySet="Classes" />
-      <End Role="StudyPeriod" EntitySet="StudyPeriods" />
     </AssociationSet>
     <AssociationSet Name="BaseCourseDiscipline" Association="GDP.Store.BaseCourseDiscipline">
       <End Role="BaseCourse" EntitySet="Events_BaseCourse" />
@@ -135,6 +132,14 @@
     <AssociationSet Name="UserAvailability" Association="GDP.Store.UserAvailability">
       <End Role="User" EntitySet="Users" />
       <End Role="Availability" EntitySet="Availabilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassStudyPeriod_Class" Association="GDP.Store.FK_ClassStudyPeriod_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="ClassStudyPeriod" EntitySet="ClassStudyPeriod" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassStudyPeriod_StudyPeriod" Association="GDP.Store.FK_ClassStudyPeriod_StudyPeriod">
+      <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+      <End Role="ClassStudyPeriod" EntitySet="ClassStudyPeriod" />
     </AssociationSet>
     <AssociationSet Name="FK_BaseCourse_inherits_Event" Association="GDP.Store.FK_BaseCourse_inherits_Event">
       <End Role="Event" EntitySet="Events" />
@@ -436,6 +441,14 @@
     <Property Name="Stakeholders_Id" Type="int" Nullable="false" />
     <Property Name="StakeholderCampuses_Id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="ClassStudyPeriod">
+    <Key>
+      <PropertyRef Name="Classes_Id" />
+      <PropertyRef Name="StudyPeriods_Id" />
+    </Key>
+    <Property Name="Classes_Id" Type="int" Nullable="false" />
+    <Property Name="StudyPeriods_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="CursusStudyPeriod">
     <End Role="Cursus" Type="GDP.Store.Cursuses" Multiplicity="1" />
     <End Role="StudyPeriod" Type="GDP.Store.StudyPeriods" Multiplicity="*" />
@@ -481,18 +494,6 @@
       </Principal>
       <Dependent Role="Venue">
         <PropertyRef Name="EventVenue_Venue_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ClassStudyPeriod">
-    <End Role="Class" Type="GDP.Store.Classes" Multiplicity="1" />
-    <End Role="StudyPeriod" Type="GDP.Store.StudyPeriods" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="StudyPeriod">
-        <PropertyRef Name="ClassId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -760,6 +761,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ClassStudyPeriod_Class">
+    <End Role="Class" Type="GDP.Store.Classes" Multiplicity="1" />
+    <End Role="ClassStudyPeriod" Type="GDP.Store.ClassStudyPeriod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClassStudyPeriod">
+        <PropertyRef Name="Classes_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassStudyPeriod_StudyPeriod">
+    <End Role="ClassStudyPeriod" Type="GDP.Store.ClassStudyPeriod" Multiplicity="*" />
+    <End Role="StudyPeriod" Type="GDP.Store.StudyPeriods" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="StudyPeriod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClassStudyPeriod">
+        <PropertyRef Name="StudyPeriods_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BaseCourse_inherits_Event">
     <End Role="Event" Type="GDP.Store.Events" Multiplicity="1" />
     <End Role="BaseCourse" Type="GDP.Store.Events_BaseCourse" Multiplicity="0..1" />
@@ -861,10 +886,6 @@
             <End Role="Event" EntitySet="Events" />
             <End Role="Venue" EntitySet="Venues" />
           </AssociationSet>
-          <AssociationSet Name="ClassStudyPeriod" Association="GDP.ClassStudyPeriod">
-            <End Role="Class" EntitySet="Classes" />
-            <End Role="StudyPeriod" EntitySet="StudyPeriods" />
-          </AssociationSet>
           <EntitySet Name="Availabilities" EntityType="GDP.Availability" />
           <EntitySet Name="Disciplines" EntityType="GDP.Discipline" />
           <AssociationSet Name="BaseCourseDiscipline" Association="GDP.BaseCourseDiscipline">
@@ -941,6 +962,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Availability" EntitySet="Availabilities" />
           </AssociationSet>
+          <AssociationSet Name="ClassStudyPeriod" Association="GDP.ClassStudyPeriod">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="StudyPeriod" EntitySet="StudyPeriods" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="Audit" >
           <Property Type="DateTime" Name="CreatedAt" Nullable="false" />
@@ -977,9 +1002,9 @@
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
           <NavigationProperty Name="Cursus" Relationship="GDP.CursusStudyPeriod" FromRole="StudyPeriod" ToRole="Cursus" />
           <Property Type="Int32" Name="CursusId" Nullable="false" />
-          <NavigationProperty Name="Class" Relationship="GDP.ClassStudyPeriod" FromRole="StudyPeriod" ToRole="Class" />
           <Property Type="Int32" Name="ClassId" Nullable="false" />
           <NavigationProperty Name="Disciplines" Relationship="GDP.DisciplineStudyPeriod" FromRole="StudyPeriod" ToRole="Discipline" />
+          <NavigationProperty Name="Classes" Relationship="GDP.ClassStudyPeriod" FromRole="StudyPeriod" ToRole="Class" />
         </EntityType>
         <EntityType Name="Campus">
           <Key>
@@ -1013,11 +1038,11 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Name="Common" Type="GDP.Common" Nullable="false" />
-          <NavigationProperty Name="StudyPeriods" Relationship="GDP.ClassStudyPeriod" FromRole="Class" ToRole="StudyPeriod" />
           <NavigationProperty Name="Courses" Relationship="GDP.ClassBaseCourse" FromRole="Class" ToRole="BaseCourse" />
           <NavigationProperty Name="Campus" Relationship="GDP.ClassCampus" FromRole="Class" ToRole="Campus" />
           <NavigationProperty Name="Users" Relationship="GDP.UserClass" FromRole="Class" ToRole="User" />
           <NavigationProperty Name="PreviousUsers" Relationship="GDP.UserClassPast" FromRole="Class" ToRole="User" />
+          <NavigationProperty Name="StudyPeriods" Relationship="GDP.ClassStudyPeriod" FromRole="Class" ToRole="StudyPeriod" />
         </EntityType>
         <EntityType Name="Venue">
           <Key>
@@ -1109,18 +1134,6 @@
         <Association Name="EventVenue">
           <End Type="GDP.Event" Role="Event" Multiplicity="0..1" />
           <End Type="GDP.Venue" Role="Venue" Multiplicity="0..1" />
-        </Association>
-        <Association Name="ClassStudyPeriod">
-          <End Type="GDP.Class" Role="Class" Multiplicity="1" />
-          <End Type="GDP.StudyPeriod" Role="StudyPeriod" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Class">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StudyPeriod">
-              <PropertyRef Name="ClassId" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <EntityType Name="WorldWideEvent" BaseType="GDP.Event" />
         <EntityType Name="Availability">
@@ -1283,6 +1296,10 @@
         <Association Name="UserAvailability">
           <End Type="GDP.User" Role="User" Multiplicity="1" />
           <End Type="GDP.Availability" Role="Availability" Multiplicity="*" />
+        </Association>
+        <Association Name="ClassStudyPeriod">
+          <End Type="GDP.Class" Role="Class" Multiplicity="*" />
+          <End Type="GDP.StudyPeriod" Role="StudyPeriod" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1716,6 +1733,14 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="ClassStudyPeriod" TypeName="GDP.ClassStudyPeriod" StoreEntitySet="ClassStudyPeriod">
+      <EndProperty Name="Class">
+        <ScalarProperty Name="Id" ColumnName="Classes_Id" />
+      </EndProperty>
+      <EndProperty Name="StudyPeriod">
+        <ScalarProperty Name="Id" ColumnName="StudyPeriods_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1763,14 +1788,6 @@
         <AssociationConnector Association="GDP.EventVenue">
           <ConnectorPoint PointX="8.5625" PointY="20.875" />
           <ConnectorPoint PointX="8.5625" PointY="17.980286458333335" />
-        </AssociationConnector>
-        <AssociationConnector Association="GDP.ClassStudyPeriod">
-          <ConnectorPoint PointX="5.5" PointY="24.25" />
-          <ConnectorPoint PointX="7.447916666666667" PointY="24.25" />
-          <ConnectorPoint PointX="7.614583333333333" PointY="24.25" />
-          <ConnectorPoint PointX="8.4166666666666661" PointY="24.25" />
-          <ConnectorPoint PointX="8.5833333333333339" PointY="24.25" />
-          <ConnectorPoint PointX="12.625" PointY="24.25" />
         </AssociationConnector>
         <EntityTypeShape EntityType="GDP.WorldWideEvent" Width="1.5" PointX="10.5" PointY="21.625" Height="1.0187792968750031" />
         <InheritanceConnector EntityType="GDP.WorldWideEvent" >
@@ -1899,6 +1916,14 @@
           <ConnectorPoint PointX="1.7499995" PointY="18.375" />
           <ConnectorPoint PointX="1.7499995" PointY="16.740143229166669" />
           <ConnectorPoint PointX="2.75" PointY="16.740143229166669" />
+        </AssociationConnector>
+        <AssociationConnector Association="GDP.ClassStudyPeriod">
+          <ConnectorPoint PointX="5.5" PointY="24.25" />
+          <ConnectorPoint PointX="7.447916666666667" PointY="24.25" />
+          <ConnectorPoint PointX="7.614583333333333" PointY="24.25" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="24.25" />
+          <ConnectorPoint PointX="8.5833333333333339" PointY="24.25" />
+          <ConnectorPoint PointX="12.625" PointY="24.25" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

@@ -22,7 +22,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "CampusAddress", "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Campus), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Address))]
 [assembly: EdmRelationshipAttribute("GDP", "VenueAddress", "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue), "Address", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Address))]
 [assembly: EdmRelationshipAttribute("GDP", "EventVenue", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Event), "Venue", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DAL.Venue))]
-[assembly: EdmRelationshipAttribute("GDP", "ClassStudyPeriod", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Class), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod), true)]
 [assembly: EdmRelationshipAttribute("GDP", "BaseCourseDiscipline", "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.BaseCourse), "Discipline", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.Discipline))]
 [assembly: EdmRelationshipAttribute("GDP", "EvaluationEvaluationType", "Evaluation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Evaluation), "EvaluationType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.EvaluationType))]
 [assembly: EdmRelationshipAttribute("GDP", "CourseCourseType", "Course", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Course), "CourseType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.CourseType))]
@@ -41,6 +40,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("GDP", "UserBaseCourse", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "BaseCourse", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.BaseCourse), true)]
 [assembly: EdmRelationshipAttribute("GDP", "UserCampus1", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.User), "Campus", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Campus))]
 [assembly: EdmRelationshipAttribute("GDP", "UserAvailability", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DAL.User), "Availability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Availability))]
+[assembly: EdmRelationshipAttribute("GDP", "ClassStudyPeriod", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.Class), "StudyPeriod", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DAL.StudyPeriod))]
 
 #endregion
 
@@ -1467,28 +1467,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassStudyPeriod", "StudyPeriod")]
-        public EntityCollection<StudyPeriod> StudyPeriods
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StudyPeriod>("GDP.ClassStudyPeriod", "StudyPeriod");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StudyPeriod>("GDP.ClassStudyPeriod", "StudyPeriod", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassBaseCourse", "BaseCourse")]
         public EntityCollection<BaseCourse> Courses
         {
@@ -1583,6 +1561,28 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("GDP.UserClassPast", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassStudyPeriod", "StudyPeriod")]
+        public EntityCollection<StudyPeriod> StudyPeriods
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StudyPeriod>("GDP.ClassStudyPeriod", "StudyPeriod");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StudyPeriod>("GDP.ClassStudyPeriod", "StudyPeriod", value);
                 }
             }
         }
@@ -3175,44 +3175,6 @@ namespace DAL
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassStudyPeriod", "Class")]
-        public Class Class
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.ClassStudyPeriod", "Class").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.ClassStudyPeriod", "Class").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Class> ClassReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Class>("GDP.ClassStudyPeriod", "Class");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Class>("GDP.ClassStudyPeriod", "Class", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("GDP", "DisciplineStudyPeriod", "Discipline")]
         public EntityCollection<Discipline> Disciplines
         {
@@ -3225,6 +3187,28 @@ namespace DAL
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Discipline>("GDP.DisciplineStudyPeriod", "Discipline", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("GDP", "ClassStudyPeriod", "Class")]
+        public EntityCollection<Class> Classes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Class>("GDP.ClassStudyPeriod", "Class");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Class>("GDP.ClassStudyPeriod", "Class", value);
                 }
             }
         }
