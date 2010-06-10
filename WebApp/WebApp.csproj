@@ -116,6 +116,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Campuses.resx</DependentUpon>
     </Compile>
+    <Compile Include="Content\i18n\BackOffice\Classes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Classes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Content\i18n\BackOffice\Venues.Designer.cs">
       <DependentUpon>Venues.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -281,7 +286,6 @@
     <Content Include="Content\iui-default\whiteButton.png" />
     <Content Include="Content\iui-moz.css" />
     <Content Include="Content\iui.css" />
-    <Content Include="Content\logo.gif" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\mobile.css" />
     <Content Include="Content\ui-lightness\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
@@ -469,6 +473,10 @@
     <EmbeddedResource Include="Content\i18n\BackOffice\Campuses.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Campuses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Content\i18n\BackOffice\Classes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Classes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Content\i18n\BackOffice\Venues.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
