@@ -70,8 +70,7 @@ namespace Services.People
 
         public void deleteUser(DAL.User user, string authorId)
         {
-            user.Common.Audit.LastModifiedAt = DateTime.Now;
-            user.Common.Audit.LastModifiedBy = authorId;
+            DAL.Utils.GenericCrud.SetAudit(user.Common.Audit, authorId);
             user.Common.IsDeleted = true;
 
             DAL.Utils.GenericCrud.Update<DAL.User>(user);
@@ -273,6 +272,17 @@ namespace Services.People
                         where r.ShortName == roleName
                         from u in r.Users
                         select u.Username).ToArray();
+            }
+        }
+
+        public List<DAL.User> getDalUsersInRole(string roleName)
+        {
+            using (GDPEntities db = new GDPEntities())
+            {
+                return (from r in db.Roles
+                        where r.ShortName == roleName
+                        from u in r.Users
+                        select u).ToList<DAL.User>();
             }
         }
 

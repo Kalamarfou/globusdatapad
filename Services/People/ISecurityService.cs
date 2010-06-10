@@ -60,6 +60,8 @@ namespace Services.People
 
         string[] getUsersInRole(string roleName);
 
+        List<DAL.User> getDalUsersInRole(string roleName);
+
         string[] getAllRoles();
 
         void addUserToRole(string username, string roleName);

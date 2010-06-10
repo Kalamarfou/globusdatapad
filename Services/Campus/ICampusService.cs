@@ -19,6 +19,10 @@ namespace Services.Campus
 
         void Delete(int id, string authorId);
 
+        List<DAL.User> GetManagersForCampus(int id);
+
+        void AddManagerToCampus(int campusManagerId, int campusId);
+
         #endregion
 
         #region "Venues"
