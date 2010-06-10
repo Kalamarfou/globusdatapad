@@ -1,18 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Venue>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Venues.CreateTitle" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Venue>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	<%:WebApp.Content.i18n.BackOffice.Venues.CreateTitle %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
+    <h2><%:WebApp.Content.i18n.BackOffice.Venues.CreateTitle %></h2>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
 
         <fieldset>
-            <legend>Fields</legend>
+            <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>
@@ -23,14 +23,14 @@
             </div>
             
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="<%:WebApp.Content.i18n.Common.ButtonCreate %>" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index") %>
     </div>
 
 </asp:Content>

@@ -1,18 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Venue>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Venues.EditTitle" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<DAL.Venue>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
+	<%:WebApp.Content.i18n.BackOffice.Venues.EditTitle %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit</h2>
+    <h2><%:WebApp.Content.i18n.BackOffice.Venues.EditTitle %></h2>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Fields</legend>
+            <legend><%:WebApp.Content.i18n.Common.Fields %></legend>
             
             <%= Html.HiddenFor(model => model.Common.ConcurrencyToken) %>
             <%= Html.HiddenFor(model => model.Id) %>
@@ -26,14 +26,14 @@
             </div>
             
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="<%:WebApp.Content.i18n.Common.Save %>" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink(WebApp.Content.i18n.Common.BackToList, "Index")%>
     </div>
 
 </asp:Content>
