@@ -211,6 +211,7 @@
     <Content Include="Areas\BackOffice\Views\Classes\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\Classes\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\Classes\Index.aspx" />
+    <Content Include="Areas\BackOffice\Views\Classes\StudyPeriods.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Create.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Details.aspx" />
