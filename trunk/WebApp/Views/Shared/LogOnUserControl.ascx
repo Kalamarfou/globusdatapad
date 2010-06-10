@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<div class="logonControl">
 <%
     if (Request.IsAuthenticated) {
 %>
@@ -12,3 +13,4 @@
 <%
     }
 %>
+</div>
