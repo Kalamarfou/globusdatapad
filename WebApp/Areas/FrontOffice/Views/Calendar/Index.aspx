@@ -55,7 +55,7 @@
 
         $("#userEvent_checkbox").click(function () {
 
-            if ($("#wwe_checkbox").attr('checked')) {
+            if ($("#userEvent_checkbox").attr('checked')) {
                 $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/UserEvents/");
             }
             else {
@@ -77,7 +77,7 @@
 
         $("#classEvent_checkbox").click(function () {
 
-            if ($("#wwe_checkbox").attr('checked')) {
+            if ($("#classEvent_checkbox").attr('checked')) {
                 $('#calendar').fullCalendar('addEventSource', "/FrontOffice/CalendarApi/ClassEvents/");
                 $('#calendar').fullCalendar('removeEventSource', "/FrontOffice/CalendarApi/MandatoryClassEvents/");
             }
