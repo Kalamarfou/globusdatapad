@@ -7,8 +7,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <form id="form1" runat="server" title="Show WorldWideEvent">
-
     <h2><%:WebApp.Content.i18n.FrontOffice.Calendar.CalendarTitle %>
         
     </h2>
@@ -30,13 +28,14 @@
 
 <div>
 <table cellspacing="20px">
-<tr>
-<td><label for="wwe_checkbox">Show world wide event</label><input type="checkbox" name="wwe_checkbox" id="wwe_checkbox" value="" checked="true" /></td>
-<td> <label for="userEvent_checkbox">Show user event</label><input type="checkbox" name="userEvent_checkbox" id="userEvent_checkbox" value="" checked="true"/> </td>
-<td><label for="campusEvent_checkbox">Show campus event</label><input type="checkbox" name="campusEvent_checkbox" id="campusEvent_checkbox" value="" checked="true"/> </td>
-<td> <label for="classEvent_checkbox">Show class event</label><input type="checkbox" name="classEvent_checkbox" id="classEvent_checkbox" value="" checked="true"/> </td>
-</tr>
-</table>
+        <tr>
+        <td><label for="wwe_checkbox">Show world wide event</label><input type="checkbox" name="wwe_checkbox" id="wwe_checkbox" value="" checked="true" /></td>
+        <td> <label for="userEvent_checkbox">Show user event</label><input type="checkbox" name="userEvent_checkbox" id="userEvent_checkbox" value="" checked="true"/> </td>
+        <td><label for="campusEvent_checkbox">Show campus event</label><input type="checkbox" name="campusEvent_checkbox" id="campusEvent_checkbox" value="" checked="true"/> </td>
+        <td> <label for="classEvent_checkbox">Show class event</label><input type="checkbox" name="classEvent_checkbox" id="classEvent_checkbox" value="" checked="true"/> </td>
+        </tr>
+    </table>
+</div>
 
 <script type="text/javascript">
 
@@ -90,7 +89,6 @@
 
     });
 </script>
-</div>
 
 <div id="calendar"></div>
 
@@ -115,7 +113,5 @@
 </script>
 
 </div>
-
-    </form>
 
 </asp:Content>
