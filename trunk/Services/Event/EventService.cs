@@ -239,5 +239,102 @@ namespace Services.Event
             DAL.Utils.GenericCrud.SetAudit(ev.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Create(ev);
         }
+
+
+        public List<WorldWideEvent> GetMandatoryWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from wwe in db.Events.OfType<DAL.WorldWideEvent>()
+                              where wwe.StartDate >= startDate && wwe.StartDate <= endDate && wwe.IsMandatory && wwe.Common.IsDeleted == false
+                              orderby wwe.StartDate
+                              select wwe);
+
+                totalRecords = result.Count<DAL.WorldWideEvent>();
+
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.WorldWideEvent>();
+            }
+        }
+
+        public List<DAL.Event> GetMandatoryCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            ISecurityService secService = new SecurityService();
+            DAL.User user = secService.getUserById(userId);
+
+            if (user != null)
+            {
+                if (user.CurrentClass == null)
+                {
+                    totalRecords = 0;
+                    return null;
+                }
+                var result = (from e in user.CurrentClass.Campus.Events
+                              where e.StartDate >= startDate && e.StartDate <= endDate && e.IsMandatory &&e.Common.IsDeleted == false
+                              orderby e.StartDate
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + userId + " does not exist.");
+            }
+        }
+
+        public List<DAL.Event> GetMandatoryEventsForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            ICampusService campusService = new CampusService();
+            DAL.Campus campus = campusService.GetById(campusId);
+            if (campus != null)
+            {
+                var result = (from e in campus.Events
+                              where e.StartDate >= startDate && e.StartDate <= endDate && e.IsMandatory && e.Common.IsDeleted == false
+                              orderby e.StartDate
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("Campus #" + campus + " does not exist.");
+            }
+        }
+
+        public List<DAL.Event> GetMandatoryClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            ISecurityService peopleService = new SecurityService();
+            DAL.User user = peopleService.getUserById(userId);
+            if (user != null)
+            {
+                if (user.CurrentClass == null)          // if user doesn't have a class
+                {
+                    totalRecords = 0;
+                    return null;
+                }
+                var result = (from e in user.CurrentClass.Courses
+                              where e.StartDate >= startDate && e.StartDate <= endDate && e.IsMandatory && e.Common.IsDeleted == false
+                              orderby e.StartDate
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+            else
+            {
+                throw new ApplicationException("User " + user + " does not exist.");
+            }
+        }
+
+        public List<DAL.Event> GetMandatoryEventsForUser(string userName, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
+        {
+            using (GDPEntities db = new GDPEntities())
+            {
+                var result = (from e in db.Events
+                              where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false && e.IsMandatory && e.User.Username == userName
+                              orderby e.StartDate
+                              select e);
+                totalRecords = result.Count();
+                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
+            }
+        }
     }
 }
