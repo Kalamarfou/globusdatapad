@@ -16,8 +16,21 @@
     <ul>
     <% foreach (DAL.WorldWideEvent e in (List<DAL.WorldWideEvent>)ViewData["WorldWideEvents"])
        { %>
-       <li><%: e.Name %></li>
-
-    <% } %>
+        <li>
+            <%= Html.ActionLink(e.Name, "WorldWideEvent", "Calendar", new { Area = "FrontOffice", id = e.Id }, null)%>
+        </li>
+        <% } %>
     </ul>
+
+    <p><strong><%:WebApp.Content.i18n.Index.UserEvents%></strong></p>
+    <ul>
+    <% foreach (DAL.Event e in (List<DAL.Event>)ViewData["UserEvents"])
+       { %>
+        <li>
+            <%= Html.ActionLink(e.Name, "Details", "MyEvents", new { Area = "FrontOffice", id = e.Id }, null)%>
+        </li>
+        <% } %>
+    </ul>
+
+
 </asp:Content>
