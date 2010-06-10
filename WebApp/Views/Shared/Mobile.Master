@@ -21,7 +21,7 @@
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </div>
 
-    <div id="footer" class="menu">
+    <div id="footer">
         <%= Html.ActionLink(WebApp.Content.i18n.MobileMaster.Home, "Index", "Home", new { Area = "" }, null)%>
         <% Html.RenderPartial("LogOnUserControl"); %>
     </div>
