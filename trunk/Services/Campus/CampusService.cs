@@ -149,7 +149,7 @@ namespace Services.Campus
                 else
                 {
                     totalRecords = campus.Venues.Where(v => v.Common.IsDeleted == false).Count();
-                    return campus.Venues.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
+                    return campus.Venues.Where(v => v.Common.IsDeleted == false).Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Venue>();
                 }
             }
         }

@@ -9,14 +9,30 @@ namespace WebApp.Areas.BackOffice.Controllers
 {
     public class VenuesController : Controller
     {
+        private const int pageSize = 20;
         //
         // GET: /BackOffice/Venues/5
 
-        public ActionResult Index(int id)
+        public ActionResult Index(int id, int? page)
         {
             ICampusService service = new CampusService();
-            int i = 0;      // TODO paginer
-            ViewData.Model = service.GetAllVenuesForCampus(id, 0, 100, out i);
+            int totalRecords;       // total records
+            int pageCount;
+
+            if (!page.HasValue)
+            {
+                pageCount = 1;
+            }
+            else
+            {
+                pageCount = page.Value;
+            }
+
+            ViewData.Model = service.GetAllVenuesForCampus(id,pageCount - 1, pageSize, out totalRecords);
+
+            ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
+
+            ViewData["curpage"] = pageCount;
 
             DAL.Campus campus = service.GetById(id);
 
@@ -119,10 +135,11 @@ namespace WebApp.Areas.BackOffice.Controllers
         public ActionResult Delete(int id, FormCollection collection)
         {
             ICampusService service = new CampusService();
+            DAL.Venue v = service.GetVenueById(id);
+            int campusId = v.Campus.Id;
+            service.DeleteVenue(v, User.Identity.Name);
 
-            service.DeleteVenue(service.GetVenueById(id), User.Identity.Name);
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {id=campusId });
         }
     }
 }
