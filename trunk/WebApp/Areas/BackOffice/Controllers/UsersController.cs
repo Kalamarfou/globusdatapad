@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace WebApp.Areas.BackOffice.Controllers
 {
-    [Authorize(Roles="Admin,CampusManager")]
+    [Authorize(Roles = "Admin,CampusManager")]
     public class UsersController : Controller
     {
         private const int pageSize = 20;
@@ -32,7 +32,7 @@ namespace WebApp.Areas.BackOffice.Controllers
                 pageCount = page.Value;
             }
 
-            ViewData.Model = service.getAllUsers(pageCount -1, pageSize, out totalRecords);
+            ViewData.Model = service.getAllUsers(pageCount - 1, pageSize, out totalRecords);
 
             ViewData["numpages"] = Decimal.Ceiling(Decimal.Divide(totalRecords, pageSize));
 
@@ -68,7 +68,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
             return View();
         }
-        
+
 
         //
         // GET: /BackOffice/Users/Details/5
@@ -84,7 +84,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
         //
         // GET: /BackOffice/Users/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             ISecurityService service = new SecurityService();
@@ -124,7 +124,7 @@ namespace WebApp.Areas.BackOffice.Controllers
 
         //
         // GET: /BackOffice/Users/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             ISecurityService service = new SecurityService();
@@ -163,7 +163,7 @@ namespace WebApp.Areas.BackOffice.Controllers
         {
             return View();
         }
- 
+
         public ActionResult Roles(int id)
         {
             ISecurityService service = new SecurityService();
@@ -229,7 +229,8 @@ namespace WebApp.Areas.BackOffice.Controllers
                 {
                     System.Web.Security.Roles.RemoveUserFromRole(user.Username, "Admin");
                 }
-            } catch(Exception) {}
+            }
+            catch (Exception) { }
 
             try
             {
@@ -241,7 +242,8 @@ namespace WebApp.Areas.BackOffice.Controllers
                 {
                     System.Web.Security.Roles.RemoveUserFromRole(user.Username, "Student");
                 }
-            } catch (Exception) { }
+            }
+            catch (Exception) { }
 
             try
             {
@@ -253,7 +255,8 @@ namespace WebApp.Areas.BackOffice.Controllers
                 {
                     System.Web.Security.Roles.RemoveUserFromRole(user.Username, "Stakeholder");
                 }
-            } catch (Exception) { }
+            }
+            catch (Exception) { }
 
             try
             {
@@ -265,7 +268,8 @@ namespace WebApp.Areas.BackOffice.Controllers
                 {
                     System.Web.Security.Roles.RemoveUserFromRole(user.Username, "CampusManager");
                 }
-            } catch (Exception) { }
+            }
+            catch (Exception) { }
 
             return RedirectToAction("Index");
         }
