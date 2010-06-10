@@ -39,6 +39,26 @@ namespace WebApp.Areas.FrontOffice.Controllers
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
 
+
+        [Authorize]
+        public JsonResult MandatoryWorldWideEvents(double start, double end)
+        {
+            IEventService service = new EventService();
+            ArrayList eventList = new ArrayList();
+            int totalRecords;
+
+            List<DAL.WorldWideEvent> wwe = service.GetMandatoryWorldWideEvents(GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
+            if (wwe != null)
+            {
+                foreach (DAL.WorldWideEvent e in wwe)
+                {
+                    eventList.Add(new CalendarEvent(e, "WorldWideEvent", "/FrontOffice/Calendar/WorldWideEvent/"));
+                }
+            }
+
+            return Json(eventList, JsonRequestBehavior.AllowGet);
+        }
+
         //
         // GET: /FrontOffice/CalendarApi/UserEvents/
 
@@ -50,6 +70,24 @@ namespace WebApp.Areas.FrontOffice.Controllers
             int totalRecords;
 
             List<DAL.Event> events = service.GetEventsForUser(User.Identity.Name, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
+            if (events != null)
+            {
+                foreach (DAL.Event e in events)
+                {
+                    eventList.Add(new CalendarEvent(e, "UserEvent", "/FrontOffice/MyEvents/Details/"));
+                }
+            }
+            return Json(eventList, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public JsonResult MandatoryUserEvents(double start, double end)
+        {
+            IEventService service = new EventService();
+            ArrayList eventList = new ArrayList();
+            int totalRecords;
+
+            List<DAL.Event> events = service.GetMandatoryEventsForUser(User.Identity.Name, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
             if (events != null)
             {
                 foreach (DAL.Event e in events)
@@ -92,6 +130,35 @@ namespace WebApp.Areas.FrontOffice.Controllers
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
+        public JsonResult MandatoryCampusEvents(double start, double end)
+        {
+            IEventService eventService = new EventService();
+            SecurityService securityService = new SecurityService();
+            ArrayList eventList = new ArrayList();
+            int totalRecords;
+
+            DAL.User user = securityService.getUserByUsername(User.Identity.Name);          // TODO : devrait pas y avoir toute cette logique ici ! méthode dans Services... (MF)
+
+            if (user.CurrentClass == null)      // if user doesn't have a class
+            {
+                return null;
+            }
+
+            int campusId = user.CurrentClass.Campus.Id;
+
+            List<DAL.Event> events = eventService.GetMandatoryEventsForCampus(campusId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
+            if (events != null)
+            {
+                foreach (DAL.Event e in events)
+                {
+                    eventList.Add(new CalendarEvent(e, "CampusEvent", "/FrontOffice/Calendar/CampusEvent/"));
+                }
+            }
+
+            return Json(eventList, JsonRequestBehavior.AllowGet);
+        }
+
         //
         // GET: /FrontOffice/CalendarApi/ClassEvents/
 
@@ -113,6 +180,27 @@ namespace WebApp.Areas.FrontOffice.Controllers
                     eventList.Add(new CalendarEvent(e, "ClassEvent", "/FrontOffice/Calendar/ClassEvent/"));
                 }
             } 
+            return Json(eventList, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public JsonResult MandatoryClassEvents(double start, double end)
+        {
+            IEventService eventService = new EventService();
+            SecurityService securityService = new SecurityService();
+            ArrayList eventList = new ArrayList();
+            int totalRecords;
+
+            int userId = securityService.getUserByUsername(User.Identity.Name).Id;
+
+            List<DAL.Event> events = eventService.GetMandatoryClassEventsForUser(userId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
+            if (events != null)
+            {
+                foreach (DAL.Event e in events)
+                {
+                    eventList.Add(new CalendarEvent(e, "ClassEvent", "/FrontOffice/Calendar/ClassEvent/"));
+                }
+            }
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
     }

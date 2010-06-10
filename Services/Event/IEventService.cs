@@ -42,15 +42,29 @@ namespace Services.Event
         /// <returns>List of worldwide events</returns>
         List<DAL.WorldWideEvent> GetWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
+
         List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
         List<DAL.Event> GetEventsForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
+
 
         DAL.BaseCourse GetClassEventById(int eventId);
 
         List<DAL.Event> GetClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
         List<DAL.Event> GetEventsForUser(string userName, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
+
+
+        List<DAL.WorldWideEvent> GetMandatoryWorldWideEvents(DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
+
+        List<DAL.Event> GetMandatoryCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
+
+        List<DAL.Event> GetMandatoryEventsForCampus(int campusId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
+
+        List<DAL.Event> GetMandatoryClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
+
+
+        List<DAL.Event> GetMandatoryEventsForUser(string userName, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords);
 
         #endregion
 
