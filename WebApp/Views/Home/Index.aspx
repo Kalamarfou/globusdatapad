@@ -10,7 +10,6 @@
     <p>
         <%:WebApp.Content.i18n.Index.CorrectlyLogged %>
         <br />
-        <%:WebApp.Content.i18n.Index.EventsForTheDay%>
     </p>
     <% if(((List<DAL.WorldWideEvent>)ViewData["WorldWideEvents"]).Count != 0)
        { %>

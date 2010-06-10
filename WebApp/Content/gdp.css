@@ -43,6 +43,8 @@ a:hover, a:focus {
 	background:#a6a29a;
 }
 
+
+
 fieldset {
  padding:10px;
  }
@@ -252,4 +254,7 @@ min-width:640px;
             margin-top: 0px;
         }
 
- 
+ #logonControl a, a:visited
+{
+    color: Black;
+}
