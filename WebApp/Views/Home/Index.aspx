@@ -21,7 +21,8 @@
         <% foreach (DAL.WorldWideEvent e in (List<DAL.WorldWideEvent>)ViewData["WorldWideEvents"])
        { %>
         <li>
-            <%: e.Name %></li>
+            <%= Html.ActionLink(e.Name, "WorldWideEvent", "Calendar", new { Area = "FrontOffice", id = e.Id }, null)%>
+        </li>
         <% } %>
     </ul>
     <br />
@@ -36,7 +37,7 @@
         <% foreach (DAL.Event e in (List<DAL.Event>)ViewData["CampusEvents"])
        { %>
         <li>
-            <%: e.Name %></li>
+             <%:e.Name%></li>
         <% } %>
     </ul>
     <br />
@@ -51,7 +52,7 @@
         <% foreach (DAL.Event e in (List<DAL.Event>)ViewData["ClassEvents"])
        { %>
         <li>
-            <%: e.Name %></li>
+            <%: e.Name%></li>
         <% } %>
     </ul>
     <br />
@@ -66,7 +67,7 @@
         <% foreach (DAL.Event e in (List<DAL.Event>)ViewData["UserEvents"])
        { %>
         <li>
-            <%: e.Name %></li>
+             <%= Html.ActionLink(e.Name, "Details", "MyEvents", new { Area = "FrontOffice", id = e.Id }, null)%></li>
         <% } %>
     </ul>
     <% } %>
