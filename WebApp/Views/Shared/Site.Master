@@ -34,7 +34,7 @@
                 <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.About, "About", "Home", new { Area = "" }, null)%></p>
                 <% if (Roles.IsUserInRole("Admin") | Roles.IsUserInRole("Stakeholder") | Roles.IsUserInRole("CampusManager"))
                     { %>
-                <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.BackOffice, "Index", "Campuses", new { Area = "BackOffice" }, null)%></p>
+                <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.BackOffice, "Index", "Dashboard", new { Area = "BackOffice" }, null)%></p>
                 <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Calendar, "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>
                 <% } else if (Roles.IsUserInRole("Student")) { %>
                 <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Calendar, "Index", "Calendar", new { Area = "FrontOffice" }, null)%></p>

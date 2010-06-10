@@ -63,6 +63,7 @@
     <Compile Include="Areas\BackOffice\Controllers\CampusesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ClassesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CursusesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DashboardController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\StudyPeriodsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\UsersController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\VenuesController.cs" />
@@ -221,6 +222,7 @@
     <Content Include="Areas\BackOffice\Views\Cursuses\Details.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Index.aspx" />
+    <Content Include="Areas\BackOffice\Views\Dashboard\Index.aspx" />
     <Content Include="Areas\BackOffice\Views\Shared\BackOfficeMenu.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\AddressVisualization.ascx" />
     <Content Include="Areas\BackOffice\Views\Shared\DisplayTemplates\VenueVisualization.ascx" />
@@ -433,9 +435,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Mobile.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\iPhone.Master" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\i18n\About.resx">

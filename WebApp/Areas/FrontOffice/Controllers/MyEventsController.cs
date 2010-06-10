@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Services.Event;
+using Services.People;
 
 namespace WebApp.Areas.FrontOffice.Controllers
 {
+    [Authorize]
     public class MyEventsController : Controller
     {
-
         //
         // GET: /FrontOffice/MyEvents/Details/5
 
@@ -17,7 +18,9 @@ namespace WebApp.Areas.FrontOffice.Controllers
         {
             IEventService service = new EventService();
 
-            ViewData.Model = service.GetById(id);
+            DAL.Event e = service.GetById(id);              // TODO vérifier que l'evenement est bien de l'user courant !!
+
+            ViewData.Model = e;
             return View();
         }
 
