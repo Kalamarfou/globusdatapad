@@ -10,6 +10,6 @@
 
     <p><%:WebApp.Content.i18n.Account.AccountCreated.Success %></p>
 
-    <p><%= Html.ActionLink("Log On", "Index", "Home", new { Area = "" }, null)%></p>
+    <p><%= Html.ActionLink(WebApp.Content.i18n.SiteMaster.Home, "Index", "Home", new { Area = "" }, null)%></p>
 
 </asp:Content>
