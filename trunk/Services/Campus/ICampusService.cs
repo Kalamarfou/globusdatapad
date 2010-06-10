@@ -23,6 +23,10 @@ namespace Services.Campus
 
         void AddManagerToCampus(int campusManagerId, int campusId);
 
+        List<DAL.Class> GetClassesForCampus(int campusId, int pageNum, int pageSize, out int totalRecords);
+
+        void CreateClassForCampus(int campusId, DAL.Class c, string authorId);
+
         #endregion
 
         #region "Venues"

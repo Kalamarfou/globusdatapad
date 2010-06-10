@@ -201,5 +201,45 @@ namespace Services.Campus
             }
         }
 
+        public List<DAL.Class> GetClassesForCampus(int campusId, int pageNum, int pageSize, out int totalRecords)
+        {
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                DAL.Campus campus = (from c in gdp.Campuses.Include("Classes")
+                                     where c.Id == campusId && c.Common.IsDeleted == false
+                                     select c).FirstOrDefault<DAL.Campus>();
+
+                if (campus == null)
+                {
+                    throw new ApplicationException("Campus #" + campusId + " not found or has been deleted.");
+                }
+
+                totalRecords = campus.Classes.Where(c => c.Common.IsDeleted == false).Count();
+
+                return campus.Classes.Where(c => c.Common.IsDeleted == false).ToList<DAL.Class>();
+            }
+        }
+
+        public void CreateClassForCampus(int campusId, DAL.Class c, string authorId)
+        {
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                DAL.Campus cam = (from campus in gdp.Campuses
+                                     where campus.Id == campusId && campus.Common.IsDeleted == false
+                                     select campus).FirstOrDefault<DAL.Campus>();
+
+                if (cam == null)
+                {
+                    throw new ApplicationException("Campus #" + campusId + " not found or has been deleted.");
+                }
+
+                DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
+
+                cam.Classes.Add(c);
+
+                gdp.SaveChanges();
+            }
+        }
+
     }
 }
