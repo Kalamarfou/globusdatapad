@@ -79,6 +79,15 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to managers of this campus.
+        /// </summary>
+        public static string AddManager {
+            get {
+                return ResourceManager.GetString("AddManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create user.
         /// </summary>
         public static string CreateTitle {
@@ -223,6 +232,15 @@ namespace WebApp.Content.i18n.BackOffice {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Managers.
+        /// </summary>
+        public static string Managers {
+            get {
+                return ResourceManager.GetString("Managers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No users available..
         /// </summary>
         public static string NoItems {
@@ -237,6 +255,15 @@ namespace WebApp.Content.i18n.BackOffice {
         public static string NoItemsNonApproved {
             get {
                 return ResourceManager.GetString("NoItemsNonApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No more managers to add to this campus.
+        /// </summary>
+        public static string NoMoreManagers {
+            get {
+                return ResourceManager.GetString("NoMoreManagers", resourceCulture);
             }
         }
         
@@ -300,6 +327,15 @@ namespace WebApp.Content.i18n.BackOffice {
         public static string UserDeleted {
             get {
                 return ResourceManager.GetString("UserDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users having the campusmanager role:.
+        /// </summary>
+        public static string UserManagerRoles {
+            get {
+                return ResourceManager.GetString("UserManagerRoles", resourceCulture);
             }
         }
         

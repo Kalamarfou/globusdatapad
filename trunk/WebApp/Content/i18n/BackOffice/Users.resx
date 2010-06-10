@@ -204,4 +204,16 @@
   <data name="NoItemsNonApproved" xml:space="preserve">
     <value>No non approved users available.</value>
   </data>
+  <data name="AddManager" xml:space="preserve">
+    <value>Add to managers of this campus</value>
+  </data>
+  <data name="Managers" xml:space="preserve">
+    <value>Managers</value>
+  </data>
+  <data name="NoMoreManagers" xml:space="preserve">
+    <value>No more managers to add to this campus</value>
+  </data>
+  <data name="UserManagerRoles" xml:space="preserve">
+    <value>Users having the campusmanager role:</value>
+  </data>
 </root>
