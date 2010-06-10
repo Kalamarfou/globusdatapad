@@ -80,24 +80,6 @@ namespace WebApp.Areas.FrontOffice.Controllers
             return Json(eventList, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
-        public JsonResult MandatoryUserEvents(double start, double end)
-        {
-            IEventService service = new EventService();
-            ArrayList eventList = new ArrayList();
-            int totalRecords;
-
-            List<DAL.Event> events = service.GetMandatoryEventsForUser(User.Identity.Name, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
-            if (events != null)
-            {
-                foreach (DAL.Event e in events)
-                {
-                    eventList.Add(new CalendarEvent(e, "UserEvent", "/FrontOffice/MyEvents/Details/"));
-                }
-            }
-            return Json(eventList, JsonRequestBehavior.AllowGet);
-        }
-
         //
         // GET: /FrontOffice/CalendarApi/CampusEvents/
 
