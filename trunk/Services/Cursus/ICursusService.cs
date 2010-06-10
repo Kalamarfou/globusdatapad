@@ -32,7 +32,7 @@ namespace Services.Cursus
 
         #region "StudyPeriods"
 
-        void CreateStudyPeriod(DAL.StudyPeriod sp, string authorId);
+        void CreateStudyPeriodForCursus(int cursusId, DAL.StudyPeriod sp, string authorId);
 
         DAL.StudyPeriod GetStudyPeriodById(int id);
 

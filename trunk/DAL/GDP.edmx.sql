@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/09/2010 19:48:21
+-- Date Created: 06/10/2010 14:05:10
 -- Generated from EDMX file: C:\Users\Martin Filliau\documents\visual studio 2010\Projects\GlobusDataPad\DAL\GDP.edmx
 -- --------------------------------------------------
 
@@ -463,6 +463,13 @@ CREATE TABLE [dbo].[UserCampus1] (
 );
 GO
 
+-- Creating table 'ClassStudyPeriod'
+CREATE TABLE [dbo].[ClassStudyPeriod] (
+    [Classes_Id] int  NOT NULL,
+    [StudyPeriods_Id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -599,6 +606,12 @@ ADD CONSTRAINT [PK_UserCampus1]
     PRIMARY KEY NONCLUSTERED ([Stakeholders_Id], [StakeholderCampuses_Id] ASC);
 GO
 
+-- Creating primary key on [Classes_Id], [StudyPeriods_Id] in table 'ClassStudyPeriod'
+ALTER TABLE [dbo].[ClassStudyPeriod]
+ADD CONSTRAINT [PK_ClassStudyPeriod]
+    PRIMARY KEY NONCLUSTERED ([Classes_Id], [StudyPeriods_Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -657,20 +670,6 @@ ADD CONSTRAINT [FK_EventVenue]
 CREATE INDEX [IX_FK_EventVenue]
 ON [dbo].[Venues]
     ([EventVenue_Venue_Id]);
-GO
-
--- Creating foreign key on [ClassId] in table 'StudyPeriods'
-ALTER TABLE [dbo].[StudyPeriods]
-ADD CONSTRAINT [FK_ClassStudyPeriod]
-    FOREIGN KEY ([ClassId])
-    REFERENCES [dbo].[Classes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ClassStudyPeriod'
-CREATE INDEX [IX_FK_ClassStudyPeriod]
-ON [dbo].[StudyPeriods]
-    ([ClassId]);
 GO
 
 -- Creating foreign key on [Discipline_Id] in table 'Events_BaseCourse'
@@ -959,6 +958,29 @@ ADD CONSTRAINT [FK_UserAvailability]
 CREATE INDEX [IX_FK_UserAvailability]
 ON [dbo].[Availabilities]
     ([User_Id]);
+GO
+
+-- Creating foreign key on [Classes_Id] in table 'ClassStudyPeriod'
+ALTER TABLE [dbo].[ClassStudyPeriod]
+ADD CONSTRAINT [FK_ClassStudyPeriod_Class]
+    FOREIGN KEY ([Classes_Id])
+    REFERENCES [dbo].[Classes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [StudyPeriods_Id] in table 'ClassStudyPeriod'
+ALTER TABLE [dbo].[ClassStudyPeriod]
+ADD CONSTRAINT [FK_ClassStudyPeriod_StudyPeriod]
+    FOREIGN KEY ([StudyPeriods_Id])
+    REFERENCES [dbo].[StudyPeriods]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ClassStudyPeriod_StudyPeriod'
+CREATE INDEX [IX_FK_ClassStudyPeriod_StudyPeriod]
+ON [dbo].[ClassStudyPeriod]
+    ([StudyPeriods_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Events_BaseCourse'

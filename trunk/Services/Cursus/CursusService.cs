@@ -11,12 +11,6 @@ namespace Services.Cursus
     public class CursusService : ICursusService
     {
 
-
-        
-
-
-        #region ICursusService Members
-
         public void CreateCursus(DAL.Cursus c, string authorId)
         {
             DAL.Utils.GenericCrud.SetAudit(c.Common.Audit, authorId);
@@ -27,7 +21,7 @@ namespace Services.Cursus
         {
             using (GDPEntities db = new GDPEntities())
             {
-                return db.Cursuses.First(c => c.Id == id && c.Common.IsDeleted == false);
+                return db.Cursuses.Include("StudyPeriods").First(c => c.Id == id && c.Common.IsDeleted == false);
             }
         }
 
@@ -71,10 +65,25 @@ namespace Services.Cursus
             DAL.Utils.GenericCrud.Update(c);
         }
 
-        public void CreateStudyPeriod(DAL.StudyPeriod sp, string authorId)
+        public void CreateStudyPeriodForCursus(int cursusId, DAL.StudyPeriod sp, string authorId)
         {
-            DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
-            DAL.Utils.GenericCrud.Create(sp);
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                DAL.Cursus cursus = (from c in gdp.Cursuses
+                                     where c.Id == cursusId && c.Common.IsDeleted == false
+                                     select c).FirstOrDefault<DAL.Cursus>();
+
+                if (cursus == null)
+                {
+                    throw new ApplicationException("Cursus #" + cursusId + " doesn't exist or has been deleted.");
+                }
+
+                DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
+
+                cursus.StudyPeriods.Add(sp);
+
+                gdp.SaveChanges();
+            }
         }
 
         public DAL.StudyPeriod GetStudyPeriodById(int id)
@@ -130,11 +139,6 @@ namespace Services.Cursus
             DAL.Utils.GenericCrud.SetAudit(sp.Common.Audit, authorId);
             DAL.Utils.GenericCrud.Update(sp);
         }
-
-        #endregion
-
-        #region ICursusService Members
-
 
         public void Create(DAL.Discipline disc, string authorId)
         {
@@ -224,6 +228,5 @@ namespace Services.Cursus
             }
         }
 
-        #endregion
     }
 }
