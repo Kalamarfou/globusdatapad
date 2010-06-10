@@ -1,34 +1,32 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.User>>" %>
+﻿<%@ Page Title="WebApp.Content.i18n.BackOffice.Users.Managers" Language="C#" MasterPageFile="~/Areas/BackOffice/Views/Shared/BackOffice.Master"
+    Inherits="System.Web.Mvc.ViewPage<IEnumerable<DAL.User>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Managers
+    <%:WebApp.Content.i18n.BackOffice.Users.Managers%>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Managers</h2>
-
+    <h2>
+        <%:WebApp.Content.i18n.BackOffice.Users.Managers%></h2>
     <table>
         <tr>
             <th>
-                Username
+                <%: DAL.Resources.User.Username %>
             </th>
             <th>
-                FirstName
+                <%: DAL.Resources.User.FirstName %>
             </th>
             <th>
-                LastName
+                <%: DAL.Resources.User.LastName %>
             </th>
             <th>
-                Title
+                <%: DAL.Resources.User.Title %>
             </th>
             <th>
-                Email
+                <%: DAL.Resources.User.Email %>
             </th>
         </tr>
-
-    <% foreach (var item in Model) { %>
-    
+        <% foreach (var item in Model)
+           { %>
         <tr>
             <td>
                 <%: item.Username %>
@@ -46,21 +44,24 @@
                 <%: item.Email %>
             </td>
         </tr>
-    
-    <% } %>
-
+        <% } %>
     </table>
-
     <br />
-
     <% Html.BeginForm();
        { %>
-
-    Users having the campusmanager role: <%: Html.DropDownList("AddManager", (IEnumerable<SelectListItem>)ViewData["campusManagers"])%>
-
-    <p><input type="submit" value="Add to managers of this campus" /></p>
-
+    <% if (((IEnumerable<SelectListItem>)ViewData["campusManagers"]).Count() == 0)
+       {
+       %>
+       <%:WebApp.Content.i18n.BackOffice.Users.NoMoreManagers%>
+       <%}
+       else
+       {
+    %>
+    <%:WebApp.Content.i18n.BackOffice.Users.UserManagerRoles%>
+    <%: Html.DropDownList("AddManager", (IEnumerable<SelectListItem>)ViewData["campusManagers"])%>
+    <p>
+        <input type="submit" value="<%:WebApp.Content.i18n.BackOffice.Users.AddManager%>" /></p>
+    <%   
+        } %>
     <% } %>
-
 </asp:Content>
-
