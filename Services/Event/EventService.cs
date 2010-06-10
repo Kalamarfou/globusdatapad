@@ -90,7 +90,7 @@ namespace Services.Event
                 if (user.CurrentClass == null)
                 {
                     totalRecords = 0;
-                    return null;
+                    return new List<DAL.Event>() ;
                 }
                 var result = (from e in user.CurrentClass.Campus.Events
                               where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false
@@ -141,7 +141,7 @@ namespace Services.Event
                 if (user.CurrentClass == null)          // if user doesn't have a class
                 {
                     totalRecords = 0;
-                    return null;
+                    return new List<DAL.Event>();
                 }
                 var result = (from e in user.CurrentClass.Courses
                               where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false

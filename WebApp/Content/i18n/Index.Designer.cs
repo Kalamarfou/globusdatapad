@@ -61,6 +61,24 @@ namespace WebApp.Content.i18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Campus Events in the next 10 days..
+        /// </summary>
+        public static string CampusEvents {
+            get {
+                return ResourceManager.GetString("CampusEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Class Events in the next 10 days..
+        /// </summary>
+        public static string ClassEvents {
+            get {
+                return ResourceManager.GetString("ClassEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are correcty logged..
         /// </summary>
         public static string CorrectlyLogged {
@@ -84,6 +102,15 @@ namespace WebApp.Content.i18n {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Events in the next 10 days..
+        /// </summary>
+        public static string UserEvents {
+            get {
+                return ResourceManager.GetString("UserEvents", resourceCulture);
             }
         }
         
