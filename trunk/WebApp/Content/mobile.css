@@ -42,28 +42,6 @@
 		{
 			color: #efefef;
 		}*/
-		
-		.menu li
-        {
-			width: 9em;
-            display: block;
-            border: 0.1em solid #dcdce9;	
-		}
-		.menu a
-		{
-			padding: 100px 10px 10px 15px;
-		}
-		.menu a:link, .menu a:visited
-		{
-			color: #efefef;
-		}
-		
-		.menu li a:hover, .menu li a:focus, .menu li a:active {  
-            border-bottom: 8px ; 
-            border-bottom-style: solid ; 
-            border-bottom-color: #DCE4E7 ; 
-    } 
-
 
 h2
 {
@@ -94,8 +72,16 @@ h2
 	clear: both;
 	float: left;
 	background-color: #333;
+	text-decoration: none;
 	width: 100%;
 	margin: 0;
 	padding: 5px;
 }
+
+#footer a, a:visited
+{
+    color:#F2F2F2;
+}
+
+
 
