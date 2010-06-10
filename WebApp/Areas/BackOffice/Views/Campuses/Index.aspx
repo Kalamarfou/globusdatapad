@@ -32,6 +32,7 @@
             <td>
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonEdit, "Edit", new { id=item.Id }) %> |
                 <%: Html.ActionLink("Venues", "Index", "Venues", new { id = item.Id }, null) %> |
+                <%: Html.ActionLink("Classes", "Index", "Classes", new { id = item.Id }, null) %> |
                 <%: Html.ActionLink("Managers", "Managers", new { id = item.Id }) %> |
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDetails, "Details", new { id = item.Id })%> |
                 <%: Html.ActionLink(WebApp.Content.i18n.Common.ButtonDelete, "Delete", new { id = item.Id })%>
