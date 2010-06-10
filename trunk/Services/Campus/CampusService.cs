@@ -154,5 +154,52 @@ namespace Services.Campus
             }
         }
 
+        public List<User> GetManagersForCampus(int id)
+        {
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                DAL.Campus campus = (from c in gdp.Campuses.Include("Managers")
+                                     where c.Id == id && c.Common.IsDeleted == false
+                                     select c).FirstOrDefault<DAL.Campus>();
+
+                if (campus != null)
+                {
+                    return campus.Managers.ToList<DAL.User>();
+                }
+                else
+                {
+                    throw new ApplicationException("Campus #" + id + " doesn't exist or has been deleted.");
+                }
+            }
+        }
+
+        public void AddManagerToCampus(int campusManagerId, int campusId)
+        {
+            using (GDPEntities gdp = new GDPEntities())
+            {
+                DAL.Campus campus = (from c in gdp.Campuses
+                                     where c.Id == campusId && c.Common.IsDeleted == false
+                                     select c).FirstOrDefault<DAL.Campus>();
+
+                if (campus == null) throw new ApplicationException("Campus #" + campusId + " not found.");
+
+                DAL.User user = (from u in gdp.Users
+                                 where u.Id == campusManagerId && u.Common.IsDeleted == false
+                                 select u).FirstOrDefault<DAL.User>();
+
+                if (user == null) throw new ApplicationException("User #" + campusManagerId + " not found.");
+
+                if (campus.Managers.Contains(user))
+                {
+                    throw new ApplicationException("User #" + campusManagerId + " already manager for campus #" + campusId + ".");
+                }
+                else
+                {
+                    campus.Managers.Add(user);
+                    gdp.SaveChanges();
+                }
+            }
+        }
+
     }
 }

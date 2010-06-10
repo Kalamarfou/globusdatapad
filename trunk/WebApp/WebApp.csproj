@@ -199,6 +199,7 @@
     <Content Include="Areas\BackOffice\Views\Campuses\Details.aspx" />
     <Content Include="Areas\BackOffice\Views\Campuses\Edit.aspx" />
     <Content Include="Areas\BackOffice\Views\Campuses\Index.aspx" />
+    <Content Include="Areas\BackOffice\Views\Campuses\Managers.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Create.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Delete.aspx" />
     <Content Include="Areas\BackOffice\Views\Cursuses\Details.aspx" />

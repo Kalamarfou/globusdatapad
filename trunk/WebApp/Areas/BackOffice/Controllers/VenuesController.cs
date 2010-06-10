@@ -86,7 +86,6 @@ namespace WebApp.Areas.BackOffice.Controllers
             {
                 ICampusService service = new CampusService();
 
-
                 DAL.Venue dbVenue = service.GetVenueById(id);
 
                 dbVenue.Name = venue.Name;

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Services.People;
 
 namespace WebApp.Areas.BackOffice.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class CampusesController : Controller
     {
         private Services.Campus.ICampusService service;
@@ -135,5 +137,52 @@ namespace WebApp.Areas.BackOffice.Controllers
             service.Delete(id, User.Identity.Name);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Managers(int id)
+        {
+            ISecurityService rolesService = new SecurityService();
+            
+            List<DAL.User> campusManagers = service.GetManagersForCampus(id);           // managers of this campus
+            List<DAL.User> managers = rolesService.getDalUsersInRole("CampusManager");  // all campus managers
+
+            List<DAL.User> managersNotInCampus = new List<DAL.User>();                  // managers not in this campus
+
+            foreach (DAL.User manager in managers)
+            {
+                var result = (from u in campusManagers                  // if manager not manager of THIS campus
+                              where u.Id == manager.Id                  // TODO cleanup and learn lambda expressions
+                              select u).FirstOrDefault<DAL.User>();
+                if (result == null)
+                {
+                    managersNotInCampus.Add(manager);
+                }
+            }
+
+            var selectItems = from m in managersNotInCampus
+                              select new SelectListItem
+                              {
+                                  Text = m.FirstName + " " + m.LastName,
+                                  Value = m.Id.ToString()
+                              };
+
+            ViewData["campusManagers"] = selectItems;
+
+            ViewData.Model = campusManagers;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Managers(int id, FormCollection form)
+        {
+            int campusManagerId;
+
+            campusManagerId = int.Parse(Request.Form["AddManager"]);
+
+            service.AddManagerToCampus(campusManagerId, id);
+
+            return RedirectToAction("Managers");
+        }
+
     }
 }
