@@ -77,12 +77,20 @@ namespace WebApp.Areas.FrontOffice.Controllers
         // POST: /FrontOffice/MyEvents/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(DAL.Event e)
+        public ActionResult Edit(int id, DAL.Event e)
         {
             try
             {
                 IEventService service = new EventService();
-                service.UpdateUserEvent(e, User.Identity.Name);
+
+                DAL.Event dbEvent = service.GetById(id);
+
+                dbEvent.Name = e.Name;
+                dbEvent.StartDate = e.StartDate;
+                dbEvent.EndDate = e.EndDate;
+                dbEvent.Description = e.Description;
+
+                service.UpdateUserEvent(dbEvent, User.Identity.Name);
 
                 return RedirectToAction("Index", "Calendar");
             }

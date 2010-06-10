@@ -53,7 +53,7 @@ namespace Services.Event
         {
             using (GDPEntities db = new GDPEntities())
             {
-                return db.Events.First(e => e.Id == id && e.Common.IsDeleted == false);
+                return db.Events.Include("User").First(e => e.Id == id && e.Common.IsDeleted == false);
             }
         }
 
