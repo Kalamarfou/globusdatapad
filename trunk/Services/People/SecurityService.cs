@@ -26,7 +26,7 @@ namespace Services.People
 
             using (GDPEntities db = new GDPEntities())
             {
-                user = (from u in db.Users
+                user = (from u in db.Users.Include("CurrentClass").Include("CurrentClass.Campus")
                     where u.Username == username
                     select u).SingleOrDefault<DAL.User>();
             }
@@ -40,7 +40,7 @@ namespace Services.People
 
             using (GDPEntities db = new GDPEntities())
             {
-                user = (from u in db.Users
+                user = (from u in db.Users.Include("CurrentClass").Include("CurrentClass.Campus")
                         where u.Email == email
                         select u).SingleOrDefault<DAL.User>();
             }
@@ -54,7 +54,7 @@ namespace Services.People
 
             using (GDPEntities db = new GDPEntities())
             {
-                user = (from u in db.Users
+                user = (from u in db.Users.Include("CurrentClass").Include("CurrentClass.Campus")
                         where u.Id == userId
                         select u).SingleOrDefault<DAL.User>();
             }
