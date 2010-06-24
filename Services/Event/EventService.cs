@@ -82,26 +82,30 @@ namespace Services.Event
 
         public List<DAL.Event> GetCampusEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            ISecurityService secService = new SecurityService();
-            DAL.User user = secService.getUserById(userId);
-            
-            if (user != null)
+            using (GDPEntities db = new GDPEntities())
             {
-                if (user.CurrentClass == null)
+                DAL.User user = (from u in db.Users
+                                 where u.Id == userId && u.Common.IsDeleted == false
+                                 select u).First();
+
+                if (user != null)
                 {
-                    totalRecords = 0;
-                    return new List<DAL.Event>() ;
+                    if (user.CurrentClass == null)
+                    {
+                        totalRecords = 0;
+                        return new List<DAL.Event>();
+                    }
+                    var result = (from e in user.CurrentClass.Campus.Events
+                                  where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false
+                                  orderby e.StartDate
+                                  select e);
+                    totalRecords = result.Count();
+                    return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
                 }
-                var result = (from e in user.CurrentClass.Campus.Events
-                              where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false
-                              orderby e.StartDate
-                              select e);
-                totalRecords = result.Count();
-                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
-            }
-            else
-            {
-                throw new ApplicationException("User " + userId + " does not exist.");
+                else
+                {
+                    throw new ApplicationException("User " + userId + " does not exist.");
+                }
             }
         }
 
@@ -134,25 +138,29 @@ namespace Services.Event
 
         public List<DAL.Event> GetClassEventsForUser(int userId, DateTime startDate, DateTime endDate, int pageNum, int pageSize, out int totalRecords)
         {
-            ISecurityService peopleService = new SecurityService();
-            DAL.User user = peopleService.getUserById(userId);
-            if (user != null)
+            using (GDPEntities db = new GDPEntities())
             {
-                if (user.CurrentClass == null)          // if user doesn't have a class
+                DAL.User user = (from u in db.Users
+                                 where u.Id == userId && u.Common.IsDeleted == false
+                                 select u).First();
+                if (user != null)
                 {
-                    totalRecords = 0;
-                    return new List<DAL.Event>();
+                    if (user.CurrentClass == null)          // if user doesn't have a class
+                    {
+                        totalRecords = 0;
+                        return new List<DAL.Event>();
+                    }
+                    var result = (from e in user.CurrentClass.Courses
+                                  where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false
+                                  orderby e.StartDate
+                                  select e);
+                    totalRecords = result.Count();
+                    return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
                 }
-                var result = (from e in user.CurrentClass.Courses
-                              where e.StartDate >= startDate && e.StartDate <= endDate && e.Common.IsDeleted == false
-                              orderby e.StartDate
-                              select e);
-                totalRecords = result.Count();
-                return result.Skip(pageNum * pageSize).Take(pageSize).ToList<DAL.Event>();
-            }
-            else
-            {
-                throw new ApplicationException("User " + user + " does not exist.");
+                else
+                {
+                    throw new ApplicationException("User " + user + " does not exist.");
+                }
             }
         }
 

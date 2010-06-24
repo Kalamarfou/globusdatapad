@@ -100,7 +100,7 @@ namespace WebApp.Areas.FrontOffice.Controllers
 
             int campusId = user.CurrentClass.Campus.Id;
 
-            List<DAL.Event> events = eventService.GetEventsForCampus(campusId, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
+            List<DAL.Event> events = eventService.GetCampusEventsForUser(user.Id, GlobalUtils.ConvertFromUnixTimestamp(start), GlobalUtils.ConvertFromUnixTimestamp(end), 0, maxEventsToRetrieve, out totalRecords);
             if (events != null)
             {
                 foreach (DAL.Event e in events)
